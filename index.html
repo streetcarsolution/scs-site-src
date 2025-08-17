@@ -1,19 +1,1352 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>My static Space</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="card">
-			<h1>Welcome to your static Space!</h1>
-			<p>You can modify this app directly by editing <i>index.html</i> in the Files and versions tab.</p>
-			<p>
-				Also don't forget to check the
-				<a href="https://huggingface.co/docs/hub/spaces" target="_blank">Spaces documentation</a>.
-			</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<!-- refresh build -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Location de voitures à Cancún et Riviera Maya : prix transparents, assistance francophone 24/7, prise en charge flexible. Street Car Solution.">
+    <link rel="preload" as="image" href="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg">
+
+    <title>Street Car Solution - Location de voitures à Cancun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+    <script>
+    tailwind.config = {
+    theme: {
+      fontSize: {
+        sm: '0.95rem',
+        base: '1.05rem',
+        lg: '1.20rem',
+        xl: '1.35rem',
+        '2xl': '1.65rem',
+        '3xl': '2rem',
+        '4xl': '2.5rem',
+        '5xl': '3rem',
+        '6xl': '3.75rem',
+      },
+      extend: {
+        colors: {
+          caribbean: {
+            blue: '#1DA1F2',
+            green: '#00B894',
+            yellow: '#FDCB6E',
+            orange: '#E17055',
+            pink: '#FD79A8',
+            purple: '#6C5CE7'
+          },
+          mexican: {
+            red: '#E63946',
+            yellow: '#F1C40F',
+            green: '#2ECC71',
+            blue: '#3498DB',
+            orange: '#E67E22'
+          }
+        },
+        fontFamily: {
+          sans: ['Montserrat', 'sans-serif'],
+          heading: ['"Fredoka One"', 'cursive']
+        }
+      }
+    }
+  }
+</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1DA1F2 0%, #00B894 50%, #FDCB6E 100%);
+        }
+        
+        .about-gradient {
+  background: linear-gradient(135deg, #1DA1F2 0%, #00B894 50%, #FDCB6E 100%);
+        }
+        
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        
+        .date-picker {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        .carousel {
+            scroll-snap-type: x mandatory;
+        }
+        
+        .carousel-item {
+            scroll-snap-align: start;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-lg">
+    <!-- Language & Currency Selector -->
+    <div class="bg-mexican-red text-white py-2 px-4 flex justify-between items-center">
+        <div class="language-selector relative">
+            <button class="flex items-center">
+                <span class="fi fi-fr mr-2"></span>
+                Français
+                <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+                    <span class="fi fi-fr mr-2"></span>
+                    Français
+                </a>
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+                    <span class="fi fi-us mr-2"></span>
+                    English
+                </a>
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+                    <span class="fi fi-mx mr-2"></span>
+                    Español
+                </a>
+            </div>
+        </div>
+        <div class="currency-selector relative">
+            <button class="flex items-center">
+                <span>€ EUR</span>
+                <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center">
+                    <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution Logo" class="h-16 mr-2">
+                    <span class="text-2xl font-bold">
+                    <span class="text-mexican-orange">Street</span>
+                    <span class="text-caribbean-blue">Car</span>
+                    <span class="text-mexican-green">Solution</span>
+                </span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+                    <a href="#vehicles" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+                    <a href="#services" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+                    <a href="#about" class="text-gray-800 hover:text-caribbean-blue font-medium">À Propos</a>
+                    <a href="#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+                </div>                            
+                <button id="mobileMenuBtn" 
+                class="md:hidden text-gray-800" 
+                aria-label="Ouvrir le menu"
+                aria-controls="mobileMenu"
+                aria-expanded="false">
+                <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Menu mobile -->
+<div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t">
+  <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+    <a href="#home" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+    <a href="#vehicles" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+    <a href="#services" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+    <a href="#about" class="text-gray-800 hover:text-caribbean-blue font-medium">À Propos</a>
+    <a href="#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+  </div>
+</div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-20 scroll-mt-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 font-heading">Explorez le Mexique en toute liberté</h1>
+                    <p class="text-xl mb-8">Street Car Solution, Agence de location Francophone N° 1 au Mexique. 
+                        Louez la voiture parfaite pour vos vacances au meilleur prix garanti.</p>
+                    <div class="flex justify-center">
+  <a href="#reservation" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-3 px-8 rounded-full transition duration-300">
+      Réservez Maintenant
+  </a>
+</div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-6 shadow-xl">
+                        <h2 class="text-2xl font-bold mb-6">Trouvez votre véhicule</h2>
+                        
+                        <form class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block mb-1 font-medium">Lieu de prise en charge</label>
+                                    <select class="w-full p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none">
+                                        <option>Aéroport de Cancun</option>
+                                        <option>Zone Hôtelière de Cancun</option>
+                                        <option>Centre-ville de Cancun</option>
+                                        <option>Puerto Morelos</option>
+                                        <option>Playa del Carmen</option>
+                                        <option>Puerto Aventuras</option>
+                                        <option>Tulum</option>
+                                        <option>Mérida</option>
+                                        <option>Aéroport de Guadalajara</option>
+                                        <option>Aéroport de Mexico DF</option>
+                                        <option>Centre-ville de Mexico DF</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block mb-1 font-medium">Lieu de restitution</label>
+                                    <select class="w-full p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none">
+                                        <option>Même lieu</option>
+                                        <option>Aéroport de Cancun</option>
+                                        <option>Zone Hôtelière de Cancun</option>
+                                        <option>Centre-ville de Cancun</option>
+                                        <option>Puerto Morelos</option>
+                                        <option>Playa del Carmen</option>
+                                        <option>Puerto Aventuras</option>
+                                        <option>Tulum</option>
+                                        <option>Mérida</option>
+                                        <option>Aéroport de Guadalajara</option>
+                                        <option>Aéroport de Mexico DF</option>
+                                        <option>Centre-ville de Mexico DF</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block mb-1 font-medium">Date de départ</label>
+                                    <input type="date" class="w-full p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none date-picker">
+                                </div>
+                                <div>
+                                    <label class="block mb-1 font-medium">Heure de départ</label>
+                                    <select class="w-full p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none">
+                                        <option value="">Sélectionnez</option>
+                                    <option>05:00</option>
+                                    <option>06:00</option>
+                                    <option>07:00</option>
+                                    <option>08:00</option>
+                                    <option>09:00</option>
+                                    <option>10:00</option>
+                                    <option>11:00</option>
+                                    <option>12:00</option>
+                                    <option>13:00</option>
+                                    <option>14:00</option>
+                                    <option>15:00</option>
+                                    <option>16:00</option>
+                                    <option>17:00</option>
+                                    <option>18:00</option>
+                                    <option>19:00</option>
+                                    <option>20:00</option>
+                                    <option>21:00</option>
+                                    <option>22:00</option>
+                                    <option>23:00</option>
+                                    <option>00:00</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block mb-1 font-medium">Date de retour</label>
+                                    <input type="date" class="w-full p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none date-picker">
+                                </div>
+                                <div>
+                                    <label class="block mb-1 font-medium">Heure de retour</label>
+                                    <select class="w-full p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none">
+                                        <option value="">Sélectionnez</option>
+                                    <option>05:00</option>
+                                    <option>06:00</option>
+                                    <option>07:00</option>
+                                    <option>08:00</option>
+                                    <option>09:00</option>
+                                    <option>10:00</option>
+                                    <option>11:00</option>
+                                    <option>12:00</option>
+                                    <option>13:00</option>
+                                    <option>14:00</option>
+                                    <option>15:00</option>
+                                    <option>16:00</option>
+                                    <option>17:00</option>
+                                    <option>18:00</option>
+                                    <option>19:00</option>
+                                    <option>20:00</option>
+                                    <option>21:00</option>
+                                    <option>22:00</option>
+                                    <option>23:00</option>
+                                    <option>00:00</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-mexican-orange hover:bg-mexican-red text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                                Voir les véhicules disponibles
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Car Categories Section -->
+    <section id="vehicles" class="py-16 bg-white scroll-mt-24">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-caribbean-blue font-heading">Nos Catégories de Véhicules</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Economique -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 car-card">
+                    <div class="bg-caribbean-blue flex items-center justify-center">
+
+                        <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png" alt="Voiture Economique" class="w-full h-auto object-contain" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Économique</h3>
+                        <p class="text-gray-600 mb-4">Parfait pour les déplacements en ville avec une excellente consommation de carburant.</p>
+                        <div class="flex justify-between items-baseline mb-1">
+      <span class="text-lg font-bold text-mexican-orange">
+        À partir de 35€/jour
+      </span>
+      <a href="#"
+         class="text-caribbean-blue hover:text-caribbean-purple font-medium whitespace-nowrap">
+        Voir modèles
+      </a>
+    </div>
+
+    <!-- Note en une ligne -->
+    <p class="text-gray-500 text-sm whitespace-nowrap">
+      *Tarif à partir de $750 Pesos, au taux de change du jour
+    </p>
+  </div>
+</div>
+                
+                <!-- Standard -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 car-card">
+                    <div class="bg-caribbean-blue flex items-center justify-center">
+
+                        <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Toyota%20Yaris%20HB%204.png" alt="Voiture Standard" class="h-full w-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Standard</h3>
+                        <p class="text-gray-600 mb-4">Idéal pour les Road Trip avec un bon rapport qualité-prix.</p>
+                        <div class="flex justify-between items-baseline mb-1">
+      <span class="text-lg font-bold text-mexican-orange">
+        À partir de 40€/jour
+      </span>
+      <a href="#"
+         class="text-caribbean-blue hover:text-caribbean-purple font-medium whitespace-nowrap">
+        Voir modèles
+      </a>
+    </div>
+
+    <!-- Note en une ligne -->
+    <p class="text-gray-500 text-sm whitespace-nowrap">
+      *Tarif à partir de $850 Pesos, au taux de change du jour
+    </p>
+  </div>
+</div>
+                
+                <!-- Berline -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 car-card">
+                    <div class="bg-caribbean-blue flex items-center justify-center">
+
+                        <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Toyota%20Yaris%20Berline%204.png" alt="Berline" class="h-full w-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Berline</h3>
+                        <p class="text-gray-600 mb-4">Spacieux pour les longs trajets, avec une grande capacité de rangement pour vos valises.</p>
+                        <div class="flex justify-between items-baseline mb-1">
+      <span class="text-lg font-bold text-mexican-orange">
+        À partir de 47€/jour
+      </span>
+      <a href="#"
+         class="text-caribbean-blue hover:text-caribbean-purple font-medium whitespace-nowrap">
+        Voir modèles
+      </a>
+    </div>
+
+    <!-- Note en une ligne -->
+    <p class="text-gray-500 text-sm whitespace-nowrap">
+      *Tarif à partir de $1,000 Pesos, au taux de change du jour
+    </p>
+  </div>
+</div>
+                
+                <!-- SUV 5 places -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 car-card">
+                    <div class="bg-caribbean-blue flex items-center justify-center">
+
+                        <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Kia%20Sonet%204.png" alt="SUV 5 places" class="h-full w-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">SUV 5 places</h3>
+                        <p class="text-gray-600 mb-4">Confort pour explorer la Péninsule du Yucatan en toute sécurité, garde au sol élevée.</p>
+                        <div class="flex justify-between items-baseline mb-1">
+      <span class="text-lg font-bold text-mexican-orange">
+        À partir de 52€/jour
+      </span>
+      <a href="#"
+         class="text-caribbean-blue hover:text-caribbean-purple font-medium whitespace-nowrap">
+        Voir modèles
+      </a>
+    </div>
+
+    <!-- Note en une ligne -->
+    <p class="text-gray-500 text-sm whitespace-nowrap">
+      *Tarif à partir de $1,100 Pesos, au taux de change du jour
+    </p>
+  </div>
+</div>
+                
+                <!-- SUV 7 places -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 car-card">
+                    <div class="bg-caribbean-blue flex items-center justify-center">
+
+                        <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Hunday%20Creta%204.png" alt="SUV 7 places" class="h-full w-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">SUV 7 places</h3>
+                        <p class="text-gray-600 mb-4">Espace et confort pour les familles nombreuses ou groupes d'amis.</p>
+                        <div class="flex justify-between items-baseline mb-1">
+      <span class="text-lg font-bold text-mexican-orange">
+        À partir de 62€/jour
+      </span>
+      <a href="#"
+         class="text-caribbean-blue hover:text-caribbean-purple font-medium whitespace-nowrap">
+        Voir modèles
+      </a>
+    </div>
+
+    <!-- Note en une ligne -->
+    <p class="text-gray-500 text-sm whitespace-nowrap">
+      *Tarif à partir de $1,300 Pesos, au taux de change du jour
+    </p>
+  </div>
+</div>
+                
+                <!-- Van 14 places -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 car-card">
+                    <div class="bg-caribbean-blue flex items-center justify-center">
+
+                        <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Van%204.png" alt="Van 14 places" class="h-full w-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Van 14 places</h3>
+                        <p class="text-gray-600 mb-4">Solution idéale pour les grands groupes ou événements spéciaux.</p>
+                        <div class="flex justify-between items-baseline mb-1">
+      <span class="text-lg font-bold text-mexican-orange">
+        À partir de 105€/jour
+      </span>
+      <a href="#"
+         class="text-caribbean-blue hover:text-caribbean-purple font-medium whitespace-nowrap">
+        Voir modèles
+      </a>
+    </div>
+
+    <!-- Note en une ligne -->
+    <p class="text-gray-500 text-sm whitespace-nowrap">
+      *Tarif à partir de $2,200 Pesos, au taux de change du jour
+    </p>
+  </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+<section class="py-16 bg-gray-100">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12 text-caribbean-blue font-heading">Super Car & Prestige</h2>
+
+    <!-- Conteneur -->
+    <div class="relative overflow-hidden">
+      <!-- Grille 3 colonnes : flèche | rail | flèche -->
+      <div class="grid grid-cols-[auto,1fr,auto] items-center gap-2">
+        <!-- Flèche gauche -->
+        <button id="prevBtn" class="bg-white rounded-full shadow-lg p-2 md:p-3"
+        aria-label="Précédent" aria-controls="carousel" title="Voir l’élément précédent">
+          <i class="fas fa-chevron-left text-caribbean-blue"></i>
+        </button>
+
+        <!-- Rail du carrousel -->
+        <div class="carousel flex overflow-x-auto space-x-4 py-4 px-2 scrollbar-hide snap-x snap-mandatory"
+             id="carousel">
+          <!-- Item 1 -->
+          <div class="carousel-item flex-shrink-0 w-4/5 md:w-1/3 lg:w-1/4 snap-start">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/McLaren2.jpg"
+                   alt="McLaren 750s" class="w-full h-48 object-cover" loading="lazy" />
+              <div class="p-4">
+                <h3 class="text-xl font-bold">McLaren 750s</h3>
+                <p class="text-gray-700 text-sm leading-relaxed text-justify">
+                  V8 biturbo puissance 750 ch, accélérant de 0 à 100 km/h en seulement 2.8 secondes. Idéale pour shootings, événements premium ou transferts exclusifs sur Cancun et la Riviera Maya. Confort, puissance et sensations garanties.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="carousel-item flex-shrink-0 w-4/5 md:w-1/3 lg:w-1/4 snap-start">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Ferreri%202.jpg"
+                   alt="Ferrari Roma Spider" class="w-full h-48 object-cover" loading="lazy" />
+              <div class="p-4">
+                <h3 class="text-xl font-bold">Ferrari Roma Spider</h3>
+                <p class="text-gray-700 text-sm leading-relaxed text-justify">
+                  V8 biturbo de 620 ch, capable d’abattre le 0 à 100 km/h en seulement 3,4 secondes. Élégance italienne et sportivité ultime réunies dans un cabriolet d’exception. Idéale pour profiter des routes de la Riviera Maya cheveux au vent, elle incarne luxe et sensations inoubliables.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="carousel-item flex-shrink-0 w-4/5 md:w-1/3 lg:w-1/4 snap-start">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Lamborghini%203.jpg"
+                   alt="Lamborghini Huracan" class="w-full h-48 object-cover" loading="lazy" />
+              <div class="p-4">
+                <h3 class="text-xl font-bold">Lamborghini Huracan</h3>
+                <p class="text-gray-700 text-sm leading-relaxed text-justify">
+                  V10 atmosphérique de 640 ch, un 0 à 100 km/h en seulement 3,2 secondes et un design iconique signé Lamborghini. Édition limitée 60e anniversaire, symbole d’exclusivité et de performance. Sonorité envoûtante et style unique, un véritable chef-d’œuvre.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="carousel-item flex-shrink-0 w-4/5 md:w-1/3 lg:w-1/4 snap-start">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Mustang%20(1).jpg"
+                   alt="Ford Mustang Supercharger" class="w-full h-48 object-cover" loading="lazy" />
+              <div class="p-4">
+                <h3 class="text-xl font-bold">Ford Mustang Supercharger</h3>
+                <p class="text-gray-700 text-sm leading-relaxed text-justify">
+                  Symbole de la muscle car Américaine, elle est équipée d’un moteur suralimenté développant plus de 310 ch. Son accélération et sa sonorité réveillent l’âme des passionnés. Avec son look imposant, elle allie force brute, caractère légendaire, et sensations inoubliables garanties. 
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="carousel-item flex-shrink-0 w-4/5 md:w-1/3 lg:w-1/4 snap-start">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Cadillac%20CTS%202.jpg"
+                   alt="Cadillac CTS" class="w-full h-48 object-cover"  loading="lazy"/>
+              <div class="p-4">
+                <h3 class="text-xl font-bold">Cadillac CTS Horsepower</h3>
+                <p class="text-gray-700 text-sm leading-relaxed text-justify">
+                  Un vrai bijou de puissance américaine. Son V6 de 335 ch et sa boîte 8 vitesses transforment chaque accélération en pur frisson. Sa tenue de route sportive, son design agressif, et ses technologies modernes imposent le respect. Un équilibre entre performance et prestige.  
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flèche droite -->
+        <button id="nextBtn" 
+        class="bg-white rounded-full shadow-lg p-2 md:p-3"
+        aria-label="Suivant" 
+        aria-controls="carousel" 
+        title="Voir l’élément suivant">
+        <i class="fas fa-chevron-right text-caribbean-blue"></i>
+        </button>
+      </div>    <!-- /grid -->
+    </div>      <!-- /relative -->
+  </div>      <!-- /container -->
+</section>
+
+
+    <!-- Why Choose Us Section -->
+<section id="services" class="py-16 bg-white scroll-mt-24">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-caribbean-blue font-heading">Pourquoi Nous Choisir ?</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Case 1 -->
+            <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-caribbean-blue hover:text-white transition duration-300">
+                <div class="bg-caribbean-blue text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check-circle text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Sans Frais Cachés</h3>
+                <p class="text-gray-600">Prix transparents avec toutes les taxes et assurances incluses. Pas de surprises à la réception du véhicule.</p>
+            </div>
+
+            <!-- Case 2 -->
+            <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-caribbean-green hover:text-white transition duration-300">
+                <div class="bg-caribbean-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-car text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Véhicules Récents</h3>
+                <p class="text-gray-600">Notre flotte est renouvelée chaque année pour vous offrir des véhicules modernes et fiables. (Climatisation, Bluetooth, Port USB)</p>
+            </div>
+
+            <!-- Case 3 -->
+            <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-caribbean-pink hover:text-white transition duration-300">
+                <div class="bg-caribbean-pink text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shield-alt text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Assurance Complète</h3>
+                <p class="text-gray-600">Tous nos véhicules incluent une assurance responsabilité civile et protection contre les dommages.</p>
+            </div>
+            
+            <!-- Case 4 -->
+            <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-caribbean-yellow hover:text-white transition duration-300">
+                <div class="bg-caribbean-yellow text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-map-marked-alt text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Prise en Charge Flexible</h3>
+                <p class="text-gray-600">Nous venons vous chercher à l'aéroport, à votre hôtel ou à l'adresse de votre choix. Pas de navette, Pas d’attente, Votre voiture vous attend.</p>
+            </div>
+
+            <!-- Case 5 -->
+            <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-caribbean-purple hover:text-white transition duration-300">
+                <div class="bg-caribbean-purple text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-headset text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Assistance 100% Francophone 24/7</h3>
+                <p class="text-gray-600">Nous sommes à vos côtés à tout moment pour répondre à vos questions, et vous assistons en cas de contrôle de police, d’accident ou de panne sur la route.</p>
+            </div>
+
+            <!-- Case 6 -->
+            <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-mexican-orange hover:text-white transition duration-300">
+                <div class="bg-mexican-orange text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+        <!-- Icône : Bouclier + check -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+             class="w-8 h-8 text-white" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <!-- Bouclier -->
+          <path d="M12 2l7 4v6c0 5-3.8 9.3-7 10-3.2-.7-7-5-7-10V6l7-4z"/>
+          <!-- Check -->
+          <path d="M9.5 12.2l2.1 2.1L16 10"/>
+        </svg>
+    </div>
+    <h3 class="text-xl font-bold mb-2">Agence de Location Légale</h3>
+    <p class="text-gray-600">
+        Agence de location enregistrée légalement au Mexique : Nous possédons toutes les Licences délivrées par le gouvernement pour exercer la profession.  
+        Location 100 % en règle : Contrats d'Agence et Assurances Professionnelles, vous êtes couvert.
+    </p>
+</div>
+
+
+            <!-- 🚀 Nouvelle Case 7 - Vert -->
+            <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-[#00B894] hover:text-white transition duration-300">
+                <div class="bg-[#00B894] text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-road text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Kilométrage Illimité - Véhicules adaptés</h3>
+                <p class="text-gray-600">Roulez sans contrainte, tous nos véhicules incluent le kilométrage illimité pour profiter pleinement dans les états du Yucatan, Quintana Roo, et Campeche.
+                Véhicules adaptés aux familles, aux groupes et pour les personnes à mobilité réduite. Sièges bébé & réhausseurs disponibles. (*Article optionel)</p>
+            </div>
+
+            <!-- 🚀 Nouvelle Case 8 - Rouge -->
+            <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-[#ef4444] hover:text-white transition duration-300">
+                <div class="bg-[#ef4444] text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-star text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Assistance Police</h3>
+                <p class="text-gray-600">Un numéro d'urgence 24/7 vous sera communiqué pour tout contrôle de Police, afin de vous sortir des situations compliquées avec les Forces de l'Ordre Mexicaines et vous permettre de poursuivre votre voyage en toute sérénité. (*Service optionel)</p>
+            </div>
+
+            <!-- 🚀 Nouvelle Case 9 - Bleu -->
+            <!-- Case : Zéro Stress -->
+<div class="group text-center p-6 rounded-xl bg-gray-50 hover:bg-[#1DA1F2] hover:text-white transition duration-300">
+  <!-- Icône bouée, fond bleu -->
+  <div class="bg-[#1DA1F2] text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+    <!-- SVG Lifebuoy -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+         class="w-8 h-8" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"></circle>
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/>
+    </svg>
+  </div>
+
+  <h3 class="text-xl font-bold mb-2">Zéro Stress</h3>
+  <p class="text-gray-600 group-hover:text-white">
+    Vous avez un souci ? Pas de problème. En cas d'accident, de panne ou de crevaison,
+    nous assurons une assistance téléphonique immédiate et une intervention sur place
+    (mécanicien ou changement de véhicule). Notre équipe gère directement toutes les
+    démarches avec les assurances mexicaines : vous n’avez rien à faire.
+  </p>
+</div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- About Section -->
+    <!-- About Section -->
+<section id="about" class="py-16 about-gradient scroll-mt-24">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-start gap-8">
+
+      <!-- COLONNE VIDÉO -->
+      <div class="relative md:w-1/2 w-full rounded-xl shadow-lg overflow-hidden md:mb-0 mb-8">
+        <!-- La vidéo avec poster et contrôles -->
+        <video id="aboutVideo" 
+               class="w-full h-[580px] object-cover rounded-xl shadow-lg bg-black"
+               src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Video%20Street%20Car%20Solution.mp4"
+               playsinline
+               controls
+               preload="metadata">
+        </video>
+
+        <!-- Overlay + Bouton PLAY -->
+        <button id="videoOverlay"
+                type="button"
+                class="absolute inset-0 z-50 flex items-center justify-center bg-black/20 hover:bg-black/30 transition cursor-pointer"
+                aria-label="Lire la vidéo">
+          <span class="relative z-40 inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/95 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10 h-10 fill-caribbean-blue">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+ 
+            <div class="md:w-1/2 md:pl-12 text-white">
+  <h2 class="text-3xl font-bold mb-6">Street Car Solution</h2>
+
+  <!-- Phrase en orange -->
+  <p class="text-[#FF6F00] mb-4 font-bold text-justify">
+    Marre des complications pour louer une voiture ?
+  </p>
+
+  <p class="mb-4 text-justify">
+    Fondée en 2018 par Crémona Yoan, un Français basé à Cancún, Street Car
+    Solution a été créée pour simplifier la vie des voyageurs francophones.
+  </p>
+
+  <!-- Notre mission en orange -->
+  <p class="mb-4 text-justify">
+    <span class="text-[#FF6F00] font-bold">Notre mission :</span>
+    vous offrir une expérience de location de voiture simple, transparente et
+    adaptée à vos besoins, tout en éliminant les obstacles habituels,
+    notamment la carte bancaire de crédit obligatoire imposée par les agences
+    internationales.
+  </p>
+
+  <p class="mb-4 text-justify">
+    Notre connaissance parfaite des deux cultures Franco/Mexicaine, nous permet
+    de vous conseiller au mieux pour explorer la Riviera Maya en toute confiance.
+  </p>
+
+  <p class="mb-6 text-justify">
+    Nous sélectionnons avec soin chaque véhicule de notre flotte pour vous
+    garantir confort, sécurité et fiabilité lors de vos déplacements.
+  </p>
+
+  <div class="flex space-x-4">
+    <!-- Cartes des stats -->
+    <div class="bg-white rounded-lg shadow p-4 text-center text-gray-800">
+      <p class="text-2xl font-bold text-[#FF6F00]">7+</p>
+      <p>Années d'expérience</p>
+    </div>
+    <div class="bg-white rounded-lg shadow p-4 text-center text-gray-800">
+      <p class="text-2xl font-bold text-[#FF6F00]">9,000+</p>
+      <p>Clients satisfaits</p>
+    </div>
+    <div class="bg-white rounded-lg shadow p-4 text-center text-gray-800">
+      <p class="text-2xl font-bold text-[#FF6F00]">80+</p>
+      <p>Véhicules disponibles</p>
+    </div>
+  </div>
+</div>
+
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-caribbean-blue text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 font-heading">Témoignages de Nos Clients</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white bg-opacity-20 p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/50x50" alt="Client" class="rounded-full w-12 h-12 mr-4">
+                        <div>
+                            <h4 class="font-bold">Sophie L.</h4>
+                            <div class="flex text-caribbean-yellow">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Service impeccable ! La prise en charge à l'aéroport s'est faite sans attente et le véhicule était parfait. Je recommande vivement !"</p>
+                </div>
+                
+                <div class="bg-white bg-opacity-20 p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/50x50" alt="Client" class="rounded-full w-12 h-12 mr-4">
+                        <div>
+                            <h4 class="font-bold">Thomas M.</h4>
+                            <div class="flex text-caribbean-yellow">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"En tant que Français dans un pays étranger, c'est rassurant de pouvoir louer une voiture dans sa langue maternelle. Prix très compétitifs en plus !"</p>
+                </div>
+                
+                <div class="bg-white bg-opacity-20 p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/50x50" alt="Client" class="rounded-full w-12 h-12 mr-4">
+                        <div>
+                            <h4 class="font-bold">La famille Dubois</h4>
+                            <div class="flex text-caribbean-yellow">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Le SUV 7 places était parfait pour notre famille de 5 avec toutes les valises. Confortable et spacieux pour notre road trip."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Form Section -->
+    <section id="reservation" class="py-16 bg-white scroll-mt-24">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-caribbean-blue font-heading">Pré-réservation</h2>
+            
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl shadow-md p-8">
+                <form id="reservationForm" 
+      method="POST"
+      class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="firstName" class="block mb-1 font-medium">Prénom *</label>
+                            <input type="text" id="firstName" name="firstName" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block mb-1 font-medium">Nom *</label>
+                            <input type="text" id="lastName" name="lastName" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="permis" class="block mb-1 font-medium">Obtention du permis, + 3 ans *</label>
+                            <input type="text" id="permis" name="permis" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none"placeholder="Oui ou Non">
+                        </div>
+                        <div>
+                            <label for="age" class="block mb-1 font-medium">Âge *</label>
+                            <input type="number" id="age" name="age" min="18" max="99" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="phone" class="block mb-1 font-medium">Numéro de téléphone (WhatsApp) *</label>
+                            <input type="tel" id="phone" name="phone" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none" placeholder="+Indicatif pays (Numéro)">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-1 font-medium">Email *</label>
+                            <input type="email" id="email" name="email" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none" placeholder="votre@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 pt-6">
+                        <h3 class="text-xl font-bold mb-4 text-caribbean-blue">Détails de la location</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="pickupDate" class="block mb-1 font-medium">Date de départ *</label>
+                                <input type="date" id="pickupDate" name="pickupDate" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none date-picker">
+                            </div>
+                            <div>
+                                <label for="pickupTime" class="block mb-1 font-medium">Heure de départ *</label>
+                                <select id="pickupTime" name="pickupTime" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                                    <option value="">Sélectionnez</option>                            
+                                    <option>05:00</option>
+                                    <option>06:00</option>
+                                    <option>07:00</option>
+                                    <option>08:00</option>
+                                    <option>09:00</option>
+                                    <option>10:00</option>
+                                    <option>11:00</option>
+                                    <option>12:00</option>
+                                    <option>13:00</option>
+                                    <option>14:00</option>
+                                    <option>15:00</option>
+                                    <option>16:00</option>
+                                    <option>17:00</option>
+                                    <option>18:00</option>
+                                    <option>19:00</option>
+                                    <option>20:00</option>
+                                    <option>21:00</option>
+                                    <option>22:00</option>
+                                    <option>23:00</option>
+                                    <option>00:00</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="returnDate" class="block mb-1 font-medium">Date de retour *</label>
+                                <input type="date" id="returnDate" name="returnDate" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none date-picker">
+                            </div>
+                            <div>
+                                <label for="returnTime" class="block mb-1 font-medium">Heure de retour *</label>
+                                <select id="returnTime" name="returnTime" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                                    <option value="">Sélectionnez</option>
+                                    <option>05:00</option>
+                                    <option>06:00</option>
+                                    <option>07:00</option>
+                                    <option>08:00</option>
+                                    <option>09:00</option>
+                                    <option>10:00</option>
+                                    <option>11:00</option>
+                                    <option>12:00</option>
+                                    <option>13:00</option>
+                                    <option>14:00</option>
+                                    <option>15:00</option>
+                                    <option>16:00</option>
+                                    <option>17:00</option>
+                                    <option>18:00</option>
+                                    <option>19:00</option>
+                                    <option>20:00</option>
+                                    <option>21:00</option>
+                                    <option>22:00</option>
+                                    <option>23:00</option>
+                                    <option>00:00</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="vehicleType" class="block mb-1 font-medium">Type de véhicule *</label>
+                                <select id="vehicleType" name="vehicleType" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                                    <option value="">Sélectionnez</option>
+                                    <option>Économique</option>
+                                    <option>Standard</option>
+                                    <option>Berline</option>
+                                    <option>SUV 5 places</option>
+                                    <option>SUV 7 places</option>
+                                    <option>Van 14 places</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="transmission" class="block mb-1 font-medium">Transmission *</label>
+                                <select id="transmission" name="transmission" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                                    <option value="">Sélectionnez</option>
+                                    <option>Automatique</option>
+                                    <option>Manuelle</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="passengers" class="block mb-1 font-medium">Nombre de passagers *</label>
+                                <input type="number" id="passengers" name="passengers" min="1" max="14" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="luggage" class="block mb-1 font-medium">Nombre de valises (10kg et 20kg) *</label>
+                                <input type="number" id="luggage" name="luggage" min="0" max="10" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="terms" name="terms" required class="h-4 w-4 text-caribbean-blue focus:ring-caribbean-blue border-gray-300 rounded">
+                        <label for="terms" class="ml-2 block text-sm text-gray-700">
+                            J'accepte les <a href="#" class="text-caribbean-blue hover:underline">conditions générales</a> et la <a href="#" class="text-caribbean-blue hover:underline">politique de confidentialité</a> *
+                        </label>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <button type="submit" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                            Envoyer la pré-réservation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-100 scroll-mt-24">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-caribbean-blue font-heading">Contactez-Nous</h2>
+            
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="bg-caribbean-blue text-white rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Adresse</h3>
+                    <p class="text-gray-600">Carr. a Aeropuerto Cancún, 77500 Cancún, Q.R., Mexique</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="bg-caribbean-green text-white rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">WhatsApp</h3>
+                    <p>Lisa: 
+        <a href="https://wa.me/32477813205" target="_blank" class="text-green-600 hover:underline">
+          +32 477 81 32 05
+        </a>
+      </p>
+      <p>Jean-François: 
+        <a href="https://wa.me/33608367695" target="_blank" class="text-green-600 hover:underline">
+          +33 608 36 76 95
+        </a>
+      </p>
+    </div>
+
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="bg-caribbean-purple text-white rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="text-lg font-bold">Email</h3>
+                    <p>
+        <a href="mailto:reservation@streetcarsolution.com" class="text-purple-600 hover:underline">
+          reservation@streetcarsolution.com
+        </a>
+      </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 max-w-4xl mx-auto bg-white rounded-xl shadow-md p-8">
+                <h3 class="text-2xl font-bold mb-6 text-center text-caribbean-blue">Envoyez-nous un message</h3>
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block mb-1 font-medium">Nom *</label>
+                            <input type="text" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block mb-1 font-medium">Email *</label>
+                            <input type="email" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block mb-1 font-medium">Sujet *</label>
+                        <input type="text" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                    </div>
+                    
+                    <div>
+                        <label class="block mb-1 font-medium">Message *</label>
+                        <textarea rows="5" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none"></textarea>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <button type="submit" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                            Envoyer le message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div class="h-96 w-full bg-gray-200">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119066.417093878!2d-86.8366904!3d21.1213285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4c2b05aef653db%3A0xce32b73ca1c9e089!2sCanc%C3%BAn%2C%20Quintana%20Roo%2C%20Mexique!5e0!3m2!1sfr!2sfr!4v1689871234567!5m2!1sfr!2sfr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe>
+    </div>
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+                    <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
+                    <div class="flex space-x-4 mt-4">
+
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+          </a>
+          
+          <!-- TikTok -->
+          <a href="http://www.tiktok.com/@yoancremona" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-tiktok"></i>
+          </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="#vehicles" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">À Propos</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Informations</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality
+const carousel = document.getElementById('carousel');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (carousel && prevBtn && nextBtn) {
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: 300, behavior: 'smooth' });
+  });
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -300, behavior: 'smooth' });
+  });
+}
+        // Mobile menu toggle + a11y + blocage du scroll
+const burgerBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+if (burgerBtn && mobileMenu) {
+  const icon = burgerBtn.querySelector('i');
+  const closeMenu = () => {
+    mobileMenu.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+    if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+  };
+  const openMenu = () => {
+    mobileMenu.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+    burgerBtn.setAttribute('aria-expanded', 'true');
+    if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+  };
+  burgerBtn.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+  });
+  // Fermer au clic d’un lien du menu
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+  // Fermer en cliquant à l’extérieur
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !burgerBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+      closeMenu();
+    }
+  });
+  // Fermer avec Échap
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) closeMenu();
+  });
+  // Réinitialiser si on passe en desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) closeMenu();
+  });
+}
+    // Dropdowns Langue & Devise : hover desktop, clic mobile
+    const langSel = document.querySelector('.language-selector');
+    const langDrop = document.querySelector('.language-dropdown');
+    const curSel  = document.querySelector('.currency-selector');
+    const curDrop = document.querySelector('.currency-dropdown');
+    // Détecter un véritable hover (desktop)
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+    function setupDropdown(trigger, panel) {
+  if (!trigger || !panel) return;
+
+  // État initial
+  panel.classList.add('hidden');
+
+  let hideTimer = null;
+  const btn = trigger.querySelector('button'); // <-- pour aria-expanded
+
+  const open = () => {
+    if (hideTimer) clearTimeout(hideTimer);
+    panel.classList.remove('hidden');
+    btn?.setAttribute('aria-expanded', 'true'); // <-- a11y
+  };
+  const close = () => {
+    // petit délai pour laisser le temps de descendre la souris
+    hideTimer = setTimeout(() => {
+      panel.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false'); // <-- a11y
+    }, 120);
+  };
+  const toggle = (e) => {
+    e.stopPropagation();
+    if (panel.classList.contains('hidden')) open();
+    else {
+      panel.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false'); // <-- a11y
+    }
+    // Fermer l’autre menu si besoin
+    if (panel !== langDrop) langDrop?.classList.add('hidden');
+    if (panel !== curDrop)  curDrop?.classList.add('hidden');
+  };
+
+  // Desktop : hover + focus clavier (et on compte le panneau comme “zone chaude”)
+  if (isDesktop.matches) {
+    trigger.addEventListener('mouseenter', open);
+    trigger.addEventListener('mouseleave', close);
+    panel.addEventListener('mouseenter', open);
+    panel.addEventListener('mouseleave', close);
+
+    btn?.addEventListener('focus', open);
+    btn?.addEventListener('blur', close);
+  } else {
+    // Mobile : ouverture/fermeture au clic
+    trigger.addEventListener('click', toggle);
+  }
+
+  // Cliquer à l’intérieur du panneau ne ferme pas le menu
+  panel.addEventListener('click', (e) => e.stopPropagation());
+}
+setupDropdown(langSel, langDrop);
+setupDropdown(curSel, curDrop);
+// Fermer au clic à l'extérieur
+document.addEventListener('click', () => {
+  langDrop?.classList.add('hidden');
+  curDrop?.classList.add('hidden');
+});
+// Fermer avec Échap
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    langDrop?.classList.add('hidden');
+    curDrop?.classList.add('hidden');
+  }
+});
+// Repli propre lors d'un resize
+window.addEventListener('resize', () => {
+  langDrop?.classList.add('hidden');
+  curDrop?.classList.add('hidden');
+});
+        
+        // Envoi réel vers ton CRM / webhook
+const form = document.getElementById('reservationForm');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const fd = new FormData(form);
+  const data = Object.fromEntries(fd.entries()); // { firstName, lastName, permis, age, ... }
+
+  try {
+    const resp = await fetch('https://TON-WEBHOOK-OU-CRM-ENDPOINT', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+
+    alert('Merci pour votre pré-réservation ! Nous vous contacterons rapidement pour confirmer.');
+    form.reset();
+    } catch (err) {
+    console.error(err);
+    alert("Désolé, l'envoi a échoué. Réessayez dans quelques minutes ou contactez-nous par WhatsApp.");
+  }
+});
+
+// Gestion de la vidéo
+
+        const aboutVideo = document.getElementById("aboutVideo");
+        const videoOverlay = document.getElementById("videoOverlay");
+        
+        // Afficher/masquer l'overlay
+        aboutVideo.addEventListener('play', function() {
+            videoOverlay.classList.add('hidden');
+            this.muted = false;
+            this.volume = 1.0;
+        });
+        
+        aboutVideo.addEventListener('pause', function() {
+            if(this.currentTime > 0 && !this.ended) {
+                videoOverlay.classList.remove('hidden');
+            }
+        });
+        
+        // Clic sur l'overlay
+        videoOverlay.addEventListener('click', function() {
+            aboutVideo.play();
+        });
+        
+        // Réinitialiser l'overlay à la fin de la vidéo
+        aboutVideo.addEventListener('ended', function() {
+            videoOverlay.classList.remove('hidden');
+         });
+
+        /* Contraintes de dates formulaire */
+(function() {
+  const pickupDate = document.getElementById('pickupDate');
+  const returnDate = document.getElementById('returnDate');
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const isoToday = today.toISOString().split('T')[0];
+  if (pickupDate) pickupDate.min = isoToday;
+  if (returnDate) returnDate.min = isoToday;
+
+  function syncReturnMin() {
+    if (!pickupDate || !returnDate) return;
+    returnDate.min = pickupDate.value || isoToday;
+    if (returnDate.value && returnDate.value < returnDate.min) {
+      returnDate.value = returnDate.min;
+    }
+  }
+  pickupDate?.addEventListener('change', syncReturnMin);
+  syncReturnMin();
+})();
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=Streetcarsolution/streetcarsolution-update-2" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
 </html>
