@@ -142,6 +142,22 @@
             </div>
           </article>
 
+          <!-- Vidéo 2 (FB) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="relative w-full" style="padding-top: 56.25%;"> <!-- 16:9 -->
+              <div class="absolute inset-0">
+                <div class="fb-video"
+                 data-href="https://www.facebook.com/share/v/1B3wW7Esn9/
+                 data-width="auto"
+                 data-allowfullscreen="true"
+                 data-show-text="false"></div>
+                </div>
+              </div>
+            <div class="p-4">
+          <p class="text-gray-700">“On a fait 4,000 Km, et c'était génial !”</p>
+          </div>
+          </article>
+
           <!-- Vidéo 2 (YouTube iframe) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
             <div class="aspect-video bg-black">
@@ -230,29 +246,36 @@
   </footer>
 
   <!-- Script burger -->
-  <script>
-    const burgerBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (burgerBtn && mobileMenu) {
-      const icon = burgerBtn.querySelector('i');
-      const closeMenu = () => {
-        mobileMenu.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-        burgerBtn.setAttribute('aria-expanded', 'false');
-        if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
-      };
-      const openMenu = () => {
-        mobileMenu.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-        burgerBtn.setAttribute('aria-expanded', 'true');
-        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
-      };
-      burgerBtn.addEventListener('click', () => {
-        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
-      });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
-    }
-  </script>
+<script>
+  const burgerBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (burgerBtn && mobileMenu) {
+    const icon = burgerBtn.querySelector('i');
+    const closeMenu = () => {
+      mobileMenu.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      burgerBtn.setAttribute('aria-expanded', 'false');
+      if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+    };
+    const openMenu = () => {
+      mobileMenu.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+      burgerBtn.setAttribute('aria-expanded', 'true');
+      if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+    };
+    burgerBtn.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+  }
+</script>
+
+<!-- SDK Facebook (doit être EN DEHORS du <script> précédent) -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v20.0">
+</script>
 </body>
 </html>
+
