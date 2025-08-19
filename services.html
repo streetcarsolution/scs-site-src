@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services – Street Car Solution</title>
+
+  <!-- Tailwind + icônes (mêmes CDN que l'index) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
+  </style>
+  <script>
+    /* même config Tailwind que l’index */
+    tailwind.config = {
+      theme: {
+        fontSize: {
+          sm: '0.95rem',
+          base: '1.05rem',
+          lg: '1.20rem',
+          xl: '1.35rem',
+          '2xl': '1.65rem',
+          '3xl': '2rem',
+          '4xl': '2.5rem',
+          '5xl': '3rem',
+          '6xl': '3.75rem',
+        },
+        extend: {
+          colors: {
+            caribbean: {
+              blue: '#1DA1F2',
+              green: '#00B894',
+              yellow: '#FDCB6E',
+              orange: '#E17055',
+              pink: '#FD79A8',
+              purple: '#6C5CE7'
+            },
+            mexican: {
+              red: '#E63946',
+              yellow: '#F1C40F',
+              green: '#2ECC71',
+              blue: '#3498DB',
+              orange: '#E67E22'
+            }
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            heading: ['"Fredoka One"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans bg-gray-50 text-lg">
+
+  <!-- Bandeau devise (optionnel) -->
+  <div class="bg-mexican-red text-white py-2 px-4 flex justify-end items-center">
+    <div class="currency-selector relative">
+      <button class="flex items-center">
+        <span>€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution Logo" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+
+        <!-- NAV Desktop -->
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+          <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+          <a href="services.html" class="text-caribbean-blue font-semibold">Services</a>
+          <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages Clients</a>
+          <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+        </div>
+
+        <!-- Burger -->
+        <button id="mobileMenuBtn"
+                class="md:hidden text-gray-800"
+                aria-label="Ouvrir le menu"
+                aria-controls="mobileMenu"
+                aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+      <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+      <a href="services.html" class="text-caribbean-blue font-semibold">Services</a>
+      <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages Clients</a>
+      <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+    </div>
+  </div>
+
+  <!-- En-tête page -->
+  <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
+    <div class="container mx-auto px-4 py-12">
+      <h1 class="text-3xl md:text-4xl font-heading font-bold">Services & Options</h1>
+      <p class="mt-2 text-white/90">Ajoutez des options pour un voyage 100% serein. Prix indicatifs, à confirmer lors de la pré-réservation.</p>
+    </div>
+  </header>
+
+  <!-- Grille Services -->
+  <main class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Conducteur additionnel -->
+        <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+          <div class="flex items-center gap-3">
+            <div class="bg-caribbean-blue text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Conducteur additionnel</h3>
+          </div>
+          <p class="text-gray-600 mt-3">Ajoutez un second conducteur au contrat pour partager la route en toute sécurité.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="inline-block bg-blue-50 text-caribbean-blue px-3 py-1 rounded-full text-sm font-semibold">+6€ / jour</span>
+            <a href="index.html#reservation" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-2 px-4 rounded-full">Ajouter</a>
+          </div>
+        </article>
+
+        <!-- Carte SIM -->
+        <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+          <div class="flex items-center gap-3">
+            <div class="bg-caribbean-green text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-sim-card"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Carte SIM mexicaine</h3>
+          </div>
+          <p class="text-gray-600 mt-3">Restez connectés (données + appels locaux). Activation et installation incluses.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="inline-block bg-green-50 text-caribbean-green px-3 py-1 rounded-full text-sm font-semibold">à partir de 15€</span>
+            <a href="index.html#reservation" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-2 px-4 rounded-full">Ajouter</a>
+          </div>
+        </article>
+
+        <!-- Siège bébé -->
+        <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+          <div class="flex items-center gap-3">
+            <div class="bg-[#1DA1F2] text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-baby-carriage"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Siège bébé</h3>
+          </div>
+          <p class="text-gray-600 mt-3">Siège homologué, installation par nos soins à la remise du véhicule.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="inline-block bg-blue-50 text-caribbean-blue px-3 py-1 rounded-full text-sm font-semibold">+5€ / jour</span>
+            <a href="index.html#reservation" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-2 px-4 rounded-full">Ajouter</a>
+          </div>
+        </article>
+
+        <!-- Réhausseur enfant -->
+        <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+          <div class="flex items-center gap-3">
+            <div class="bg-caribbean-yellow text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-child"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Réhausseur enfant</h3>
+          </div>
+          <p class="text-gray-600 mt-3">Réhausseur adapté aux enfants plus grands pour voyager confortablement.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="inline-block bg-yellow-50 text-[#b07e00] px-3 py-1 rounded-full text-sm font-semibold">+3€ / jour</span>
+            <a href="index.html#reservation" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-2 px-4 rounded-full">Ajouter</a>
+          </div>
+        </article>
+
+        <!-- GPS -->
+        <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+          <div class="flex items-center gap-3">
+            <div class="bg-caribbean-green text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-location-arrow"></i>
+            </div>
+            <h3 class="text-xl font-semibold">GPS</h3>
+          </div>
+          <p class="text-gray-600 mt-3">Cartes de la Riviera Maya à jour et points d’intérêt essentiels.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="inline-block bg-green-50 text-caribbean-green px-3 py-1 rounded-full text-sm font-semibold">+4€ / jour</span>
+            <a href="index.html#reservation" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-2 px-4 rounded-full">Ajouter</a>
+          </div>
+        </article>
+
+        <!-- Lavage de véhicule -->
+        <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+          <div class="flex items-center gap-3">
+            <div class="bg-caribbean-pink text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-soap"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Lavage de véhicule</h3>
+          </div>
+          <p class="text-gray-600 mt-3">Option “retour propre” : on s’occupe du lavage extérieur + intérieur léger.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="inline-block bg-pink-50 text-[#d74c82] px-3 py-1 rounded-full text-sm font-semibold">+12€ (forfait)</span>
+            <a href="index.html#reservation" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-2 px-4 rounded-full">Ajouter</a>
+          </div>
+        </article>
+
+        <!-- Assistance Police -->
+        <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+          <div class="flex items-center gap-3">
+            <div class="bg-caribbean-purple text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Assistance Police 24/7</h3>
+          </div>
+          <p class="text-gray-600 mt-3">Numéro d’urgence dédié : aide en cas de contrôle, accident, ou litige.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="inline-block bg-purple-50 text-caribbean-purple px-3 py-1 rounded-full text-sm font-semibold">+9€ / jour</span>
+            <a href="index.html#reservation" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-2 px-4 rounded-full">Ajouter</a>
+          </div>
+        </article>
+
+        <!-- Transport privé -->
+        <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3">
+          <div class="flex items-center gap-3">
+            <div class="bg-mexican-orange text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-taxi"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Transport privé</h3>
+          </div>
+          <p class="text-gray-600 mt-3">Transferts Aéroport ↔ Hôtel, excursions sur mesure, chauffeur bilingue FR/ES.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="inline-block bg-orange-50 text-mexican-orange px-3 py-1 rounded-full text-sm font-semibold">Sur devis</span>
+            <a href="index.html#contact" class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-2 px-4 rounded-full">Demander un devis</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Note / astuce -->
+      <p class="text-sm text-gray-500 mt-6">
+        * Les tarifs sont indicatifs et peuvent varier selon la durée de location et la saison. Les options sont ajoutées au moment de la
+        <a href="index.html#reservation" class="text-caribbean-blue underline">pré-réservation</a>.
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-4 text-center text-gray-300">
+      © 2025 Street Car Solution. Tous droits réservés.
+    </div>
+  </footer>
+
+  <!-- Script burger (identique à l’index, version courte) -->
+  <script>
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+      };
+      const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+      };
+      burgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+  </script>
+</body>
+</html>
+
