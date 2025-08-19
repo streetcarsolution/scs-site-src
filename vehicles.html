@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nos Véhicules – Street Car Solution</title>
+
+  <!-- Tailwind + icônes (mêmes CDN que l'index) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
+  </style>
+  <script>
+    /* même config tailwind que ton index */
+    tailwind.config = {
+      theme: {
+        fontSize: {
+          sm: '0.95rem',
+          base: '1.05rem',
+          lg: '1.20rem',
+          xl: '1.35rem',
+          '2xl': '1.65rem',
+          '3xl': '2rem',
+          '4xl': '2.5rem',
+          '5xl': '3rem',
+          '6xl': '3.75rem',
+        },
+        extend: {
+          colors: {
+            caribbean: {
+              blue: '#1DA1F2',
+              green: '#00B894',
+              yellow: '#FDCB6E',
+              orange: '#E17055',
+              pink: '#FD79A8',
+              purple: '#6C5CE7'
+            },
+            mexican: {
+              red: '#E63946',
+              yellow: '#F1C40F',
+              green: '#2ECC71',
+              blue: '#3498DB',
+              orange: '#E67E22'
+            }
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            heading: ['"Fredoka One"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans bg-gray-50 text-lg">
+
+  <!-- Barre langue/devise (optionnelle). Tu peux copier exactement celle de l'index si tu veux -->
+  <div class="bg-mexican-red text-white py-2 px-4 flex justify-end items-center">
+    <div class="currency-selector relative">
+      <button class="flex items-center">
+        <span>€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Navigation (identique à l’index, liens vers pages réelles) -->
+  <nav class="bg-white shadow-md sticky top-0 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution Logo" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+
+        <!-- NAV Desktop -->
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+          <a href="vehicles.html" class="text-caribbean-blue font-semibold">Nos Véhicules</a>
+          <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+          <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages Clients</a>
+          <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+        </div>
+
+        <!-- Burger -->
+        <button id="mobileMenuBtn"
+                class="md:hidden text-gray-800"
+                aria-label="Ouvrir le menu"
+                aria-controls="mobileMenu"
+                aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+      <a href="vehicles.html" class="text-caribbean-blue font-semibold">Nos Véhicules</a>
+      <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+      <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages Clients</a>
+      <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+    </div>
+  </div>
+
+  <!-- Contenu -->
+  <main class="py-12">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl md:text-4xl font-bold text-caribbean-blue mb-2 font-heading">Nos Véhicules</h1>
+      <p class="text-gray-600 mb-8">Choisissez votre modèle par catégorie. Prix transparents, assistance 24/7.</p>
+
+      <!-- Catégorie : Économique -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Économique</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="bg-white rounded-xl shadow p-4">
+            <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png" alt="Renault Kwid" class="w-full h-40 object-contain mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold">Renault Kwid</h3>
+            <ul class="text-gray-600 text-sm mt-2 space-y-1">
+              <li><i class="far fa-snowflake mr-2"></i>Climatisation</li>
+              <li><i class="fas fa-cog mr-2"></i>Automatique</li>
+              <li><i class="fas fa-suitcase-rolling mr-2"></i>2 valises</li>
+            </ul>
+            <div class="flex items-baseline justify-between mt-4">
+              <span class="text-mexican-orange font-bold">35€ / jour</span>
+              <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pré-réserver</a>
+            </div>
+          </article>
+
+          <!-- Duplique <article> pour ajouter d'autres modèles économiques -->
+        </div>
+      </section>
+
+      <!-- Catégorie : Standard -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Standard</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="bg-white rounded-xl shadow p-4">
+            <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Toyota%20Yaris%20HB%204.png" alt="Toyota Yaris HB" class="w-full h-40 object-contain mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold">Toyota Yaris HB</h3>
+            <ul class="text-gray-600 text-sm mt-2 space-y-1">
+              <li><i class="far fa-snowflake mr-2"></i>Climatisation</li>
+              <li><i class="fas fa-cog mr-2"></i>Automatique</li>
+              <li><i class="fas fa-suitcase-rolling mr-2"></i>3 valises</li>
+            </ul>
+            <div class="flex items-baseline justify-between mt-4">
+              <span class="text-mexican-orange font-bold">40€ / jour</span>
+              <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pré-réserver</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Catégorie : Berline -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Berline</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="bg-white rounded-xl shadow p-4">
+            <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Toyota%20Yaris%20Berline%204.png" alt="Toyota Yaris Berline" class="w-full h-40 object-contain mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold">Toyota Yaris Berline</h3>
+            <ul class="text-gray-600 text-sm mt-2 space-y-1">
+              <li><i class="far fa-snowflake mr-2"></i>Climatisation</li>
+              <li><i class="fas fa-cog mr-2"></i>Automatique</li>
+              <li><i class="fas fa-suitcase-rolling mr-2"></i>4 valises</li>
+            </ul>
+            <div class="flex items-baseline justify-between mt-4">
+              <span class="text-mexican-orange font-bold">47€ / jour</span>
+              <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pré-réserver</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Ajoute ensuite : SUV 5 places, SUV 7 places, Van 14 places, etc. en dupliquant le pattern -->
+    </div>
+  </main>
+
+  <!-- Footer (tu peux copier celui de l’index pour cohérence) -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-4 text-center text-gray-300">
+      © 2025 Street Car Solution. Tous droits réservés.
+    </div>
+  </footer>
+
+  <!-- Script burger (identique à l’index, version courte) -->
+  <script>
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+      };
+      const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+      };
+      burgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+  </script>
+</body>
+</html>
