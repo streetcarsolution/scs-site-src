@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Témoignages Clients – Street Car Solution</title>
+
+  <!-- Tailwind + icônes (mêmes CDN que l’index) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
+  </style>
+  <script>
+    /* même config Tailwind que l’index */
+    tailwind.config = {
+      theme: {
+        fontSize: {
+          sm: '0.95rem',
+          base: '1.05rem',
+          lg: '1.20rem',
+          xl: '1.35rem',
+          '2xl': '1.65rem',
+          '3xl': '2rem',
+          '4xl': '2.5rem',
+          '5xl': '3rem',
+          '6xl': '3.75rem',
+        },
+        extend: {
+          colors: {
+            caribbean: {
+              blue: '#1DA1F2',
+              green: '#00B894',
+              yellow: '#FDCB6E',
+              orange: '#E17055',
+              pink: '#FD79A8',
+              purple: '#6C5CE7'
+            },
+            mexican: {
+              red: '#E63946',
+              yellow: '#F1C40F',
+              green: '#2ECC71',
+              blue: '#3498DB',
+              orange: '#E67E22'
+            }
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            heading: ['"Fredoka One"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans bg-gray-50 text-lg">
+
+  <!-- Bandeau devise (optionnel) -->
+  <div class="bg-mexican-red text-white py-2 px-4 flex justify-end items-center">
+    <div class="currency-selector relative">
+      <button class="flex items-center">
+        <span>€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution Logo" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+
+        <!-- NAV Desktop -->
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+          <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+          <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+          <a href="testimonials.html" class="text-caribbean-blue font-semibold">Témoignages Clients</a>
+          <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+        </div>
+
+        <!-- Burger -->
+        <button id="mobileMenuBtn"
+                class="md:hidden text-gray-800"
+                aria-label="Ouvrir le menu"
+                aria-controls="mobileMenu"
+                aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+      <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+      <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+      <a href="testimonials.html" class="text-caribbean-blue font-semibold">Témoignages Clients</a>
+      <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+    </div>
+  </div>
+
+  <!-- En-tête -->
+  <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
+    <div class="container mx-auto px-4 py-12">
+      <h1 class="text-3xl md:text-4xl font-heading font-bold">Témoignages Clients</h1>
+      <p class="mt-2 text-white/90">Avis réels en vidéo et par messages. Merci pour votre confiance !</p>
+    </div>
+  </header>
+
+  <!-- Contenu -->
+  <main class="py-12">
+    <div class="container mx-auto px-4 space-y-12">
+
+      <!-- VIDÉOS -->
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Avis en vidéo</h2>
+
+        <!-- Grille responsive vidéos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Vidéo 1 (MP4 local) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="aspect-video bg-black">
+              <video controls playsinline preload="metadata" class="w-full h-full object-cover">
+                <source src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Video%20Street%20Car%20Solution.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="p-4">
+              <p class="text-gray-700">“Prise en charge à l’aéroport, zéro attente. Merci pour la flexibilité !” — Sophie</p>
+            </div>
+          </article>
+
+          <!-- Vidéo 2 (YouTube iframe) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="aspect-video bg-black">
+              <iframe class="w-full h-full"
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                      title="Avis client"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="p-4">
+              <p class="text-gray-700">“Prix nets, pas de surprise. On a adoré notre road trip !” — Thomas</p>
+            </div>
+          </article>
+
+          <!-- Vidéo 3 (YouTube iframe - exemple) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="aspect-video bg-black">
+              <iframe class="w-full h-full"
+                      src="https://www.youtube.com/embed/2vjPBrBU-TM"
+                      title="Avis client"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="p-4">
+              <p class="text-gray-700">“SUV récent et propre, assistance WhatsApp 24/7 au top.” — Famille Dubois</p>
+            </div>
+          </article>
+
+          <!-- Duplique autant de blocs <article> que nécessaire -->
+        </div>
+      </section>
+
+      <!-- AVIS ÉCRITS -->
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Avis écrits</h2>
+
+        <!-- Grille avis -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <article class="bg-white rounded-xl shadow p-6">
+            <div class="flex items-center mb-2 text-caribbean-yellow">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-gray-700">“Service impeccable, on a récupéré la voiture directement devant l’aéroport. Je recommande.”</p>
+            <p class="text-sm text-gray-500 mt-3">— Camille & Adrien</p>
+          </article>
+
+          <article class="bg-white rounded-xl shadow p-6">
+            <div class="flex items-center mb-2 text-caribbean-yellow">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-gray-700">“Nous parlons français, c’était rassurant. Tarifs clairs et assistance rapide.”</p>
+            <p class="text-sm text-gray-500 mt-3">— Pierre</p>
+          </article>
+
+          <article class="bg-white rounded-xl shadow p-6">
+            <div class="flex items-center mb-2 text-caribbean-yellow">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-gray-700">“Parfait pour notre famille de 5, le SUV 7 places était nickel.”</p>
+            <p class="text-sm text-gray-500 mt-3">— Famille Martin</p>
+          </article>
+
+          <!-- Ajoute facilement d’autres cartes d’avis -->
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center mt-10">
+          <a href="index.html#reservation"
+             class="inline-block bg-mexican-orange hover:bg-mexican-red text-white font-bold py-3 px-8 rounded-full transition">
+            Réserver maintenant
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-4 text-center text-gray-300">
+      © 2025 Street Car Solution. Tous droits réservés.
+    </div>
+  </footer>
+
+  <!-- Script burger -->
+  <script>
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+      };
+      const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+      };
+      burgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+  </script>
+</body>
+</html>
