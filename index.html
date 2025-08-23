@@ -1225,19 +1225,23 @@
     </footer>
 
     <script>
-        // Carousel functionality
+/* ===============================
+   Street Car Solution – JS global
+   =============================== */
+
+/* >>> 1) URL de ton Web App Apps Script (doit finir par /exec) <<< */
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxoVV-6LF93Jg77kmzw479J5mrVGWeiEo9UXwjUwVY9u1CPj-ohIVhkeNh9qFPsponSAA/exec"; // ← remplace par la tienne
+
+/* === Carousel === */
 const carousel = document.getElementById('carousel');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 if (carousel && prevBtn && nextBtn) {
-  nextBtn.addEventListener('click', () => {
-    carousel.scrollBy({ left: 300, behavior: 'smooth' });
-  });
-  prevBtn.addEventListener('click', () => {
-    carousel.scrollBy({ left: -300, behavior: 'smooth' });
-  });
+  nextBtn.addEventListener('click', () => carousel.scrollBy({ left: 300, behavior: 'smooth' }));
+  prevBtn.addEventListener('click', () => carousel.scrollBy({ left: -300, behavior: 'smooth' }));
 }
-        // Mobile menu toggle + a11y + blocage du scroll
+
+/* === Menu mobile (burger) === */
 const burgerBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 if (burgerBtn && mobileMenu) {
@@ -1257,161 +1261,109 @@ if (burgerBtn && mobileMenu) {
   burgerBtn.addEventListener('click', () => {
     if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
   });
-  // Fermer au clic d’un lien du menu
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', closeMenu);
-  });
-  // Fermer en cliquant à l’extérieur
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   document.addEventListener('click', (e) => {
-    if (!mobileMenu.contains(e.target) && !burgerBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
-      closeMenu();
-    }
+    if (!mobileMenu.contains(e.target) && !burgerBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) closeMenu();
   });
-  // Fermer avec Échap
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) closeMenu();
-  });
-  // Réinitialiser si on passe en desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768) closeMenu();
-  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) closeMenu(); });
+  window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
 }
-    // Dropdowns Langue & Devise : hover desktop, clic mobile
-    const langSel = document.querySelector('.language-selector');
-    const langDrop = document.querySelector('.language-dropdown');
-    const curSel  = document.querySelector('.currency-selector');
-    const curDrop = document.querySelector('.currency-dropdown');
-    // Détecter un véritable hover (desktop)
-    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
-    function setupDropdown(trigger, panel) {
+
+/* === Dropdown Langue & Devise === */
+const langSel = document.querySelector('.language-selector');
+const langDrop = document.querySelector('.language-dropdown');
+const curSel  = document.querySelector('.currency-selector');
+const curDrop = document.querySelector('.currency-dropdown');
+const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+function setupDropdown(trigger, panel) {
   if (!trigger || !panel) return;
-
-  // État initial
   panel.classList.add('hidden');
-
   let hideTimer = null;
-  const btn = trigger.querySelector('button'); // <-- pour aria-expanded
-
-  const open = () => {
-    if (hideTimer) clearTimeout(hideTimer);
-    panel.classList.remove('hidden');
-    btn?.setAttribute('aria-expanded', 'true'); // <-- a11y
-  };
-  const close = () => {
-    // petit délai pour laisser le temps de descendre la souris
-    hideTimer = setTimeout(() => {
-      panel.classList.add('hidden');
-      btn?.setAttribute('aria-expanded', 'false'); // <-- a11y
-    }, 120);
-  };
+  const btn = trigger.querySelector('button');
+  const open = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); };
+  const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }, 120); };
   const toggle = (e) => {
     e.stopPropagation();
-    if (panel.classList.contains('hidden')) open();
-    else {
-      panel.classList.add('hidden');
-      btn?.setAttribute('aria-expanded', 'false'); // <-- a11y
-    }
-    // Fermer l’autre menu si besoin
+    const show = panel.classList.contains('hidden');
     if (panel !== langDrop) langDrop?.classList.add('hidden');
     if (panel !== curDrop)  curDrop?.classList.add('hidden');
+    if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); }
+    else { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }
   };
-
-  // Desktop : hover + focus clavier (et on compte le panneau comme “zone chaude”)
   if (isDesktop.matches) {
     trigger.addEventListener('mouseenter', open);
     trigger.addEventListener('mouseleave', close);
     panel.addEventListener('mouseenter', open);
     panel.addEventListener('mouseleave', close);
-
     btn?.addEventListener('focus', open);
     btn?.addEventListener('blur', close);
   } else {
-    // Mobile : ouverture/fermeture au clic
     trigger.addEventListener('click', toggle);
   }
-
-  // Cliquer à l’intérieur du panneau ne ferme pas le menu
   panel.addEventListener('click', (e) => e.stopPropagation());
 }
 setupDropdown(langSel, langDrop);
 setupDropdown(curSel, curDrop);
-// Fermer au clic à l'extérieur
-document.addEventListener('click', () => {
-  langDrop?.classList.add('hidden');
-  curDrop?.classList.add('hidden');
-});
-// Fermer avec Échap
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    langDrop?.classList.add('hidden');
-    curDrop?.classList.add('hidden');
-  }
-});
-// Repli propre lors d'un resize
-window.addEventListener('resize', () => {
-  langDrop?.classList.add('hidden');
-  curDrop?.classList.add('hidden');
-});
-        
-        // Envoi réel vers ton CRM / webhook
+document.addEventListener('click', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+
+/* === Formulaire de pré-réservation → envoi vers Google Sheets (Apps Script) === */
 const form = document.getElementById('reservationForm');
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries()); // { firstName, lastName, permis, age, ... }
 
-  const fd = new FormData(form);
-  const data = Object.fromEntries(fd.entries()); // { firstName, lastName, permis, age, ... }
+    try {
+      // IMPORTANT : on envoie en x-www-form-urlencoded (compatible Apps Script)
+      const resp = await fetch(WEBAPP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: new URLSearchParams(data).toString()
+      });
 
-  try {
-    const resp = await fetch('https://TON-WEBHOOK-OU-CRM-ENDPOINT', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-
-    alert('Merci pour votre pré-réservation ! Nous vous contacterons rapidement pour confirmer.');
-    form.reset();
+      const json = await resp.json().catch(() => ({}));
+      if (json && json.ok) {
+        alert(
+          json.quote
+            ? `Merci ! Estimation : ${json.quote.total} ${json.quote.currency} pour ${json.quote.days} jour(s).`
+            : `Merci ! Votre pré-réservation a bien été envoyée.`
+        );
+        form.reset();
+      } else {
+        alert("Désolé, l'envoi a échoué. Réessayez dans quelques minutes ou contactez-nous par WhatsApp.");
+      }
     } catch (err) {
-    console.error(err);
-    alert("Désolé, l'envoi a échoué. Réessayez dans quelques minutes ou contactez-nous par WhatsApp.");
-  }
-});
+      console.error(err);
+      alert("Erreur réseau : vérifiez votre connexion et réessayez.");
+    }
+  });
+}
 
-// Gestion de la vidéo
+/* === Gestion de la vidéo “About” (si présente sur la page) === */
+const aboutVideo = document.getElementById("aboutVideo");
+const videoOverlay = document.getElementById("videoOverlay");
+if (aboutVideo && videoOverlay) {
+  aboutVideo.addEventListener('play', function() {
+    videoOverlay.classList.add('hidden');
+    this.muted = false;
+    this.volume = 1.0;
+  });
+  aboutVideo.addEventListener('pause', function() {
+    if (this.currentTime > 0 && !this.ended) videoOverlay.classList.remove('hidden');
+  });
+  videoOverlay.addEventListener('click', function() { aboutVideo.play(); });
+  aboutVideo.addEventListener('ended', function() { videoOverlay.classList.remove('hidden'); });
+}
 
-        const aboutVideo = document.getElementById("aboutVideo");
-        const videoOverlay = document.getElementById("videoOverlay");
-        
-        // Afficher/masquer l'overlay
-        aboutVideo.addEventListener('play', function() {
-            videoOverlay.classList.add('hidden');
-            this.muted = false;
-            this.volume = 1.0;
-        });
-        
-        aboutVideo.addEventListener('pause', function() {
-            if(this.currentTime > 0 && !this.ended) {
-                videoOverlay.classList.remove('hidden');
-            }
-        });
-        
-        // Clic sur l'overlay
-        videoOverlay.addEventListener('click', function() {
-            aboutVideo.play();
-        });
-        
-        // Réinitialiser l'overlay à la fin de la vidéo
-        aboutVideo.addEventListener('ended', function() {
-            videoOverlay.classList.remove('hidden');
-         });
-
-        /* Contraintes de dates formulaire */
+/* === Contraintes de dates du formulaire === */
 (function() {
   const pickupDate = document.getElementById('pickupDate');
   const returnDate = document.getElementById('returnDate');
-
-  const today = new Date();
-  today.setHours(0,0,0,0);
+  const today = new Date(); today.setHours(0,0,0,0);
   const isoToday = today.toISOString().split('T')[0];
   if (pickupDate) pickupDate.min = isoToday;
   if (returnDate) returnDate.min = isoToday;
@@ -1419,13 +1371,12 @@ form.addEventListener('submit', async (e) => {
   function syncReturnMin() {
     if (!pickupDate || !returnDate) return;
     returnDate.min = pickupDate.value || isoToday;
-    if (returnDate.value && returnDate.value < returnDate.min) {
-      returnDate.value = returnDate.min;
-    }
+    if (returnDate.value && returnDate.value < returnDate.min) returnDate.value = returnDate.min;
   }
   pickupDate?.addEventListener('change', syncReturnMin);
   syncReturnMin();
 })();
-    </script>
+</script>
+
 <p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=Streetcarsolution/streetcarsolution-update-2" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
 </html>
