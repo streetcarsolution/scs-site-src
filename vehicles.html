@@ -302,6 +302,47 @@
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
       window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
     }
+
+    /* === Dropdown Langue & Devise === */
+const langSel = document.querySelector('.language-selector');
+const langDrop = document.querySelector('.language-dropdown');
+const curSel  = document.querySelector('.currency-selector');
+const curDrop = document.querySelector('.currency-dropdown');
+const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+function setupDropdown(trigger, panel) {
+  if (!trigger || !panel) return;
+  panel.classList.add('hidden');
+  let hideTimer = null;
+  const btn = trigger.querySelector('button');
+  const open = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); };
+  const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }, 120); };
+  const toggle = (e) => {
+    e.stopPropagation();
+    const show = panel.classList.contains('hidden');
+    if (panel !== langDrop) langDrop?.classList.add('hidden');
+    if (panel !== curDrop)  curDrop?.classList.add('hidden');
+    if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); }
+    else { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }
+  };
+  if (isDesktop.matches) {
+    trigger.addEventListener('mouseenter', open);
+    trigger.addEventListener('mouseleave', close);
+    panel.addEventListener('mouseenter', open);
+    panel.addEventListener('mouseleave', close);
+    btn?.addEventListener('focus', open);
+    btn?.addEventListener('blur', close);
+  } else {
+    trigger.addEventListener('click', toggle);
+  }
+  panel.addEventListener('click', (e) => e.stopPropagation());
+}
+setupDropdown(langSel, langDrop);
+setupDropdown(curSel, curDrop);
+document.addEventListener('click', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+
   </script>
 </body>
 </html>
