@@ -393,35 +393,57 @@
       window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
     }
 
-    /* === Avis automatiques depuis Google Sheets === */
-    const TESTI_URL = "https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec";
+    <!-- ===== Témoignages auto depuis Google Sheets (avec vraies icônes ⭐ Font Awesome) ===== -->
+/* Si tu as déjà const TESTI_URL = "https://…/exec" ailleurs,
+   on le réutilise. Sinon on peut mettre ici ton URL web app. */
+const TESTI_ENDPOINT = (typeof TESTI_URL === 'string'
+  ? TESTI_URL
+  : 'https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec');
 
-    function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-    function renderStars(n){const f=Math.max(0,Math.min(5,Math.round(Number(n)||0)));return "★★★★★☆☆☆☆☆".slice(5-f,10-f);}
+function escapeHtml(s){
+  return String(s || "").replace(/[&<>"']/g, m => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[m]));
+}
 
-    async function loadReviews(limit=12,target='reviewsDynamic'){
-      const box=document.getElementById(target); if(!box) return;
-      try{
-        const sep = TESTI_URL.includes('?') ? '&' : '?';
-        const url = `${TESTI_URL}${sep}action=temoignages&limit=${encodeURIComponent(limit)}`;
+/* Rendu des étoiles identique aux avis statiques (Font Awesome) */
+function renderStars(n){
+  const full = Math.max(0, Math.min(5, Math.round(Number(n) || 0)));
+  return Array.from({length:5}, (_, i) =>
+    `<i class="fas fa-star${i < full ? '' : ' opacity-30'}"></i>`
+  ).join('');
+}
 
-        const resp = await fetch(url);
-        if(!resp.ok) throw new Error('HTTP '+resp.status);
-        const json = await resp.json();
-        if(!json.ok || !Array.isArray(json.reviews) || json.reviews.length===0) return;
+async function loadReviews(limit = 12, target = 'reviewsDynamic'){
+  const box = document.getElementById(target);
+  if (!box) return;
 
-        box.innerHTML = json.reviews.map(r => `
-          <article class="bg-white p-6 rounded-xl shadow">
-            <div class="text-yellow-500 mb-2" aria-label="${escapeHtml(r.rating)} sur 5">${renderStars(r.rating)}</div>
-            <p class="text-gray-700 italic mb-3">“${escapeHtml(r.message)}”</p>
-            <p class="text-gray-500 text-sm">— ${escapeHtml(r.name)}${r.date?` · ${escapeHtml(r.date)}`:""}</p>
-          </article>
-        `).join("");
-      }catch(e){ console.error('Avis dynamiques:', e); }
-    }
+  try{
+    const sep = TESTI_ENDPOINT.includes('?') ? '&' : '?';
+    const url = `${TESTI_ENDPOINT}${sep}action=temoignages&limit=${encodeURIComponent(limit)}`;
 
-    document.addEventListener('DOMContentLoaded',()=>loadReviews(12));
-  </script>
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const json = await resp.json();
+    if (!json.ok || !Array.isArray(json.reviews) || json.reviews.length === 0) return;
+
+    box.innerHTML = json.reviews.map(r => `
+      <article class="bg-white p-6 rounded-xl shadow">
+        <div class="flex items-center gap-1 mb-2 text-caribbean-yellow text-xl"
+             aria-label="${escapeHtml(r.rating)} sur 5">
+          ${renderStars(r.rating)}
+        </div>
+        <p class="text-gray-700 italic mb-3">“${escapeHtml(r.message)}”</p>
+        <p class="text-gray-500 text-sm">— ${escapeHtml(r.name)}${r.date ? ` · ${escapeHtml(r.date)}` : ""}</p>
+      </article>
+    `).join('');
+  }catch(e){
+    console.error('Avis dynamiques:', e);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => loadReviews(12));
+</script>
 
   <!-- SDK Facebook (fermé correctement) -->
   <div id="fb-root"></div>
