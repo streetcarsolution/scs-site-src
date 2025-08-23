@@ -162,20 +162,26 @@
           </article>
 
 
-          <!-- Vidéo 3 (FB) -->
-          <article class="bg-white rounded-xl shadow overflow-hidden">
-            <div class="aspect-video bg-black"> <!-- force le ratio -->
-            <div class="fb-video w-full h-full"
-            data-href="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/56e7a6ac-985a-42b8-b5a8-13de87a066c8.mp4"
-            data-width="auto"
-            data-allowfullscreen="true"
-            data-show-text="false">
-            </div>
-            </div>
-          <div class="p-4">
-          <p class="font-bold text-blue-600">“La police voulait nous retirer le permis et nous faire payer une énorme amende”</p>
-          </div>
-          </article>
+          <!-- Vidéo 3 (MP4 – Hugging Face) -->
+<article class="bg-white rounded-xl shadow overflow-hidden">
+  <div class="aspect-video bg-black">
+    <video
+      class="w-full h-full"
+      controls
+      preload="metadata"
+      playsinline
+      controlslist="nodownload"
+    >
+      <source src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/56e7a6ac-985a-42b8-b5a8-13de87a066c8.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+  </div>
+
+  <div class="p-4">
+    <p class="font-bold text-blue-600">“La police voulait nous retirer le permis et nous faire payer une énorme amende”</p>
+  </div>
+</article>
+
 
 
           <!-- Vidéo 4 (FB) -->
