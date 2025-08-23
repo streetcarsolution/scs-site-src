@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Témoignages Clients – Street Car Solution</title>
 
-  <!-- Tailwind + icônes (mêmes CDN que l’index) -->
+  <!-- Tailwind + icônes -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
@@ -13,7 +13,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
   </style>
   <script>
-    /* même config Tailwind que l’index */
+    /* Config Tailwind */
     tailwind.config = {
       theme: {
         fontSize: {
@@ -56,42 +56,39 @@
 </head>
 <body class="font-sans bg-gray-50 text-lg">
   
-<!-- Language & Currency Selector -->
-    <div class="bg-mexican-red text-white py-2 px-4 flex justify-between items-center">
-        <div class="language-selector relative">
-            <button class="flex items-center">
-                <span class="fi fi-fr mr-2"></span>
-                Français
-                <i class="fas fa-chevron-down ml-2 text-xs"></i>
-            </button>
-            <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
-                    <span class="fi fi-fr mr-2"></span>
-                    Français
-                </a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
-                    <span class="fi fi-us mr-2"></span>
-                    English
-                </a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
-                    <span class="fi fi-mx mr-2"></span>
-                    Español
-                </a>
-            </div>
-        </div>
-        <div class="currency-selector relative">
-            <button class="flex items-center">
-                <span>€ EUR</span>
-                <i class="fas fa-chevron-down ml-2 text-xs"></i>
-            </button>
-            <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
-            </div>
-        </div>
+  <!-- Language & Currency Selector -->
+  <div class="bg-mexican-red text-white py-2 px-4 flex justify-between items-center">
+    <div class="language-selector relative">
+      <button class="flex items-center">
+        <span class="fi fi-fr mr-2"></span>
+        Français
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-fr mr-2"></span> Français
+        </a>
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-us mr-2"></span> English
+        </a>
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-mx mr-2"></span> Español
+        </a>
+      </div>
     </div>
+    <div class="currency-selector relative">
+      <button class="flex items-center">
+        <span>€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Navigation -->
   <nav class="bg-white shadow-md sticky top-0 z-40">
@@ -159,131 +156,115 @@
 
           <!-- Vidéo 1 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
-            <div class="aspect-video bg-black"> <!-- force le ratio -->
-            <div class="fb-video w-full h-full"
-            data-href="https://www.facebook.com/yoan.cremona.3/videos/24216455441318195/"
-            data-width="auto"
-            data-allowfullscreen="true"
-            data-show-text="false">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/24216455441318195/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
             </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-600">“Merci à Street Car Solution, tout c'est bien passé”</p>
             </div>
-          <div class="p-4">
-          <p class="font-bold text-blue-600">“Merci à Street Car Solution, tout c'est bien passé”</p>
-          </div>
           </article>
-
 
           <!-- Vidéo 2 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
-            <div class="aspect-video bg-black"> <!-- force le ratio -->
-            <div class="fb-video w-full h-full"
-            data-href="https://www.facebook.com/yoan.cremona.3/videos/783062530742767/"
-            data-width="auto"
-            data-allowfullscreen="true"
-            data-show-text="false">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/783062530742767/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
             </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-600">“On a fait 4,000 Km et c'était génial !”</p>
             </div>
-          <div class="p-4">
-          <p class="font-bold text-blue-600">“On a fait 4,000 Km et c'était génial !”</p>
-          </div>
           </article>
 
           <!-- Vidéo 3 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
-            <div class="aspect-video bg-black"> <!-- force le ratio -->
-            <div class="fb-video w-full h-full"
-            data-href="https://www.facebook.com/yoan.cremona.3/videos/1268199234454838/"
-            data-width="auto"
-            data-allowfullscreen="true"
-            data-show-text="false">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/1268199234454838/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
             </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-600">“La police voulait nous retirer le permis et nous faire payer une énorme amende”</p>
             </div>
-          <div class="p-4">
-          <p class="font-bold text-blue-600">“La police voulait nous retirer le permis et nous faire payer une énorme amende”</p>
-          </div>
           </article>
-
 
           <!-- Vidéo 4 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
-            <div class="aspect-video bg-black"> <!-- force le ratio -->
-            <div class="fb-video w-full h-full"
-            data-href="https://www.facebook.com/yoan.cremona.3/videos/1111144331119753/"
-            data-width="auto"
-            data-allowfullscreen="true"
-            data-show-text="false">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/1111144331119753/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
             </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-500">“Yoan, dans l'urgence nous a trouvé une voiture”</p>
             </div>
-          <div class="p-4">
-          <p class="font-bold text-blue-500">“Yoan, dans l'urgence nous a trouvé une voiture”</p>
-          </div>
           </article>
 
           <!-- Vidéo 5 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
-            <div class="aspect-video bg-black"> <!-- force le ratio -->
-            <div class="fb-video w-full h-full"
-            data-href="https://www.facebook.com/yoan.cremona.3/videos/1285043749837606/"
-            data-width="auto"
-            data-allowfullscreen="true"
-            data-show-text="false">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/1285043749837606/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
             </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-600">“Merci à Yoan pour la magnifique location de voiture”</p>
             </div>
-          <div class="p-4">
-          <p class="font-bold text-blue-600">“Merci à Yoan pour la magnifique location de voiture”</p>
-          </div>
           </article>
 
           <!-- Vidéo 6 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
-            <div class="aspect-video bg-black"> <!-- force le ratio -->
-            <div class="fb-video w-full h-full"
-            data-href="https://www.facebook.com/yoan.cremona.3/videos/1856348745096733/"
-            data-width="auto"
-            data-allowfullscreen="true"
-            data-show-text="false">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/1856348745096733/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
             </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-600">“Tout était nickel” "Tout était parfait"</p>
             </div>
-          <div class="p-4">
-          <p class="font-bold text-blue-600">“Tout était nickel” "Tout était parfait"</p>
-          </div>
           </article>
 
-
-          <!-- Duplique autant de blocs <article> que nécessaire -->
         </div>
       </section>
       
-      
-<!-- BOUTON VOIR PLUS DE TÉMOIGNAGES -->
-<section>
       <!-- BOUTON VOIR PLUS DE TÉMOIGNAGES -->
-<div class="mt-10 flex justify-center">
-  <a
-    href="https://www.youtube.com/@StreetCarSolution"
-    target="_blank" rel="noopener noreferrer"
-    aria-label="Voir plus de témoignages en vidéo sur YouTube"
-    title="Voir plus de témoignages en vidéo"
-    class="inline-flex items-center gap-3 rounded-full px-7 py-4
-           bg-mexican-orange text-white font-bold shadow-lg
-           text-lg md:text-xl hover:bg-mexican-red
-           focus:outline-none focus:ring-4 focus:ring-orange-300 transition"
-  >
-    <i class="fas fa-play-circle text-white text-2xl"></i>
-    <span>Plus de témoignages en vidéo</span>
-  </a>
-</div>
-
-</section>
-
+      <section>
+        <div class="mt-10 flex justify-center">
+          <a
+            href="https://www.youtube.com/@StreetCarSolution"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Voir plus de témoignages en vidéo sur YouTube"
+            title="Voir plus de témoignages en vidéo"
+            class="inline-flex items-center gap-3 rounded-full px-7 py-4
+                   bg-mexican-orange text-white font-bold shadow-lg
+                   text-lg md:text-xl hover:bg-mexican-red
+                   focus:outline-none focus:ring-4 focus:ring-orange-300 transition">
+            <i class="fas fa-play-circle text-white text-2xl"></i>
+            <span>Plus de témoignages en vidéo</span>
+          </a>
+        </div>
+      </section>
 
       <!-- AVIS ÉCRITS -->
       <section>
         <h2 class="text-2xl font-bold mb-6">Avis écrits</h2>
 
-        <!-- Grille avis -->
+        <!-- Grille avis (fixes) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
           <article class="bg-white rounded-xl shadow p-6">
             <div class="flex items-center mb-2 text-caribbean-yellow">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -307,14 +288,10 @@
             <p class="text-gray-700">“Parfait pour notre famille de 5, le SUV 7 places était nickel.”</p>
             <p class="text-sm text-gray-500 mt-3">— Famille Martin</p>
           </article>
-
-          <!-- Ajoute facilement d’autres cartes d’avis -->
         </div>
 
-          <!-- Avis dynamiques (Google Sheets) -->
+        <!-- Avis dynamiques (Google Sheets) -->
         <div id="reviewsDynamic" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6"></div>
-
-
 
         <!-- Bouton Écrire un témoignage -->
         <div class="mt-10 flex justify-center">
@@ -322,149 +299,134 @@
             href="https://docs.google.com/forms/d/e/1FAIpQLSf1vwaBpVLO2XQ25uNPLf8xT2Fzsd5TWajtItOf6wXjzzWUkg/viewform?usp=header"
             target="_blank" rel="noopener noreferrer"
             class="inline-flex items-center gap-3 rounded-full px-7 py-4
-                  bg-mexican-orange text-white font-bold shadow-lg
-                  text-lg md:text-xl hover:bg-mexican-red
-                  focus:outline-none focus:ring-4 focus:ring-orange-300 transition">
+                   bg-mexican-orange text-white font-bold shadow-lg
+                   text-lg md:text-xl hover:bg-mexican-red
+                   focus:outline-none focus:ring-4 focus:ring-orange-300 transition">
             <i class="fas fa-pen text-white text-xl"></i>
             <span>Écrire un témoignage</span>
           </a>
         </div>
-
       </section>
 
     </div>
   </main>
 
   <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
-                    <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
-                    <div class="flex space-x-4 mt-4">
-
-          <!-- Facebook -->
-          <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          
-          <!-- Instagram -->
-          <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-instagram"></i>
-          </a>
-          
-          <!-- TikTok -->
-          <a href="http://www.tiktok.com/@yoancremona" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-tiktok"></i>
-          </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-white">Accueil</a></li>
-                        <li><a href="#vehicles" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white">Services</a></li>
-                        <li><a href="#about" class="text-gray-400 hover:text-white">À Propos</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Informations</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
-                    <form class="flex">
-                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
-                        <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
-            </div>
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#"
+               class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#"
+               class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@yoancremona"
+               class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+          </div>
         </div>
-    </footer>
 
-  <!-- Script burger -->
-<script>
-  const burgerBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  if (burgerBtn && mobileMenu) {
-    const icon = burgerBtn.querySelector('i');
-    const closeMenu = () => {
-      mobileMenu.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
-      burgerBtn.setAttribute('aria-expanded', 'false');
-      if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
-    };
-    const openMenu = () => {
-      mobileMenu.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
-      burgerBtn.setAttribute('aria-expanded', 'true');
-      if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
-    };
-    burgerBtn.addEventListener('click', () => {
-      if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
-    });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-    window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
-  }
+        <div>
+          <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
+          <ul class="space-y-2">
+            <li><a href="#home" class="text-gray-400 hover:text-white">Accueil</a></li>
+            <li><a href="#vehicles" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+            <li><a href="#services" class="text-gray-400 hover:text-white">Services</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white">À Propos</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
 
- 
-/* ===== Témoignages auto depuis Google Sheets ===== */
-const TESTI_URL = "https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec";
+        <div>
+          <h3 class="text-xl font-bold mb-4">Informations</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
 
-function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-function renderStars(n){const f=Math.max(0,Math.min(5,Math.round(Number(n)||0)));return "★★★★★☆☆☆☆☆".slice(5-f,10-f);}
+        <div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
+          <form class="flex">
+            <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+            <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
 
-async function loadReviews(limit=12,target='reviewsDynamic'){
-  const box=document.getElementById(target); if(!box) return;
-  try{
-    // Ajoute automatiquement les paramètres (? ou & selon le cas)
-    const sep = TESTI_URL.includes('?') ? '&' : '?';
-    const url = `${TESTI_URL}${sep}action=temoignages&limit=${encodeURIComponent(limit)}`;
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
 
-    const resp = await fetch(url);
-    if(!resp.ok) throw new Error('HTTP '+resp.status);
-    const json = await resp.json();
-    if(!json.ok || !Array.isArray(json.reviews) || json.reviews.length===0) return;
+  <!-- JS : burger + avis dynamiques -->
+  <script>
+    /* Menu mobile */
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+      };
+      const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+      };
+      burgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
 
-    box.innerHTML = json.reviews.map(r => `
-      <article class="bg-white p-6 rounded-xl shadow">
-        <div class="text-yellow-500 mb-2" aria-label="${escapeHtml(r.rating)} sur 5">${renderStars(r.rating)}</div>
-        <p class="text-gray-700 italic mb-3">“${escapeHtml(r.message)}”</p>
-        <p class="text-gray-500 text-sm">— ${escapeHtml(r.name)}${r.date?` · ${escapeHtml(r.date)}`:""}</p>
-      </article>
-    `).join("");
-  }catch(e){ console.error('Avis dynamiques:', e); }
-}
+    /* === Avis automatiques depuis Google Sheets === */
+    const TESTI_URL = "https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec";
 
-document.addEventListener('DOMContentLoaded',()=>loadReviews(12)); // ← change 12 si tu veux plus/moins
+    function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+    function renderStars(n){const f=Math.max(0,Math.min(5,Math.round(Number(n)||0)));return "★★★★★☆☆☆☆☆".slice(5-f,10-f);}
 
+    async function loadReviews(limit=12,target='reviewsDynamic'){
+      const box=document.getElementById(target); if(!box) return;
+      try{
+        const sep = TESTI_URL.includes('?') ? '&' : '?';
+        const url = `${TESTI_URL}${sep}action=temoignages&limit=${encodeURIComponent(limit)}`;
 
-<!-- SDK Facebook (doit être EN DEHORS du <script> précédent) -->
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v20.0">
-</script>
+        const resp = await fetch(url);
+        if(!resp.ok) throw new Error('HTTP '+resp.status);
+        const json = await resp.json();
+        if(!json.ok || !Array.isArray(json.reviews) || json.reviews.length===0) return;
+
+        box.innerHTML = json.reviews.map(r => `
+          <article class="bg-white p-6 rounded-xl shadow">
+            <div class="text-yellow-500 mb-2" aria-label="${escapeHtml(r.rating)} sur 5">${renderStars(r.rating)}</div>
+            <p class="text-gray-700 italic mb-3">“${escapeHtml(r.message)}”</p>
+            <p class="text-gray-500 text-sm">— ${escapeHtml(r.name)}${r.date?` · ${escapeHtml(r.date)}`:""}</p>
+          </article>
+        `).join("");
+      }catch(e){ console.error('Avis dynamiques:', e); }
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>loadReviews(12));
+  </script>
+
+  <!-- SDK Facebook (fermé correctement) -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+          src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v20.0"></script>
 </body>
 </html>
 
