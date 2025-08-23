@@ -55,16 +55,43 @@
   </script>
 </head>
 <body class="font-sans bg-gray-50 text-lg">
-
-  <!-- Bandeau devise (optionnel) -->
-  <div class="bg-mexican-red text-white py-2 px-4 flex justify-end items-center">
-    <div class="currency-selector relative">
-      <button class="flex items-center">
-        <span>€ EUR</span>
-        <i class="fas fa-chevron-down ml-2 text-xs"></i>
-      </button>
+  
+<!-- Language & Currency Selector -->
+    <div class="bg-mexican-red text-white py-2 px-4 flex justify-between items-center">
+        <div class="language-selector relative">
+            <button class="flex items-center">
+                <span class="fi fi-fr mr-2"></span>
+                Français
+                <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+                    <span class="fi fi-fr mr-2"></span>
+                    Français
+                </a>
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+                    <span class="fi fi-us mr-2"></span>
+                    English
+                </a>
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+                    <span class="fi fi-mx mr-2"></span>
+                    Español
+                </a>
+            </div>
+        </div>
+        <div class="currency-selector relative">
+            <button class="flex items-center">
+                <span>€ EUR</span>
+                <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+            </div>
+        </div>
     </div>
-  </div>
 
   <!-- Navigation -->
   <nav class="bg-white shadow-md sticky top-0 z-40">
