@@ -429,9 +429,8 @@
   }
 
  
-/* ====== Témoignages auto depuis Google Sheets ====== */
-/* ⚠️ Colle ici l’URL /exec de la Web App “Témoignages” */
-const TESTI_URL = "https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec"; // ← remplace par TON_URL
+/* ===== Témoignages auto depuis Google Sheets ===== */
+const TESTI_URL = "https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec";
 
 function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function renderStars(n){const f=Math.max(0,Math.min(5,Math.round(Number(n)||0)));return "★★★★★☆☆☆☆☆".slice(5-f,10-f);}
@@ -439,16 +438,16 @@ function renderStars(n){const f=Math.max(0,Math.min(5,Math.round(Number(n)||0)))
 async function loadReviews(limit=12,target='reviewsDynamic'){
   const box=document.getElementById(target); if(!box) return;
   try{
-    // Si TESTI_URL contient déjà un "?", on ajoute avec "&", sinon avec "?"
+    // Ajoute automatiquement les paramètres (? ou & selon le cas)
     const sep = TESTI_URL.includes('?') ? '&' : '?';
     const url = `${TESTI_URL}${sep}action=temoignages&limit=${encodeURIComponent(limit)}`;
 
-    const resp=await fetch(url);
+    const resp = await fetch(url);
     if(!resp.ok) throw new Error('HTTP '+resp.status);
-    const json=await resp.json();
-    if(!json.ok||!Array.isArray(json.reviews)||json.reviews.length===0) return;
+    const json = await resp.json();
+    if(!json.ok || !Array.isArray(json.reviews) || json.reviews.length===0) return;
 
-    box.innerHTML=json.reviews.map(r=>`
+    box.innerHTML = json.reviews.map(r => `
       <article class="bg-white p-6 rounded-xl shadow">
         <div class="text-yellow-500 mb-2" aria-label="${escapeHtml(r.rating)} sur 5">${renderStars(r.rating)}</div>
         <p class="text-gray-700 italic mb-3">“${escapeHtml(r.message)}”</p>
@@ -458,8 +457,7 @@ async function loadReviews(limit=12,target='reviewsDynamic'){
   }catch(e){ console.error('Avis dynamiques:', e); }
 }
 
-document.addEventListener('DOMContentLoaded',()=>loadReviews(12));
-</script>
+document.addEventListener('DOMContentLoaded',()=>loadReviews(12)); // ← change 12 si tu veux plus/moins
 
 
 <!-- SDK Facebook (doit être EN DEHORS du <script> précédent) -->
