@@ -162,37 +162,20 @@
           </article>
 
 
-          <!-- Vidéo 3 (MP4 – Hugging Face) -->
-<article class="bg-white rounded-xl shadow overflow-hidden">
-  <!-- Carte vidéo 16:9 -->
-  <div class="relative aspect-video bg-black js-mp4-card">
-    <video
-      class="absolute inset-0 w-full h-full object-contain"
-      preload="metadata"
-      playsinline
-      controlslist="nodownload"
-      poster="URL_POSTER_OPTIONNELLE.jpg"  <!-- optionnel -->
-    >
-      <source src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/56e7a6ac-985a-42b8-b5a8-13de87a066c8.mp4" type="video/mp4" />
-      Votre navigateur ne supporte pas la lecture vidéo.
-    </video>
-
-    <!-- Bouton PLAY centré -->
-    <button type="button"
-            class="js-mp4-play absolute inset-0 grid place-items-center group"
-            aria-label="Lire la vidéo">
-      <span class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/95 group-hover:bg-white shadow-lg transition">
-        <i class="fas fa-play text-caribbean-blue text-2xl ml-1"></i>
-      </span>
-    </button>
-  </div>
-
-  <div class="p-4">
-    <p class="font-bold text-blue-600">“La police voulait nous retirer le permis et nous faire payer une énorme amende”</p>
-  </div>
-</article>
-
-
+          <!-- Vidéo 3 (FB) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="aspect-video bg-black"> <!-- force le ratio -->
+            <div class="fb-video w-full h-full"
+            data-href="https://www.facebook.com/yoan.cremona.3/videos/783062530742767/"
+            data-width="auto"
+            data-allowfullscreen="true"
+            data-show-text="false">
+            </div>
+            </div>
+          <div class="p-4">
+          <p class="font-bold text-blue-600">“La police voulait nous retirer le permis et nous faire payer une énorme amende”</p>
+          </div>
+          </article>
 
 
           <!-- Vidéo 4 (FB) -->
