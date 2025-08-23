@@ -1230,7 +1230,7 @@
    =============================== */
 
 /* >>> 1) URL de ton Web App Apps Script (doit finir par /exec) <<< */
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxoVV-6LF93Jg77kmzw479J5mrVGWeiEo9UXwjUwVY9u1CPj-ohIVhkeNh9qFPsponSAA/exec"; // ← remplace par la tienne
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycby2tY1sc67jjT_kytwybuinIdmgVV0ktpU4vOa1YrOYyQwjoCLuRMDD2OOZNXtQ0GEyVA/exec"; // ← remplace par la tienne
 
 /* === Carousel === */
 const carousel = document.getElementById('carousel');
@@ -1309,32 +1309,27 @@ document.addEventListener('click', () => { langDrop?.classList.add('hidden'); cu
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
 window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
 
-/* === Formulaire de pré-réservation → envoi vers Google Sheets (Apps Script) === */
+// --- Envoi vers Google Apps Script (sans estimation) ---
 const form = document.getElementById('reservationForm');
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const fd = new FormData(form);
-    const data = Object.fromEntries(fd.entries()); // { firstName, lastName, permis, age, ... }
+    const data = Object.fromEntries(fd.entries());
 
     try {
-      // IMPORTANT : on envoie en x-www-form-urlencoded (compatible Apps Script)
       const resp = await fetch(WEBAPP_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
         body: new URLSearchParams(data).toString()
       });
-
       const json = await resp.json().catch(() => ({}));
+
       if (json && json.ok) {
-        alert(
-          json.quote
-            ? `Merci ! Estimation : ${json.quote.total} ${json.quote.currency} pour ${json.quote.days} jour(s).`
-            : `Merci ! Votre pré-réservation a bien été envoyée.`
-        );
+        alert("Merci ! Votre pré-réservation a bien été envoyée. Nous revenons vers vous rapidement.");
         form.reset();
       } else {
-        alert("Désolé, l'envoi a échoué. Réessayez dans quelques minutes ou contactez-nous par WhatsApp.");
+        alert("Désolé, l'envoi a échoué. Réessayez un peu plus tard.");
       }
     } catch (err) {
       console.error(err);
