@@ -1338,6 +1338,37 @@ if (form) {
   });
 }
 
+/* === Affichage auto des témoignages depuis Google Sheets === */
+function escapeHtml(s) {
+  return String(s || "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function renderStars(n) {
+  const full = Math.max(0, Math.min(5, Math.round(Number(n)||0)));
+  return "★★★★★☆☆☆☆☆".slice(5 - full, 10 - full); // simple, robuste
+}
+async function loadReviews() {
+  const box = document.getElementById('reviewsDynamic');
+  if (!box) return;
+  try {
+    const resp = await fetch(`${WEBAPP_URL}?action=temoignages&limit=12`);
+    const json = await resp.json();
+    if (!json.ok || !json.reviews?.length) return;
+
+    box.innerHTML = json.reviews.map(r => `
+      <article class="bg-white p-6 rounded-xl shadow">
+        <div class="text-yellow-500 mb-2" aria-label="${escapeHtml(r.rating)} sur 5">
+          ${renderStars(r.rating)}
+        </div>
+        <p class="text-gray-700 italic mb-3">“${escapeHtml(r.message)}”</p>
+        <p class="text-gray-500 text-sm">— ${escapeHtml(r.name)}${r.date ? ` · ${escapeHtml(r.date)}` : ""}</p>
+      </article>
+    `).join("");
+  } catch (e) {
+    console.error("Avis dynamiques:", e);
+  }
+}
+document.addEventListener('DOMContentLoaded', loadReviews);
+
 /* === Gestion de la vidéo “About” (si présente sur la page) === */
 const aboutVideo = document.getElementById("aboutVideo");
 const videoOverlay = document.getElementById("videoOverlay");
