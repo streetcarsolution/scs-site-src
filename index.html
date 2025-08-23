@@ -1232,6 +1232,9 @@
 /* >>> 1) URL de ton Web App Apps Script (doit finir par /exec) <<< */
 const WEBAPP_URL = "https://script.google.com/macros/s/AKfycby2tY1sc67jjT_kytwybuinIdmgVV0ktpU4vOa1YrOYyQwjoCLuRMDD2OOZNXtQ0GEyVA/exec"; // ← remplace par la tienne
 
+// ➜ NOUVEAU : Web App des témoignages
+const TESTI_URL = "https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec"; // colle ton URL ici
+
 /* === Carousel === */
 const carousel = document.getElementById('carousel');
 const prevBtn = document.getElementById('prevBtn');
@@ -1338,21 +1341,39 @@ if (form) {
   });
 }
 
-/* === Affichage auto des témoignages depuis Google Sheets === */
+/* ====== Témoignages auto depuis Google Sheets ====== */
+/* ⚠️ Colle ici l’URL /exec de la Web App “Témoignages” */
+const TESTI_URL = "https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec"; // ← remplace par TON_URL
+
 function escapeHtml(s) {
-  return String(s || "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  return String(s || "").replace(/[&<>"']/g,
+    m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])
+  );
 }
+
 function renderStars(n) {
-  const full = Math.max(0, Math.min(5, Math.round(Number(n)||0)));
-  return "★★★★★☆☆☆☆☆".slice(5 - full, 10 - full); // simple, robuste
+  const full = Math.max(0, Math.min(5, Math.round(Number(n) || 0)));
+  return "★★★★★☆☆☆☆☆".slice(5 - full, 10 - full);
 }
-async function loadReviews() {
-  const box = document.getElementById('reviewsDynamic');
+
+/**
+ * Charge et affiche les avis publiés.
+ * @param {number} limit  - nombre d’avis à afficher (par défaut 12)
+ * @param {string} target - id du conteneur (par défaut "reviewsDynamic")
+ */
+async function loadReviews(limit = 12, target = 'reviewsDynamic') {
+  const box = document.getElementById(target);
   if (!box) return;
+
   try {
-    const resp = await fetch(`${WEBAPP_URL}?action=temoignages&limit=12`);
+    const resp = await fetch(`${TESTI_URL}?action=temoignages&limit=${encodeURIComponent(limit)}`);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const json = await resp.json();
-    if (!json.ok || !json.reviews?.length) return;
+
+    if (!json.ok || !Array.isArray(json.reviews) || json.reviews.length === 0) {
+      // Rien à afficher → on laisse vide (ou mets un petit message si tu veux)
+      return;
+    }
 
     box.innerHTML = json.reviews.map(r => `
       <article class="bg-white p-6 rounded-xl shadow">
@@ -1367,7 +1388,9 @@ async function loadReviews() {
     console.error("Avis dynamiques:", e);
   }
 }
-document.addEventListener('DOMContentLoaded', loadReviews);
+
+// Lance avec 12 avis par défaut
+document.addEventListener('DOMContentLoaded', () => loadReviews(12));
 
 /* === Gestion de la vidéo “About” (si présente sur la page) === */
 const aboutVideo = document.getElementById("aboutVideo");
