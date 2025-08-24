@@ -262,33 +262,34 @@
       <!-- AVIS ÉCRITS -->
       <section>
         <h2 class="text-2xl font-bold mb-6">Avis écrits</h2>
+        
+<!-- Grille avis (fixes) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <article class="bg-white rounded-xl shadow p-6">
+    <div class="flex items-center gap-1 mb-2 text-caribbean-yellow text-xl" aria-label="5 sur 5">
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+    <p class="text-gray-700">“Service impeccable, on a récupéré la voiture directement devant l’aéroport. Je recommande.”</p>
+    <p class="text-sm text-gray-500 mt-3">— Camille & Adrien</p>
+  </article>
 
-        <!-- Grille avis (fixes) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <article class="bg-white rounded-xl shadow p-6">
-            <div class="flex items-center mb-2 text-caribbean-yellow">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <p class="text-gray-700">“Service impeccable, on a récupéré la voiture directement devant l’aéroport. Je recommande.”</p>
-            <p class="text-sm text-gray-500 mt-3">— Camille & Adrien</p>
-          </article>
+  <article class="bg-white rounded-xl shadow p-6">
+    <div class="flex items-center gap-1 mb-2 text-caribbean-yellow text-xl" aria-label="5 sur 5">
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+    <p class="text-gray-700">“Nous parlons français, c’était rassurant. Tarifs clairs et assistance rapide.”</p>
+    <p class="text-sm text-gray-500 mt-3">— Pierre</p>
+  </article>
 
-          <article class="bg-white rounded-xl shadow p-6">
-            <div class="flex items-center mb-2 text-caribbean-yellow">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <p class="text-gray-700">“Nous parlons français, c’était rassurant. Tarifs clairs et assistance rapide.”</p>
-            <p class="text-sm text-gray-500 mt-3">— Pierre</p>
-          </article>
+  <article class="bg-white rounded-xl shadow p-6">
+    <div class="flex items-center gap-1 mb-2 text-caribbean-yellow text-xl" aria-label="5 sur 5">
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+    <p class="text-gray-700">“Parfait pour notre famille de 5, le SUV 7 places était nickel.”</p>
+    <p class="text-sm text-gray-500 mt-3">— Famille Martin</p>
+  </article>
+</div>
 
-          <article class="bg-white rounded-xl shadow p-6">
-            <div class="flex items-center mb-2 text-caribbean-yellow">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <p class="text-gray-700">“Parfait pour notre famille de 5, le SUV 7 places était nickel.”</p>
-            <p class="text-sm text-gray-500 mt-3">— Famille Martin</p>
-          </article>
-        </div>
 
         <!-- Avis dynamiques (Google Sheets) -->
         <div id="reviewsDynamic" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6"></div>
