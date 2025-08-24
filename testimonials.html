@@ -34,6 +34,20 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
   </style>
+
+  <style>
+  /* === Skeleton loader Avis === */
+.skel-card{background:#fff;border-radius:0.75rem;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:1.5rem}
+.skel-stars{display:flex;gap:.35rem;margin-bottom:.75rem}
+.skel-star,.skel-line{
+  background:linear-gradient(90deg,#eee,#f6f6f6,#eee);
+  background-size:200% 100%;animation:skel 1.2s ease-in-out infinite
+}
+.skel-star{width:18px;height:18px;border-radius:4px}
+.skel-line{height:14px;border-radius:6px;margin-bottom:.6rem}
+@keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  </style>
+
   <script>
     /* Config Tailwind */
     tailwind.config = {
@@ -458,9 +472,13 @@ function renderStars(n){
   ).join('');
 }
 
-async function loadReviews(limit = 12, target = 'reviewsDynamic'){
+/* === loadReviews avec skeleton + JSON-LD === */
+async function loadReviews(limit=12, target='reviewsDynamic'){
   const box = document.getElementById(target);
   if (!box) return;
+
+  // Skeleton pendant le chargement
+  box.innerHTML = skeletonCards(Math.min(3, limit));
 
   try{
     const sep = TESTI_ENDPOINT.includes('?') ? '&' : '?';
@@ -469,8 +487,13 @@ async function loadReviews(limit = 12, target = 'reviewsDynamic'){
     const resp = await fetch(url);
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     const json = await resp.json();
-    if (!json.ok || !Array.isArray(json.reviews) || json.reviews.length === 0) return;
 
+    if (!json.ok || !Array.isArray(json.reviews) || json.reviews.length === 0){
+      box.innerHTML = '';
+      return;
+    }
+
+    // Rendu final (même look que tes cartes statiques)
     box.innerHTML = json.reviews.map(r => `
       <article class="bg-white p-6 rounded-xl shadow">
         <div class="flex items-center gap-1 mb-2 text-caribbean-yellow text-xl"
@@ -481,12 +504,65 @@ async function loadReviews(limit = 12, target = 'reviewsDynamic'){
         <p class="text-gray-500 text-sm">— ${escapeHtml(r.name)}${r.date ? ` · ${escapeHtml(r.date)}` : ""}</p>
       </article>
     `).join('');
+
+    // SEO
+    injectReviewsJSONLD(json.reviews);
+
   }catch(e){
     console.error('Avis dynamiques:', e);
+    box.innerHTML = ''; // on retire le skeleton en cas d'erreur
   }
 }
 
+// Recharge les avis une fois le DOM prêt
 document.addEventListener('DOMContentLoaded', () => loadReviews(12));
+
+
+   /* === Helpers skeleton + JSON-LD (ajouter sous renderStars) === */
+function skeletonCards(n=3){
+  return Array.from({length:n},()=>`
+    <div class="skel-card">
+      <div class="skel-stars">
+        <span class="skel-star"></span><span class="skel-star"></span>
+        <span class="skel-star"></span><span class="skel-star"></span>
+        <span class="skel-star"></span>
+      </div>
+      <div class="skel-line" style="width:92%"></div>
+      <div class="skel-line" style="width:86%"></div>
+      <div class="skel-line" style="width:68%"></div>
+    </div>
+  `).join('');
+}
+
+function injectReviewsJSONLD(reviews){
+  try{
+    const avg = (reviews.reduce((a,r)=>a+(Number(r.rating)||0),0) / (reviews.length||1)).toFixed(2);
+    const ld = {
+      "@context":"https://schema.org",
+      "@type":"LocalBusiness",
+      "name":"Street Car Solution",
+      "url": location.href,
+      "aggregateRating":{
+        "@type":"AggregateRating",
+        "ratingValue": avg,
+        "reviewCount": String(reviews.length)
+      },
+      "review": reviews.map(r=>({
+        "@type":"Review",
+        "author": {"@type":"Person","name": r.name || "Client"},
+        "reviewBody": r.message || "",
+        "datePublished": r.date || "",
+        "reviewRating": {"@type":"Rating","ratingValue": String(r.rating||5),"bestRating":"5","worstRating":"1"}
+      }))
+    };
+    document.getElementById('reviews-ld')?.remove();
+    const s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.id = 'reviews-ld';
+    s.textContent = JSON.stringify(ld);
+    document.head.appendChild(s);
+  }catch(e){ console.warn('JSON-LD:', e); }
+}
 
     
 /* === Dropdown Langue & Devise === */
