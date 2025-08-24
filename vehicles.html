@@ -157,56 +157,62 @@
             <ul class="text-gray-600 text-sm mt-2 space-y-1">
             <!-- Places -->
             <li class="flex items-center gap-2">
-              <i class="fas fa-users text-gray-600 text-base w-5 text-center shrink-0" aria-hidden="true"></i>
-              <span>5 places</span>
+              <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>
+              5 places
             </li>
           
             <!-- Portes (SVG portière) -->
             <li class="flex items-center gap-2">
-              <svg
-                class="w-5 h-5 text-gray-600 shrink-0"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-                role="img">
-                <!-- contour de la portière -->
-                <path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/>
-                <!-- ligne de vitre -->
-                <path d="M12 8h7"/>
-                <!-- poignée -->
-                <path d="M9.5 13h2.5"/>
-              </svg>
-              <span>4 portes</span>
+              <span class="w-5 flex justify-center text-gray-600">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <!-- contour de la portière -->
+                  <path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/>
+                  <!-- ligne de vitre -->
+                  <path d="M12 8h7"/>
+                  <!-- poignée -->
+                  <path d="M9.5 13h2.5"/>
+                </svg>
+              </span>
+              4 portes
             </li>
           
             <!-- Clim -->
             <li class="flex items-center gap-2">
-              <i class="far fa-snowflake text-gray-600 text-base w-5 text-center shrink-0" aria-hidden="true"></i>
-              <span>Climatisation</span>
+              <span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>
+              Climatisation
             </li>
           
             <!-- Boîte -->
             <li class="flex items-center gap-2">
-              <i class="fas fa-cog text-gray-600 text-base w-5 text-center shrink-0" aria-hidden="true"></i>
-              <span>Automatique</span>
+              <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>
+              Automatique
             </li>
           
             <!-- Valises -->
             <li class="flex items-center gap-2">
-              <i class="fas fa-suitcase-rolling text-gray-600 text-base w-5 text-center shrink-0" aria-hidden="true"></i>
-              <span>2 valises</span>
+              <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>
+              2 valises
             </li>
           
-            <!-- GPS -->
+            <!-- Bluetooth -->
             <li class="flex items-center gap-2">
-              <i class="fas fa-route text-gray-600 text-base w-5 text-center shrink-0" aria-hidden="true"></i>
-              <span>CarPlay GPS</span>
+              <span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b"></i></span>
+              Bluetooth
             </li>
-            </ul>
+          
+            <!-- USB -->
+            <li class="flex items-center gap-2">
+              <span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb"></i></span>
+              USB
+            </li>
+          
+            <!-- CarPlay / GPS -->
+            <li class="flex items-center gap-2">
+              <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>
+              CarPlay GPS
+            </li>
+          </ul>
             <div class="flex items-baseline justify-between mt-4">
               <span class="text-mexican-orange font-bold">35€ / jour</span>
               <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pré-réserver</a>
@@ -368,46 +374,45 @@
       window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
     }
 
-    /* === Dropdown Langue & Devise === */
-const langSel = document.querySelector('.language-selector');
-const langDrop = document.querySelector('.language-dropdown');
-const curSel  = document.querySelector('.currency-selector');
-const curDrop = document.querySelector('.currency-dropdown');
-const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
-
-function setupDropdown(trigger, panel) {
-  if (!trigger || !panel) return;
-  panel.classList.add('hidden');
-  let hideTimer = null;
-  const btn = trigger.querySelector('button');
-  const open = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); };
-  const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }, 120); };
-  const toggle = (e) => {
-    e.stopPropagation();
-    const show = panel.classList.contains('hidden');
-    if (panel !== langDrop) langDrop?.classList.add('hidden');
-    if (panel !== curDrop)  curDrop?.classList.add('hidden');
-    if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); }
-    else { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }
-  };
-  if (isDesktop.matches) {
-    trigger.addEventListener('mouseenter', open);
-    trigger.addEventListener('mouseleave', close);
-    panel.addEventListener('mouseenter', open);
-    panel.addEventListener('mouseleave', close);
-    btn?.addEventListener('focus', open);
-    btn?.addEventListener('blur', close);
-  } else {
-    trigger.addEventListener('click', toggle);
-  }
-  panel.addEventListener('click', (e) => e.stopPropagation());
-}
-setupDropdown(langSel, langDrop);
-setupDropdown(curSel, curDrop);
-document.addEventListener('click', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
-window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
-
+        /* === Dropdown Langue & Devise === */
+    const langSel = document.querySelector('.language-selector');
+    const langDrop = document.querySelector('.language-dropdown');
+    const curSel  = document.querySelector('.currency-selector');
+    const curDrop = document.querySelector('.currency-dropdown');
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+    
+    function setupDropdown(trigger, panel) {
+      if (!trigger || !panel) return;
+      panel.classList.add('hidden');
+      let hideTimer = null;
+      const btn = trigger.querySelector('button');
+      const open = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); };
+      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }, 120); };
+      const toggle = (e) => {
+        e.stopPropagation();
+        const show = panel.classList.contains('hidden');
+        if (panel !== langDrop) langDrop?.classList.add('hidden');
+        if (panel !== curDrop)  curDrop?.classList.add('hidden');
+        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); }
+        else { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }
+      };
+      if (isDesktop.matches) {
+        trigger.addEventListener('mouseenter', open);
+        trigger.addEventListener('mouseleave', close);
+        panel.addEventListener('mouseenter', open);
+        panel.addEventListener('mouseleave', close);
+        btn?.addEventListener('focus', open);
+        btn?.addEventListener('blur', close);
+      } else {
+        trigger.addEventListener('click', toggle);
+      }
+      panel.addEventListener('click', (e) => e.stopPropagation());
+    }
+    setupDropdown(langSel, langDrop);
+    setupDropdown(curSel, curDrop);
+    document.addEventListener('click', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+    window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
   </script>
 </body>
 </html>
