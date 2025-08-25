@@ -241,12 +241,16 @@
 
           <!-- Modèle 2 -->
               <article class="bg-white/95 border border-gray-200 rounded-xl shadow p-4 w-full">
-              <img
-                src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
-                alt="Renault Kwid"
-                class="w-full h-36 md:h-40 object-contain mb-3"
-                loading="lazy"
-              />
+              <!-- wrapper 3:2 (plus haut que 16:9) -->
+              <div class="relative w-full overflow-hidden rounded-lg pt-[66.6667%] mb-3">
+                <img
+                  src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
+                  alt="Renault Kwid"
+                  class="absolute inset-0 w-full h-full object-cover object-center"
+                  loading="lazy"
+                />
+              </div>
+
                 <h3 class="flex items-baseline gap-2">
                   <span class="text-xl font-semibold">Renault Kwid</span>
                   <span class="text-gray-500 text-sm font-normal">(ou similaire)</span>
