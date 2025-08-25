@@ -432,13 +432,19 @@
               </article>
 
           <!-- Modèle 4 -->
-              <article class="bg-white/95 border border-gray-200 rounded-xl shadow p-4 w-full">
-              <img
-                src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
-                alt="Renault Kwid"
-                class="w-full h-36 md:h-40 object-contain mb-3"
-                loading="lazy"
-              />
+              <article class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+              <!-- media: image pleine largeur, sans cadre blanc -->
+              <figure class="relative w-full aspect-video">
+                <img
+                  src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
+                  alt="Renault Kwid"
+                  class="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </figure>
+            
+              <!-- contenu -->
+              <div class="p-4">
                 <h3 class="flex items-baseline gap-2">
                   <span class="text-xl font-semibold">Renault Kwid</span>
                   <span class="text-gray-500 text-sm font-normal">(ou similaire)</span>
