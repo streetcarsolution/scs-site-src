@@ -150,18 +150,19 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 xl:gap-6">
 
           <!-- Modèle 1 -->
-              <article class="bg-white/95 border border-gray-200 rounded-xl shadow p-4 w-full">
-              <!-- wrapper 16:9 + image qui couvre -->
-              <!-- image plein cadre -->
-              <div class="relative w-full h-52 md:h-64 overflow-hidden rounded-lg mb-3">
+              <article class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+              <!-- media: image pleine largeur, sans cadre blanc -->
+              <figure class="relative w-full aspect-video">
                 <img
                   src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
                   alt="Renault Kwid"
-                  class="absolute inset-0 w-full h-full object-cover object-center"
+                  class="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
-              </div>
-
+              </figure>
+            
+              <!-- contenu -->
+              <div class="p-4">
                 <h3 class="flex items-baseline gap-2">
                   <span class="text-xl font-semibold">Renault Kwid</span>
                   <span class="text-gray-500 text-sm font-normal">(ou similaire)</span>
@@ -240,17 +241,19 @@
           <!-- Duplique <article> pour ajouter d'autres modèles économiques -->
 
           <!-- Modèle 2 -->
-              <article class="bg-white/95 border border-gray-200 rounded-xl shadow p-4 w-full">
-              <!-- wrapper 3:2 (plus haut que 16:9) -->
-              <div class="relative w-full overflow-hidden rounded-lg pt-[66.6667%] mb-3">
+              <article class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+              <!-- media: image pleine largeur, sans cadre blanc -->
+              <figure class="relative w-full aspect-video">
                 <img
                   src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
                   alt="Renault Kwid"
-                  class="absolute inset-0 w-full h-full object-cover object-center"
+                  class="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
-              </div>
-
+              </figure>
+            
+              <!-- contenu -->
+              <div class="p-4">
                 <h3 class="flex items-baseline gap-2">
                   <span class="text-xl font-semibold">Renault Kwid</span>
                   <span class="text-gray-500 text-sm font-normal">(ou similaire)</span>
@@ -338,13 +341,19 @@
               </article>
 
           <!-- Modèle 3 -->
-              <article class="bg-white/95 border border-gray-200 rounded-xl shadow p-4 w-full">
-              <img
-                src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
-                alt="Renault Kwid"
-                class="w-full h-36 md:h-40 object-contain mb-3"
-                loading="lazy"
-              />
+              <article class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+              <!-- media: image pleine largeur, sans cadre blanc -->
+              <figure class="relative w-full aspect-video">
+                <img
+                  src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
+                  alt="Renault Kwid"
+                  class="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </figure>
+            
+              <!-- contenu -->
+              <div class="p-4">
                 <h3 class="flex items-baseline gap-2">
                   <span class="text-xl font-semibold">Renault Kwid</span>
                   <span class="text-gray-500 text-sm font-normal">(ou similaire)</span>
