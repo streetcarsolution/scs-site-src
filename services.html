@@ -203,28 +203,11 @@
   
   <!-- Grille Services -->
   <main class="py-12">
-    <div class="container mx-auto px-4">
-      
-      <!-- Sommaire des services -->
-      <nav aria-label="Sommaire des services" class="mb-6">
-        <div class="overflow-x-auto -mx-4 px-4">
-          <ul class="flex gap-2 whitespace-nowrap">
-            <li><a href="#conducteur-additionnel" class="px-3 py-2 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-caribbean-blue hover:text-white hover:border-caribbean-blue transition">Conducteur</a></li>
-            <li><a href="#carte-sim"               class="px-3 py-2 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-caribbean-blue hover:text-white hover:border-caribbean-blue transition">Carte SIM</a></li>
-            <li><a href="#gps"                     class="px-3 py-2 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-caribbean-blue hover:text-white hover:border-caribbean-blue transition">GPS</a></li>
-            <li><a href="#siege-bebe"              class="px-3 py-2 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-caribbean-blue hover:text-white hover:border-caribbean-blue transition">Siège bébé</a></li>
-            <li><a href="#rehausseur"              class="px-3 py-2 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-caribbean-blue hover:text-white hover:border-caribbean-blue transition">Réhausseur</a></li>
-            <li><a href="#lavage"                  class="px-3 py-2 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-caribbean-blue hover:text-white hover:border-caribbean-blue transition">Lavage</a></li>
-            <li><a href="#assistance-police"       class="px-3 py-2 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-caribbean-blue hover:text-white hover:border-caribbean-blue transition">Assistance Police</a></li>
-            <li><a href="#transport-prive"         class="px-3 py-2 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-caribbean-blue hover:text-white hover:border-caribbean-blue transition">Transport privé</a></li>
-          </ul>
-        </div>
-      </nav>
-  
+    <div class="container mx-auto px-4">      
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
       <!-- Conducteur additionnel -->
-      <article id="conducteur-additionnel" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition scroll-mt-24 md:scroll-mt-28">
+      <article id="conducteur-additionnel" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
         <div class="flex items-center gap-3">
           <div class="bg-caribbean-blue text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-user-plus"></i>
@@ -244,7 +227,7 @@
       </article>
 
       <!-- Carte SIM mexicaine -->
-      <article id="carte-sim" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col scroll-mt-24 md:scroll-mt-28">
+      <article id="carte-sim" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
         <div class="flex items-center gap-3">
           <div class="bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-sim-card"></i>
@@ -262,7 +245,7 @@
       </article>
 
       <!-- GPS -->
-      <article id="gps" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col scroll-mt-24 md:scroll-mt-28">
+      <article id="gps" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
         <div class="flex items-center gap-3">
           <div class="bg-caribbean-green text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-location-arrow"></i>
@@ -280,7 +263,7 @@
       </article>
 
       <!-- Siège bébé (violet) -->
-      <article id="siege-bebe" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition scroll-mt-24 md:scroll-mt-28">
+      <article id="siege-bebe" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
         <div class="flex items-center gap-3">
           <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-baby"></i>
@@ -298,7 +281,7 @@
       </article>
 
       <!-- Réhausseur enfant -->
-      <article id="rehausseur" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition scroll-mt-24 md:scroll-mt-28">
+      <article id="rehausseur" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
         <div class="flex items-center gap-3">
           <div class="bg-caribbean-yellow text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-child"></i>
@@ -316,7 +299,7 @@
       </article>
 
       <!-- Lavage de véhicule -->
-      <article id="lavage" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition scroll-mt-24 md:scroll-mt-28">
+      <article id="lavage" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
         <div class="flex items-center gap-3">
           <div class="bg-caribbean-pink text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-soap"></i>
@@ -336,7 +319,7 @@
       <!-- Assistance Police — centré + cadre rouge -->
       <div class="md:col-span-3">
         <article id="assistance-police"
-          class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition border-2 border-red-500 max-w-4xl w-full mx-auto scroll-mt-24 md:scroll-mt-28">
+          class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition border-2 border-red-500 max-w-4xl w-full mx-auto">
           <div class="flex items-center gap-3">
             <div class="bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
               <i class="fas fa-star"></i>
@@ -360,7 +343,7 @@
       </div>
 
       <!-- Transport privé -->
-      <article id="transport-prive" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3 scroll-mt-24 md:scroll-mt-28">
+      <article id="transport-prive" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3">
         <div class="flex items-center gap-3">
           <div class="bg-mexican-orange text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-taxi"></i>
@@ -531,32 +514,7 @@
     document.addEventListener('click', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
     window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
-
-    (function(){
-    const pills = Array.from(document.querySelectorAll('nav[aria-label="Sommaire des services"] a'));
-    const ids = pills.map(a => a.getAttribute('href'));
-    const targets = ids.map(h => document.querySelector(h)).filter(Boolean);
-  
-    const setActive = (hash) => {
-      pills.forEach(a => a.classList.remove('bg-caribbean-blue','text-white','border-caribbean-blue'));
-      const active = pills.find(a => a.getAttribute('href') === hash);
-      if (active) active.classList.add('bg-caribbean-blue','text-white','border-caribbean-blue');
-    };
-  
-    // au clic / changement d’ancre
-    window.addEventListener('hashchange', () => setActive(location.hash));
-    setActive(location.hash || '#conducteur-additionnel');
-  
-    // surlignage en scroll (IntersectionObserver)
-    const io = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter(e => e.isIntersecting)
-        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible) setActive('#' + visible.target.id);
-    }, { rootMargin: '-20% 0px -60% 0px', threshold: [0,0.2,0.5,1] });
-  
-    targets.forEach(t => io.observe(t));
-  })();  
+    
   </script>
 </body>
 </html>
