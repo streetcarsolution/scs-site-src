@@ -353,20 +353,22 @@
 
       <!-- Services complémentaires sur fond dégradé --> 
        <section id="extras" class="mt-12">
-        <div class="max-w-6xl mx-auto relative rounded-2xl shadow-xl overflow-hidden">
-          <!-- Fond dégradé -->
-          <div class="absolute inset-0 pointer-events-none"
-               style="background: linear-gradient(100deg, #14b8a6 0%, #22c55e 50%, #f59e0b 100%);"></div>
+        <!-- WRAPPER plein écran (100vw) qui sort du conteneur central -->
+        <div class="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
+          <!-- Bande dégradée pleine largeur -->
+          <div class="relative overflow-hidden">
+            <div class="absolute inset-0"
+                 style="background: linear-gradient(100deg, #14b8a6 0%, #22c55e 50%, #f59e0b 100%);"></div>
       
-          <!-- Contenu -->
-          <div class="relative z-10 p-6 md:p-8">
-            <h2 class="text-white text-2xl font-bold flex items-center gap-3">
-              <i class="fas fa-sparkles"></i>
-              Services complémentaires
-            </h2>
+            <!-- Contenu centré et limité en largeur -->
+            <div class="relative z-10 max-w-6xl mx-auto p-6 md:p-8">
+              <h2 class="text-white text-2xl font-bold flex items-center gap-3">
+                <i class="fas fa-sparkles"></i>
+                Services complémentaires
+              </h2>
 
-      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-        <!-- Transport privé : sur toute la rangée -->
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+          <!-- Transport privé (sur toute la rangée) -->
             <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3">
               <div class="flex items-center gap-3">
                 <div class="bg-caribbean-yellow text-gray-900 w-12 h-12 rounded-full flex items-center justify-center">
