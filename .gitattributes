@@ -36,3 +36,5 @@ saved_model/**/* filter=lfs diff=lfs merge=lfs -text
 56e7a6ac-985a-42b8-b5a8-13de87a066c8.mp4 filter=lfs diff=lfs merge=lfs -text
 Nissan[[:space:]]Urvan.png filter=lfs diff=lfs merge=lfs -text
 Nissan[[:space:]]Urvan[[:space:]]4.png filter=lfs diff=lfs merge=lfs -text
+assets/Logo.png filter=lfs diff=lfs merge=lfs -text
+assets/og-cover.jpg filter=lfs diff=lfs merge=lfs -text
