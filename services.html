@@ -351,25 +351,23 @@
         </div>
       </div>
 
-      <!-- Services complémentaires sur fond dégradé --> 
-       <section id="extras" class="mt-12">
-        <!-- WRAPPER plein écran (100vw) qui sort du conteneur central -->
-        <div class="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
-          <!-- Bande dégradée pleine largeur -->
-          <div class="relative overflow-hidden">
+      <!-- Services complémentaires – fond dégradé en pleine largeur,
+             contenu aligné sur la même largeur que le reste de la page -->
+        <section id="extras" class="mt-10">
+          <div class="relative w-full">
+            <!-- Fond dégradé pleine largeur -->
             <div class="absolute inset-0"
                  style="background: linear-gradient(135deg, #1DA1F2 0%, #00B894 50%, #FDCB6E 100%);"></div>
       
-            <!-- Contenu centré et limité en largeur -->
-            <div class="relative z-10 max-w-6xl mx-auto p-6 md:p-8">
+            <!-- CONTENU : même largeur que vos autres sections -->
+            <div class="container mx-auto px-4 py-8 relative">
               <h2 class="text-white text-2xl font-bold flex items-center gap-3">
                 <i class="fas fa-sparkles"></i>
                 Services complémentaires
               </h2>
-  
-  
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-          <!-- Transport privé (sur toute la rangée) -->
+    
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <!-- Transport privé (plein rang) -->
             <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3">
               <div class="flex items-center gap-3">
                 <div class="bg-caribbean-yellow text-gray-900 w-12 h-12 rounded-full flex items-center justify-center">
