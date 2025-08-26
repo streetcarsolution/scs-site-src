@@ -351,32 +351,39 @@
         </div>
 
         
-      <!-- Transport privé -->
-      <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3">
-        <div class="flex items-center gap-3">
-          <div class="bg-caribbean-yellow text-gray-900 w-12 h-12 rounded-full flex items-center justify-center">
-            <i class="fas fa-taxi"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-caribbean-yellow">Transport privé</h3>
-        </div>
-      
-        <!-- Texte + bouton sur la même ligne (stack en mobile) -->
-        <div class="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p class="text-gray-600 sm:mb-0">
-            Transferts Aéroport ↔ Hôtel, Airbnb, Excursions sur mesure
-          </p>
-          <a href="index.html#contact"
-             class="bg-caribbean-yellow hover:brightness-95 text-gray-900 font-bold py-2 px-4 rounded-full whitespace-nowrap">
-            Demander un devis
-          </a>
-        </div>
-      </article>
-        
+       <!-- Services complémentaires sur fond dégradé -->
+    <section id="extras" class="mt-10">
+      <div class="relative rounded-2xl shadow-xl overflow-hidden">
+        <!-- Fond dégradé -->
+        <div class="absolute inset-0 pointer-events-none"
+             style="background: linear-gradient(100deg, #14b8a6 0%, #22c55e 50%, #f59e0b 100%);"></div>
+        <!-- Contenu au-dessus -->
+        <div class="relative z-10 p-6 md:p-8">
+          <h2 class="text-white text-2xl font-bold flex items-center gap-3">
+            <i class="fas fa-sparkles"></i>
+            Services complémentaires
+          </h2>
 
-        <!-- --- Services complémentaires --- -->
-        <div class="md:col-span-3">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        
+            <!-- Transport privé (plein largeur) -->
+            <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3">
+              <div class="flex items-center gap-3">
+                <div class="bg-caribbean-yellow text-gray-900 w-12 h-12 rounded-full flex items-center justify-center">
+                  <i class="fas fa-taxi"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-caribbean-yellow">Transport privé</h3>
+              </div>
+              <div class="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <p class="text-gray-600 sm:mb-0">
+                  Transferts Aéroport ↔ Hôtel, Airbnb, Excursions sur mesure
+                </p>
+                <a href="index.html#contact"
+                   class="bg-caribbean-yellow hover:brightness-95 text-gray-900 font-bold py-2 px-4 rounded-full whitespace-nowrap">
+                  Demander un devis
+                </a>
+              </div>
+            </article>
+
             <!-- Location de Yacht (ORANGE) -->
             <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
               <div class="flex items-center gap-3">
