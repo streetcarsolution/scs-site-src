@@ -49,6 +49,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
   </style>
+  
   <script>
     /* même config tailwind que ton index */
     tailwind.config = {
@@ -89,6 +90,19 @@
         }
       }
     }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Street Car Solution",
+    "url": "https://streetcarsolution.com/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://streetcarsolution.com/vehicles.html?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
   </script>
 </head>
 <body class="font-sans bg-gray-50 text-lg">
