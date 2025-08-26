@@ -200,14 +200,14 @@
       <p class="mt-2 text-white/90">Ajoutez des options pour un voyage 100% serein.</p>
     </div>
   </header>
-
- <!-- Grille Services -->
+  
+<!-- Grille Services -->
 <main class="py-12">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
       <!-- Conducteur additionnel -->
-      <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+      <article id="conducteur-additionnel" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
         <div class="flex items-center gap-3">
           <div class="bg-caribbean-blue text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-user-plus"></i>
@@ -227,19 +227,16 @@
       </article>
 
       <!-- Carte SIM mexicaine -->
-      <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
+      <article id="carte-sim" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
         <div class="flex items-center gap-3">
           <div class="bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-sim-card"></i>
           </div>
           <h3 class="text-xl font-semibold text-orange-600">Carte SIM mexicaine</h3>
         </div>
-      
         <p class="text-gray-600 mt-3">
           Restez connectés (Internet, appels locaux, GPS Mobile). Activation et installation incluses.
         </p>
-      
-        <!-- bulle poussée en bas -->
         <div class="mt-auto pt-4 flex items-center justify-between">
           <span class="inline-block bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
             25€ (500 Pesos)
@@ -247,21 +244,17 @@
         </div>
       </article>
 
-
       <!-- GPS -->
-      <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
+      <article id="gps" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
         <div class="flex items-center gap-3">
           <div class="bg-caribbean-green text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-location-arrow"></i>
           </div>
           <h3 class="text-xl font-semibold">GPS</h3>
         </div>
-      
         <p class="text-gray-600 mt-3">
           Cartes de la Riviera Maya à jour et points d’intérêt essentiels.
         </p>
-      
-        <!-- bulle poussée en bas -->
         <div class="mt-auto pt-4 flex items-center justify-between">
           <span class="inline-block bg-green-50 text-caribbean-green px-3 py-1 rounded-full text-sm font-semibold">
             Gratuit - GPS avec CarPlay sur certains véhicules
@@ -269,9 +262,8 @@
         </div>
       </article>
 
-
       <!-- Siège bébé (violet) -->
-      <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+      <article id="siege-bebe" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
         <div class="flex items-center gap-3">
           <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-baby"></i>
@@ -289,7 +281,7 @@
       </article>
 
       <!-- Réhausseur enfant -->
-      <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+      <article id="rehausseur" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
         <div class="flex items-center gap-3">
           <div class="bg-caribbean-yellow text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-child"></i>
@@ -307,7 +299,7 @@
       </article>
 
       <!-- Lavage de véhicule -->
-      <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+      <article id="lavage" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
         <div class="flex items-center gap-3">
           <div class="bg-caribbean-pink text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-soap"></i>
@@ -326,9 +318,8 @@
 
       <!-- Assistance Police — centré + cadre rouge -->
       <div class="md:col-span-3">
-        <article
-          class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition
-                 border-2 border-red-500 max-w-4xl w-full mx-auto">
+        <article id="assistance-police"
+          class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition border-2 border-red-500 max-w-4xl w-full mx-auto">
           <div class="flex items-center gap-3">
             <div class="bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
               <i class="fas fa-star"></i>
@@ -337,25 +328,22 @@
               Assistance problème avec la Police 24/7
             </h3>
           </div>
-
-        <p class="text-gray-600 mt-3">
-          Assistance immédiate en cas de contrôle de police compliqué !
-          Nous mettons à profit nos relations privilégiées avec les autorités locales
-          haut placées (Commandant, Juges) pour vous sortir rapidement de
-          situations délicates sur toute la Riviera Maya.
-        </p>
-    
-        <div class="mt-4">
-          <span class="inline-block bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-semibold">
-            Numéro d’urgence dédié - 25€ (500 Pesos)
-          </span>
-        </div>
-      </article>
-    </div>
-
+          <p class="text-gray-600 mt-3">
+            Assistance immédiate en cas de contrôle de police compliqué !
+            Nous mettons à profit nos relations privilégiées avec les autorités locales
+            haut placées (Commandant, Juges) pour vous sortir rapidement de
+            situations délicates sur toute la Riviera Maya.
+          </p>
+          <div class="mt-4">
+            <span class="inline-block bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-semibold">
+              Numéro d’urgence dédié - 25€ (500 Pesos)
+            </span>
+          </div>
+        </article>
+      </div>
 
       <!-- Transport privé -->
-      <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3">
+      <article id="transport-prive" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3">
         <div class="flex items-center gap-3">
           <div class="bg-mexican-orange text-white w-12 h-12 rounded-full flex items-center justify-center">
             <i class="fas fa-taxi"></i>
@@ -376,16 +364,15 @@
       </article>
 
     </div>
+
+    <!-- Note / astuce -->
+    <p class="text-sm text-gray-500 mt-6">
+      * Les tarifs sont indicatifs et peuvent varier à tout moment. Les options sont ajoutées au moment de la
+      <a href="index.html#reservation" class="text-caribbean-blue underline">réservation</a>.
+    </p>
   </div>
+</main>
 
-
-      <!-- Note / astuce -->
-      <p class="text-sm text-gray-500 mt-6">
-        * Les tarifs sont indicatifs et peuvent varier à tout moment. Les options sont ajoutées au moment de la
-        <a href="index.html#reservation" class="text-caribbean-blue underline">réservation</a>.
-      </p>
-    </div>
-  </main>
 
    <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
