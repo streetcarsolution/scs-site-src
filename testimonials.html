@@ -68,16 +68,25 @@
 
   <style>
   /* === Skeleton loader Avis === */
-.skel-card{background:#fff;border-radius:0.75rem;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:1.5rem}
-.skel-stars{display:flex;gap:.35rem;margin-bottom:.75rem}
-.skel-star,.skel-line{
-  background:linear-gradient(90deg,#eee,#f6f6f6,#eee);
-  background-size:200% 100%;animation:skel 1.2s ease-in-out infinite
-}
-.skel-star{width:18px;height:18px;border-radius:4px}
-.skel-line{height:14px;border-radius:6px;margin-bottom:.6rem}
-@keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  .skel-card{background:#fff;border-radius:0.75rem;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:1.5rem}
+  .skel-stars{display:flex;gap:.35rem;margin-bottom:.75rem}
+  .skel-star,.skel-line{
+    background:linear-gradient(90deg,#eee,#f6f6f6,#eee);
+    background-size:200% 100%;animation:skel 1.2s ease-in-out infinite
+  }
+  .skel-star{width:18px;height:18px;border-radius:4px}
+  .skel-line{height:14px;border-radius:6px;margin-bottom:.6rem}
+  @keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
   </style>
+
+  <!-- Icône du site (favicon / Apple) -->
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+  
+  <!-- Image de partage (Open Graph & Twitter) -->
+  <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
 
   <script>
     /* Config Tailwind */
