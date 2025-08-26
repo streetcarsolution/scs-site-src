@@ -352,18 +352,29 @@
                   4 portes
                 </li>              
                           
-                <!-- Transmission — Automatique -->
+                <!-- Transmission — Manuelle -->
                 <li class="flex items-center gap-2">
                   <span class="w-5 flex justify-center text-gray-600">
-                    <i class="fas fa-cog" aria-hidden="true"></i>
+                    <!-- Icône levier de vitesse (SVG) -->
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round"
+                         aria-hidden="true" role="img">
+                      <!-- boule du levier -->
+                      <circle cx="12" cy="5" r="2"/>
+                      <!-- tige -->
+                      <path d="M12 7v7"/>
+                      <!-- base du levier -->
+                      <rect x="6" y="16" width="12" height="3" rx="1.5"/>
+                    </svg>
                   </span>
-                  Automatique
+                  Manuelle
                 </li>
               
                 <!-- Valises -->
                 <li class="flex items-center gap-2">
                   <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>
-                  2 valises
+                  1 grande valise + 1 petite valise
                 </li>
 
                 <!-- Clim -->
@@ -391,7 +402,7 @@
                 <!-- CarPlay / GPS -->
                 <li class="flex items-center gap-2">
                   <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>
-                  CarPlay GPS
+                  CarPlay
                 </li>
               </ul>
                 <div class="flex items-baseline justify-between mt-4">
@@ -401,12 +412,12 @@
               </article>
 
           <!-- Modèle 2 -->
-              <article id="renault-kwid" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+              <article id="vw-gol" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
               <!-- media: image pleine largeur, sans cadre blanc -->
               <figure class="relative w-full aspect-video">
                 <img
                   src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
-                  alt="Renault Kwid"
+                  alt="VW Gol"
                   class="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
@@ -415,7 +426,7 @@
               <!-- contenu -->
               <div class="p-4">
                 <h3 class="flex items-baseline gap-2">
-                  <span class="text-xl font-semibold">Renault Kwid</span>
+                  <span class="text-xl font-semibold">VW Gol</span>
                   <span class="text-gray-500 text-sm font-normal">(ou similaire)</span>
                 </h3>
                 <ul class="text-gray-600 text-sm mt-2 space-y-1">
@@ -463,7 +474,7 @@
                 <!-- Valises -->
                 <li class="flex items-center gap-2">
                   <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>
-                  2 valises
+                  2 grandes valises
                 </li>
 
                 <!-- Clim -->
@@ -487,12 +498,6 @@
                   </span>
                   USB
                 </li>
-              
-                <!-- CarPlay / GPS -->
-                <li class="flex items-center gap-2">
-                  <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>
-                  CarPlay GPS
-                </li>
               </ul>
                 <div class="flex items-baseline justify-between mt-4">
                   <span class="text-mexican-orange font-bold">35€ / jour</span>
@@ -501,12 +506,12 @@
               </article>
 
           <!-- Modèle 3 -->
-              <article id="renault-kwid" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+              <article id="vw-polo" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
               <!-- media: image pleine largeur, sans cadre blanc -->
               <figure class="relative w-full aspect-video">
                 <img
                   src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
-                  alt="Renault Kwid"
+                  alt="VW Polo"
                   class="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
@@ -515,7 +520,7 @@
               <!-- contenu -->
               <div class="p-4">
                 <h3 class="flex items-baseline gap-2">
-                  <span class="text-xl font-semibold">Renault Kwid</span>
+                  <span class="text-xl font-semibold">VW Polo</span>
                   <span class="text-gray-500 text-sm font-normal">(ou similaire)</span>
                 </h3>
                 <ul class="text-gray-600 text-sm mt-2 space-y-1">
@@ -541,29 +546,16 @@
                   4 portes
                 </li>                            
                            
-                <!-- Transmission — Manuelle -->
+                <!-- Boîte -->
                 <li class="flex items-center gap-2">
-                  <span class="w-5 flex justify-center text-gray-600">
-                    <!-- Icône levier de vitesse (SVG) -->
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2"
-                         stroke-linecap="round" stroke-linejoin="round"
-                         aria-hidden="true" role="img">
-                      <!-- boule du levier -->
-                      <circle cx="12" cy="5" r="2"/>
-                      <!-- tige -->
-                      <path d="M12 7v7"/>
-                      <!-- base du levier -->
-                      <rect x="6" y="16" width="12" height="3" rx="1.5"/>
-                    </svg>
-                  </span>
-                  Manuelle
+                  <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>
+                  Automatique
                 </li>
               
                 <!-- Valises -->
                 <li class="flex items-center gap-2">
                   <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>
-                  2 valises
+                  2 grandes valises
                 </li>
               
                 <!-- Clim -->
@@ -587,12 +579,6 @@
                   </span>
                   USB
                 </li>
-              
-                <!-- CarPlay / GPS -->
-                <li class="flex items-center gap-2">
-                  <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>
-                  CarPlay GPS
-                </li>
               </ul>
                 <div class="flex items-baseline justify-between mt-4">
                   <span class="text-mexican-orange font-bold">35€ / jour</span>
@@ -601,12 +587,12 @@
               </article>
 
           <!-- Modèle 4 -->
-              <article id="renault-kwid" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+              <article id="vw-polo" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
               <!-- media: image pleine largeur, sans cadre blanc -->
               <figure class="relative w-full aspect-video">
                 <img
                   src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"
-                  alt="Renault Kwid"
+                  alt="VW Polo"
                   class="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
@@ -615,7 +601,7 @@
               <!-- contenu -->
               <div class="p-4">
                 <h3 class="flex items-baseline gap-2">
-                  <span class="text-xl font-semibold">Renault Kwid</span>
+                  <span class="text-xl font-semibold">VW Polo</span>
                   <span class="text-gray-500 text-sm font-normal">(ou similaire)</span>
                 </h3>
                 <ul class="text-gray-600 text-sm mt-2 space-y-1">
@@ -650,7 +636,7 @@
                 <!-- Valises -->
                 <li class="flex items-center gap-2">
                   <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>
-                  2 valises
+                  2 grandes valises
                 </li>
               
                 <!-- Clim -->
@@ -678,7 +664,7 @@
                 <!-- CarPlay / GPS -->
                 <li class="flex items-center gap-2">
                   <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>
-                  CarPlay GPS
+                  CarPlay
                 </li>
               </ul>
                 <div class="flex items-baseline justify-between mt-4">
