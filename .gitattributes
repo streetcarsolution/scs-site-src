@@ -79,3 +79,4 @@ VW[[:space:]]Polo[[:space:]]Track.png filter=lfs diff=lfs merge=lfs -text
 Infiniti[[:space:]]QX60.png filter=lfs diff=lfs merge=lfs -text
 VW[[:space:]]Polo[[:space:]]Track[[:space:]]sport.png filter=lfs diff=lfs merge=lfs -text
 VW[[:space:]]Polo.png filter=lfs diff=lfs merge=lfs -text
+Hyundai[[:space:]]i10.png filter=lfs diff=lfs merge=lfs -text
