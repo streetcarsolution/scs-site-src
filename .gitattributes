@@ -40,3 +40,4 @@ assets/Logo.png filter=lfs diff=lfs merge=lfs -text
 assets/og-cover.jpg filter=lfs diff=lfs merge=lfs -text
 assets/logo.png filter=lfs diff=lfs merge=lfs -text
 WhatsApp[[:space:]]Image[[:space:]]2025-08-27[[:space:]]à[[:space:]]02.11.17_d5a3f7f8.jpg filter=lfs diff=lfs merge=lfs -text
+VW[[:space:]]Polo.jpg filter=lfs diff=lfs merge=lfs -text
