@@ -64,3 +64,4 @@ Toyota[[:space:]]Raize.jpg filter=lfs diff=lfs merge=lfs -text
 WhatsApp[[:space:]]Image[[:space:]]2025-08-27[[:space:]]à[[:space:]]02.51.26_cf760fcd.jpg filter=lfs diff=lfs merge=lfs -text
 Kia[[:space:]]Seltos.jpg filter=lfs diff=lfs merge=lfs -text
 Chevrolet[[:space:]]Beat.png filter=lfs diff=lfs merge=lfs -text
+Chevrolet[[:space:]]Aveo.png filter=lfs diff=lfs merge=lfs -text
