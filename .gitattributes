@@ -68,3 +68,11 @@ Chevrolet[[:space:]]Aveo.png filter=lfs diff=lfs merge=lfs -text
 Chevrolet[[:space:]]Cavalier.png filter=lfs diff=lfs merge=lfs -text
 Toyota[[:space:]]Sienna[[:space:]]2.png filter=lfs diff=lfs merge=lfs -text
 Toyota[[:space:]]Sienna.png filter=lfs diff=lfs merge=lfs -text
+Kia[[:space:]]Forte.png filter=lfs diff=lfs merge=lfs -text
+Kia[[:space:]]Seltos.png filter=lfs diff=lfs merge=lfs -text
+Mazda[[:space:]]2.png filter=lfs diff=lfs merge=lfs -text
+Mazda[[:space:]]3.png filter=lfs diff=lfs merge=lfs -text
+Nissan[[:space:]]Kicks.png filter=lfs diff=lfs merge=lfs -text
+Toyota[[:space:]]Avanza.png filter=lfs diff=lfs merge=lfs -text
+Toyota[[:space:]]Raize.png filter=lfs diff=lfs merge=lfs -text
+VW[[:space:]]Polo[[:space:]]Track.png filter=lfs diff=lfs merge=lfs -text
