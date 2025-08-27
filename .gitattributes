@@ -66,3 +66,4 @@ Kia[[:space:]]Seltos.jpg filter=lfs diff=lfs merge=lfs -text
 Chevrolet[[:space:]]Beat.png filter=lfs diff=lfs merge=lfs -text
 Chevrolet[[:space:]]Aveo.png filter=lfs diff=lfs merge=lfs -text
 Chevrolet[[:space:]]Cavalier.png filter=lfs diff=lfs merge=lfs -text
+Toyota[[:space:]]Sienna[[:space:]]2.png filter=lfs diff=lfs merge=lfs -text
