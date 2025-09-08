@@ -1195,18 +1195,18 @@
                           class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none"></textarea>
               </div>
 
-              <!-- Champ anti-bot (honeypot) -->
+              <!-- honeypot anti-bot (laisse tel quel) -->
               <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" style="display:none">
-
-              <!-- (Optionnel) forcer un destinataire côté script -->
-              <!-- <input type="hidden" name="to" value="streetcarsolution@gmail.com"> -->
 
               <div class="flex justify-center">
                 <button id="contactSubmit" type="submit"
-                        class="bg-mexican-orange hover:bg-mexican-green text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                        class="bg-mexican-orange hover:bg-mexican-red text-white font-bold py-3 px-8 rounded-full transition duration-300">
                   Envoyer le message
                 </button>
               </div>
+
+              <!-- Zone de statut que ton script met à jour -->
+              <p id="contactStatus" class="mt-3 text-center text-sm"></p>
             </form>
           </div>
         </div>
@@ -1412,7 +1412,7 @@ if (form) {
   });
 }
 
-<!-- Script d’envoi (AJAX) : place-le après le formulaire -->
+//-- Script d envoi (AJAX) : formulaire de contact -->
 (function () {
     const form   = document.getElementById('contactForm');
     const btn    = document.getElementById('contactSubmit');
