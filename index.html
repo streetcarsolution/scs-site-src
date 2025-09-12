@@ -152,20 +152,22 @@
                 </a>
             </div>
         </div>
-        <div class="currency-selector relative">
-            <button class="flex items-center">
-                <span>€ EUR</span>
-                <i class="fas fa-chevron-down ml-2 text-xs"></i>
-            </button>
-            <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
-            </div>
-        </div>
-    </div>
 
+        <!-- Currency selector (EUR par défaut) -->
+        <div class="currency-selector relative" id="currencySel">
+        <button class="flex items-center" type="button" aria-expanded="false">
+          <span class="js-currency-label">€ EUR</span>
+          <i class="fas fa-chevron-down ml-2 text-xs"></i>
+        </button>
+        <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+          <a href="#" data-cur="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+          <a href="#" data-cur="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+          <a href="#" data-cur="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+          <a href="#" data-cur="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+        </div>
+      </div>
+
+    </div>
 
       <!-- Navigation -->
       <nav class="bg-white shadow-md sticky top-0 z-40">
@@ -371,7 +373,7 @@
                         <p class="text-[18px] text-gray-600 mb-4">Parfait pour les déplacements en ville avec une excellente consommation de carburant.</p>
                         <div class="flex justify-between items-baseline mb-1">
                         <span class="text-lg font-bold text-mexican-orange">
-                          À partir de 35€/jour
+                          À partir de <span class="js-price" data-segment="economique"></span>
                         </span>
                         <a href="vehicles.html"
                           class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">
@@ -397,7 +399,7 @@
                         <p class="text-[18px] text-gray-600 mb-4">Idéal pour les Road Trip avec un bon rapport qualité-prix.</p>
                         <div class="flex justify-between items-baseline mb-1">
                         <span class="text-lg font-bold text-mexican-orange">
-                          À partir de 40€/jour
+                          À partir de <span class="js-price" data-segment="standard"></span>
                         </span>
                         <a href="vehicles.html"
                           class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">
@@ -423,7 +425,7 @@
                         <p class="text-[18px] text-gray-600 mb-4">Spacieux pour les longs trajets, avec une grande capacité de rangement pour vos valises.</p>
                         <div class="flex justify-between items-baseline mb-1">
                         <span class="text-lg font-bold text-mexican-orange">
-                          À partir de 47€/jour
+                          À partir de <span class="js-price" data-segment="berline"></span>
                         </span>
                         <a href="vehicles.html"
                           class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">
@@ -449,7 +451,7 @@
                         <p class="text-[18px] text-gray-600 mb-4">Confort pour explorer la Péninsule du Yucatan en toute sécurité, garde au sol élevée.</p>
                         <div class="flex justify-between items-baseline mb-1">
                         <span class="text-lg font-bold text-mexican-orange">
-                          À partir de 52€/jour
+                          À partir de <span class="js-price" data-segment="suv5"></span>
                         </span>
                         <a href="vehicles.html"
                           class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">
@@ -472,10 +474,10 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-gray-800">SUV 7 places</h3>
-                        <p class="text-[18px] text-gray-600 mb-4">Espace et confort pour les familles nombreuses ou groupes d'amis.</p>
+                        <p class="text-[18px] text-gray-600 mb-4">Espace et confort pour les familles nombreuses ou groupes d'amis.</p>                        
                         <div class="flex justify-between items-baseline mb-1">
                         <span class="text-lg font-bold text-mexican-orange">
-                          À partir de 62€/jour
+                          À partir de <span class="js-price" data-segment="suv7"></span>
                         </span>
                         <a href="vehicles.html"
                           class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">
@@ -501,7 +503,7 @@
                         <p class="text-[18px] text-gray-600 mb-4">Solution idéale pour les grands groupes ou événements spéciaux.</p>
                         <div class="flex justify-between items-baseline mb-1">
                         <span class="text-lg font-bold text-mexican-orange">
-                          À partir de 105€/jour
+                          À partir de <span class="js-price" data-segment="van"></span>
                         </span>
                         <a href="vehicles.html"
                           class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">
@@ -1382,6 +1384,93 @@ setupDropdown(curSel, curDrop);
 document.addEventListener('click', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
 window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+
+/* === PRIX PAR SEGMENT ET PAR DEVISE === */
+/* EUR = valeurs par défaut affichées au chargement */
+const PRICES = {
+  EUR: {
+    economique: '35€ / jour',
+    standard:   '40€ / jour',
+    berline:    '47€ / jour',
+    suv5:       '52€ / jour',
+    suv7:       '62€ / jour',
+    van:        '105€ / jour',
+  },
+  USD: {
+    economique: '$42 USD / jour',
+    standard:   '$48 USD / jour',
+    berline:    '$56 USD / jour',
+    suv5:       '$62 USD / jour',
+    suv7:       '$74 USD / jour',
+    van:        '$125 USD / jour',
+  },
+  CAD: {
+    economique: '$58 CAD / jour',
+    standard:   '$66 CAD / jour',
+    berline:    '$78 CAD / jour',
+    suv5:       '$86 CAD / jour',
+    suv7:       '$100 CAD / jour',
+    van:        '$170 CAD / jour',
+  },
+  MXN: {
+    economique: '$750 MXN / jour',
+    standard:   '$850 MXN / jour',
+    berline:    '$1,000 MXN / jour',
+    suv5:       '$1,100 MXN / jour',
+    suv7:       '$1,300 MXN / jour',
+    van:        '$2,200 MXN / jour',
+  }
+};
+
+const CURRENCY_LABEL = {
+  EUR: '€ EUR',
+  USD: '$ USD',
+  CAD: '$ CAD',
+  MXN: '$ MXN',
+};
+
+/* Petite note sous le prix */
+function noteFor(cur, seg) {
+  // on affiche la partie avant " / jour" pour la note
+  const full = PRICES[cur][seg] || '';
+  const pricePart = full.replace(' / jour', '');
+  return `*Tarif à partir de ${pricePart}, au taux de change du jour`;
+}
+
+/* Met à jour tous les prix de la page */
+function updatePriceCards(cur) {
+  document.querySelectorAll('.js-price').forEach(el => {
+    const seg = el.dataset.segment;
+    el.textContent = PRICES[cur]?.[seg] || '';
+  });
+  document.querySelectorAll('.js-note').forEach(el => {
+    const seg = el.dataset.segment;
+    el.textContent = noteFor(cur, seg);
+  });
+}
+
+/* Gestion sélection devise (accroche au dropdown existant) */
+(function initCurrencySwitcher() {
+  const currencySel   = document.getElementById('currencySel');
+  const currencyLabel = currencySel?.querySelector('.js-currency-label');
+  const currentStored = localStorage.getItem('SCS_CURRENCY') || 'EUR';
+  // Devise par défaut (EUR)
+  updatePriceCards(currentStored);
+  if (currencyLabel) currencyLabel.textContent = CURRENCY_LABEL[currentStored] || '€ EUR';
+
+  currencySel?.querySelectorAll('[data-cur]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cur = a.getAttribute('data-cur');
+      localStorage.setItem('SCS_CURRENCY', cur);
+      updatePriceCards(cur);
+      if (currencyLabel) currencyLabel.textContent = CURRENCY_LABEL[cur] || cur;
+      // referme le menu
+      const drop = currencySel.querySelector('.currency-dropdown');
+      drop?.classList.add('hidden');
+    });
+  });
+})();
 
 // --- Envoi vers Google Apps Script (sans estimation) ---
 const form = document.getElementById('reservationForm');
