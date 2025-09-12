@@ -47,174 +47,145 @@
   <meta name="twitter:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
-  </style>
-  
-  <script>
-    /* même config tailwind que ton index */
-    tailwind.config = {
-      theme: {
-        fontSize: {
-          sm: '0.95rem',
-          base: '1.05rem',
-          lg: '1.20rem',
-          xl: '1.35rem',
-          '2xl': '1.65rem',
-          '3xl': '2rem',
-          '4xl': '2.5rem',
-          '5xl': '3rem',
-          '6xl': '3.75rem',
-        },
-        extend: {
-          colors: {
-            caribbean: {
-              blue: '#1DA1F2',
-              green: '#00B894',
-              yellow: '#FDCB6E',
-              orange: '#E17055',
-              pink: '#FD79A8',
-              purple: '#6C5CE7'
-            },
-            mexican: {
-              red: '#E63946',
-              yellow: '#F1C40F',
-              green: '#2ECC71',
-              blue: '#3498DB',
-              orange: '#E67E22'
-            }
-          },
-          fontFamily: {
-            sans: ['Montserrat', 'sans-serif'],
-            heading: ['"Fredoka One"', 'cursive']
-          }
-        }
-      }
-    }
-  </script>
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Street Car Solution",
-    "url": "https://streetcarsolution.com/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://streetcarsolution.com/vehicles.html?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
+</style>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Product",
-        "name": "Renault Kwid (ou similaire) – Économique",
-        "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"],
-        "brand": {"@type": "Brand","name": "Renault"},
-        "category": "Car",
-        "description": "Économique, 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
-        "url": "https://streetcarsolution.com/vehicles.html#kwid",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "EUR",
-          "price": "35",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://streetcarsolution.com/vehicles.html#kwid"
-        }
+<script>
+  /* même config tailwind que ton index */
+  tailwind.config = {
+    theme: {
+      fontSize: {
+        sm: '0.95rem',
+        base: '1.05rem',
+        lg: '1.20rem',
+        xl: '1.35rem',
+        '2xl': '1.65rem',
+        '3xl': '2rem',
+        '4xl': '2.5rem',
+        '5xl': '3rem',
+        '6xl': '3.75rem'
       },
-      {
-        "@type": "Product",
-        "name": "Toyota Yaris HB (ou similaire) – Standard",
-        "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Toyota%20Yaris%20HB%204.png"],
-        "brand": {"@type": "Brand","name": "Toyota"},
-        "category": "Car",
-        "description": "Standard, 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
-        "url": "https://streetcarsolution.com/vehicles.html#yaris-hb",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "EUR",
-          "price": "40",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://streetcarsolution.com/vehicles.html#yaris-hb"
-        }
-      },
-      {
-        "@type": "Product",
-        "name": "Toyota Yaris Berline (ou similaire) – Berline",
-        "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Toyota%20Yaris%20Berline%204.png"],
-        "brand": {"@type": "Brand","name": "Toyota"},
-        "category": "Car",
-        "description": "Berline, 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
-        "url": "https://streetcarsolution.com/vehicles.html#yaris-berline",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "EUR",
-          "price": "47",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://streetcarsolution.com/vehicles.html#yaris-berline"
-        }
-      },
-      {
-        "@type": "Product",
-        "name": "Kia Sonet (ou similaire) – SUV 5 places",
-        "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Kia%20Sonet%204.png"],
-        "brand": {"@type": "Brand","name": "Kia"},
-        "category": "Car",
-        "description": "SUV 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
-        "url": "https://streetcarsolution.com/vehicles.html#sonet",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "EUR",
-          "price": "52",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://streetcarsolution.com/vehicles.html#sonet"
-        }
-      },
-      {
-        "@type": "Product",
-        "name": "Hyundai Creta (ou similaire) – SUV 7 places",
-        "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Hunday%20Creta%204.png"],
-        "brand": {"@type": "Brand","name": "Hyundai"},
-        "category": "Car",
-        "description": "SUV 7 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
-        "url": "https://streetcarsolution.com/vehicles.html#creta",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "EUR",
-          "price": "62",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://streetcarsolution.com/vehicles.html#creta"
-        }
-      },
-      {
-        "@type": "Product",
-        "name": "Toyota Hiace (ou similaire) – Van 14 places",
-        "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Van%204.png"],
-        "brand": {"@type": "Brand","name": "Toyota"},
-        "category": "Van",
-        "description": "Van 14 places (jusqu’à 6 valises en rabattant des sièges), climatisation, Bluetooth, USB, CarPlay GPS.",
-        "url": "https://streetcarsolution.com/vehicles.html#hiace",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "EUR",
-          "price": "105",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://streetcarsolution.com/vehicles.html#hiace"
+      extend: {
+        colors: {
+          caribbean: {
+            blue: '#1DA1F2',
+            green: '#00B894',
+            yellow: '#FDCB6E',
+            orange: '#E17055',
+            pink: '#FD79A8',
+            purple: '#6C5CE7'
+          },
+          mexican: {
+            red: '#E63946',
+            yellow: '#F1C40F',
+            green: '#2ECC71',
+            blue: '#3498DB',
+            orange: '#E67E22'
+          }
+        },
+        fontFamily: {
+          sans: ['Montserrat', 'sans-serif'],
+          heading: ['"Fredoka One"', 'cursive']
         }
       }
-    ]
+    }
+  };
+</script>
+
+<!-- Garde UN seul jeu d’images sociales, idéalement celles hébergées sur ton domaine -->
+<meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+
+<!-- Données structurées WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Street Car Solution",
+  "url": "https://streetcarsolution.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://streetcarsolution.com/vehicles.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
   }
-  </script>
+}
+</script>
+
+<!-- Données structurées Produits -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "Renault Kwid (ou similaire) – Économique",
+      "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png"],
+      "brand": {"@type":"Brand","name":"Renault"},
+      "category": "Car",
+      "description": "Économique, 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
+      "url": "https://streetcarsolution.com/vehicles.html#renault-kwid",
+      "offers": { "@type":"Offer","priceCurrency":"EUR","price":"35","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock","url":"https://streetcarsolution.com/vehicles.html#renault-kwid" }
+    },
+    {
+      "@type": "Product",
+      "name": "Toyota Yaris HB (ou similaire) – Standard",
+      "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Toyota%20Yaris%20HB%204.png"],
+      "brand": {"@type":"Brand","name":"Toyota"},
+      "category": "Car",
+      "description": "Standard, 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
+      "url": "https://streetcarsolution.com/vehicles.html#toyota-yaris-hb",
+      "offers": { "@type":"Offer","priceCurrency":"EUR","price":"40","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock","url":"https://streetcarsolution.com/vehicles.html#toyota-yaris-hb" }
+    },
+    {
+      "@type": "Product",
+      "name": "Toyota Yaris Berline (ou similaire) – Berline",
+      "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Toyota%20Yaris%20Berline%204.png"],
+      "brand": {"@type":"Brand","name":"Toyota"},
+      "category": "Car",
+      "description": "Berline, 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
+      "url": "https://streetcarsolution.com/vehicles.html#toyota-yaris-sedan",
+      "offers": { "@type":"Offer","priceCurrency":"EUR","price":"47","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock","url":"https://streetcarsolution.com/vehicles.html#toyota-yaris-sedan" }
+    },
+    {
+      "@type": "Product",
+      "name": "Kia Sonet (ou similaire) – SUV 5 places",
+      "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Kia%20Sonet%204.png"],
+      "brand": {"@type":"Brand","name":"Kia"},
+      "category": "Car",
+      "description": "SUV 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
+      "url": "https://streetcarsolution.com/vehicles.html#kia-sonet",
+      "offers": { "@type":"Offer","priceCurrency":"EUR","price":"52","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock","url":"https://streetcarsolution.com/vehicles.html#kia-sonet" }
+    },
+    {
+      "@type": "Product",
+      "name": "Hyundai Creta (ou similaire) – SUV 7 places",
+      "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Hunday%20Creta%204.png"],
+      "brand": {"@type":"Brand","name":"Hyundai"},
+      "category": "Car",
+      "description": "SUV 7 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
+      "url": "https://streetcarsolution.com/vehicles.html#hyundai-creta",
+"offers": {
+  "@type": "Offer",
+  "priceCurrency": "EUR",
+  "price": "62",
+  "priceValidUntil": "2026-12-31",
+  "availability": "https://schema.org/InStock",
+  "url": "https://streetcarsolution.com/vehicles.html#hyundai-creta"
+ },
+    {
+      "@type": "Product",
+      "name": "Toyota Hiace (ou similaire) – Van 14 places",
+      "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Van%204.png"],
+      "brand": {"@type":"Brand","name":"Toyota"},
+      "category": "Van",
+      "description": "Van 14 places, climatisation, Bluetooth, USB, CarPlay GPS.",
+      "url": "https://streetcarsolution.com/vehicles.html#toyota-hiace",
+      "offers": { "@type":"Offer","priceCurrency":"EUR","price":"105","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock","url":"https://streetcarsolution.com/vehicles.html#toyota-hiace" }
+    }
+  ]
+}
+</script>
 </head>
 <body class="font-sans bg-gray-50 text-lg">
 
@@ -242,17 +213,17 @@
             </div>
         </div>
         <div class="currency-selector relative">
-            <button class="flex items-center">
-                <span>€ EUR</span>
-                <i class="fas fa-chevron-down ml-2 text-xs"></i>
-            </button>
-            <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
-            </div>
+        <button id="currencyBtn" class="flex items-center">
+          <span id="currencyLabel">€ EUR</span>
+          <i class="fas fa-chevron-down ml-2 text-xs"></i>
+        </button>
+        <div class="currency-dropdown hidden absolute right-0 bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-36">
+          <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+          <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+          <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+          <a href="#" data-currency="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
         </div>
+      </div>
     </div>
 
   <!-- Navigation (identique à l’index, liens vers pages réelles) -->
