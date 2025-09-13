@@ -125,7 +125,14 @@
       "category": "Car",
       "description": "Économique, 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
       "url": "https://streetcarsolution.com/vehicles.html#renault-kwid",
-      "offers": { "@type":"Offer","priceCurrency":"EUR","price":"35","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock","url":"https://streetcarsolution.com/vehicles.html#renault-kwid" }
+      "offers": {
+        "@type":"Offer",
+        "priceCurrency":"EUR",
+        "price":"35",
+        "priceValidUntil":"2026-12-31",
+        "availability":"https://schema.org/InStock",
+        "url":"https://streetcarsolution.com/vehicles.html#renault-kwid"
+      }
     },
     {
       "@type": "Product",
@@ -135,7 +142,14 @@
       "category": "Car",
       "description": "Standard, 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
       "url": "https://streetcarsolution.com/vehicles.html#toyota-yaris-hb",
-      "offers": { "@type":"Offer","priceCurrency":"EUR","price":"40","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock","url":"https://streetcarsolution.com/vehicles.html#toyota-yaris-hb" }
+      "offers": {
+        "@type":"Offer",
+        "priceCurrency":"EUR",
+        "price":"40",
+        "priceValidUntil":"2026-12-31",
+        "availability":"https://schema.org/InStock",
+        "url":"https://streetcarsolution.com/vehicles.html#toyota-yaris-hb"
+      }
     },
     {
       "@type": "Product",
@@ -145,7 +159,14 @@
       "category": "Car",
       "description": "Berline, 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
       "url": "https://streetcarsolution.com/vehicles.html#toyota-yaris-sedan",
-      "offers": { "@type":"Offer","priceCurrency":"EUR","price":"47","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock","url":"https://streetcarsolution.com/vehicles.html#toyota-yaris-sedan" }
+      "offers": {
+        "@type":"Offer",
+        "priceCurrency":"EUR",
+        "price":"47",
+        "priceValidUntil":"2026-12-31",
+        "availability":"https://schema.org/InStock",
+        "url":"https://streetcarsolution.com/vehicles.html#toyota-yaris-sedan"
+      }
     },
     {
       "@type": "Product",
@@ -155,7 +176,14 @@
       "category": "Car",
       "description": "SUV 5 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
       "url": "https://streetcarsolution.com/vehicles.html#kia-sonet",
-      "offers": { "@type":"Offer","priceCurrency":"EUR","price":"52","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock","url":"https://streetcarsolution.com/vehicles.html#kia-sonet" }
+      "offers": {
+        "@type":"Offer",
+        "priceCurrency":"EUR",
+        "price":"52",
+        "priceValidUntil":"2026-12-31",
+        "availability":"https://schema.org/InStock",
+        "url":"https://streetcarsolution.com/vehicles.html#kia-sonet"
+      }
     },
     {
       "@type": "Product",
@@ -165,14 +193,15 @@
       "category": "Car",
       "description": "SUV 7 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
       "url": "https://streetcarsolution.com/vehicles.html#hyundai-creta",
-"offers": {
-  "@type": "Offer",
-  "priceCurrency": "EUR",
-  "price": "62",
-  "priceValidUntil": "2026-12-31",
-  "availability": "https://schema.org/InStock",
-  "url": "https://streetcarsolution.com/vehicles.html#hyundai-creta"
- },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "price": "62",
+        "priceValidUntil": "2026-12-31",
+        "availability": "https://schema.org/InStock",
+        "url": "https://streetcarsolution.com/vehicles.html#hyundai-creta"
+      }
+    },
     {
       "@type": "Product",
       "name": "Toyota Hiace (ou similaire) – Van 14 places",
@@ -181,7 +210,14 @@
       "category": "Van",
       "description": "Van 14 places, climatisation, Bluetooth, USB, CarPlay GPS.",
       "url": "https://streetcarsolution.com/vehicles.html#toyota-hiace",
-      "offers": { "@type":"Offer","priceCurrency":"EUR","price":"105","priceValidUntil":"2026-12-31","availability":"https://schema.org/InStock","url":"https://streetcarsolution.com/vehicles.html#toyota-hiace" }
+      "offers": { 
+        "@type":"Offer",
+        "priceCurrency":"EUR",
+        "price":"105",
+        "priceValidUntil":"2026-12-31",
+        "availability":"https://schema.org/InStock",
+        "url":"https://streetcarsolution.com/vehicles.html#toyota-hiace" 
+      }
     }
   ]
 }
@@ -1792,13 +1828,13 @@
         mobileMenu.classList.add('hidden');
         document.body.classList.remove('overflow-hidden');
         burgerBtn.setAttribute('aria-expanded', 'false');
-        if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
       };
       const openMenu = () => {
         mobileMenu.classList.remove('hidden');
         document.body.classList.add('overflow-hidden');
         burgerBtn.setAttribute('aria-expanded', 'true');
-        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
       };
       burgerBtn.addEventListener('click', () => {
         if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
