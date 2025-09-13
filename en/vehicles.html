@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Vehicles – Street Car Solution</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+
+  <!-- Canonical + SEO + Social -->
+  <link rel="canonical" href="https://streetcarsolution.com/en/vehicles.html">
+  <meta name="description" content="Discover our fleet: Economy, Standard, Sedan, SUV (5/7 seats) and 14-seat Van. Transparent prices with insurance & unlimited mileage included, 24/7 assistance.">
+  <meta property="og:site_name" content="Street Car Solution">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Our Vehicles – Car rental in Cancún">
+  <meta property="og:description" content="Economy, Standard, Sedan, SUV (5/7 seats) and 14-seat Van. Insurance & unlimited mileage included, 24/7 assistance.">
+  <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://streetcarsolution.com/en/vehicles.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Our Vehicles – Car rental in Cancún">
+  <meta name="twitter:description" content="Economy, Standard, Sedan, SUV (5/7 seats) and 14-seat Van in Cancún. 24/7 assistance included.">
+  <meta name="twitter:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+
+  <!-- Perf -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://huggingface.co" crossorigin>
+
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        fontSize: { sm:'0.95rem', base:'1.05rem', lg:'1.20rem', xl:'1.35rem', '2xl':'1.65rem', '3xl':'2rem', '4xl':'2.5rem', '5xl':'3rem', '6xl':'3.75rem' },
+        extend: {
+          colors: {
+            caribbean:{ blue:'#1DA1F2', green:'#00B894', yellow:'#FDCB6E', orange:'#E17055', pink:'#FD79A8', purple:'#6C5CE7' },
+            mexican:{ red:'#E63946', yellow:'#F1C40F', green:'#2ECC71', blue:'#3498DB', orange:'#E67E22' }
+          },
+          fontFamily:{ sans:['Montserrat','sans-serif'], heading:['"Fredoka One"','cursive'] }
+        }
+      }
+    }
+  </script>
+
+  <!-- Structured data (site) -->
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"Street Car Solution","url":"https://streetcarsolution.com/","potentialAction":{"@type":"SearchAction","target":"https://streetcarsolution.com/en/vehicles.html?q={search_term_string}","query-input":"required name=search_term_string"}}
+  </script>
+</head>
+<body class="font-sans bg-gray-50 text-lg">
+
+  <!-- Language & Currency bar -->
+  <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
+    <div class="language-selector relative">
+      <button class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span class="fi fi-us mr-2"></span> English
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
+        <!-- FR -->
+        <a href="../vehicles.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-fr mr-2"></span> Français
+        </a>
+        <!-- EN (current) -->
+        <a href="vehicles.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-us mr-2"></span> English
+        </a>
+        <!-- ES -->
+        <a href="../es/vehicles.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-mx mr-2"></span> Español
+        </a>
+      </div>
+    </div>
+
+    <div class="currency-selector relative">
+      <button id="currencyBtn" class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span id="currencyLabel">€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="currency-dropdown hidden absolute right-0 bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-36">
+        <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+        <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+        <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+        <a href="#" data-currency="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <nav class="bg-white shadow-md sticky top-10 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution Logo" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Home</a>
+          <a href="vehicles.html" class="text-caribbean-blue font-semibold">Our Vehicles</a>
+          <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+          <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Testimonials</a>
+          <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+        </div>
+        <button id="mobileMenuBtn" class="md:hidden text-gray-800" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Home</a>
+      <a href="vehicles.html" class="text-caribbean-blue font-semibold">Our Vehicles</a>
+      <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+      <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Testimonials</a>
+      <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <main class="py-12">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl md:text-4xl font-bold text-caribbean-blue mb-2 font-heading">Our Vehicles</h1>
+      <p class="text-gray-600 mb-8">Choose your model by category. Insurance & unlimited mileage included, 24/7 assistance.</p>
+
+      <!-- Economy -->
+      <section id="economy" class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Economy</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 xl:gap-6">
+
+          <!-- Renault Kwid -->
+          <article id="renault-kwid" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Renault%20Kwid%204.png" alt="Renault Kwid" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Renault Kwid</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2">
+                  <span class="w-5 flex justify-center text-gray-600">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/>
+                    </svg>
+                  </span>5 doors
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-5 flex justify-center text-gray-600">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img">
+                      <circle cx="12" cy="5" r="2"/><path d="M12 7v7"/><rect x="6" y="16" width="12" height="3" rx="1.5"/>
+                    </svg>
+                  </span>Manual
+                </li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>1 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">35€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- VW Polo -->
+          <article id="vw-polo" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/VW%20Polo.png" alt="VW Polo" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">VW Polo</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large suitcases</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">35€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- VW Polo Track -->
+          <article id="vw-polo-track" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/VW%20Polo%20Track.png" alt="VW Polo Track" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">VW Polo Track</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v7"/><rect x="6" y="16" width="12" height="3" rx="1.5"/></svg>
+                </span>Manual</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large suitcases</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">35€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Chevrolet Beat -->
+          <article id="chevrolet-beat" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Chevrolet%20Beat%20Sedan%202.png" alt="Chevrolet Beat" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Chevrolet Beat</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>4 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v7"/><rect x="6" y="16" width="12" height="3" rx="1.5"/></svg>
+                </span>Manual</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2 invisible pointer-events-none select-none" aria-hidden="true">
+                  <span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay GPS
+                </li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">35€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Standard -->
+      <section id="standard" class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Standard</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 xl:gap-6">
+
+          <!-- Hyundai i10 -->
+          <article id="hyundai-i10" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Hyundai%20i10%202025%202.png" alt="Hyundai i10" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Hyundai i10</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>4 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v7"/><rect x="6" y="16" width="12" height="3" rx="1.5"/></svg>
+                </span>Manual</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 2 small suitcases</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2 invisible pointer-events-none select-none" aria-hidden="true"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay GPS</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">40€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Mazda 2 -->
+          <article id="mazda-2" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Mazda%202.png" alt="Mazda 2" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Mazda 2</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 2 small suitcases</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">40€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Chevrolet Aveo -->
+          <article id="chevrolet-aveo" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Chevrolet%20Aveo.png" alt="Chevrolet Aveo" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Chevrolet Aveo</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>4 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 3 small suitcases</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2 invisible pointer-events-none select-none" aria-hidden="true"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay GPS</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">40€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Toyota Yaris HB -->
+          <article id="toyota-yaris-hb" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Toyota%20Yaris%20HB%204.png" alt="Toyota Yaris HB" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Toyota Yaris HB</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 2 small suitcases</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">40€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Sedan -->
+      <section id="sedan" class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Sedan</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 xl:gap-6">
+
+          <!-- Toyota Yaris Sedan -->
+          <article id="toyota-yaris-sedan" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Toyota%20Yaris%20Berline%204.png" alt="Toyota Yaris Sedan" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Toyota Yaris Sedan</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>3 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">47€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Mazda 3 -->
+          <article id="mazda-3" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Mazda%203.png" alt="Mazda 3" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Mazda 3</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>4 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>3 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2 invisible pointer-events-none select-none" aria-hidden="true"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay GPS</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">47€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Chevrolet Cavalier -->
+          <article id="chevrolet-cavalier" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Chevrolet%20Cavalier.png" alt="Chevrolet Cavalier" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Chevrolet Cavalier</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>4 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>3 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">47€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Kia Forte -->
+          <article id="kia-forte" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Kia%20Forte.png" alt="Kia Forte" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Kia Forte</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>4 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>3 large + 2 small suitcases</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">47€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- SUV 5 seats -->
+      <section id="suv-5-seats" class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">SUV 5 seats</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 xl:gap-6">
+
+          <!-- Kia Sonet -->
+          <article id="kia-sonet" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Kia%20Sonet%204.png" alt="Kia Sonet" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Kia Sonet</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">52€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Nissan Kicks -->
+          <article id="nissan-kicks" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Nissan%20Kicks.png" alt="Nissan Kicks" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Nissan Kicks</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>3 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">52€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Toyota Raize -->
+          <article id="toyota-raise" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Toyota%20Raize.png" alt="Toyota Raize" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Toyota Raize</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay GPS</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">52€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Kia Seltos -->
+          <article id="kia-seltos" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Kia%20Seltos.png" alt="Kia Seltos" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Kia Seltos</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>5 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">52€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- SUV 7 seats -->
+      <section id="suv-7-seats" class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">SUV 7 seats</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 xl:gap-6">
+
+          <!-- Infiniti QX60 -->
+          <article id="infiniti-qx60" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Infiniti%20QX60.png" alt="Infiniti QX60" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Infiniti QX60</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>7 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>GPS</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">62€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Toyota Avanza -->
+          <article id="toyota-avanza" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Toyota%20Avanza.png" alt="Toyota Avanza" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Toyota Avanza</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>7 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">62€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Toyota Sienna -->
+          <article id="toyota-sienna" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Toyota%20Sienna.png" alt="Toyota Sienna" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Toyota Sienna</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>7 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>3 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2 invisible pointer-events-none select-none" aria-hidden="true"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay GPS</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">62€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+          <!-- Hyundai Creta -->
+          <article id="hyundai-creta" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Hyundai%20Creta%204.png" alt="Hyundai Creta" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Hyundai Creta</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>7 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>5 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>2 large + 1 small suitcase</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">62€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Van 14 seats -->
+      <section id="van-14-seats" class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Van 14 seats</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 xl:gap-6">
+
+          <!-- Toyota Hiace -->
+          <article id="toyota-hiace" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Van%204.png" alt="Toyota Hiace" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Toyota Hiace</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>14 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>4 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>6 suitcases</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay GPS</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">105€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+              <p class="mt-2 text-gray-500 text-base italic flex items-start gap-2">
+                <i class="fas fa-info-circle mt-[2px]" aria-hidden="true"></i>
+                *Luggage capacity increases if some seats are folded/unused.
+              </p>
+            </div>
+          </article>
+
+          <!-- Nissan Urvan -->
+          <article id="nissan-urvan" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+            <figure class="relative w-full aspect-video">
+              <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/Nissan%20Urvan%204.png" alt="Nissan Urvan (14 seats)" class="absolute inset-0 h-full w-full object-cover" loading="lazy"/>
+            </figure>
+            <div class="p-4">
+              <h3 class="flex items-baseline gap-2"><span class="text-xl font-semibold">Nissan Urvan</span><span class="text-gray-500 text-sm font-normal">(or similar)</span></h3>
+              <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-users"></i></span>14 seats</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M12 8h7"/><path d="M9.5 13h2.5"/></svg>
+                </span>4 doors</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-cog"></i></span>Automatic</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-suitcase-rolling"></i></span>6 suitcases</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="far fa-snowflake"></i></span>Air conditioning</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
+                <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay GPS</li>
+              </ul>
+              <div class="flex items-baseline justify-between mt-4">
+                <span class="text-mexican-orange font-bold">105€ / day</span>
+                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
+              </div>
+              <p class="mt-2 text-gray-500 text-base italic flex items-start gap-2">
+                <i class="fas fa-info-circle mt-[2px]" aria-hidden="true"></i>
+                *Luggage capacity increases if some seats are folded/unused.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <p class="text-gray-400">Your trusted car rental partner in Cancún and the Yucatán Peninsula.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Street Car Solution YouTube channel"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Useful Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Our Vehicles</a></li>
+            <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+            <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Testimonials</a></li>
+            <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Information</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Terms & Conditions</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Subscribe to receive special offers.</p>
+          <form class="flex">
+            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+            <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2023 Street Car Solution. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Burger -->
+  <script>
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => { mobileMenu.classList.add('hidden'); document.body.classList.remove('overflow-hidden'); burgerBtn.setAttribute('aria-expanded','false'); if(icon){icon.classList.remove('fa-times');icon.classList.add('fa-bars');}};
+      const openMenu  = () => { mobileMenu.classList.remove('hidden'); document.body.classList.add('overflow-hidden'); burgerBtn.setAttribute('aria-expanded','true'); if(icon){icon.classList.remove('fa-bars');icon.classList.add('fa-times');}};
+      burgerBtn.addEventListener('click', () => { if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+  </script>
+
+  <!-- Dropdowns -->
+  <script>
+    const langSel = document.querySelector('.language-selector');
+    const langDrop = document.querySelector('.language-dropdown');
+    const curSel = document.querySelector('.currency-selector');
+    const curDrop = document.querySelector('.currency-dropdown');
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+    function setupDropdown(trigger, panel){
+      if(!trigger||!panel) return;
+      panel.classList.add('hidden');
+      let hideTimer=null;
+      const btn = trigger.querySelector('button');
+      const open=()=>{ if(hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
+      const close=()=>{ hideTimer=setTimeout(()=>{ panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); },120); };
+      const toggle=(e)=>{ e.stopPropagation(); const show=panel.classList.contains('hidden'); if(panel!==langDrop) langDrop?.classList.add('hidden'); if(panel!==curDrop) curDrop?.classList.add('hidden'); if(show){ panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); } else { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); } };
+      if(isDesktop.matches){ trigger.addEventListener('mouseenter',open); trigger.addEventListener('mouseleave',close); panel.addEventListener('mouseenter',open); panel.addEventListener('mouseleave',close); btn?.addEventListener('focus',open); btn?.addEventListener('blur',close); } else { trigger.addEventListener('click',toggle); }
+      panel.addEventListener('click',(e)=>e.stopPropagation());
+    }
+    setupDropdown(langSel,langDrop);
+    setupDropdown(curSel,curDrop);
+    document.addEventListener('click',()=>{ langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'){ langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); }});
+    window.addEventListener('resize',()=>{ langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+  </script>
+
+  <!-- Fixed prices by category (EN) -->
+  <script>
+  (function(){
+    const LABEL = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
+    const CATEGORY_PRICES = {
+      ECON:{EUR:35,USD:42,CAD:58,MXN:750},
+      STD:{EUR:40,USD:48,CAD:66,MXN:850},
+      BER:{EUR:47,USD:56,CAD:78,MXN:1000},
+      SUV5:{EUR:52,USD:62,CAD:86,MXN:1100},
+      SUV7:{EUR:62,USD:74,CAD:100,MXN:1300},
+      VAN:{EUR:105,USD:125,CAD:170,MXN:2200}
+    };
+    const ID_TO_CAT = {
+      'renault-kwid':'ECON','vw-polo':'ECON','vw-polo-track':'ECON','chevrolet-beat':'ECON',
+      'hyundai-i10':'STD','mazda-2':'STD','chevrolet-aveo':'STD','toyota-yaris-hb':'STD',
+      'toyota-yaris-sedan':'BER','mazda-3':'BER','chevrolet-cavalier':'BER','kia-forte':'BER',
+      'kia-sonet':'SUV5','nissan-kicks':'SUV5','toyota-raise':'SUV5','kia-seltos':'SUV5',
+      'infiniti-qx60':'SUV7','toyota-avanza':'SUV7','toyota-sienna':'SUV7','hyundai-creta':'SUV7',
+      'toyota-hiace':'VAN','nissan-urvan':'VAN'
+    };
+    function fmt(n,cur){ if(cur==='EUR') return `${n}€`; if(cur==='USD') return `$${n} USD`; if(cur==='CAD') return `$${n} CAD`; if(cur==='MXN') return `$${n.toLocaleString('fr-FR')} MXN`; return `${n}€`; }
+    function getCurrency(){ return localStorage.getItem('SCS_CURRENCY') || 'EUR'; }
+    function setLabel(cur){ const lbl=document.getElementById('currencyLabel'); if(lbl) lbl.textContent = LABEL[cur]; }
+    function render(cur){
+      const PER_DAY = ' / day';
+      Object.keys(ID_TO_CAT).forEach(id=>{
+        const card=document.getElementById(id); if(!card) return;
+        const priceEl=card.querySelector('.text-mexican-orange.font-bold'); if(!priceEl) return;
+        const cat=ID_TO_CAT[id]; const val=CATEGORY_PRICES[cat][cur];
+        priceEl.textContent = fmt(val,cur)+PER_DAY;
+      });
+    }
+    document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault(); e.stopPropagation();
+        const cur=a.dataset.currency; localStorage.setItem('SCS_CURRENCY',cur);
+        setLabel(cur); render(cur); document.querySelector('.currency-dropdown')?.classList.add('hidden');
+      });
+    });
+    document.addEventListener('DOMContentLoaded',()=>{ const cur=getCurrency(); setLabel(cur); render(cur);});
+  })();
+  </script>
+</body>
+</html>
