@@ -644,6 +644,31 @@
     window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
   </script>
 
+  <script>
+  (function () {
+    // 1) Nom de fichier (index.html si URL sans fichier)
+    var path = location.pathname;
+    var file = path.split('/').pop() || 'index.html';
+    if (!/\.html?$/.test(file)) file = 'index.html';
+  
+    // 2) Chemin racine du site (enlève /en/xxx.html, /es/xxx.html, ou /xxx.html)
+    //    => fonctionne sur HuggingFace (chemin long) et sur ton domaine plus tard.
+    var base = path.replace(/(?:\/(en|es))?\/[^/]*$/, '/');
+  
+    // 3) Renseigne les href automatiquement
+    document.querySelectorAll('a[data-lang="fr"]').forEach(function(a){
+      a.href = base + file;            // /.../index.html
+    });
+    document.querySelectorAll('a[data-lang="en"]').forEach(function(a){
+      a.href = base + 'en/' + file;    // /.../en/index.html
+    });
+    document.querySelectorAll('a[data-lang="es"]').forEach(function(a){
+      a.href = base + 'es/' + file;    // /.../es/index.html
+    });
+  })();
+  </script>
+
+
   <!-- Facebook SDK -->
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous"
