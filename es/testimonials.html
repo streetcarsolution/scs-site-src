@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es-MX" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Mantener durante el desarrollo -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>Testimonios de Clientes – Street Car Solution</title>
+
+  <!-- Tailwind + iconos -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+
+  <!-- Rendimiento: preconexión -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+  <link rel="preconnect" href="https://www.facebook.com" crossorigin>
+
+  <!-- Canonical + SEO + Social -->
+  <link rel="canonical" href="https://streetcarsolution.com/es/testimonials.html">
+  <link rel="alternate" hreflang="fr" href="https://streetcarsolution.com/testimonials.html">
+  <link rel="alternate" hreflang="en-US" href="https://streetcarsolution.com/en/testimonials.html">
+  <link rel="alternate" hreflang="es-MX" href="https://streetcarsolution.com/es/testimonials.html">
+  <link rel="alternate" hreflang="x-default" href="https://streetcarsolution.com/testimonials.html">
+
+  <meta name="description" content="Opiniones reales en video y por escrito. ¡Gracias por su confianza! Vea videos y testimonios sobre Street Car Solution. Renta de autos en Cancún y la Riviera Maya con transparencia y asistencia 24/7.">
+
+  <meta property="og:site_name" content="Street Car Solution">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Testimonios de Clientes – Street Car Solution (Cancún)">
+  <meta property="og:description" content="Descubra opiniones auténticas (videos y textos) de nuestros clientes. Renta de autos en Cancún y la Riviera Maya con asistencia 24/7.">
+  <meta property="og:image" content="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/assets/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://streetcarsolution.com/es/testimonials.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Testimonios de Clientes – Street Car Solution (Cancún)">
+  <meta name="twitter:description" content="Opiniones reales en video y por escrito. Rente con confianza: asistencia 24/7 y contrato transparente.">
+  <meta name="twitter:image" content="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/assets/og-cover.jpg">
+
+  <!-- Perf: CDNs usados -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://huggingface.co" crossorigin>
+
+  <style>
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+    /* Mini CSS para miniaturas de video */
+    .video-card { position: relative; display:block; width:100%; border-radius:0.75rem; overflow:hidden; background:#000; aspect-ratio:16/9; }
+    .video-card img { width:100%; height:100%; object-fit:cover; display:block; }
+    .video-card .play {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(transparent,rgba(0,0,0,.25));
+    }
+    .video-card .play i { font-size:3rem; color:#fff; text-shadow:0 6px 24px rgba(0,0,0,.45); }
+    @media (hover:hover) { .video-card:hover .play i { transform:scale(1.08); } }
+    @media (prefers-reduced-motion: reduce) { .video-card .play i { transition:none !important; } }
+  </style>
+
+  <style>
+    /* === Skeleton loader para opiniones === */
+    .skel-card{background:#fff;border-radius:0.75rem;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:1.5rem}
+    .skel-stars{display:flex;gap:.35rem;margin-bottom:.75rem}
+    .skel-star,.skel-line{
+      background:linear-gradient(90deg,#eee,#f6f6f6,#eee);
+      background-size:200% 100%;animation:skel 1.2s ease-in-out infinite
+    }
+    .skel-star{width:18px;height:18px;border-radius:4px}
+    .skel-line{height:14px;border-radius:6px;margin-bottom:.6rem}
+    @keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  </style>
+
+  <!-- Ícono del sitio -->
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+
+  <!-- Previews OG/Twitter en tu dominio -->
+  <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+  <meta name="twitter:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+
+  <!-- Config de Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        fontSize: {
+          sm: '0.95rem',
+          base: '1.05rem',
+          lg: '1.20rem',
+          xl: '1.35rem',
+          '2xl': '1.65rem',
+          '3xl': '2rem',
+          '4xl': '2.5rem',
+          '5xl': '3rem',
+          '6xl': '3.75rem',
+        },
+        extend: {
+          colors: {
+            caribbean: {
+              blue: '#1DA1F2',
+              green: '#00B894',
+              yellow: '#FDCB6E',
+              orange: '#E17055',
+              pink: '#FD79A8',
+              purple: '#6C5CE7'
+            },
+            mexican: {
+              red: '#E63946',
+              yellow: '#F1C40F',
+              green: '#2ECC71',
+              blue: '#3498DB',
+              orange: '#E67E22'
+            }
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            heading: ['"Fredoka One"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Datos estructurados: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Street Car Solution",
+    "url":"https://streetcarsolution.com/",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://streetcarsolution.com/es/testimonials.html?q={search_term_string}",
+      "query-input":"required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- Datos estructurados: LocalBusiness + reseñas -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"Street Car Solution",
+    "url":"https://streetcarsolution.com/",
+    "aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"3"},
+    "review":[
+      {
+        "@type":"Review",
+        "author":{"@type":"Person","name":"Camille & Adrien"},
+        "reviewRating":{"@type":"Rating","ratingValue":"5"},
+        "reviewBody":"Servicio impecable: recogimos el auto justo frente al aeropuerto. Muy recomendable."
+      },
+      {
+        "@type":"Review",
+        "author":{"@type":"Person","name":"Pierre"},
+        "reviewRating":{"@type":"Rating","ratingValue":"5"},
+        "reviewBody":"Hablamos francés; eso fue tranquilizador. Tarifas claras y asistencia rápida."
+      },
+      {
+        "@type":"Review",
+        "author":{"@type":"Person","name":"Familia Martín"},
+        "reviewRating":{"@type":"Rating","ratingValue":"5"},
+        "reviewBody":"Perfecto para nuestra familia de 5; la SUV de 7 plazas estaba impecable."
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="font-sans bg-gray-50 text-lg">
+
+  <!-- Selector de idioma y moneda (fijo) -->
+  <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
+    <div class="language-selector relative">
+      <button class="flex items-center">
+        <span class="fi fi-mx mr-2"></span>
+        Español
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
+        <a href="/testimonials.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-fr mr-2"></span> Français
+        </a>
+        <a href="/en/testimonials.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-us mr-2"></span> English
+        </a>
+        <a href="/es/testimonials.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-mx mr-2"></span> Español
+        </a>
+      </div>
+    </div>
+    <div class="currency-selector relative">
+      <button class="flex items-center">
+        <span>€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegación (debajo de la barra roja) -->
+  <nav class="bg-white shadow-md sticky top-10 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="/es/index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Logotipo de Street Car Solution" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+
+        <!-- NAV Desktop -->
+        <div class="hidden md:flex space-x-8">
+          <a href="/es/index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Inicio</a>
+          <a href="/es/vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Vehículos</a>
+          <a href="/es/services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Servicios</a>
+          <a href="/es/testimonials.html" class="text-caribbean-blue font-semibold">Testimonios</a>
+          <a href="/es/index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contacto</a>
+        </div>
+
+        <!-- Burger -->
+        <button id="mobileMenuBtn"
+                class="md:hidden text-gray-800"
+                aria-label="Abrir menú"
+                aria-controls="mobileMenu"
+                aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menú móvil -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-top">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="/es/index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Inicio</a>
+      <a href="/es/vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Vehículos</a>
+      <a href="/es/services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Servicios</a>
+      <a href="/es/testimonials.html" class="text-caribbean-blue font-semibold">Testimonios</a>
+      <a href="/es/index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contacto</a>
+    </div>
+  </div>
+
+  <!-- Encabezado -->
+  <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
+    <div class="container mx-auto px-4 py-12">
+      <h1 class="text-3xl md:text-4xl font-heading font-bold">Testimonios de Clientes</h1>
+      <p class="mt-2 text-white/90">Opiniones reales en video y por escrito. ¡Gracias por su confianza!</p>
+    </div>
+  </header>
+
+  <!-- Contenido -->
+  <main class="py-12">
+    <div class="container mx-auto px-4 space-y-12">
+
+      <!-- VIDEOS -->
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Opiniones en video</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Video 1 (FB) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/24216455441318195/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
+            </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-600">“Gracias a Street Car Solution, todo salió perfecto”</p>
+            </div>
+          </article>
+
+          <!-- Video 2 (FB) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/783062530742767/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
+            </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-600">“¡Hicimos 4,000 km y fue genial!”</p>
+            </div>
+          </article>
+
+          <!-- Video 3 (FB) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/1268199234454838/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
+            </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-600">“La policía quería quitarnos la licencia y ponernos una multa enorme”</p>
+            </div>
+          </article>
+
+          <!-- Video 4 (FB) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/1111144331119753/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
+            </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-500">“Yoan nos consiguió un auto de urgencia”</p>
+            </div>
+          </article>
+
+          <!-- Video 5 (FB) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/1285043749837606/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
+            </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-600">“Gracias a Yoan por la excelente renta de auto”</p>
+            </div>
+          </article>
+
+          <!-- Video 6 (FB) -->
+          <article class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="aspect-video bg-black">
+              <div class="fb-video w-full h-full"
+                   data-href="https://www.facebook.com/yoan.cremona.3/videos/1856348745096733/"
+                   data-width="auto"
+                   data-allowfullscreen="true"
+                   data-show-text="false"></div>
+            </div>
+            <div class="p-4">
+              <p class="font-bold text-blue-600">“Todo estuvo impecable” “Todo fue perfecto”</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- VER MÁS -->
+      <section>
+        <div class="mt-10 flex justify-center">
+          <a
+            href="https://www.youtube.com/@StreetCarSolution"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Ver más testimonios en video en YouTube"
+            title="Ver más testimonios en video"
+            class="inline-flex items-center gap-3 rounded-full px-7 py-4
+                   bg-mexican-orange text-white font-bold shadow-lg
+                   text-lg md:text-xl hover:bg-mexican-green
+                   focus:outline-none focus:ring-4 focus:ring-orange-300 transition">
+            <i class="fas fa-play-circle text-white text-2xl"></i>
+            <span>Más testimonios en video</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- OPINIONES ESCRITAS -->
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Opiniones escritas</h2>
+
+        <!-- Reseñas estáticas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <article class="bg-white rounded-xl shadow p-6">
+            <div class="flex items-center gap-1 mb-2 text-caribbean-yellow text-xl" aria-label="5 de 5">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-gray-700">“Servicio impecable: recogimos el auto justo frente al aeropuerto. Muy recomendable.”</p>
+            <p class="text-sm text-gray-500 mt-3">— Camille & Adrien</p>
+          </article>
+
+          <article class="bg-white rounded-xl shadow p-6">
+            <div class="flex items-center gap-1 mb-2 text-caribbean-yellow text-xl" aria-label="5 de 5">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-gray-700">“Hablamos francés; eso fue tranquilizador. Tarifas claras y asistencia rápida.”</p>
+            <p class="text-sm text-gray-500 mt-3">— Pierre</p>
+          </article>
+
+          <article class="bg-white rounded-xl shadow p-6">
+            <div class="flex items-center gap-1 mb-2 text-caribbean-yellow text-xl" aria-label="5 de 5">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-gray-700">“Perfecto para nuestra familia de 5; la SUV de 7 plazas estaba impecable.”</p>
+            <p class="text-sm text-gray-500 mt-3">— Familia Martín</p>
+          </article>
+        </div>
+
+        <!-- Reseñas dinámicas (Google Sheets) -->
+        <div id="reviewsDynamic" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6"></div>
+
+        <!-- Escribir un testimonio -->
+        <div class="mt-10 flex justify-center">
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSf1vwaBpVLO2XQ25uNPLf8xT2Fzsd5TWajtItOf6wXjzzWUkg/viewform?usp=header"
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 rounded-full px-7 py-4
+                   bg-mexican-orange text-white font-bold shadow-lg
+                   text-lg md:text-xl hover:bg-mexican-green
+                   focus:outline-none focus:ring-4 focus:ring-orange-300 transition">
+            <i class="fas fa-pen text-white text-xl"></i>
+            <span>Escribir un testimonio</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <p class="text-gray-400">Tu socio de confianza para la renta de autos en Cancún y en toda la Península de Yucatán.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Canal de YouTube Street Car Solution"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Enlaces útiles</h3>
+          <ul class="space-y-2">
+            <li><a href="/es/index.html" class="text-gray-400 hover:text-white">Inicio</a></li>
+            <li><a href="/es/vehicles.html" class="text-gray-400 hover:text-white">Vehículos</a></li>
+            <li><a href="/es/services.html" class="text-gray-400 hover:text-white">Servicios</a></li>
+            <li><a href="/es/testimonials.html" class="text-gray-400 hover:text-white">Testimonios</a></li>
+            <li><a href="/es/index.html#contact" class="text-gray-400 hover:text-white">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Información</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Términos y Condiciones</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Política de Privacidad</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Preguntas Frecuentes</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Boletín</h3>
+          <p class="text-gray-400 mb-4">Suscríbete para recibir nuestras ofertas especiales.</p>
+          <form class="flex">
+            <input type="email" placeholder="Tu correo" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+            <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2023 Street Car Solution. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS: menú burger + opiniones dinámicas -->
+  <script>
+    /* Menú móvil */
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+      };
+      const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+      };
+      burgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+
+    /* ===== Testimonios dinámicos desde Google Sheets ===== */
+    const TESTI_ENDPOINT = (typeof TESTI_URL === 'string'
+      ? TESTI_URL
+      : 'https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec');
+
+    function escapeHtml(s){
+      return String(s || "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+
+    function renderStars(n){
+      const full = Math.max(0, Math.min(5, Math.round(Number(n) || 0)));
+      return Array.from({length:5}, (_, i) =>
+        `<i class="fas fa-star${i < full ? '' : ' opacity-30'}"></i>`
+      ).join('');
+    }
+
+    async function loadReviews(limit=12, target='reviewsDynamic'){
+      const box = document.getElementById(target);
+      if (!box) return;
+      box.innerHTML = skeletonCards(Math.min(3, limit));
+      try{
+        const sep = TESTI_ENDPOINT.includes('?') ? '&' : '?';
+        const url = `${TESTI_ENDPOINT}${sep}action=temoignages&limit=${encodeURIComponent(limit)}`;
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const json = await resp.json();
+        if (!json.ok || !Array.isArray(json.reviews) || json.reviews.length === 0){
+          box.innerHTML = '';
+          return;
+        }
+        box.innerHTML = json.reviews.map(r => `
+          <article class="bg-white p-6 rounded-xl shadow">
+            <div class="flex items-center gap-1 mb-2 text-caribbean-yellow text-xl"
+                 aria-label="${escapeHtml(r.rating)} de 5">
+              ${renderStars(r.rating)}
+            </div>
+            <p class="text-gray-700 italic mb-3">“${escapeHtml(r.message)}”</p>
+            <p class="text-gray-500 text-sm">— ${escapeHtml(r.name)}${r.date ? ` · ${escapeHtml(r.date)}` : ""}</p>
+          </article>
+        `).join('');
+        injectReviewsJSONLD(json.reviews);
+      }catch(e){
+        console.error('Opiniones dinámicas:', e);
+        box.innerHTML = '';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => loadReviews(12));
+
+    function skeletonCards(n=3){
+      return Array.from({length:n},()=>`
+        <div class="skel-card">
+          <div class="skel-stars">
+            <span class="skel-star"></span><span class="skel-star"></span>
+            <span class="skel-star"></span><span class="skel-star"></span>
+            <span class="skel-star"></span>
+          </div>
+          <div class="skel-line" style="width:92%"></div>
+          <div class="skel-line" style="width:86%"></div>
+          <div class="skel-line" style="width:68%"></div>
+        </div>
+      `).join('');
+    }
+
+    function injectReviewsJSONLD(reviews){
+      try{
+        const avg = (reviews.reduce((a,r)=>a+(Number(r.rating)||0),0) / (reviews.length||1)).toFixed(2);
+        const ld = {
+          "@context":"https://schema.org",
+          "@type":"LocalBusiness",
+          "name":"Street Car Solution",
+          "url": location.href,
+          "aggregateRating":{
+            "@type":"AggregateRating",
+            "ratingValue": avg,
+            "reviewCount": String(reviews.length)
+          },
+          "review": reviews.map(r=>({
+            "@type":"Review",
+            "author": {"@type":"Person","name": r.name || "Cliente"},
+            "reviewBody": r.message || "",
+            "datePublished": r.date || "",
+            "reviewRating": {"@type":"Rating","ratingValue": String(r.rating||5),"bestRating":"5","worstRating":"1"}
+          }))
+        };
+        document.getElementById('reviews-ld')?.remove();
+        const s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.id = 'reviews-ld';
+        s.textContent = JSON.stringify(ld);
+        document.head.appendChild(s);
+      }catch(e){ console.warn('JSON-LD:', e); }
+    }
+
+    /* === Desplegables de idioma y moneda (abrir/cerrar) === */
+    const langSel = document.querySelector('.language-selector');
+    const langDrop = document.querySelector('.language-dropdown');
+    const curSel  = document.querySelector('.currency-selector');
+    const curDrop = document.querySelector('.currency-dropdown');
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    function setupDropdown(trigger, panel) {
+      if (!trigger || !panel) return;
+      panel.classList.add('hidden');
+      let hideTimer = null;
+      const btn = trigger.querySelector('button');
+      const open = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); };
+      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }, 120); };
+      const toggle = (e) => {
+        e.stopPropagation();
+        const show = panel.classList.contains('hidden');
+        if (panel !== langDrop) langDrop?.classList.add('hidden');
+        if (panel !== curDrop)  curDrop?.classList.add('hidden');
+        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); }
+        else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded', 'false'); }
+      };
+      if (isDesktop.matches) {
+        trigger.addEventListener('mouseenter', open);
+        trigger.addEventListener('mouseleave', close);
+        panel.addEventListener('mouseenter', open);
+        panel.addEventListener('mouseleave', close);
+        btn?.addEventListener('focus', open);
+        btn?.addEventListener('blur', close);
+      } else {
+        trigger.addEventListener('click', toggle);
+      }
+      panel.addEventListener('click', (e) => e.stopPropagation());
+    }
+    setupDropdown(langSel, langDrop);
+    setupDropdown(curSel, curDrop);
+    document.addEventListener('click', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+    window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+  </script>
+
+  <!-- SDK de Facebook -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+          src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v20.0"></script>
+</body>
+</html>
