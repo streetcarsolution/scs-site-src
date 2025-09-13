@@ -561,47 +561,54 @@
       window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
     }
 
-    /* === Dropdown Langue & Devise === */
-    const langSel = document.querySelector('.language-selector');
-    const langDrop = document.querySelector('.language-dropdown');
-    const curSel  = document.querySelector('.currency-selector');
-    const curDrop = document.querySelector('.currency-dropdown');
-    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
-    
-    function setupDropdown(trigger, panel) {
-      if (!trigger || !panel) return;
-      panel.classList.add('hidden');
-      let hideTimer = null;
-      const btn = trigger.querySelector('button');
-      const open = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); };
-      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }, 120); };
-      const toggle = (e) => {
-        e.stopPropagation();
-        const show = panel.classList.contains('hidden');
-        if (panel !== langDrop) langDrop?.classList.add('hidden');
-        if (panel !== curDrop)  curDrop?.classList.add('hidden');
-        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded', 'true'); }
-        else { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded', 'false'); }
-      };
-      if (isDesktop.matches) {
-        trigger.addEventListener('mouseenter', open);
-        trigger.addEventListener('mouseleave', close);
-        panel.addEventListener('mouseenter', open);
-        panel.addEventListener('mouseleave', close);
-        btn?.addEventListener('focus', open);
-        btn?.addEventListener('blur', close);
-      } else {
-        trigger.addEventListener('click', toggle);
-      }
-      panel.addEventListener('click', (e) => e.stopPropagation());
-    }
-    setupDropdown(langSel, langDrop);
-    setupDropdown(curSel, curDrop);
-    document.addEventListener('click', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
-    window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+    <!-- Dropdown Langue & Devise (même logique que sur index.html) -->
+<script>
+  const langSel = document.querySelector('.language-selector');
+  const langDrop = document.querySelector('.language-dropdown');
+  const curSel  = document.querySelector('.currency-selector');
+  const curDrop = document.querySelector('.currency-dropdown');
+  const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
 
-    <script>
+  function setupDropdown(trigger, panel) {
+    if (!trigger || !panel) return;
+    panel.classList.add('hidden');
+    let hideTimer = null;
+    const btn = trigger.querySelector('button');
+
+    const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
+    const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
+    const toggle = (e) => {
+      e.stopPropagation();
+      const show = panel.classList.contains('hidden');
+      if (panel !== langDrop) langDrop?.classList.add('hidden');
+      if (panel !== curDrop)  curDrop?.classList.add('hidden');
+      if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); }
+      else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
+    };
+
+    if (isDesktop.matches) {
+      trigger.addEventListener('mouseenter', open);
+      trigger.addEventListener('mouseleave', close);
+      panel.addEventListener('mouseenter', open);
+      panel.addEventListener('mouseleave', close);
+      btn?.addEventListener('focus', open);
+      btn?.addEventListener('blur', close);
+    } else {
+      trigger.addEventListener('click', toggle);
+    }
+    panel.addEventListener('click', (e) => e.stopPropagation());
+  }
+
+  setupDropdown(langSel, langDrop);
+  setupDropdown(curSel, curDrop);
+
+  document.addEventListener('click',   () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+  window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+</script>
+
+<!-- Conversion des prix (ne touche qu'au nombre) -->
+<script>
 (() => {
   const MAP = {
     EUR: { key: 'eur', fmt: v => `${v}€` },
@@ -611,10 +618,10 @@
   };
 
   function detectCurrency() {
-    const label = document.getElementById('currencyLabel')?.textContent || '€ EUR';
-    if (label.includes('MXN')) return 'MXN';
-    if (label.includes('USD')) return 'USD';
-    if (label.includes('CAD')) return 'CAD';
+    const t = document.getElementById('currencyLabel')?.textContent || '€ EUR';
+    if (t.includes('MXN')) return 'MXN';
+    if (t.includes('USD')) return 'USD';
+    if (t.includes('CAD')) return 'CAD';
     return 'EUR';
   }
 
@@ -627,24 +634,31 @@
     });
   }
 
-  // clic sur la liste des devises (déjà présente dans ton header)
+  // clic sur une devise de la liste
   document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
-      const cur = a.dataset.currency; // EUR | USD | CAD | MXN
+      e.stopPropagation(); // évite fermeture immédiate par le "click" global
+      const cur = a.dataset.currency;
       const labelMap = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
       const lbl = document.getElementById('currencyLabel');
       if (lbl) lbl.textContent = labelMap[cur];
       renderPrices(cur);
+      document.querySelector('.currency-dropdown')?.classList.add('hidden');
     });
+  });
+
+  // fallback si jamais le script dropdown n'est pas chargé
+  document.getElementById('currencyBtn')?.addEventListener('click', (e) => {
+    const panel = document.querySelector('.currency-dropdown');
+    if (!panel) return;
+    // si rien n'a géré l'ouverture, on toggle
+    if (panel.classList.contains('hidden')) { e.stopPropagation(); panel.classList.remove('hidden'); }
   });
 
   document.addEventListener('DOMContentLoaded', renderPrices);
 })();
 </script>
-
-    
-  </script>
 </body>
 </html>
 
