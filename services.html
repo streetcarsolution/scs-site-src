@@ -219,11 +219,15 @@
         <div class="mt-4">
           <!-- badge en 2 lignes, centré -->
           <div class="inline-block bg-blue-50 text-caribbean-blue px-3 py-1 rounded-full text-sm text-center">
-            <div class="font-semibold leading-tight">2ème chauffeur Gratuit</div>
-            <div class="font-normal leading-tight">7.50€ ($150 Pesos) / chauffeur supplémentaire</div>
+          <div class="font-semibold leading-tight">2ème chauffeur Gratuit</div>
+          <div class="font-normal leading-tight">
+            <span class="js-price"
+                  data-eur="7.50" data-usd="8.5" data-cad="12" data-mxn="150">7.50€</span>
+            <span class="opacity-80"> ($150 Pesos) / chauffeur supplémentaire</span>
           </div>
         </div>
       </article>
+
 
       <!-- Carte SIM mexicaine -->
       <article id="carte-sim" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
@@ -237,10 +241,11 @@
           Restez connectés (Internet, appels locaux, GPS Mobile). Activation et installation incluses.
         </p>
         <div class="mt-auto pt-4 flex items-center justify-between">
-          <span class="inline-block bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
-            25€ (500 Pesos)
-          </span>
-        </div>
+           <span class="inline-block bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
+  <span class="js-price"
+        data-eur="25" data-usd="28" data-cad="39" data-mxn="500">25€</span>
+  <span class="opacity-80"> ($500 Pesos)</span>
+</div>
       </article>
 
       <!-- GPS -->
@@ -274,8 +279,9 @@
         </p>
         <div class="mt-4">
           <span class="inline-block bg-purple-50 text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
-            2.50€ (50 Pesos) / jour
-          </span>
+           <span class="js-price"
+        data-eur="2.50" data-usd="3" data-cad="4" data-mxn="50">2.50€</span>
+          <span class="opacity-80"> ($50 Pesos) / jour</span>
         </div>
       </article>
 
@@ -292,9 +298,10 @@
         </p>
         <div class="mt-4">
           <span class="inline-block bg-yellow-50 text-[#b07e00] px-3 py-1 rounded-full text-sm font-semibold">
-            2.50€ ($50 Pesos) / jour
-          </span>
-        </div>
+        <span class="js-price"
+              data-eur="2.50" data-usd="3" data-cad="4" data-mxn="50">2.50€</span>
+        <span class="opacity-80"> ($50 Pesos) / jour</span>
+      </div>
       </article>
 
       <!-- Lavage de véhicule -->
@@ -310,8 +317,9 @@
         </p>
         <div class="mt-4">
           <span class="inline-block bg-pink-50 text-[#d74c82] px-3 py-1 rounded-full text-sm font-semibold">
-            +25€ ($500 Pesos)
-          </span>
+            <span class="js-price"
+        data-eur="25" data-usd="28" data-cad="39" data-mxn="500">25€</span>
+          <span class="opacity-80"> ($500 Pesos)</span>
         </div>
       </article>
 
@@ -335,8 +343,9 @@
           </p>
           <div class="mt-4">
             <span class="inline-block bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-semibold">
-              Numéro d’urgence dédié - 25€ (500 Pesos)
-            </span>
+              <span class="js-price"
+                  data-eur="25" data-usd="28" data-cad="39" data-mxn="500">25€</span>
+            <span class="opacity-80"> ($500 Pesos)</span>
           </div>
         </article>
       </div>
@@ -591,6 +600,49 @@
     document.addEventListener('click', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
     window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+
+    <script>
+(() => {
+  const MAP = {
+    EUR: { key: 'eur', fmt: v => `${v}€` },
+    USD: { key: 'usd', fmt: v => `$${v} USD` },
+    CAD: { key: 'cad', fmt: v => `$${v} CAD` },
+    MXN: { key: 'mxn', fmt: v => `$${v} MXN` }
+  };
+
+  function detectCurrency() {
+    const label = document.getElementById('currencyLabel')?.textContent || '€ EUR';
+    if (label.includes('MXN')) return 'MXN';
+    if (label.includes('USD')) return 'USD';
+    if (label.includes('CAD')) return 'CAD';
+    return 'EUR';
+  }
+
+  function renderPrices(force) {
+    const cur = force || detectCurrency();
+    const cfg = MAP[cur];
+    document.querySelectorAll('.js-price').forEach(el => {
+      const val = el.dataset[cfg.key];
+      if (val) el.textContent = cfg.fmt(val);
+    });
+  }
+
+  // clic sur la liste des devises (déjà présente dans ton header)
+  document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const cur = a.dataset.currency; // EUR | USD | CAD | MXN
+      const labelMap = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
+      const lbl = document.getElementById('currencyLabel');
+      if (lbl) lbl.textContent = labelMap[cur];
+      renderPrices(cur);
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', renderPrices);
+})();
+</script>
+
     
   </script>
 </body>
