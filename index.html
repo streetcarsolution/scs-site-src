@@ -1453,7 +1453,8 @@ function updatePriceCards(cur) {
 (function initCurrencySwitcher() {
   const currencySel   = document.getElementById('currencySel');
   const currencyLabel = currencySel?.querySelector('.js-currency-label');
-  const currentStored = localStorage.getItem('SCS_CURRENCY') || 'EUR';
+  const currentStored = 'EUR';
+  localStorage.setItem('SCS_CURRENCY', 'EUR');
   // Devise par défaut (EUR)
   updatePriceCards(currentStored);
   if (currencyLabel) currencyLabel.textContent = CURRENCY_LABEL[currentStored] || '€ EUR';
