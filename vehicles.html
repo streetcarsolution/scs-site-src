@@ -1883,6 +1883,92 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
     window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
  </script>
+
+ <!-- Conversion des prix FIXES pour vehicles.html -->
+<script>
+(function () {
+  // Libellés du bouton devise
+  const LABEL = { EUR: '€ EUR', USD: '$ USD', CAD: '$ CAD', MXN: '$ MXN' };
+
+  // Tarifs fixes par CATEGORIE et par DEVISE
+  const CATEGORY_PRICES = {
+    ECON: { EUR: 35,  USD: 42,  CAD: 58,  MXN:  750 },   // Économique
+    STD:  { EUR: 40,  USD: 48,  CAD: 66,  MXN:  850 },   // Standard
+    BER:  { EUR: 47,  USD: 56,  CAD: 78,  MXN: 1000 },   // Berline
+    SUV5: { EUR: 52,  USD: 62,  CAD: 86,  MXN: 1100 },   // SUV 5
+    SUV7: { EUR: 62,  USD: 74,  CAD: 100, MXN: 1300 },   // SUV 7
+    VAN:  { EUR: 105, USD: 125, CAD: 170, MXN: 2200 }    // Van
+  };
+
+  // Association ID de carte -> catégorie
+  const ID_TO_CAT = {
+    // Économique
+    'renault-kwid':'ECON','vw-polo':'ECON','vw-polo-track':'ECON','chevrolet-beat':'ECON',
+    // Standard
+    'hyundai-i10':'STD','mazda-2':'STD','chevrolet-aveo':'STD','toyota-yaris-hb':'STD',
+    // Berline
+    'toyota-yaris-sedan':'BER','mazda-3':'BER','chevrolet-cavalier':'BER','kia-forte':'BER',
+    // SUV 5 places
+    'kia-sonet':'SUV5','nissan-kicks':'SUV5','toyota-raise':'SUV5','kia-seltos':'SUV5',
+    // SUV 7 places
+    'infiniti-qx60':'SUV7','toyota-avanza':'SUV7','toyota-sienna':'SUV7','hyundai-creta':'SUV7',
+    // Van
+    'toyota-hiace':'VAN','nissan-urvan':'VAN'
+  };
+
+  function fmt(n, cur) {
+    if (cur === 'EUR') return `${n}€`;
+    if (cur === 'USD') return `$${n} USD`;
+    if (cur === 'CAD') return `$${n} CAD`;
+    if (cur === 'MXN') return `$${n.toLocaleString('fr-FR')} MXN`;
+    return `${n}€`;
+  }
+
+  function getCurrency() {
+    return localStorage.getItem('SCS_CURRENCY') || 'EUR';
+  }
+
+  function setLabel(cur) {
+    const lbl = document.getElementById('currencyLabel');
+    if (lbl) lbl.textContent = LABEL[cur];
+  }
+
+  function render(cur) {
+    Object.keys(ID_TO_CAT).forEach(id => {
+      const card = document.getElementById(id);
+      if (!card) return;
+      // Cible uniquement le prix (span orange en gras)
+      const priceEl = card.querySelector('.text-mexican-orange.font-bold');
+      if (!priceEl) return;
+      const cat = ID_TO_CAT[id];
+      const val = CATEGORY_PRICES[cat][cur];
+      const addPerDay = /\/\s*jour/i.test(priceEl.textContent);
+      priceEl.textContent = fmt(val, cur) + (addPerDay ? ' / jour' : '');
+    });
+  }
+
+  // Clic sur une devise du menu
+  document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const cur = a.dataset.currency;
+      localStorage.setItem('SCS_CURRENCY', cur);
+      setLabel(cur);
+      render(cur);
+      document.querySelector('.currency-dropdown')?.classList.add('hidden');
+    });
+  });
+
+  // Init au chargement (respecte la devise mémorisée, EUR par défaut)
+  document.addEventListener('DOMContentLoaded', () => {
+    const cur = getCurrency();
+    setLabel(cur);
+    render(cur);
+  });
+})();
+</script>
+
 </body>
 </html>
 
