@@ -12,22 +12,23 @@
   
   <!-- Canonical + SEO + Social (vehicles.html) -->
   <link rel="canonical" href="https://streetcarsolution.com/vehicles.html">
-  
-  <meta name="description" content="Découvrez tous nos modèles : Économique, Standard, Berline, SUV 5/7 places et Van 14 places. Prix transparents, assurance et kilométrage illimités inclus, assistance 24/7.">
-  
-  <meta property="og:site_name" content="Street Car Solution">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Nos Véhicules – Location de voitures à Cancún">
-  <meta property="og:description" content="Économique, Standard, Berline, SUV 5/7 places et Van 14 places. Prix transparents, assurance et kilométrage illimités, assistance 24/7.">
-  <meta property="og:image" content="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/assets/og-cover.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://streetcarsolution.com/vehicles.html">
-  
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nos Véhicules – Location de voitures à Cancún">
-  <meta name="twitter:description" content="Économique, Standard, Berline, SUV 5/7 places et Van 14 places. Prix transparents, assurance et kilométrage illimités, assistance 24/7.">
-  <meta name="twitter:image" content="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/assets/og-cover.jpg">
+
+<meta name="description" content="Découvrez tous nos modèles : Économique, Standard, Berline, SUV 5/7 places et Van 14 places. Prix transparents, assurance et kilométrage illimités inclus, assistance 24/7.">
+
+<meta property="og:site_name" content="Street Car Solution">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nos Véhicules – Location de voitures à Cancún">
+<meta property="og:description" content="Économique, Standard, Berline, SUV 5/7 places et Van 14 places. Prix transparents, assurance et kilométrage illimités, assistance 24/7.">
+<meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://streetcarsolution.com/vehicles.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nos Véhicules – Location de voitures à Cancún">
+<meta name="twitter:description" content="Économique, Standard, Berline, SUV 5/7 places et Van 14 places. Prix transparents, assurance et kilométrage illimités, assistance 24/7.">
+<meta name="twitter:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+
   
   <!-- Perf: pré-connexion aux CDNs utilisés -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +52,6 @@
 </style>
 
 <script>
-  /* même config tailwind que ton index */
   tailwind.config = {
     theme: {
       fontSize: {
@@ -67,21 +67,8 @@
       },
       extend: {
         colors: {
-          caribbean: {
-            blue: '#1DA1F2',
-            green: '#00B894',
-            yellow: '#FDCB6E',
-            orange: '#E17055',
-            pink: '#FD79A8',
-            purple: '#6C5CE7'
-          },
-          mexican: {
-            red: '#E63946',
-            yellow: '#F1C40F',
-            green: '#2ECC71',
-            blue: '#3498DB',
-            orange: '#E67E22'
-          }
+          caribbean: { blue: '#1DA1F2', green: '#00B894', yellow: '#FDCB6E', orange: '#E17055', pink: '#FD79A8', purple: '#6C5CE7' },
+          mexican:   { red: '#E63946', yellow: '#F1C40F', green: '#2ECC71', blue: '#3498DB', orange: '#E67E22' }
         },
         fontFamily: {
           sans: ['Montserrat', 'sans-serif'],
@@ -89,8 +76,9 @@
         }
       }
     }
-  };
+  }
 </script>
+
 
 <!-- Garde UN seul jeu d’images sociales, idéalement celles hébergées sur ton domaine -->
 <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
@@ -188,7 +176,7 @@
     {
       "@type": "Product",
       "name": "Hyundai Creta (ou similaire) – SUV 7 places",
-      "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Hunday%20Creta%204.png"],
+      "image": ["https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Hyundai%20Creta%204.png"],
       "brand": {"@type":"Brand","name":"Hyundai"},
       "category": "Car",
       "description": "SUV 7 places, 4 portes, climatisation, Bluetooth, USB, CarPlay GPS.",
@@ -307,6 +295,7 @@
     </div>
   </div>
 
+
   <!-- Contenu -->
   <main class="py-12">
     <div class="container mx-auto px-4">
@@ -416,13 +405,13 @@
                   <span class="text-mexican-orange font-bold">35€ / jour</span>
                   <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pré-réserver</a>
                 </div>
-              </article>
+              </div> 
+            </article>
 
           <!-- Modèle 2 -->
               <article id="vw-polo" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
               <!-- media: image pleine largeur, sans cadre blanc -->
               <figure class="relative w-full aspect-video">
-                <img
                   <img
                   src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/VW%20Polo.png"
                   alt="VW Polo"
@@ -504,7 +493,8 @@
                   <span class="text-mexican-orange font-bold">35€ / jour</span>
                   <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pré-réserver</a>
                 </div>
-              </article>
+              </div> 
+            </article>
 
           <!-- Modèle 3 -->
               <article id="vw-polo-track" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
@@ -603,7 +593,8 @@
                   <span class="text-mexican-orange font-bold">35€ / jour</span>
                   <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pré-réserver</a>
                 </div>
-              </article>
+              </div> 
+            </article>
 
           <!-- Modèle 4 -->
               <article id="chevrolet-beat" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
@@ -703,7 +694,8 @@
                   <span class="text-mexican-orange font-bold">35€ / jour</span>
                   <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pré-réserver</a>
                 </div>
-              </article>
+              </div> 
+            </article>
         
         </div>
       </section>
@@ -715,7 +707,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 xl:gap-6">
       
         <!-- Modèle 1 -->
-          <article id="hyundai i10" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
+          <article id="hyundai-i10" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
           <!-- media: image pleine largeur, sans cadre blanc -->
           <figure class="relative w-full aspect-video">
             <img
@@ -1548,7 +1540,7 @@
           <!-- media: image pleine largeur, sans cadre blanc -->
           <figure class="relative w-full aspect-video">
             <img
-              src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Hunday%20Creta%204.png"
+              src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Hyundai%20Creta%204.png"
               alt="Hyundai Creta"
               class="absolute inset-0 h-full w-full object-cover"
               loading="lazy"
@@ -1756,6 +1748,7 @@
                     <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
                     <div class="flex space-x-4 mt-4">
 
+
           <!-- Facebook -->
           <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" 
              class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
@@ -1787,10 +1780,10 @@
                 <div>
                     <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
                     <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-white">Accueil</a></li>
-                        <li><a href="#vehicles" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white">Services</a></li>
-                        <li><a href="#about" class="text-gray-400 hover:text-white">À Propos</a></li>
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
                         <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
                     </ul>
                 </div>
@@ -1825,30 +1818,33 @@
 
   <!-- Script burger (identique à l’index, version courte) -->
   <script>
-    const burgerBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (burgerBtn && mobileMenu) {
-      const icon = burgerBtn.querySelector('i');
-      const closeMenu = () => {
-        mobileMenu.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-        burgerBtn.setAttribute('aria-expanded', 'false');
-        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
-      };
-      const openMenu = () => {
-        mobileMenu.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-        burgerBtn.setAttribute('aria-expanded', 'true');
-        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
-      };
-      burgerBtn.addEventListener('click', () => {
-        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
-      });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
-    }
+      const burgerBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (burgerBtn && mobileMenu) {
+        const icon = burgerBtn.querySelector('i');
+        const closeMenu = () => {
+          mobileMenu.classList.add('hidden');
+          document.body.classList.remove('overflow-hidden');
+          burgerBtn.setAttribute('aria-expanded', 'false');
+          if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); } // afficher "bars" quand c'est fermé
+        };
+        const openMenu = () => {
+          mobileMenu.classList.remove('hidden');
+          document.body.classList.add('overflow-hidden');
+          burgerBtn.setAttribute('aria-expanded', 'true');
+          if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); } // afficher "times" quand c'est ouvert
+        };
+        burgerBtn.addEventListener('click', () => {
+          if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+        });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+        window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+      }
+    </script>
+
 
         /* === Dropdown Langue & Devise === */
+    <script>
     const langSel = document.querySelector('.language-selector');
     const langDrop = document.querySelector('.language-dropdown');
     const curSel  = document.querySelector('.currency-selector');
@@ -1887,7 +1883,7 @@
     document.addEventListener('click', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
     window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
-  </script>
+ </script>
 </body>
 </html>
 
