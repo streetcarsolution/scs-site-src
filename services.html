@@ -6,33 +6,31 @@
 
   <!-- À garder pendant tout le développement -->
   <meta name="robots" content="noindex, nofollow">
-  
+
   <title>Services – Street Car Solution</title>
 
-  <!-- Tailwind + icônes (mêmes CDN que l'index) -->
+  <!-- Tailwind + icônes -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
-  <!-- Canonical + SEO + Social (services.html) -->
+
+  <!-- Canonical + SEO + Social -->
   <link rel="canonical" href="https://streetcarsolution.com/services.html">
-  
   <meta name="description" content="Ajoutez des services ou options pour un voyage 100% serein. Nos services : livraison et reprise à l’aéroport/hôtel, assurance et kilométrage illimités inclus, assistance 24/7, conducteur additionnel, sièges enfants, GPS/CarPlay et contrat 100% transparent.">
-  
   <meta property="og:site_name" content="Street Car Solution">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Services – Street Car Solution (Cancún)">
   <meta property="og:description" content="Livraison aéroport/hôtel, assurance & kilométrage illimités, assistance 24/7, options famille et GPS/CarPlay.">
-  <meta property="og:image" content="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/assets/og-cover.jpg">
+  <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://streetcarsolution.com/services.html">
-  
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Services – Street Car Solution (Cancún)">
   <meta name="twitter:description" content="Livraison aéroport/hôtel, assurance & kilométrage illimités, assistance 24/7, options famille et GPS/CarPlay.">
-  <meta name="twitter:image" content="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2/resolve/main/assets/og-cover.jpg">
-  
-  <!-- Perf: pré-connexion aux CDNs utilisés -->
+  <meta name="twitter:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+
+  <!-- Perf: pré-connexion -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
@@ -40,21 +38,17 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://huggingface.co" crossorigin>
 
+  <!-- Fonts -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap');
   </style>
 
-  <!-- Icône du site (favicon / Apple) -->
+  <!-- Icônes / favicons -->
   <link rel="icon" href="/assets/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/logo.png">
-  
-  <!-- Image de partage (Open Graph & Twitter) -->
-  <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
 
+  <!-- Config Tailwind -->
   <script>
-    /* même config Tailwind que l’index */
     tailwind.config = {
       theme: {
         fontSize: {
@@ -66,25 +60,12 @@
           '3xl': '2rem',
           '4xl': '2.5rem',
           '5xl': '3rem',
-          '6xl': '3.75rem',
+          '6xl': '3.75rem'
         },
         extend: {
           colors: {
-            caribbean: {
-              blue: '#1DA1F2',
-              green: '#00B894',
-              yellow: '#FDCB6E',
-              orange: '#E17055',
-              pink: '#FD79A8',
-              purple: '#6C5CE7'
-            },
-            mexican: {
-              red: '#E63946',
-              yellow: '#F1C40F',
-              green: '#2ECC71',
-              blue: '#3498DB',
-              orange: '#E67E22'
-            }
+            caribbean: { blue:'#1DA1F2', green:'#00B894', yellow:'#FDCB6E', orange:'#E17055', pink:'#FD79A8', purple:'#6C5CE7' },
+            mexican:   { red:'#E63946', yellow:'#F1C40F', green:'#2ECC71', blue:'#3498DB', orange:'#E67E22' }
           },
           fontFamily: {
             sans: ['Montserrat', 'sans-serif'],
@@ -92,60 +73,60 @@
           }
         }
       }
-    }
+    };
+  </script>
 
-    type="application/ld+json">
+  <!-- JSON-LD séparé -->
+  <script type="application/ld+json">
     {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Street Car Solution",
-    "url": "https://streetcarsolution.com/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://streetcarsolution.com/services.html?q={search_term_string}",
-      "query-input": "required name=search_term_string"
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Street Car Solution",
+      "url": "https://streetcarsolution.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://streetcarsolution.com/services.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
-  }
   </script>
 </head>
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden font-sans">
 
-  <!-- Language & Currency Selector -->
-    <div class="bg-mexican-red text-white py-2 px-4 flex justify-between items-center">
-        <div class="language-selector relative">
-            <button class="flex items-center">
-                <span class="fi fi-fr mr-2"></span>
-                Français
-                <i class="fas fa-chevron-down ml-2 text-xs"></i>
-            </button>
-            <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
-                    <span class="fi fi-fr mr-2"></span>
-                    Français
-                </a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
-                    <span class="fi fi-us mr-2"></span>
-                    English
-                </a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
-                    <span class="fi fi-mx mr-2"></span>
-                    Español
-                </a>
-            </div>
-        </div>
-        <div class="currency-selector relative">
-            <button class="flex items-center">
-                <span>€ EUR</span>
-                <i class="fas fa-chevron-down ml-2 text-xs"></i>
-            </button>
-            <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
-                <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
-            </div>
-        </div>
+  <!-- Language & Currency Selector (barre supérieure) -->
+  <div class="bg-mexican-red text-white py-2 px-4 flex justify-between items-center">
+    <div class="language-selector relative">
+      <button class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span class="fi fi-fr mr-2"></span>
+        Français
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-fr mr-2"></span> Français
+        </a>
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-us mr-2"></span> English
+        </a>
+        <a href="#" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-mx mr-2"></span> Español
+        </a>
+      </div>
     </div>
+
+    <div class="currency-selector relative">
+      <button id="currencyBtn" class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span id="currencyLabel">€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+        <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+        <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+        <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+        <a href="#" data-currency="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Navigation -->
   <nav class="bg-white shadow-md sticky top-0 z-40">
@@ -199,344 +180,328 @@
       <p class="mt-2 text-white/90">Ajoutez des options pour un voyage 100% serein.</p>
     </div>
   </header>
-  
+
   <!-- Grille Services -->
   <main class="py-12">
-    <div class="container mx-auto px-4">      
+    <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      <!-- Conducteur additionnel -->
-      <article id="conducteur-additionnel" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
-        <div class="flex items-center gap-3">
-          <div class="bg-caribbean-blue text-white w-12 h-12 rounded-full flex items-center justify-center">
-            <i class="fas fa-user-plus"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-caribbean-blue">Conducteur additionnel</h3>
-        </div>
-        <p class="text-gray-600 mt-3">
-          Ajoutez gratuitement un second conducteur au contrat pour partager la route en toute sécurité.
-        </p>
-        <div class="mt-4">
-          <!-- badge en 2 lignes, centré -->
-          <div class="inline-block bg-blue-50 text-caribbean-blue px-3 py-1 rounded-full text-sm text-center">
-          <div class="font-semibold leading-tight">2ème chauffeur Gratuit</div>
-          <div class="font-normal leading-tight">
-            <span class="js-price"
-                  data-eur="7.50" data-usd="8.5" data-cad="12" data-mxn="150">7.50€</span>
-            <span class="opacity-80"> ($150 Pesos) / chauffeur supplémentaire</span>
-          </div>
-        </div>
-      </article>
-
-
-      <!-- Carte SIM mexicaine -->
-      <article id="carte-sim" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
-        <div class="flex items-center gap-3">
-          <div class="bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-            <i class="fas fa-sim-card"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-orange-600">Carte SIM mexicaine</h3>
-        </div>
-        <p class="text-gray-600 mt-3">
-          Restez connectés (Internet, appels locaux, GPS Mobile). Activation et installation incluses.
-        </p>
-        <div class="mt-auto pt-4 flex items-center justify-between">
-           <span class="inline-block bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
-  <span class="js-price"
-        data-eur="25" data-usd="28" data-cad="39" data-mxn="500">25€</span>
-  <span class="opacity-80"> ($500 Pesos)</span>
-</div>
-      </article>
-
-      <!-- GPS -->
-      <article id="gps" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
-        <div class="flex items-center gap-3">
-          <div class="bg-caribbean-green text-white w-12 h-12 rounded-full flex items-center justify-center">
-            <i class="fas fa-location-arrow"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-caribbean-green">GPS</h3>
-        </div>
-        <p class="text-gray-600 mt-3">
-          Cartes de la Riviera Maya à jour et points d’intérêt essentiels.
-        </p>
-        <div class="mt-auto pt-4 flex items-center justify-between">
-          <span class="inline-block bg-green-50 text-caribbean-green px-3 py-1 rounded-full text-sm font-semibold">
-            Gratuit - GPS avec CarPlay sur certains véhicules
-          </span>
-        </div>
-      </article>
-
-      <!-- Siège bébé (violet) -->
-      <article id="siege-bebe" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
-        <div class="flex items-center gap-3">
-          <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-            <i class="fas fa-baby"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-purple-600">Siège bébé</h3>
-        </div>
-        <p class="text-gray-600 mt-3">
-          Siège homologué, installation par nos soins à la remise du véhicule.
-        </p>
-        <div class="mt-4">
-          <span class="inline-block bg-purple-50 text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
-           <span class="js-price"
-        data-eur="2.50" data-usd="3" data-cad="4" data-mxn="50">2.50€</span>
-          <span class="opacity-80"> ($50 Pesos) / jour</span>
-        </div>
-      </article>
-
-      <!-- Réhausseur enfant -->
-      <article id="rehausseur" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
-        <div class="flex items-center gap-3">
-          <div class="bg-caribbean-yellow text-white w-12 h-12 rounded-full flex items-center justify-center">
-            <i class="fas fa-child"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-mexican-yellow">Réhausseur enfant</h3>
-        </div>
-        <p class="text-gray-600 mt-3">
-          Réhausseur adapté aux enfants plus grands pour voyager confortablement.
-        </p>
-        <div class="mt-4">
-          <span class="inline-block bg-yellow-50 text-[#b07e00] px-3 py-1 rounded-full text-sm font-semibold">
-        <span class="js-price"
-              data-eur="2.50" data-usd="3" data-cad="4" data-mxn="50">2.50€</span>
-        <span class="opacity-80"> ($50 Pesos) / jour</span>
-      </div>
-      </article>
-
-      <!-- Lavage de véhicule -->
-      <article id="lavage" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
-        <div class="flex items-center gap-3">
-          <div class="bg-caribbean-pink text-white w-12 h-12 rounded-full flex items-center justify-center">
-            <i class="fas fa-soap"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-[#d74c82]">Lavage de véhicule</h3>
-        </div>
-        <p class="text-gray-600 mt-3">
-          Option “retour propre” : on s’occupe du lavage extérieur + intérieur.
-        </p>
-        <div class="mt-4">
-          <span class="inline-block bg-pink-50 text-[#d74c82] px-3 py-1 rounded-full text-sm font-semibold">
-            <span class="js-price"
-        data-eur="25" data-usd="28" data-cad="39" data-mxn="500">25€</span>
-          <span class="opacity-80"> ($500 Pesos)</span>
-        </div>
-      </article>
-
-      <!-- Assistance Police — centré + cadre rouge -->
-      <div class="md:col-span-3">
-        <article id="assistance-police"
-          class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition border-2 border-red-500 max-w-4xl w-full mx-auto">
+        <!-- Conducteur additionnel -->
+        <article id="conducteur-additionnel" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
           <div class="flex items-center gap-3">
-            <div class="bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
-              <i class="fas fa-star"></i>
+            <div class="bg-caribbean-blue text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-user-plus"></i>
             </div>
-            <h3 class="text-xl font-semibold text-red-600">
-              Assistance problème avec la Police 24/7
-            </h3>
+            <h3 class="text-xl font-semibold text-caribbean-blue">Conducteur additionnel</h3>
           </div>
           <p class="text-gray-600 mt-3">
-            Assistance immédiate en cas de contrôle de police compliqué !
-            Nous mettons à profit nos relations privilégiées avec les autorités locales
-            haut placées (Commandant, Juges) pour vous sortir rapidement de
-            situations délicates sur toute la Riviera Maya.
+            Ajoutez gratuitement un second conducteur au contrat pour partager la route en toute sécurité.
           </p>
-          <div class="mt-4">
-            <span class="inline-block bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-semibold">
-              <span class="js-price"
-                  data-eur="25" data-usd="28" data-cad="39" data-mxn="500">25€</span>
-            <span class="opacity-80"> ($500 Pesos)</span>
+          <div class="mt-4 flex justify-center">
+            <!-- pastille en 2 lignes -->
+            <div class="inline-block bg-blue-50 text-caribbean-blue px-3 py-1 rounded-full text-sm text-center">
+              <div class="font-semibold leading-tight">2ème chauffeur Gratuit</div>
+              <div class="font-normal leading-tight">
+                <span class="js-price" data-eur="7.50" data-usd="8.5" data-cad="12" data-mxn="150">7.50€</span>
+                <span class="opacity-80"> ($150 Pesos) / chauffeur supplémentaire</span>
+              </div>
+            </div>
           </div>
         </article>
-      </div>
 
-        <!-- Note tarifs : sous Assistance Police, alignée et centrée -->
+        <!-- Carte SIM mexicaine -->
+        <article id="carte-sim" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
+          <div class="flex items-center gap-3">
+            <div class="bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-sim-card"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-orange-600">Carte SIM mexicaine</h3>
+          </div>
+          <p class="text-gray-600 mt-3">
+            Restez connectés (Internet, appels locaux, GPS Mobile). Activation et installation incluses.
+          </p>
+          <div class="mt-auto pt-4 flex items-center justify-between">
+            <span class="inline-block bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
+              <span class="js-price" data-eur="25" data-usd="28" data-cad="39" data-mxn="500">25€</span>
+              <span class="opacity-80"> ($500 Pesos)</span>
+            </span>
+          </div>
+        </article>
+
+        <!-- GPS -->
+        <article id="gps" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
+          <div class="flex items-center gap-3">
+            <div class="bg-caribbean-green text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-location-arrow"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-caribbean-green">GPS</h3>
+          </div>
+          <p class="text-gray-600 mt-3">
+            Cartes de la Riviera Maya à jour et points d’intérêt essentiels.
+          </p>
+          <div class="mt-auto pt-4 flex items-center justify-between">
+            <span class="inline-block bg-green-50 text-caribbean-green px-3 py-1 rounded-full text-sm font-semibold">
+              Gratuit - GPS avec CarPlay sur certains véhicules
+            </span>
+          </div>
+        </article>
+
+        <!-- Siège bébé -->
+        <article id="siege-bebe" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+          <div class="flex items-center gap-3">
+            <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-baby"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-purple-600">Siège bébé</h3>
+          </div>
+          <p class="text-gray-600 mt-3">
+            Siège homologué, installation par nos soins à la remise du véhicule.
+          </p>
+          <div class="mt-4">
+            <span class="inline-block bg-purple-50 text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
+              <span class="js-price" data-eur="2.50" data-usd="3" data-cad="4" data-mxn="50">2.50€</span>
+              <span class="opacity-80"> ($50 Pesos) / jour</span>
+            </span>
+          </div>
+        </article>
+
+        <!-- Réhausseur enfant -->
+        <article id="rehausseur" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+          <div class="flex items-center gap-3">
+            <div class="bg-caribbean-yellow text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-child"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-mexican-yellow">Réhausseur enfant</h3>
+          </div>
+          <p class="text-gray-600 mt-3">
+            Réhausseur adapté aux enfants plus grands pour voyager confortablement.
+          </p>
+          <div class="mt-4">
+            <span class="inline-block bg-yellow-50 text-[#b07e00] px-3 py-1 rounded-full text-sm font-semibold">
+              <span class="js-price" data-eur="2.50" data-usd="3" data-cad="4" data-mxn="50">2.50€</span>
+              <span class="opacity-80"> ($50 Pesos) / jour</span>
+            </span>
+          </div>
+        </article>
+
+        <!-- Lavage de véhicule -->
+        <article id="lavage" class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition">
+          <div class="flex items-center gap-3">
+            <div class="bg-caribbean-pink text-white w-12 h-12 rounded-full flex items-center justify-center">
+              <i class="fas fa-soap"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-[#d74c82]">Lavage de véhicule</h3>
+          </div>
+          <p class="text-gray-600 mt-3">
+            Option “retour propre” : on s’occupe du lavage extérieur + intérieur.
+          </p>
+          <div class="mt-4">
+            <span class="inline-block bg-pink-50 text-[#d74c82] px-3 py-1 rounded-full text-sm font-semibold">
+              <span class="js-price" data-eur="25" data-usd="28" data-cad="39" data-mxn="500">25€</span>
+              <span class="opacity-80"> ($500 Pesos)</span>
+            </span>
+          </div>
+        </article>
+
+        <!-- Assistance Police — pleine largeur -->
+        <div class="md:col-span-3">
+          <article id="assistance-police"
+                   class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition border-2 border-red-500 max-w-4xl w-full mx-auto">
+            <div class="flex items-center gap-3">
+              <div class="bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                <i class="fas fa-star"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-red-600">
+                Assistance problème avec la Police 24/7
+              </h3>
+            </div>
+            <p class="text-gray-600 mt-3">
+              Assistance immédiate en cas de contrôle de police compliqué !
+              Nous mettons à profit nos relations privilégiées avec les autorités locales
+              haut placées (Commandant, Juges) pour vous sortir rapidement de
+              situations délicates sur toute la Riviera Maya.
+            </p>
+            <div class="mt-4">
+              <span class="inline-block bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-semibold">
+                <span class="js-price" data-eur="25" data-usd="28" data-cad="39" data-mxn="500">25€</span>
+                <span class="opacity-80"> ($500 Pesos)</span>
+              </span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Note tarifs -->
         <div class="md:col-span-3 flex justify-center mt-3">
           <p class="text-gray-500 text-sm text-center md:whitespace-nowrap">
             * Les tarifs sont indicatifs et peuvent varier à tout moment. Les options sont ajoutées au moment de la
             <a href="index.html#reservation" class="text-caribbean-blue underline">réservation</a>.
           </p>
         </div>
+
       </div>
 
-      <!-- Services complémentaires – fond dégradé en pleine largeur,
-             contenu aligné sur la même largeur que le reste de la page -->
-        <section id="extras" class="mt-10 mb-0 -mb-12">   <!-- -mb-12 “colle” le footer -->
-        <!-- WRAPPER plein écran (100vw) qui sort du conteneur central -->
+      <!-- Services complémentaires -->
+      <section id="extras" class="mt-10 mb-0 -mb-12">
         <div class="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
-          <!-- Bande dégradée pleine largeur -->
           <div class="relative overflow-hidden">
-            <div class="absolute inset-0"
-                 style="background: linear-gradient(135deg, #1DA1F2 0%, #00B894 50%, #FDCB6E 100%);"></div>
-      
-            <!-- CONTENU : même largeur que vos autres sections -->
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, #1DA1F2 0%, #00B894 50%, #FDCB6E 100%);"></div>
             <div class="container mx-auto px-4 py-8 relative">
               <h2 class="text-white text-2xl font-bold flex items-center gap-3">
-                <i class="fas fa-sparkles"></i>
+                <i class="fas fa-magic"></i>
                 Services complémentaires
               </h2>
-    
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-            <!-- Transport privé (plein rang) -->
-            <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3">
-              <div class="flex items-center gap-3">
-                <div class="bg-caribbean-yellow text-gray-900 w-12 h-12 rounded-full flex items-center justify-center">
-                  <i class="fas fa-taxi"></i>
-                </div>
-                <h3 class="text-xl font-semibold text-caribbean-yellow">Transport privé</h3>
-              </div>
-              <div class="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <p class="text-gray-600 sm:mb-0">
-                  Transferts Aéroport ↔ Hôtel, Airbnb, Excursions sur mesure
-                </p>
-                <a href="index.html#contact"
-                   class="bg-caribbean-yellow hover:bg-mexican-green text-gray-900 font-bold py-2 px-4 rounded-full whitespace-nowrap">
-                  Demander un devis
-                </a>
-              </div>
-            </article>
 
-            <!-- Location de Yacht (ORANGE) -->
-            <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
-              <div class="flex items-center gap-3">
-                <div class="bg-mexican-orange text-white w-12 h-12 rounded-full flex items-center justify-center">
-                  <i class="fas fa-ship"></i>
-                </div>
-                <h3 class="text-xl font-semibold text-mexican-orange">Location de Yacht</h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+
+                <!-- Transport privé -->
+                <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition md:col-span-3">
+                  <div class="flex items-center gap-3">
+                    <div class="bg-caribbean-yellow text-gray-900 w-12 h-12 rounded-full flex items-center justify-center">
+                      <i class="fas fa-taxi"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-caribbean-yellow">Transport privé</h3>
+                  </div>
+                  <div class="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <p class="text-gray-600 sm:mb-0">
+                      Transferts Aéroport ↔ Hôtel, Airbnb, Excursions sur mesure
+                    </p>
+                    <a href="index.html#contact"
+                       class="bg-caribbean-yellow hover:bg-mexican-green text-gray-900 font-bold py-2 px-4 rounded-full whitespace-nowrap">
+                      Demander un devis
+                    </a>
+                  </div>
+                </article>
+
+                <!-- Location de Yacht -->
+                <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
+                  <div class="flex items-center gap-3">
+                    <div class="bg-mexican-orange text-white w-12 h-12 rounded-full flex items-center justify-center">
+                      <i class="fas fa-ship"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-mexican-orange">Location de Yacht</h3>
+                  </div>
+                  <p class="text-gray-600 mt-3">
+                    Sorties privées, journée en mer ou coucher de soleil. Skipper inclus, boissons en option.
+                  </p>
+                  <div class="mt-auto pt-4 flex justify-center">
+                    <a href="index.html#contact" class="bg-mexican-orange hover:bg-mexican-green text-white font-bold py-2 px-4 rounded-full">
+                      Demander un devis
+                    </a>
+                  </div>
+                </article>
+
+                <!-- Location de Vacances – Immobilier -->
+                <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
+                  <div class="flex items-center gap-3">
+                    <div class="bg-caribbean-blue text-white w-12 h-12 rounded-full flex items-center justify-center">
+                      <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-caribbean-blue">Location de Vacances – Immobilier</h3>
+                  </div>
+                  <p class="text-gray-600 mt-3">
+                    Appartements, villas et résidences sécurisées à Cancún et sur toute la Riviera Maya.
+                  </p>
+                  <div class="mt-auto pt-4 flex justify-center">
+                    <a href="index.html#contact" class="bg-caribbean-blue hover:bg-mexican-green text-white font-bold py-2 px-4 rounded-full">
+                      Demander un devis
+                    </a>
+                  </div>
+                </article>
+
+                <!-- Excursions -->
+                <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
+                  <div class="flex items-center gap-3">
+                    <div class="bg-caribbean-green text-white w-12 h-12 rounded-full flex items-center justify-center">
+                      <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-caribbean-green">Excursions</h3>
+                  </div>
+                  <p class="text-gray-600 mt-3">
+                    Chichén Itzá, Cenotes, Isla Mujeres, Tulum, parcs naturels… programmes 100% personnalisés.
+                  </p>
+                  <div class="mt-auto pt-4 flex justify-center">
+                    <a href="index.html#contact" class="bg-caribbean-green hover:bg-mexican-yellow text-white font-bold py-2 px-4 rounded-full">
+                      Demander un devis
+                    </a>
+                  </div>
+                </article>
+
               </div>
-              <p class="text-gray-600 mt-3">
-                Sorties privées, journée en mer ou coucher de soleil. Skipper inclus, boissons en option.
-              </p>
-              <div class="mt-auto pt-4 flex justify-center">
-                <a href="index.html#contact"
-                   class="bg-mexican-orange hover:bg-mexican-green text-white font-bold py-2 px-4 rounded-full">
-                  Demander un devis
-                </a>
-              </div>
-            </article>
-        
-            <!-- Location de Vacances – Immobilier (BLEU) -->
-            <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
-              <div class="flex items-center gap-3">
-                <div class="bg-caribbean-blue text-white w-12 h-12 rounded-full flex items-center justify-center">
-                  <i class="fas fa-home"></i>
-                </div>
-                <h3 class="text-xl font-semibold text-caribbean-blue">Location de Vacances – Immobilier</h3>
-              </div>
-              <p class="text-gray-600 mt-3">
-                Appartements, villas et résidences sécurisées à Cancún et sur toute la Riviera Maya.
-              </p>
-              <div class="mt-auto pt-4 flex justify-center">
-                <a href="index.html#contact"
-                   class="bg-caribbean-blue hover:bg-mexican-green text-white font-bold py-2 px-4 rounded-full">
-                  Demander un devis
-                </a>
-              </div>
-            </article>
-        
-            <!-- Excursions (VERT) -->
-            <article class="bg-white rounded-xl shadow p-5 hover:shadow-lg transition flex flex-col">
-              <div class="flex items-center gap-3">
-                <div class="bg-caribbean-green text-white w-12 h-12 rounded-full flex items-center justify-center">
-                  <i class="fas fa-map-marked-alt"></i>
-                </div>
-                <h3 class="text-xl font-semibold text-caribbean-green">Excursions</h3>
-              </div>
-              <p class="text-gray-600 mt-3">
-                Chichén Itzá, Cenotes, Isla Mujeres, Tulum, parcs naturels… programmes 100% personnalisés.
-              </p>
-              <div class="mt-auto pt-4 flex justify-center">
-                <a href="index.html#contact"
-                   class="bg-caribbean-green hover:bg-mexican-yellow text-white font-bold py-2 px-4 rounded-full">
-                  Demander un devis
-                </a>
-              </div>
-            </article>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </div> <!-- /container -->
-</main>
+      </section>
 
+    </div>
+  </main>
 
-   <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
-                    <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
-                    <div class="flex space-x-4 mt-4">
-
-
-          <!-- Facebook -->
-          <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          
-          <!-- Instagram -->
-          <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-instagram"></i>
-          </a>
-          
-          <!-- TikTok -->
-          <a href="http://www.tiktok.com/@yoancremona" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-tiktok"></i>
-          </a>
-
-          <!-- YouTube -->
-          <a href="https://www.youtube.com/@StreetCarSolution"
-             class="text-gray-400 hover:text-white"
-             target="_blank" rel="noopener noreferrer"
-             aria-label="Chaîne YouTube Street Car Solution">
-            <i class="fab fa-youtube"></i>
-          </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
-                        <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
-                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li><li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Informations</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
-                    <form class="flex">
-                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
-                        <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
-            </div>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#"
+               class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#"
+               class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="http://www.tiktok.com/@yoancremona"
+               class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://www.youtube.com/@StreetCarSolution"
+               class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Chaîne YouTube Street Car Solution">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
         </div>
-    </footer>
 
-  <!-- Script burger (identique à l’index, version courte) -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+            <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+            <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+            <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
+            <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Informations</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
+          <form class="flex">
+            <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+            <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script burger -->
   <script>
     const burgerBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -560,105 +525,104 @@
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
       window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
     }
+  </script>
 
-    <!-- Dropdown Langue & Devise (même logique que sur index.html) -->
-<script>
-  const langSel = document.querySelector('.language-selector');
-  const langDrop = document.querySelector('.language-dropdown');
-  const curSel  = document.querySelector('.currency-selector');
-  const curDrop = document.querySelector('.currency-dropdown');
-  const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+  <!-- Dropdown Langue & Devise -->
+  <script>
+    const langSel = document.querySelector('.language-selector');
+    const langDrop = document.querySelector('.language-dropdown');
+    const curSel  = document.querySelector('.currency-selector');
+    const curDrop = document.querySelector('.currency-dropdown');
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
 
-  function setupDropdown(trigger, panel) {
-    if (!trigger || !panel) return;
-    panel.classList.add('hidden');
-    let hideTimer = null;
-    const btn = trigger.querySelector('button');
+    function setupDropdown(trigger, panel) {
+      if (!trigger || !panel) return;
+      panel.classList.add('hidden');
+      let hideTimer = null;
+      const btn = trigger.querySelector('button');
 
-    const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
-    const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
-    const toggle = (e) => {
-      e.stopPropagation();
-      const show = panel.classList.contains('hidden');
-      if (panel !== langDrop) langDrop?.classList.add('hidden');
-      if (panel !== curDrop)  curDrop?.classList.add('hidden');
-      if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); }
-      else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
-    };
+      const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
+      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
+      const toggle = (e) => {
+        e.stopPropagation();
+        const show = panel.classList.contains('hidden');
+        if (panel !== langDrop) langDrop?.classList.add('hidden');
+        if (panel !== curDrop)  curDrop?.classList.add('hidden');
+        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); }
+        else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
+      };
 
-    if (isDesktop.matches) {
-      trigger.addEventListener('mouseenter', open);
-      trigger.addEventListener('mouseleave', close);
-      panel.addEventListener('mouseenter', open);
-      panel.addEventListener('mouseleave', close);
-      btn?.addEventListener('focus', open);
-      btn?.addEventListener('blur', close);
-    } else {
-      trigger.addEventListener('click', toggle);
+      if (isDesktop.matches) {
+        trigger.addEventListener('mouseenter', open);
+        trigger.addEventListener('mouseleave', close);
+        panel.addEventListener('mouseenter', open);
+        panel.addEventListener('mouseleave', close);
+        btn?.addEventListener('focus', open);
+        btn?.addEventListener('blur', close);
+      } else {
+        trigger.addEventListener('click', toggle);
+      }
+      panel.addEventListener('click', (e) => e.stopPropagation());
     }
-    panel.addEventListener('click', (e) => e.stopPropagation());
-  }
 
-  setupDropdown(langSel, langDrop);
-  setupDropdown(curSel, curDrop);
+    setupDropdown(langSel, langDrop);
+    setupDropdown(curSel, curDrop);
 
-  document.addEventListener('click',   () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
-  window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
-</script>
+    document.addEventListener('click',   () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+    window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+  </script>
 
-<!-- Conversion des prix (ne touche qu'au nombre) -->
-<script>
-(() => {
-  const MAP = {
-    EUR: { key: 'eur', fmt: v => `${v}€` },
-    USD: { key: 'usd', fmt: v => `$${v} USD` },
-    CAD: { key: 'cad', fmt: v => `$${v} CAD` },
-    MXN: { key: 'mxn', fmt: v => `$${v} MXN` }
-  };
+  <!-- Conversion des prix -->
+  <script>
+    (() => {
+      const MAP = {
+        EUR: { key: 'eur', fmt: v => `${v}€` },
+        USD: { key: 'usd', fmt: v => `$${v} USD` },
+        CAD: { key: 'cad', fmt: v => `$${v} CAD` },
+        MXN: { key: 'mxn', fmt: v => `$${v} MXN` }
+      };
 
-  function detectCurrency() {
-    const t = document.getElementById('currencyLabel')?.textContent || '€ EUR';
-    if (t.includes('MXN')) return 'MXN';
-    if (t.includes('USD')) return 'USD';
-    if (t.includes('CAD')) return 'CAD';
-    return 'EUR';
-  }
+      function detectCurrency() {
+        const t = document.getElementById('currencyLabel')?.textContent || '€ EUR';
+        if (t.includes('MXN')) return 'MXN';
+        if (t.includes('USD')) return 'USD';
+        if (t.includes('CAD')) return 'CAD';
+        return 'EUR';
+      }
 
-  function renderPrices(force) {
-    const cur = force || detectCurrency();
-    const cfg = MAP[cur];
-    document.querySelectorAll('.js-price').forEach(el => {
-      const val = el.dataset[cfg.key];
-      if (val) el.textContent = cfg.fmt(val);
-    });
-  }
+      function renderPrices(force) {
+        const cur = force || detectCurrency();
+        const cfg = MAP[cur];
+        document.querySelectorAll('.js-price').forEach(el => {
+          const val = el.dataset[cfg.key];
+          if (val) el.textContent = cfg.fmt(val);
+        });
+      }
 
-  // clic sur une devise de la liste
-  document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      e.stopPropagation(); // évite fermeture immédiate par le "click" global
-      const cur = a.dataset.currency;
-      const labelMap = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
-      const lbl = document.getElementById('currencyLabel');
-      if (lbl) lbl.textContent = labelMap[cur];
-      renderPrices(cur);
-      document.querySelector('.currency-dropdown')?.classList.add('hidden');
-    });
-  });
+      // clic sur une devise
+      document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          const cur = a.dataset.currency;
+          const labelMap = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
+          const lbl = document.getElementById('currencyLabel');
+          if (lbl) lbl.textContent = labelMap[cur];
+          renderPrices(cur);
+          document.querySelector('.currency-dropdown')?.classList.add('hidden');
+        });
+      });
 
-  // fallback si jamais le script dropdown n'est pas chargé
-  document.getElementById('currencyBtn')?.addEventListener('click', (e) => {
-    const panel = document.querySelector('.currency-dropdown');
-    if (!panel) return;
-    // si rien n'a géré l'ouverture, on toggle
-    if (panel.classList.contains('hidden')) { e.stopPropagation(); panel.classList.remove('hidden'); }
-  });
+      // fallback: ouverture si le script dropdown n'a pas capté
+      document.getElementById('currencyBtn')?.addEventListener('click', (e) => {
+        const panel = document.querySelector('.currency-dropdown');
+        if (!panel) return;
+        if (panel.classList.contains('hidden')) { e.stopPropagation(); panel.classList.remove('hidden'); }
+      });
 
-  document.addEventListener('DOMContentLoaded', renderPrices);
-})();
-</script>
+      document.addEventListener('DOMContentLoaded', renderPrices);
+    })();
+  </script>
 </body>
 </html>
-
