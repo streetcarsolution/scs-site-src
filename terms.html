@@ -6,10 +6,29 @@
   <meta name="robots" content="index, follow">
   <title>Conditions Générales – Street Car Solution</title>
 
+  <!-- Config Tailwind (AVANT le CDN) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            caribbean: { blue:'#1DA1F2', green:'#00B894', yellow:'#FDCB6E', orange:'#E17055' },
+            mexican:   { red:'#E63946', yellow:'#F1C40F', green:'#2ECC71', blue:'#3498DB', orange:'#E67E22' }
+          },
+          fontFamily: {
+            sans: ['Montserrat','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
 
+  <!-- (optionnel) Icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- SEO/Social -->
   <link rel="canonical" href="https://streetcarsolution.com/terms.html">
   <meta name="description" content="Conditions générales de location Street Car Solution (Cancún, Mexique) : réservations, paiement, caution, assurances, carburant, kilométrage, retours, annulations.">
   <meta property="og:site_name" content="Street Car Solution">
@@ -22,186 +41,198 @@
   <link rel="icon" href="/assets/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/logo.png">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            caribbean: { blue:'#1DA1F2', green:'#00B894', yellow:'#FDCB6E', orange:'#E17055' },
-            mexican:   { red:'#E63946', yellow:'#F1C40F', green:'#2ECC71', blue:'#3498DB', orange:'#E67E22' }
-          },
-          fontFamily: { sans:['Montserrat','sans-serif'] }
-        }
-      }
-    }
-  </script>
-
+  <!-- Styles pour l’espacement et les titres en gras -->
   <style>
-  /* Styles pour les pages légales */
-  .legal .clause-title{
-    display:block;          /* force à passer à la ligne */
-    font-weight:700;        /* gras */
-    margin-top:1.25rem;     /* espace au-dessus (≈ mt-5) */
-    font-size:1.1rem;       /* un peu plus grand que le texte */
-  }
-  .legal .clause-title:first-child{ margin-top:0; }
-</style>
+    /* Met un espace régulier avant chaque section et titre en gras */
+    .legal h2{
+      margin-top: 1.5rem;   /* espace entre les points */
+      font-weight: 700;     /* titres en gras */
+      font-size: 1.125rem;  /* ≈ text-lg */
+      line-height: 1.4;
+    }
+    .legal h2:first-of-type{ margin-top: .5rem; }
+    .legal p, .legal ul, .legal ol{ margin-top: .5rem; }
+    .legal ul{ padding-left: 1.25rem; }
+  </style>
 </head>
-<body class="font-sans bg-gray-50 text-lg text-gray-800">
 
-  <!-- Barre langue / devise -->
-  <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
-    <div class="language-selector relative">
-      <button class="flex items-center"><span class="fi fi-fr mr-2"></span>Français<i class="fas fa-chevron-down ml-2 text-xs"></i></button>
-      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
-        <a href="terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center"><span class="fi fi-fr mr-2"></span>Français</a>
-        <a href="en/terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center"><span class="fi fi-us mr-2"></span>English</a>
-        <a href="es/terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center"><span class="fi fi-mx mr-2"></span>Español</a>
-      </div>
-    </div>
-    <div class="currency-selector relative">
-      <button id="currencyBtn" class="flex items-center"><span id="currencyLabel">€ EUR</span><i class="fas fa-chevron-down ml-2 text-xs"></i></button>
-      <div class="currency-dropdown hidden absolute right-0 bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-36">
-        <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
-        <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
-        <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
-        <a href="#" data-currency="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
-      </div>
-    </div>
-  </div>
+<body class="font-sans bg-gray-50 text-gray-800">
 
-  <!-- NAV -->
-  <nav class="bg-white shadow-md sticky top-10 z-40">
-    <div class="container mx-auto px-4 py-3">
-      <div class="flex items-center justify-between">
-        <a href="index.html" class="flex items-center">
-          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution" class="h-16 mr-2">
-          <span class="text-2xl font-bold"><span class="text-mexican-orange">Street</span><span class="text-caribbean-blue">Car</span><span class="text-mexican-green">Solution</span></span>
-        </a>
-        <div class="hidden md:flex space-x-8">
-          <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
-          <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
-          <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
-          <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages Clients</a>
-          <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
-        </div>
-        <button id="mobileMenuBtn" class="md:hidden text-gray-800" aria-label="Ouvrir le menu"><i class="fas fa-bars text-2xl"></i></button>
-      </div>
-    </div>
-  </nav>
-  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t">
-    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-      <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
-      <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
-      <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
-      <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages Clients</a>
-      <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
-    <div class="container mx-auto px-4 py-10">
-      <h1 class="text-3xl md:text-4xl font-bold">Conditions Générales de Location</h1>
-      <p class="mt-2 text-white/90">Applicables aux locations Street Car Solution à Cancún et sur la Riviera Maya.</p>
+  <!-- En-tête simple (facultatif) -->
+  <header class="bg-white border-b">
+    <div class="container mx-auto px-4 py-6">
+      <a href="index.html" class="inline-flex items-center gap-3">
+        <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution" class="h-10 w-10 rounded-full">
+        <span class="font-bold text-xl">
+          <span class="text-mexican-orange">Street</span>
+          <span class="text-caribbean-blue">Car</span>
+          <span class="text-mexican-green">Solution</span>
+        </span>
+      </a>
     </div>
   </header>
 
   <!-- Contenu -->
-  <main class="container mx-auto px-4 py-10 prose prose-lg max-w-4xl">
+  <main class="container mx-auto px-4 py-10 prose prose-lg max-w-4xl legal">
+    <h1 class="!mb-2">Conditions Générales</h1>
     <p><strong>Dernière mise à jour :</strong> 15/09/2025</p>
 
-    <h2>1. Objet</h2>
+    <h2><strong>1. Objet</strong></h2>
     <p>Les présentes conditions encadrent la réservation et la location de véhicules proposées par <strong>Street Car Solution</strong> (Cancún, Quintana Roo, Mexique). Toute réservation implique l’acceptation sans réserve de ces conditions.</p>
 
-    <h2>2. Réservation &amp; contrat</h2>
+    <h2><strong>2. Réservation &amp; contrat</strong></h2>
     <ul>
       <li>La réservation en ligne vaut demande ; elle est confirmée par message (WhatsApp / email) et/ou versement d’un acompte si demandé.</li>
       <li>Le contrat est signé lors de la remise du véhicule, après vérification des pièces (permis, passeport/ID) du ou des conducteurs.</li>
       <li>Un véhicule « ou similaire » peut être délivré selon les disponibilités.</li>
     </ul>
 
-    <h2>3. Conducteur, âge &amp; pièces</h2>
+    <h2><strong>3. Conducteur, âge &amp; pièces</strong></h2>
     <ul>
       <li>Âge minimum : 21 ans (25 ans pour certains modèles). Permis valide depuis 2 ans minimum.</li>
+      <li>Pièces requises : permis de conduire, passeport/ID, et carte bancaire au nom du conducteur principal.</li>
       <li>Conducteur additionnel possible (voir page Services).</li>
     </ul>
 
-    <h2>4. Tarifs, paiement &amp; dépôt de garantie</h2>
+    <h2><strong>4. Tarifs, paiement &amp; dépôt de garantie</strong></h2>
     <ul>
-      <li>Nos tarifs incluent l’assurance et le kilométrage illimité indiqués sur le site sauf mention contraire.</li>
-      <li>Le paiement s’effectue selon les moyens acceptés (espèces MXN, carte, etc.).</li>
-      <li>Un dépôt/caution peut être exigé à la remise du véhicule. Il est restitué après retour, déduction faite d’éventuels frais (carburant manquant, dommages non couverts, amendes…).</li>
+      <li>Les tarifs incluent l’assurance et le kilométrage illimité indiqués sur le site sauf mention contraire.</li>
+      <li>Le paiement s’effectue selon les moyens acceptés (pesos MXN, carte, etc.).</li>
+      <li>Un dépôt/caution peut être exigé à la remise du véhicule. Il est restitué après retour, déduction faite des éventuels frais (carburant manquant, amendes, dommages, retards…).</li>
     </ul>
 
-    <h2>5. Assurances &amp; franchise</h2>
-    <p>Le niveau de couverture (responsabilité civile, dommages, vol…) et la franchise correspondante sont précisés au contrat. Certains dommages ou usages sont exclus (pneus, pare-brise, conduite hors routes autorisées, conduite en état d’ivresse, etc.). Le locataire demeure responsable des amendes et infractions.</p>
-
-    <h2>6. Kilométrage, carburant &amp; usage</h2>
+    <h2><strong>5. Assurances &amp; responsabilité</strong></h2>
     <ul>
-      <li>Kilométrage : illimité sauf mention contraire au contrat.</li>
-      <li>Carburant : politique <em>plein/plein</em> (frais si carburant manquant).</li>
-      <li>Usage : conduite au Mexique uniquement, sur routes ouvertes à la circulation. Animaux/objets salissants : prévoir protection, des frais de nettoyage peuvent s’appliquer.</li>
+      <li>Le niveau de couverture est indiqué lors de la réservation (responsabilité civile au minimum). Des options complémentaires peuvent être proposées.</li>
+      <li>Les exclusions usuelles s’appliquent (conduite en état d’ivresse, hors routes autorisées, négligence, usage non autorisé…).</li>
+      <li>En cas d’accident, vol ou sinistre, le locataire doit prévenir immédiatement Street Car Solution et les autorités compétentes.</li>
     </ul>
 
-    <h2>7. Livraison, reprise &amp; retours</h2>
+    <h2><strong>6. Carburant &amp; kilométrage</strong></h2>
     <ul>
-      <li>Livraison/reprise à l’aéroport, à l’hôtel ou à l’adresse convenue (voir page Services).</li>
-      <li>Tout retard de restitution peut entraîner la facturation d’une journée supplémentaire.</li>
+      <li>Le véhicule est remis avec un niveau de carburant défini et doit être restitué au même niveau, sauf option « retour plein ». Le cas échéant, des frais de réapprovisionnement s’appliquent.</li>
+      <li>Le kilométrage est illimité sauf mention contraire sur l’offre/contrat.</li>
     </ul>
 
-    <h2>8. Incident, panne, accident</h2>
+    <h2><strong>7. Prise en charge, retours &amp; retard</strong></h2>
     <ul>
-      <li>Assistance 24/7 : contactez-nous immédiatement en cas de problème.</li>
-      <li>Accident : déclaration aux autorités si nécessaire, constat et rapport de police requis pour l’assurance.</li>
+      <li>Les lieux de prise en charge et de retour (aéroport, hôtel, etc.) sont convenus lors de la réservation.</li>
+      <li>Tout retard non signalé peut entraîner des frais supplémentaires selon la grille en vigueur.</li>
+      <li>Un état des lieux (départ/retour) est effectué ; toute anomalie non signalée au départ pourra être facturée.</li>
     </ul>
 
-    <h2>9. Annulation &amp; no-show</h2>
+    <h2><strong>8. Utilisation du véhicule</strong></h2>
     <ul>
-      <li>Annulation sans frais jusqu’à 48 h avant l’heure prévue (sauf conditions spéciales mentionnées au devis).</li>
-      <li><em>No-show</em> : les sommes versées peuvent être conservées au titre des frais engagés.</li>
+      <li>Le véhicule doit être utilisé conformément au code de la route et aux recommandations du constructeur.</li>
+      <li>Il est interdit de fumer à l’intérieur du véhicule. Des frais de nettoyage peuvent s’appliquer en cas d’odeurs persistantes, taches ou sable excessif.</li>
+      <li>Les trajets hors zones autorisées doivent être validés au préalable.</li>
     </ul>
 
-    <h2>10. Données personnelles</h2>
-    <p>Vos données sont traitées conformément à notre <a href="privacy.html" class="text-caribbean-blue underline">Politique de confidentialité</a>.</p>
+    <h2><strong>9. Amendes, dommages &amp; immobilisation</strong></h2>
+    <ul>
+      <li>Les amendes, péages et infractions durant la location sont à la charge du locataire.</li>
+      <li>En cas de dommage, les frais de réparation et/ou d’immobilisation peuvent être facturés selon les conditions d’assurance souscrites.</li>
+    </ul>
 
-    <h2>11. Droit applicable &amp; litiges</h2>
-    <p>Les présentes sont soumises au droit mexicain (État de Quintana Roo). À défaut d’accord amiable, compétence des tribunaux de Cancún.</p>
+    <h2><strong>10. Annulation &amp; no-show</strong></h2>
+    <ul>
+      <li>Les conditions d’annulation sont précisées lors de la réservation (délais, frais éventuels).</li>
+      <li>En cas de non-présentation (« no-show »), l’acompte peut rester dû.</li>
+    </ul>
+
+    <h2><strong>11. Force majeure</strong></h2>
+    <p>Street Car Solution ne saurait être tenue responsable de l’inexécution ou du retard imputable à un cas de force majeure (événement extérieur imprévisible et irrésistible).</p>
+
+    <h2><strong>12. Données personnelles</strong></h2>
+    <p>Vos données sont traitées conformément à notre <a href="privacy.html" class="text-caribbean-blue underline">Politique de Confidentialité</a>.</p>
+
+    <h2><strong>13. Droit applicable &amp; litiges</strong></h2>
+    <p>Les présentes sont soumises au droit Mexicain (État de Quintana Roo). À défaut d’accord amiable, tout litige relèvera des tribunaux compétents des tribunaux de Cancún, Quintana Roo.</p>
 
     <p class="text-sm text-gray-500">Ces informations sont fournies à titre indicatif et ne constituent pas un conseil juridique. Veuillez vérifier les mentions exactes figurant sur votre contrat au moment de la remise du véhicule.</p>
 
     <div class="mt-8 p-4 bg-blue-50 rounded-lg">
-      <p><strong>Contact :</strong> Street Car Solution – Cancún, Quintana Roo, Mexique • E-mail : <a href="mailto:contact@streetcarsolution.com" class="underline">contact@streetcarsolution.com</a></p>
+      <p><strong>Contact :</strong> Street Car Solution – Quintana Roo, Mexique • E-mail : <a href="mailto:reservation@streetcarsolution.com" class="underline">reservation@streetcarsolution.com</a></p>
     </div>
   </main>
 
   <!-- Footer (liens mis à jour) -->
-  <footer class="bg-gray-900 text-white py-10">
-    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
-        <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
-        <p class="text-gray-400">Location de voitures à Cancún &amp; Riviera Maya.</p>
-      </div>
-      <div>
-        <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
-        <ul class="space-y-2">
-          <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
-          <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
-          <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
-          <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
-          <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
-          <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-xl font-bold mb-4">Contact</h3>
-        <p class="text-gray-400"><a href="mailto:contact@streetcarsolution.com" class="underline">contact@streetcarsolution.com</a></p>
-      </div>
-    </div>
-    <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400">
-      <p>&copy; 2025 Street Car Solution. Tous droits réservés.</p>
-    </div>
-  </footer>
+  <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+                    <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
+                    <div class="flex space-x-4 mt-4">
+
+
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+          </a>
+          
+          <!-- TikTok -->
+          <a href="http://www.tiktok.com/@yoancremona" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-tiktok"></i>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@StreetCarSolution"
+             class="text-gray-400 hover:text-white"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Chaîne YouTube Street Car Solution">
+            <i class="fab fa-youtube"></i>
+          </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Informations</h3>
+                    <ul class="space-y-2">
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
 
   <!-- Scripts menus (identiques à tes pages) -->
   <script>
