@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="index, follow">
+  <title>FAQ – Street Car Solution</title>
+
+  <!-- Tailwind config AVANT le CDN -->
+  <script>
+    tailwind = window.tailwind || {};
+    tailwind.config = {
+      theme: {
+        fontSize: {
+          sm: '0.95rem', base: '1.05rem', lg: '1.20rem', xl: '1.35rem',
+          '2xl': '1.65rem', '3xl': '2rem', '4xl': '2.5rem', '5xl': '3rem'
+        },
+        extend: {
+          colors: {
+            caribbean: { blue:'#1DA1F2', green:'#00B894', yellow:'#FDCB6E', orange:'#E17055' },
+            mexican:   { red:'#E63946', yellow:'#F1C40F', green:'#2ECC71', blue:'#3498DB', orange:'#E67E22' }
+          },
+          fontFamily: {
+            sans: ['Montserrat','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','sans-serif'],
+            heading: ['"Fredoka One"','cursive']
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icônes / drapeaux -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://streetcarsolution.com/faq.html">
+  <meta name="description" content="Questions fréquentes sur Street Car Solution : réservation, dépôt de garantie, assurance, kilométrage, livraison/retour, amendes et assistance 24/7.">
+  <meta property="og:site_name" content="Street Car Solution">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FAQ – Street Car Solution">
+  <meta property="og:description" content="Toutes les réponses à vos questions pour louer une voiture sereinement à Cancún et sur la Riviera Maya.">
+  <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+  <meta property="og:url" content="https://streetcarsolution.com/faq.html">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+
+  <!-- Styles FAQ -->
+  <style>
+    details summary { list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] summary .chev { transform: rotate(180deg); }
+    .faq-card { transition: box-shadow .2s, transform .2s; }
+    .faq-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,.08); transform: translateY(-1px); }
+  </style>
+
+  <!-- JSON-LD FAQPage (extrait) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Comment réserver ?","acceptedAnswer":{"@type":"Answer","text":"Choisissez un véhicule, vos dates et validez la pré-réservation depuis le site. Nous confirmons ensuite par WhatsApp/email et, si nécessaire, un acompte peut être demandé."}},
+      {"@type":"Question","name":"Quel est le dépôt de garantie ?","acceptedAnswer":{"@type":"Answer","text":"Un dépôt (caution) est demandé au départ du véhicule. Son montant varie selon la catégorie; il est débloqué au retour après vérifications."}},
+      {"@type":"Question","name":"Le kilométrage est-il illimité ?","acceptedAnswer":{"@type":"Answer","text":"Oui, le kilométrage illimité est inclus sur toutes les catégories, sauf mention contraire dans l'offre."}},
+      {"@type":"Question","name":"Assistance en cas de panne ou d'accident ?","acceptedAnswer":{"@type":"Answer","text":"Assistance 24/7. Contactez-nous immédiatement; nous coordonnons le dépannage, le remplacement ou le remorquage selon les cas."}},
+      {"@type":"Question","name":"Puis-je ajouter un conducteur ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Un conducteur additionnel peut être ajouté gratuitement; d'autres conducteurs supplémentaires sont possibles avec un petit coût par conducteur."}},
+      {"@type":"Question","name":"Politique carburant","acceptedAnswer":{"@type":"Answer","text":"Plein à la prise, plein au retour. Des frais peuvent s'appliquer si le niveau de carburant est inférieur."}}
+    ]
+  }
+  </script>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 overflow-x-hidden">
+
+  <!-- Barre langue/devise -->
+  <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
+    <!-- Langues -->
+    <div class="language-selector relative">
+      <button class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span class="fi fi-fr mr-2"></span>
+        Français
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
+        <a href="faq.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-fr mr-2"></span> Français
+        </a>
+        <a href="en/faq.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-us mr-2"></span> English
+        </a>
+        <a href="es/faq.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-mx mr-2"></span> Español
+        </a>
+      </div>
+    </div>
+
+    <!-- Devise (visuel) -->
+    <div class="currency-selector relative">
+      <button id="currencyBtn" class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span id="currencyLabel">€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+        <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+        <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+        <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+        <a href="#" data-currency="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="bg-white shadow-md sticky top-10 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution Logo" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+          <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+          <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+          <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages</a>
+          <a href="faq.html" class="text-caribbean-blue font-semibold">FAQ</a>
+        </div>
+
+        <!-- Burger -->
+        <button id="mobileMenuBtn" class="md:hidden text-gray-800" aria-label="Ouvrir le menu" aria-controls="mobileMenu" aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+      <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+      <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+      <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages</a>
+      <a href="faq.html" class="text-caribbean-blue font-semibold">FAQ</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
+    <div class="container mx-auto px-4 py-12">
+      <h1 class="text-3xl md:text-4xl font-heading font-bold">Foire aux Questions</h1>
+      <p class="mt-2 text-white/90">Toutes les réponses pour une location 100% sereine.</p>
+    </div>
+  </header>
+
+  <!-- Contenu -->
+  <main class="container mx-auto px-4 py-10 max-w-5xl">
+    <p class="text-gray-500 mb-6"><strong>Dernière mise à jour :</strong> 15/09/2025</p>
+
+    <!-- Filtres rapides -->
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+      <a href="#resa" class="bg-white rounded-xl shadow px-4 py-3 hover:shadow-md">🗓️ Réservation</a>
+      <a href="#assurance" class="bg-white rounded-xl shadow px-4 py-3 hover:shadow-md">🛡️ Assurances & Caution</a>
+      <a href="#utilisation" class="bg-white rounded-xl shadow px-4 py-3 hover:shadow-md">🚗 Utilisation du véhicule</a>
+      <a href="#logistique" class="bg-white rounded-xl shadow px-4 py-3 hover:shadow-md">📍 Livraison & Retour</a>
+    </div>
+
+    <!-- Bloc FAQ -->
+    <section id="resa" class="mb-10">
+      <h2 class="text-2xl font-bold text-caribbean-blue mb-4">Réservation</h2>
+
+      <div class="space-y-3">
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Comment réserver ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Choisissez votre véhicule et vos dates sur le site, puis validez la <a href="index.html#reservation" class="text-caribbean-blue underline">pré-réservation</a>.
+            Nous confirmons par WhatsApp/email. Un acompte peut être demandé selon la période.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Puis-je modifier ou annuler ma réservation ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Oui, contactez-nous dès que possible. Les modifications dépendent des disponibilités. Les conditions d’annulation sont précisées dans nos
+            <a href="terms.html" class="text-caribbean-blue underline">Conditions Générales</a>.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Âge minimum et permis requis ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Âge minimum : 21 ans (25 ans pour certains modèles). Permis de conduire en cours de validité depuis au moins 2 ans. Un passeport/ID peut être demandé.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="assurance" class="mb-10">
+      <h2 class="text-2xl font-bold text-caribbean-blue mb-4">Assurances, Dépôt & Paiement</h2>
+
+      <div class="space-y-3">
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Quelles assurances sont incluses ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Assurance responsabilité civile & kilométrage illimité inclus. Des protections complémentaires peuvent être proposées au départ selon le véhicule.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Quel est le dépôt de garantie (caution) ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Un dépôt est bloqué au départ du véhicule (montant variable selon la catégorie). Il est libéré au retour après vérification du véhicule et du carburant.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Quels moyens de paiement acceptez-vous ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Espèces (MXN/EUR/USD), carte bancaire et transferts selon les cas. Les numéros de carte ne sont pas stockés sur notre site.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="utilisation" class="mb-10">
+      <h2 class="text-2xl font-bold text-caribbean-blue mb-4">Utilisation du véhicule</h2>
+
+      <div class="space-y-3">
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Le kilométrage est-il illimité ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Oui, il est illimité (sauf mention spécifique sur certains véhicules/promotions).
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Politique carburant</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Plein à la prise, plein au retour. Si le niveau est inférieur, le complément de carburant et des frais de service peuvent s’appliquer.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Conducteurs additionnels & sièges enfants</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            2<sup>ème</sup> conducteur gratuit (autres conducteurs possibles avec un léger coût par conducteur).
+            Sièges bébé et réhausseurs disponibles sur demande. GPS/CarPlay présent sur certains modèles.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Que faire en cas de panne, d’accident ou d’amende ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Contactez-nous 24/7 immédiatement. Nous vous assisterons (dépannage, constat, conseils).  
+            En cas de contrôle compliqué, notre option « Assistance Police 24/7 » vous met en relation directe avec notre équipe.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="logistique" class="mb-10">
+      <h2 class="text-2xl font-bold text-caribbean-blue mb-4">Livraison, Retour & Zones de circulation</h2>
+
+      <div class="space-y-3">
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Où puis-je récupérer et rendre la voiture ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Aéroport, hôtel ou point défini avec vous à Cancún et sur la Riviera Maya. Merci d’indiquer votre vol/lieu à la réservation pour une remise fluide.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Puis-je sortir de l’État / aller à l’étranger ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            La circulation est autorisée dans le Quintana Roo et la péninsule du Yucatán. Le passage de frontière (ex. Belize/Guatemala) n’est pas autorisé.
+            Demandez-nous si vous prévoyez un long trajet pour vérifier la couverture.
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl p-5 faq-card">
+          <summary class="flex items-center justify-between cursor-pointer">
+            <span class="font-semibold">Retard au retour : comment ça se passe ?</span>
+            <i class="chev fas fa-chevron-down transition-transform"></i>
+          </summary>
+          <div class="mt-3 text-gray-700">
+            Prévenez-nous au plus tôt. Une tolérance courte peut s’appliquer selon les disponibilités; au-delà, des frais supplémentaires journaliers/horaires peuvent être facturés.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <div class="bg-white rounded-2xl p-6 shadow">
+      <h3 class="text-xl font-semibold mb-2">Une autre question ?</h3>
+      <p class="text-gray-700 mb-4">Écrivez-nous, on répond vite 👋</p>
+      <a href="index.html#contact" class="inline-flex items-center bg-caribbean-blue hover:bg-mexican-green text-white font-semibold px-5 py-3 rounded-full">
+        <i class="fas fa-paper-plane mr-2"></i> Contacter l’équipe
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 mt-10">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+            <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+            <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+            <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages</a></li>
+            <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Informations</h3>
+          <ul class="space-y-2">
+            <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
+          <form class="flex">
+            <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+            <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 Street Car Solution. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts : burger + dropdown (mêmes que les autres pages) -->
+  <script>
+    // Burger
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+      };
+      const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
+      };
+      burgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+
+    // Dropdown langue/devise
+    const langSel = document.querySelector('.language-selector');
+    const langDrop = document.querySelector('.language-dropdown');
+    const curSel  = document.querySelector('.currency-selector');
+    const curDrop = document.querySelector('.currency-dropdown');
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    function setupDropdown(trigger, panel) {
+      if (!trigger || !panel) return;
+      panel.classList.add('hidden');
+      let hideTimer = null;
+      const btn = trigger.querySelector('button');
+
+      const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
+      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
+      const toggle = (e) => {
+        e.stopPropagation();
+        const show = panel.classList.contains('hidden');
+        if (panel !== langDrop) langDrop?.classList.add('hidden');
+        if (panel !== curDrop)  curDrop?.classList.add('hidden');
+        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); }
+        else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
+      };
+
+      if (isDesktop.matches) {
+        trigger.addEventListener('mouseenter', open);
+        trigger.addEventListener('mouseleave', close);
+        panel.addEventListener('mouseenter', open);
+        panel.addEventListener('mouseleave', close);
+        btn?.addEventListener('focus', open);
+        btn?.addEventListener('blur', close);
+      } else {
+        trigger.addEventListener('click', toggle);
+      }
+      panel.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    setupDropdown(langSel, langDrop);
+    setupDropdown(curSel, curDrop);
+
+    // Label devise (visuel)
+    document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        const map = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
+        document.getElementById('currencyLabel').textContent = map[a.dataset.currency] || '€ EUR';
+        curDrop?.classList.add('hidden');
+      });
+    });
+
+    document.addEventListener('click',   () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+    window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+  </script>
+</body>
+</html>
