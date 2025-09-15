@@ -6,29 +6,35 @@
   <meta name="robots" content="index, follow">
   <title>Conditions Générales – Street Car Solution</title>
 
-  <!-- Config Tailwind (AVANT le CDN) -->
+  <!-- Tailwind config AVANT le CDN -->
   <script>
+    tailwind = window.tailwind || {};
     tailwind.config = {
       theme: {
+        fontSize: {
+          sm: '0.95rem', base: '1.05rem', lg: '1.20rem', xl: '1.35rem',
+          '2xl': '1.65rem', '3xl': '2rem', '4xl': '2.5rem', '5xl': '3rem'
+        },
         extend: {
           colors: {
             caribbean: { blue:'#1DA1F2', green:'#00B894', yellow:'#FDCB6E', orange:'#E17055' },
             mexican:   { red:'#E63946', yellow:'#F1C40F', green:'#2ECC71', blue:'#3498DB', orange:'#E67E22' }
           },
           fontFamily: {
-            sans: ['Montserrat','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','sans-serif']
+            sans: ['Montserrat','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','sans-serif'],
+            heading: ['"Fredoka One"', 'cursive']
           }
         }
       }
-    }
+    };
   </script>
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- (optionnel) Icônes -->
+  <!-- Icônes / drapeaux -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
 
-  <!-- SEO/Social -->
+  <!-- SEO -->
   <link rel="canonical" href="https://streetcarsolution.com/terms.html">
   <meta name="description" content="Conditions générales de location Street Car Solution (Cancún, Mexique) : réservations, paiement, caution, assurances, carburant, kilométrage, retours, annulations.">
   <meta property="og:site_name" content="Street Car Solution">
@@ -38,41 +44,107 @@
   <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
   <meta property="og:url" content="https://streetcarsolution.com/terms.html">
 
+  <!-- Favicons -->
   <link rel="icon" href="/assets/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/logo.png">
 
-  <!-- Styles pour l’espacement et les titres en gras -->
+  <!-- Styles spécifiques page légale -->
   <style>
-    /* Met un espace régulier avant chaque section et titre en gras */
+    /* Titres numérotés en gras + espacement régulier */
     .legal h2{
-      margin-top: 1.5rem;   /* espace entre les points */
-      font-weight: 700;     /* titres en gras */
-      font-size: 1.125rem;  /* ≈ text-lg */
+      margin-top: 1.25rem;   /* espace entre les points */
+      font-weight: 700;
+      font-size: 1.125rem;
       line-height: 1.4;
     }
     .legal h2:first-of-type{ margin-top: .5rem; }
-    .legal p, .legal ul, .legal ol{ margin-top: .5rem; }
+    .legal p, .legal ul{ margin-top: .5rem; }
     .legal ul{ padding-left: 1.25rem; }
   </style>
 </head>
+<body class="font-sans bg-gray-50 text-gray-800 overflow-x-hidden">
 
-<body class="font-sans bg-gray-50 text-gray-800">
-
-  <!-- En-tête simple (facultatif) -->
-  <header class="bg-white border-b">
-    <div class="container mx-auto px-4 py-6">
-      <a href="index.html" class="inline-flex items-center gap-3">
-        <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution" class="h-10 w-10 rounded-full">
-        <span class="font-bold text-xl">
-          <span class="text-mexican-orange">Street</span>
-          <span class="text-caribbean-blue">Car</span>
-          <span class="text-mexican-green">Solution</span>
-        </span>
-      </a>
+  <!-- Barre langue/devise (identique au site) -->
+  <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
+    <!-- Langues -->
+    <div class="language-selector relative">
+      <button class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span class="fi fi-fr mr-2"></span>
+        Français
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
+        <!-- FR (page actuelle) -->
+        <a href="terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-fr mr-2"></span> Français
+        </a>
+        <!-- EN -->
+        <a href="en/terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-us mr-2"></span> English
+        </a>
+        <!-- ES -->
+        <a href="es/terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-mx mr-2"></span> Español
+        </a>
+      </div>
     </div>
-  </header>
 
-  <!-- Contenu -->
+    <!-- Devise (esthétique, n’impacte pas cette page) -->
+    <div class="currency-selector relative">
+      <button id="currencyBtn" class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span id="currencyLabel">€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+        <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+        <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+        <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+        <a href="#" data-currency="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV (comme les autres pages) -->
+  <nav class="bg-white shadow-md sticky top-10 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution Logo" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+          <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+          <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+          <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages</a>
+          <a href="terms.html" class="text-caribbean-blue font-semibold">Conditions</a>
+        </div>
+
+        <!-- Burger -->
+        <button id="mobileMenuBtn" class="md:hidden text-gray-800" aria-label="Ouvrir le menu" aria-controls="mobileMenu" aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+      <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+      <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+      <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages</a>
+      <a href="terms.html" class="text-caribbean-blue font-semibold">Conditions</a>
+    </div>
+  </div>
+
+  <!-- Contenu légal -->
   <main class="container mx-auto px-4 py-10 prose prose-lg max-w-4xl legal">
     <h1 class="!mb-2">Conditions Générales</h1>
     <p><strong>Dernière mise à jour :</strong> 15/09/2025</p>
@@ -147,110 +219,149 @@
     <p>Vos données sont traitées conformément à notre <a href="privacy.html" class="text-caribbean-blue underline">Politique de Confidentialité</a>.</p>
 
     <h2><strong>13. Droit applicable &amp; litiges</strong></h2>
-    <p>Les présentes sont soumises au droit Mexicain (État de Quintana Roo). À défaut d’accord amiable, tout litige relèvera des tribunaux compétents des tribunaux de Cancún, Quintana Roo.</p>
+    <p>Les présentes conditions sont soumises au droit Mexicain. Tout litige relèvera des tribunaux compétents de Cancún, Quintana Roo.</p>
 
-    <p class="text-sm text-gray-500">Ces informations sont fournies à titre indicatif et ne constituent pas un conseil juridique. Veuillez vérifier les mentions exactes figurant sur votre contrat au moment de la remise du véhicule.</p>
-
-    <div class="mt-8 p-4 bg-blue-50 rounded-lg">
-      <p><strong>Contact :</strong> Street Car Solution – Quintana Roo, Mexique • E-mail : <a href="mailto:reservation@streetcarsolution.com" class="underline">reservation@streetcarsolution.com</a></p>
-    </div>
+    <h2><strong>14. Contact</strong></h2>
+    <p>
+      Street Car Solution – Quintana Roo, Mexique<br>
+            Email : reservation@streetcarsolution.com
+    </p>
   </main>
 
-  <!-- Footer (liens mis à jour) -->
-  <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
-                    <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
-                    <div class="flex space-x-4 mt-4">
-
-
-          <!-- Facebook -->
-          <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          
-          <!-- Instagram -->
-          <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-instagram"></i>
-          </a>
-          
-          <!-- TikTok -->
-          <a href="http://www.tiktok.com/@yoancremona" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-tiktok"></i>
-          </a>
-
-          <!-- YouTube -->
-          <a href="https://www.youtube.com/@StreetCarSolution"
-             class="text-gray-400 hover:text-white"
-             target="_blank" rel="noopener noreferrer"
-             aria-label="Chaîne YouTube Street Car Solution">
-            <i class="fab fa-youtube"></i>
-          </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
-                        <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
-                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Informations</h3>
-                    <ul class="space-y-2">
-                        <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
-                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
-                    <form class="flex">
-                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
-                        <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
-            </div>
+  <!-- Footer (même style que le site) -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+          </div>
         </div>
-    </footer>
 
-  <!-- Scripts menus (identiques à tes pages) -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+            <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+            <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+            <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages</a></li>
+            <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Informations</h3>
+          <ul class="space-y-2">
+            <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
+          <form class="flex">
+            <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+            <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 Street Car Solution. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts : burger + dropdown (identiques au site) -->
   <script>
-    const burgerBtn=document.getElementById('mobileMenuBtn'), mobileMenu=document.getElementById('mobileMenu');
-    if(burgerBtn&&mobileMenu){const i=burgerBtn.querySelector('i');
-      const close=()=>{mobileMenu.classList.add('hidden'); i?.classList.remove('fa-times'); i?.classList.add('fa-bars');};
-      const open =()=>{mobileMenu.classList.remove('hidden'); i?.classList.remove('fa-bars'); i?.classList.add('fa-times');};
-      burgerBtn.addEventListener('click',()=>mobileMenu.classList.contains('hidden')?open():close());
-      window.addEventListener('resize',()=>{if(window.innerWidth>=768) close();});
+    // Burger
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+      };
+      const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
+      };
+      burgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
     }
-    const langSel=document.querySelector('.language-selector'), langDrop=document.querySelector('.language-dropdown');
-    const curSel=document.querySelector('.currency-selector'), curDrop=document.querySelector('.currency-dropdown');
-    function setupDropdown(trigger,panel){ if(!trigger||!panel) return;
-      trigger.addEventListener('click',e=>{e.stopPropagation(); panel.classList.toggle('hidden');});
-      panel.addEventListener('click',e=>e.stopPropagation());
+
+    // Dropdown langue/devise
+    const langSel = document.querySelector('.language-selector');
+    const langDrop = document.querySelector('.language-dropdown');
+    const curSel  = document.querySelector('.currency-selector');
+    const curDrop = document.querySelector('.currency-dropdown');
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    function setupDropdown(trigger, panel) {
+      if (!trigger || !panel) return;
+      panel.classList.add('hidden');
+      let hideTimer = null;
+      const btn = trigger.querySelector('button');
+
+      const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
+      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
+      const toggle = (e) => {
+        e.stopPropagation();
+        const show = panel.classList.contains('hidden');
+        if (panel !== langDrop) langDrop?.classList.add('hidden');
+        if (panel !== curDrop)  curDrop?.classList.add('hidden');
+        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); }
+        else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
+      };
+
+      if (isDesktop.matches) {
+        trigger.addEventListener('mouseenter', open);
+        trigger.addEventListener('mouseleave', close);
+        panel.addEventListener('mouseenter', open);
+        panel.addEventListener('mouseleave', close);
+        btn?.addEventListener('focus', open);
+        btn?.addEventListener('blur', close);
+      } else {
+        trigger.addEventListener('click', toggle);
+      }
+      panel.addEventListener('click', (e) => e.stopPropagation());
     }
-    setupDropdown(langSel,langDrop); setupDropdown(curSel,curDrop);
-    document.addEventListener('click',()=>{langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden');});
+
+    setupDropdown(langSel, langDrop);
+    setupDropdown(curSel, curDrop);
+
+    // Label devise (purement visuel pour cette page)
+    document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        const map = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
+        document.getElementById('currencyLabel').textContent = map[a.dataset.currency] || '€ EUR';
+        curDrop?.classList.add('hidden');
+      });
+    });
+
+    document.addEventListener('click',   () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+    window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
   </script>
 </body>
 </html>
