@@ -6,6 +6,7 @@
   <meta name="robots" content="index, follow">
   <title>FAQ – Street Car Solution</title>
 
+  <script src="https://cdn.tailwindcss.com"></script>
   <!-- Tailwind config AVANT le CDN -->
   <script>
     tailwind = window.tailwind || {};
@@ -152,10 +153,10 @@
     </div>
   </div>
 
-  <!-- Hero -->
+    <!-- Header -->
   <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
-    <div class="container mx-auto px-4 py-12">
-      <h1 class="text-3xl md:text-4xl font-heading font-bold">Foire aux Questions</h1>
+    <div class="container mx-auto px-4 py-10">
+      <h1 class="text-3xl md:text-4xl font-bold">Foire aux Questions</h1>
       <p class="mt-2 text-white/90">Toutes les réponses pour une location 100% sereine.</p>
     </div>
   </header>
@@ -184,7 +185,7 @@
           </summary>
           <div class="mt-3 text-gray-700">
             Choisissez votre véhicule et vos dates sur le site, puis validez la <a href="index.html#reservation" class="text-caribbean-blue underline">pré-réservation</a>.
-            Nous confirmons par WhatsApp/email. Un acompte peut être demandé selon la période.
+            Nous vous contacterons par WhatsApp. 
           </div>
         </details>
 
@@ -221,7 +222,7 @@
             <i class="chev fas fa-chevron-down transition-transform"></i>
           </summary>
           <div class="mt-3 text-gray-700">
-            Assurance responsabilité civile & kilométrage illimité inclus. Des protections complémentaires peuvent être proposées au départ selon le véhicule.
+            Assurance dommages, responsabilité civile & kilométrage illimité inclus. En cas de dommages, une franchise de $$ sera appliqués.
           </div>
         </details>
 
@@ -241,7 +242,7 @@
             <i class="chev fas fa-chevron-down transition-transform"></i>
           </summary>
           <div class="mt-3 text-gray-700">
-            Espèces (MXN/EUR/USD), carte bancaire et transferts selon les cas. Les numéros de carte ne sont pas stockés sur notre site.
+            Espèces, carte bancaire et transferts selon les cas. Les numéros de carte ne sont pas stockés sur notre site. Les tarifs sont déterminés en Pesos Mexicain (MXN), et peuvent être payé en devise étrangère au taux de change du jour du paiement.
           </div>
         </details>
       </div>
@@ -257,7 +258,7 @@
             <i class="chev fas fa-chevron-down transition-transform"></i>
           </summary>
           <div class="mt-3 text-gray-700">
-            Oui, il est illimité (sauf mention spécifique sur certains véhicules/promotions).
+            Oui, le kilométrage est illimité pour que vous puissiez découvrir tous les magnifiques endroits de la région.
           </div>
         </details>
 
@@ -267,7 +268,7 @@
             <i class="chev fas fa-chevron-down transition-transform"></i>
           </summary>
           <div class="mt-3 text-gray-700">
-            Plein à la prise, plein au retour. Si le niveau est inférieur, le complément de carburant et des frais de service peuvent s’appliquer.
+            Carburant reçu = Carburant au retour. Si le niveau est inférieur, le complément de carburant et des frais de service peuvent s’appliquerons.
           </div>
         </details>
 
@@ -277,8 +278,8 @@
             <i class="chev fas fa-chevron-down transition-transform"></i>
           </summary>
           <div class="mt-3 text-gray-700">
-            2<sup>ème</sup> conducteur gratuit (autres conducteurs possibles avec un léger coût par conducteur).
-            Sièges bébé et réhausseurs disponibles sur demande. GPS/CarPlay présent sur certains modèles.
+            2<sup>ème</sup> conducteur gratuit (autres conducteurs possibles avec un léger coût par conducteur additionnel).
+            Location de sièges bébé et réhausseurs disponibles sur demande. GPS/CarPlay présent sur certains modèles.
           </div>
         </details>
 
@@ -288,8 +289,8 @@
             <i class="chev fas fa-chevron-down transition-transform"></i>
           </summary>
           <div class="mt-3 text-gray-700">
-            Contactez-nous 24/7 immédiatement. Nous vous assisterons (dépannage, constat, conseils).  
-            En cas de contrôle compliqué, notre option « Assistance Police 24/7 » vous met en relation directe avec notre équipe.
+            Contactez-nous immédiatement 24/7. Nous vous assisterons (dépannage, constat, conseils).  
+            Souscrivez à l'option « Assistance Police 24/7 » qui vous met en relation directe avec notre équipe 24/7 en cas de contrôle compliqué avec les forces de l'ordre.
           </div>
         </details>
       </div>
@@ -326,76 +327,100 @@
             <i class="chev fas fa-chevron-down transition-transform"></i>
           </summary>
           <div class="mt-3 text-gray-700">
-            Prévenez-nous au plus tôt. Une tolérance courte peut s’appliquer selon les disponibilités; au-delà, des frais supplémentaires journaliers/horaires peuvent être facturés.
+            Prévenez-nous au plus tôt. Une tolérance de 30 minutes peut s’appliquer selon les disponibilités; au-delà, des frais supplémentaires journaliers/horaires peuvent être facturés.
           </div>
         </details>
       </div>
     </section>
 
     <div class="bg-white rounded-2xl p-6 shadow">
-      <h3 class="text-xl font-semibold mb-2">Une autre question ?</h3>
-      <p class="text-gray-700 mb-4">Écrivez-nous, on répond vite 👋</p>
-      <a href="index.html#contact" class="inline-flex items-center bg-caribbean-blue hover:bg-mexican-green text-white font-semibold px-5 py-3 rounded-full">
-        <i class="fas fa-paper-plane mr-2"></i> Contacter l’équipe
-      </a>
+      <a href="index.html#contact"
+       class="block rounded-2xl bg-white p-6 shadow-sm hover:shadow-lg border border-gray-100 focus:outline-none focus:ring-2 focus:ring-caribbean-blue transition">
+      <h3 class="text-xl font-semibold mb-1">Une autre question ?</h3>
+      <p class="text-gray-600">
+        Écrivez-nous, on répond vite 👋
+        <span class="inline-block ml-1">→</span>
+      </p>
+    </a>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-12 mt-10">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
-          <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
-          <div class="flex space-x-4 mt-4">
-            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/streetcarsolution_rentcars/" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+                    <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
+                    <div class="flex space-x-4 mt-4">
 
-        <div>
-          <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
-          <ul class="space-y-2">
-            <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
-            <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
-            <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
-            <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages</a></li>
-            <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
-            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
-            <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
-          </ul>
-        </div>
 
-        <div>
-          <h3 class="text-xl font-bold mb-4">Informations</h3>
-          <ul class="space-y-2">
-            <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
-            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
-            <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
-          </ul>
-        </div>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+          </a>
+          
+          <!-- TikTok -->
+          <a href="http://www.tiktok.com/@yoancremona" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-tiktok"></i>
+          </a>
 
-        <div>
-          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-          <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
-          <form class="flex">
-            <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
-            <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </form>
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@StreetCarSolution"
+             class="text-gray-400 hover:text-white"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Chaîne YouTube Street Car Solution">
+            <i class="fab fa-youtube"></i>
+          </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Informations</h3>
+                    <ul class="space-y-2">
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+            </div>
         </div>
-      </div>
-
-      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2025 Street Car Solution. Tous droits réservés.</p>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
   <!-- Scripts : burger + dropdown (mêmes que les autres pages) -->
   <script>
