@@ -175,13 +175,19 @@
                 <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-bluetooth-b text-[1.05rem] md:text-[1.1rem] leading-none"></i></span>Bluetooth</li>
                 <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fab fa-usb text-xs leading-none"></i></span>USB</li>
                 <li class="flex items-center gap-2"><span class="w-5 flex justify-center text-gray-600"><i class="fas fa-route"></i></span>CarPlay</li>
-              </ul>
-              <div class="flex items-baseline justify-between mt-4">
-                <span class="text-mexican-orange font-bold">35€ / day</span>
-                <a href="index.html#reservation" class="text-caribbean-blue font-medium">Pre-book</a>
-              </div>
-            </div>
-          </article>
+              </ul>              
+            <div class="flex items-baseline justify-between mt-4">
+                  <span class="text-mexican-orange font-bold text-sm md:text-base leading-tight">
+                    From <span class="js-price"></span> / day
+                  </span>
+                  <a href="index.html#reservation" class="text-caribbean-blue font-bold text-sm md:text-base leading-tight">Pre-book</a>
+                </div>
+                      <!-- Note en une ligne -->
+                      <p class="text-[11px] text-gray-500 mt-2 break-words whitespace-normal"> 
+                      *Rates starting at $750 pesos, at the exchange rate of the day
+                      </p>
+              </div> 
+            </article>
 
           <!-- VW Polo -->
           <article id="vw-polo" class="bg-white/95 border border-gray-200 rounded-xl shadow overflow-hidden">
@@ -869,12 +875,12 @@
   (function(){
     const LABEL = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
     const CATEGORY_PRICES = {
-      ECON:{EUR:35,USD:42,CAD:58,MXN:750},
-      STD:{EUR:40,USD:48,CAD:66,MXN:850},
-      BER:{EUR:47,USD:56,CAD:78,MXN:1000},
-      SUV5:{EUR:52,USD:62,CAD:86,MXN:1100},
-      SUV7:{EUR:62,USD:74,CAD:100,MXN:1300},
-      VAN:{EUR:105,USD:125,CAD:170,MXN:2200}
+      ECON: { EUR: 35,  USD: 42,  CAD: 58,  MXN:  750 },   // Économique
+      STD:  { EUR: 40,  USD: 48,  CAD: 66,  MXN:  850 },   // Standard
+      BER:  { EUR: 47,  USD: 56,  CAD: 78,  MXN: 1000 },   // Berline
+      SUV5: { EUR: 62,  USD: 74,  CAD: 100,  MXN: 1300 },   // SUV 5
+      SUV7: { EUR: 75,  USD: 84,  CAD: 115, MXN: 1500 },   // SUV 7
+      VAN:  { EUR: 105, USD: 125, CAD: 170, MXN: 2200 }    // Van
     };
     const ID_TO_CAT = {
       'renault-kwid':'ECON','vw-polo':'ECON','vw-polo-track':'ECON','chevrolet-beat':'ECON',
