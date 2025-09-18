@@ -7,7 +7,6 @@
 
     <!-- À garder pendant tout le développement -->
     <meta name="robots" content="noindex, nofollow">
-
     <meta name="description" content="Location de voitures à Cancún et Riviera Maya, péninsule du Yucatan : prix transparents, assistance francophone 24/7, Économique, Standard, Berline, SUV 5/7 places, Van 14 places. Street Car Solution.">
     <link rel="preload" as="image" href="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg">
 
@@ -261,7 +260,6 @@
                                 <div>
                                     <label class="block mb-1 font-medium">Lieu de restitution</label>
                                     <select class="w-full h-12 p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none">
-                                        <option>Même lieu</option>
                                         <option>Aéroport de Cancun</option>
                                         <option>Zone Hôtelière de Cancun</option>
                                         <option>Centre-ville de Cancun</option>
@@ -343,8 +341,10 @@
                                 </div>
                             </div>
                             
-                            <button type="submit" class="w-full bg-mexican-orange hover:bg-mexican-yellow text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-                                Voir les véhicules disponibles
+                             <button type="button"
+                              onclick="window.location.href='vehicles.html'"
+                              class="w-full bg-mexican-orange hover:bg-mexican-yellow text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                               Voir les véhicules disponibles
                             </button>
                         </form>
                     </div>
@@ -963,7 +963,6 @@
       <select id="returnLocation" name="returnLocation" required
               class="w-full h-12 p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
         <option value="">Sélectionnez</option>
-        <option>Même lieu</option>
         <option>Aéroport de Cancun</option>
         <option>Zone Hôtelière de Cancun</option>
         <option>Centre-ville de Cancun</option>
