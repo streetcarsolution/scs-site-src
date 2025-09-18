@@ -1061,28 +1061,64 @@ window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); cur
   };
 const CURRENCY_LABEL = { EUR: '€ EUR', USD: '$ USD', CAD: '$ CAD', MXN: '$ MXN' };
 
-function updatePriceCards(cur) {
-  document.querySelectorAll('.js-price').forEach(el => {
-    const seg = el.dataset.segment;
-    el.textContent = PRICES[cur]?.[seg] || '';
-  });
-}
-(function initCurrencySwitcher(){
-  const currencySel   = document.getElementById('currencySel');
-  const currencyLabel = currencySel?.querySelector('.js-currency-label');
-  const currentStored = 'EUR';
-  localStorage.setItem('SCS_CURRENCY','EUR');
-  updatePriceCards(currentStored);
-  if (currencyLabel) currencyLabel.textContent = CURRENCY_LABEL[currentStored] || '€ EUR';
-  currencySel?.querySelectorAll('[data-cur]').forEach(a=>{
-    a.addEventListener('click',(e)=>{
-      e.preventDefault();
-      const cur = a.getAttribute('data-cur');
-      localStorage.setItem('SCS_CURRENCY',cur);
-      updatePriceCards(cur);
-      if (currencyLabel) currencyLabel.textContent = CURRENCY_LABEL[cur] || cur;
-      currencySel.querySelector('.currency-dropdown')?.classList.add('hidden');
+function fmt(n, cur) {
+    if (cur === 'EUR') return `${n}€`;
+    if (cur === 'USD') return `$${n} USD`;
+    if (cur === 'CAD') return `$${n} CAD`;
+    if (cur === 'MXN') return `$${n.toLocaleString('en-US')} MXN`;
+    return `${n}€`;
+  }
+
+  function getCurrency() {
+    return localStorage.getItem('SCS_CURRENCY') || 'EUR';
+  }
+
+  function setLabel(cur) {
+    const lbl = document.getElementById('currencyLabel');
+    if (lbl) lbl.textContent = LABEL[cur];
+    document.body.setAttribute('data-currency', cur); // utile si tu as du CSS selon la devise
+  }
+
+  function render(cur) {
+    const PER_DAY = '/ day'; // libellé anglais
+
+    Object.keys(ID_TO_CAT).forEach(id => {
+      const card = document.getElementById(id);
+      if (!card) return;
+
+      // NE MET À JOUR QUE LE NOMBRE
+      const priceNum = card.querySelector('.js-price');
+      if (!priceNum) return;
+
+      const cat = ID_TO_CAT[id];
+      const val = CATEGORY_PRICES[cat][cur];
+
+      priceNum.textContent = fmt(val, cur);
+
+      // Optionnel : si tu veux aussi forcer le libellé par langue
+      const perDay = card.querySelector('.per-day');
+      if (perDay) perDay.textContent = PER_DAY;
     });
+  }
+
+  // clic sur une devise
+  document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const cur = a.dataset.currency;
+      localStorage.setItem('SCS_CURRENCY', cur);
+      setLabel(cur);
+      render(cur);
+      document.querySelector('.currency-dropdown')?.classList.add('hidden');
+    });
+  });
+
+  // init
+  document.addEventListener('DOMContentLoaded', () => {
+    const cur = getCurrency();
+    setLabel(cur);
+    render(cur);
   });
 })();
 
@@ -1159,11 +1195,5 @@ if (aboutVideo && videoOverlay) {
   syncReturnMin();
 })();
   </script>
-
-  <p style="border-radius:8px;text-align:center;font-size:12px;color:#fff;margin-top:16px;position:fixed;left:8px;bottom:8px;z-index:10;background:rgba(0,0,0,.8);padding:4px 8px;">
-    Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width:16px;height:16px;vertical-align:middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);">
-    <a href="https://enzostvs-deepsite.hf.space" style="color:#fff;text-decoration:underline;" target="_blank">DeepSite</a> - 🧬
-    <a href="https://enzostvs-deepsite.hf.space?remix=Streetcarsolution/streetcarsolution-update-2" style="color:#fff;text-decoration:underline;" target="_blank">Remix</a>
-  </p>
 </body>
 </html>
