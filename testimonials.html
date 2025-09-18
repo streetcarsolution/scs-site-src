@@ -503,20 +503,35 @@
                 </div>
                 
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
-                    <form class="newsletter-form" data-lang="FR">
-                    <input type="email" name="email" placeholder="Votre email" required class="px-4 py-2 rounded-l-lg text-gray-800 w-full">
-                    <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
+                  <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                  <p class="text-gray-400 mb-4">
+                    Abonnez-vous pour recevoir nos offres spéciales.
+                  </p>
+
+                  <!-- UN SEUL form newsletter -->
+                  <form data-newsletter data-lang="fr" class="flex items-stretch gap-0">
+                    <input
+                      type="email"
+                      placeholder="Votre email"
+                      class="w-full px-4 py-3 rounded-l-lg text-gray-800"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red"
+                      aria-label="S’inscrire à la newsletter"
+                    >
                       <i class="fas fa-paper-plane"></i>
                     </button>
                   </form>
+
+                  <!-- Message (un seul) — laissé vide au départ -->
+                  <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
                 </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
-            </div>
+
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                  <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+                </div>
         </div>
     </footer>
 

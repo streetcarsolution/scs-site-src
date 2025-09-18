@@ -1964,24 +1964,30 @@
                     Abonnez-vous pour recevoir nos offres spéciales.
                   </p>
 
-                  <!-- Le JS cible "form[data-newsletter]" -->
-                  <form data-newsletter data-lang="fr"
-                        class="flex items-stretch max-w-md rounded-lg overflow-hidden">
-                    <input type="email" required
-                          placeholder="Votre email"
-                          class="flex-1 px-4 py-2 text-gray-800 focus:outline-none">
-                    <button type="submit"
-                            class="bg-mexican-orange hover:bg-mexican-yellow px-4 py-2">
+                  <!-- UN SEUL form newsletter -->
+                  <form data-newsletter data-lang="fr" class="flex items-stretch gap-0">
+                    <input
+                      type="email"
+                      placeholder="Votre email"
+                      class="w-full px-4 py-3 rounded-l-lg text-gray-800"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red"
+                      aria-label="S’inscrire à la newsletter"
+                    >
                       <i class="fas fa-paper-plane"></i>
                     </button>
                   </form>
 
-                  <p class="newsletter-msg text-sm text-gray-300 mt-2 hidden"></p>
+                  <!-- Message (un seul) — laissé vide au départ -->
+                  <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
                 </div>
-                            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
-            </div>
+
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                  <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+                </div>
         </div>
     </footer>
 
