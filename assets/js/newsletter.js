@@ -1,45 +1,54 @@
-// REMPLACE par l’URL /exec de ta Web App
-const APPS_SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxsf9O6-p2QHtNBszsBQtUNHz94XAg78GXUBBdeaIJoCk3E5mG5sMJvhYPuIGd0GQg4/exec';
+(() => {
+  // ⚠️ Mets ici l'URL "…/exec" du déploiement Apps Script
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzor6BHjdOn1QiPgBzrE2kaYN_hQRaKx3NsS2fxnexO5dA1GxZE9oNzKPImfi1TtdQD/exec';
 
-function detectLang(form) {
-  const attr = form.getAttribute('data-lang');
-  if (attr) return attr.toUpperCase();
-  const htmlLang = document.documentElement.lang || 'fr';
-  return htmlLang.slice(0,2).toUpperCase();
-}
+  // Texte par langue (affiché sous le champ)
+  const MSG = {
+    fr: { ok: 'Merci ! Adresse enregistrée ✅', ko: 'Oups, une erreur est survenue. Réessaie plus tard.' },
+    en: { ok: 'Thanks! Email saved ✅',         ko: 'Oops, something went wrong. Try again later.' },
+    es: { ok: '¡Gracias! Correo guardado ✅',   ko: 'Vaya, ocurrió un error. Inténtalo más tarde.' },
+  };
 
-function attachNewsletterForms() {
-  document.querySelectorAll('form.newsletter-form').forEach(form => {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  // Cible tous les formulaires newsletter du site
+  document.querySelectorAll('form[data-newsletter]').forEach((form) => {
+    const emailEl = form.querySelector('input[type="email"]');
+    const msgEl   = form.querySelector('.newsletter-msg') || form.nextElementSibling;
+    const lang    = (form.dataset.lang || document.documentElement.lang || 'fr').slice(0,2).toLowerCase();
 
-      const email = form.querySelector('input[type="email"]')?.value.trim();
-      if (!email) return;
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const email = (emailEl?.value || '').trim();
 
-      const lang = detectLang(form);
-      const payload = { email, lang, notes: '' };
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+        show(MSG[lang]?.ko || MSG.fr.ko);
+        return;
+      }
 
       try {
-        // Apps Script accepte CORS, mais certains hébergements aiment 'no-cors'
-        await fetch(APPS_SCRIPT_ENDPOINT, {
+        const res = await fetch(GAS_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          mode: 'cors',
+          headers: { 'Content-Type': 'application/json' }, // OK avec Apps Script
+          body: JSON.stringify({ email, lang, notes: '' }),
         });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error(data.error || `HTTP_${res.status}`);
 
-        // UI feedback minimal
+        show(MSG[lang]?.ok || MSG.fr.ok);
         form.reset();
-        const ok = document.createElement('div');
-        ok.textContent = lang === 'FR' ? 'Merci !' : (lang === 'ES' ? '¡Gracias!' : 'Thanks!');
-        ok.className = 'mt-2 text-green-600 text-sm';
-        form.appendChild(ok);
-        setTimeout(() => ok.remove(), 3000);
       } catch (err) {
-        console.error('Newsletter error:', err);
-        alert('Oups, une erreur est survenue. Réessaie plus tard.');
+        console.error('Newsletter submit failed:', err);
+        show(MSG[lang]?.ko || MSG.fr.ko);
       }
     });
-  });
-}
 
-document.addEventListener('DOMContentLoaded', attachNewsletterForms);
+    function show(txt) {
+      if (msgEl) {
+        msgEl.textContent = txt;
+        msgEl.classList.remove('hidden');
+      } else {
+        alert(txt);
+      }
+    }
+  });
+})();
