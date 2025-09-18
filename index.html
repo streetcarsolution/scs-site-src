@@ -1576,6 +1576,65 @@ if (aboutVideo && videoOverlay) {
 })();
 </script>
 
+<!-- en bas de TOUTES les pages qui ont le formulaire newsletter -->
+<script>
+(() => {
+  // Remplacez par votre NOUVELLE URL /exec
+  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzZTRC3sRt3GZdcAUWysxUqXZaaYyLBxwfV1KW87K-YZYvaa4zpbeGauZmncIBVQnsb/exec';
+
+  const forms = document.querySelectorAll('form[data-newsletter], form.newsletter');
+  forms.forEach(form => {
+    const input = form.querySelector('input[type="email"]');
+    if (!input) return;
+
+    // zone de message
+    let msg = form.querySelector('[data-newsletter-msg]');
+    if (!msg) {
+      msg = document.createElement('p');
+      msg.setAttribute('data-newsletter-msg','');
+      msg.className = 'mt-2 text-sm';
+      form.appendChild(msg);
+    }
+    const lang = (document.documentElement.lang || 'fr').slice(0,2).toLowerCase();
+
+    const t = {
+      fr: { ok:'Merci ! Inscription confirmée ✅', ko:"Oups, une erreur est survenue. Réessaie plus tard." },
+      en: { ok:'Thanks! You’re subscribed ✅',     ko:'Oops, something went wrong. Try again later.' },
+      es: { ok:'¡Gracias! Suscripción confirmada ✅', ko:'Ups, ocurrió un error. Inténtalo de nuevo.' }
+    }[lang] || { ok:'OK', ko:'Error' };
+
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      msg.textContent = '';
+      const email = (input.value || '').trim();
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.textContent = lang==='fr' ? 'Adresse e-mail invalide.' :
+                          lang==='es' ? 'Correo no válido.' : 'Invalid email.';
+        msg.className = 'mt-2 text-sm text-red-500';
+        return;
+      }
+
+      // x-www-form-urlencoded => pas de preflight
+      const body = new URLSearchParams({ email, lang });
+
+      try {
+        const res = await fetch(ENDPOINT, { method:'POST', body });
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error || 'unknown');
+
+        msg.textContent = t.ok;
+        msg.className = 'mt-2 text-sm text-green-600';
+        input.value = '';
+      } catch (e) {
+        msg.textContent = t.ko;
+        msg.className = 'mt-2 text-sm text-red-500';
+      }
+    });
+  });
+})();
+</script>
+
 <script defer src="assets/js/newsletter.js"></script>
 </body>
 </html>
