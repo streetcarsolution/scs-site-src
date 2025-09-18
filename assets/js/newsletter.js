@@ -1,54 +1,73 @@
 (() => {
-  // ⚠️ Mets ici l'URL "…/exec" du déploiement Apps Script
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzZTRC3sRt3GZdcAUWysxUqXZaaYyLBxwfV1KW87K-YZYvaa4zpbeGauZmncIBVQnsb/exec';
+  // ⬇️ Mets ici l’URL /exec de TON déploiement Apps Script
+  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbz57dZlrmz9KdkI22SeMCd3ZwQPQUnWV8peC6hzzm9Q49J7LLUIWK8g85XC3u9CuOK_/exec';
 
-  // Texte par langue (affiché sous le champ)
-  const MSG = {
-    fr: { ok: 'Merci ! Adresse enregistrée ✅', ko: 'Oups, une erreur est survenue. Réessaie plus tard.' },
-    en: { ok: 'Thanks! Email saved ✅',         ko: 'Oops, something went wrong. Try again later.' },
-    es: { ok: '¡Gracias! Correo guardado ✅',   ko: 'Vaya, ocurrió un error. Inténtalo más tarde.' },
+  // Textes par langue
+  const TXT = {
+    fr: {
+      ok: 'Merci ! Inscription confirmée ✅',
+      ko: 'Oups, une erreur est survenue. Réessaie plus tard.',
+      invalid: 'Adresse e-mail invalide.'
+    },
+    en: {
+      ok: 'Thanks! You’re subscribed ✅',
+      ko: 'Oops, something went wrong. Try again later.',
+      invalid: 'Invalid email.'
+    },
+    es: {
+      ok: '¡Gracias! Suscripción confirmada ✅',
+      ko: 'Vaya, ocurrió un error. Inténtalo de nuevo.',
+      invalid: 'Correo no válido.'
+    }
   };
 
-  // Cible tous les formulaires newsletter du site
+  // Tous les formulaires Newsletter
   document.querySelectorAll('form[data-newsletter]').forEach((form) => {
-    const emailEl = form.querySelector('input[type="email"]');
-    const msgEl   = form.querySelector('.newsletter-msg') || form.nextElementSibling;
-    const lang    = (form.dataset.lang || document.documentElement.lang || 'fr').slice(0,2).toLowerCase();
+    const input = form.querySelector('input[type="email"]');
 
-    form.addEventListener('submit', async (ev) => {
-      ev.preventDefault();
-      const email = (emailEl?.value || '').trim();
+    // Élément où afficher le message (on en crée un si absent)
+    let msg = form.querySelector('.newsletter-msg');
+    if (!msg) {
+      msg = document.createElement('p');
+      msg.className = 'mt-2 text-sm';
+      form.parentNode.insertBefore(msg, form.nextSibling);
+    }
 
-      if (!/^\S+@\S+\.\S+$/.test(email)) {
-        show(MSG[lang]?.ko || MSG.fr.ko);
+    // Langue (data-lang sur le form > lang du <html> > fr)
+    const lang =
+      (form.dataset.lang || document.documentElement.lang || 'fr')
+        .slice(0, 2)
+        .toLowerCase();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = (input.value || '').trim();
+
+      // Validation simple
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.textContent = TXT[lang]?.invalid || TXT.fr.invalid;
+        msg.className = 'mt-2 text-sm text-red-500';
         return;
       }
 
       try {
-        const res = await fetch(GAS_URL, {
-          method: 'POST',
-          mode: 'cors',
-          headers: { 'Content-Type': 'application/json' }, // OK avec Apps Script
-          body: JSON.stringify({ email, lang, notes: '' }),
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok || !data.ok) throw new Error(data.error || `HTTP_${res.status}`);
+        // ➜ GET pour éviter toute pré-requête (OPTIONS)
+        const url =
+          `${ENDPOINT}?email=${encodeURIComponent(email)}` +
+          `&lang=${encodeURIComponent(lang)}&t=${Date.now()}`;
 
-        show(MSG[lang]?.ok || MSG.fr.ok);
-        form.reset();
+        const res = await fetch(url, { method: 'GET' });
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error || 'unknown');
+
+        msg.textContent = TXT[lang]?.ok || TXT.fr.ok;
+        msg.className = 'mt-2 text-sm text-green-600';
+        input.value = '';
       } catch (err) {
         console.error('Newsletter submit failed:', err);
-        show(MSG[lang]?.ko || MSG.fr.ko);
+        msg.textContent = TXT[lang]?.ko || TXT.fr.ko;
+        msg.className = 'mt-2 text-sm text-red-500';
       }
     });
-
-    function show(txt) {
-      if (msgEl) {
-        msgEl.textContent = txt;
-        msgEl.classList.remove('hidden');
-      } else {
-        alert(txt);
-      }
-    }
   });
 })();
