@@ -1959,20 +1959,26 @@
                 </div>
                 
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p><!-- FR -->
-                  <form class="newsletter flex w-full gap-0" data-lang="fr">
+                  <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                  <p class="text-gray-400 mb-4">
+                    Abonnez-vous pour recevoir nos offres spéciales.
+                  </p>
+
+                  <!-- Le JS cible "form[data-newsletter]" -->
+                  <form data-newsletter data-lang="fr"
+                        class="flex items-stretch max-w-md rounded-lg overflow-hidden">
                     <input type="email" required
                           placeholder="Votre email"
-                          class="flex-1 px-4 py-2 rounded-l-lg focus:outline-none text-gray-800">
+                          class="flex-1 px-4 py-2 text-gray-800 focus:outline-none">
                     <button type="submit"
-                            class="inline-flex items-center justify-center bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg shrink-0">
+                            class="bg-mexican-orange hover:bg-mexican-yellow px-4 py-2">
                       <i class="fas fa-paper-plane"></i>
                     </button>
                   </form>
+
+                  <p class="newsletter-msg text-sm text-gray-300 mt-2 hidden"></p>
                 </div>
-            </div>
-            
+                            
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
                 <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
             </div>
@@ -2143,7 +2149,7 @@
 })();
 </script>
 
-<script defer src="/assets/js/newsletter.js"></script>
+<script defer src="assets/js/newsletter.js"></script>
 </body>
 </html>
 
