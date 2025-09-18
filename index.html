@@ -1282,16 +1282,14 @@
 
                   <!-- Le JS cible "form[data-newsletter]" -->
                   <form data-newsletter data-lang="fr"
-                        class="flex items-stretch max-w-md rounded-lg overflow-hidden">
-                    <input type="email" required
-                          placeholder="Votre email"
-                          class="flex-1 px-4 py-2 text-gray-800 focus:outline-none">
-                    <button type="submit"
-                            class="bg-mexican-orange hover:bg-mexican-yellow px-4 py-2">
+                        class="flex newsletter">
+                    <input type="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-l-lg text-gray-800" required>
+                    <button type="submit" class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red">
                       <i class="fas fa-paper-plane"></i>
                     </button>
                   </form>
 
+                  <!-- Garder UN seul message ici (ou aucun : le JS le créera) -->
                   <p class="newsletter-msg mt-2 text-sm"></p>
                 </div>
             
