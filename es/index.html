@@ -192,7 +192,7 @@
           </h1>
           <p class="text-xl mb-8">
             Street Car Solution, <br>
-            Agencia de renta francófona N.º 1 en México.<br>
+            Agencia de renta francófona Nº 1 en México.<br>
             Renta el auto perfecto para tus vacaciones al mejor precio garantizado.
           </p>
 
@@ -280,7 +280,7 @@
               </div>
 
               <button type="button"
-              onclick="window.location.href='vehicles.html'"
+              onclick="window.location.href='es/vehicles.html'"
               class="w-full bg-mexican-orange hover:bg-mexican-yellow text-white font-bold py-3 px-4 rounded-lg transition duration-300">  
               Ver vehículos disponibles
               </button>
@@ -307,14 +307,14 @@
             <p class="text-[18px] text-gray-600 mb-4">Perfecto para la ciudad con excelente rendimiento de combustible.</p>
             <div class="flex justify-between items-baseline mb-1">
               <span class="text-lg font-bold text-mexican-orange">
-                Desde <span class="js-price" data-segment="economique"></span>
+                Desde <span class="js-price" data-segment="economy"></span>
               </span>
               <a href="/es/vehicles.html" class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">
                 Ver modelos
               </a>
             </div>
             <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">
-              *Tarifa desde $750 MXN, según el tipo de cambio del día
+              *Tarifa desde $750 MXN, al tipo de cambio del día
             </p>
           </div>
         </div>
@@ -336,7 +336,7 @@
               </a>
             </div>
             <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">
-              *Tarifa desde $850 MXN, según el tipo de cambio del día
+              *Tarifa desde $850 MXN, al tipo de cambio del día
             </p>
           </div>
         </div>
@@ -351,14 +351,14 @@
             <p class="text-[18px] text-gray-600 mb-4">Amplio y cómodo para viajes largos, con gran espacio para equipaje.</p>
             <div class="flex justify-between items-baseline mb-1">
               <span class="text-lg font-bold text-mexican-orange">
-                Desde <span class="js-price" data-segment="berline"></span>
+                Desde <span class="js-price" data-segment="sedan"></span>
               </span>
               <a href="/es/vehicles.html" class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">
                 Ver modelos
               </a>
             </div>
             <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">
-              *Tarifa desde $1,000 MXN, según el tipo de cambio del día
+              *Tarifa desde $1,000 MXN, al tipo de cambio del día
             </p>
           </div>
         </div>
@@ -380,7 +380,7 @@
               </a>
             </div>
             <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">
-              *Tarifa desde $1,100 MXN, según el tipo de cambio del día
+              *Tarifa desde $1,300 MXN, al tipo de cambio del día
             </p>
           </div>
         </div>
@@ -402,7 +402,7 @@
               </a>
             </div>
             <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">
-              *Tarifa desde $1,300 MXN, según el tipo de cambio del día
+              *Tarifa desde $1,500 MXN, al tipo de cambio del día
             </p>
           </div>
         </div>
@@ -424,7 +424,7 @@
               </a>
             </div>
             <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">
-              *Tarifa desde $2,200 MXN, según el tipo de cambio del día
+              *Tarifa desde $2,200 MXN, al tipo de cambio del día
             </p>
           </div>
         </div>
@@ -1155,40 +1155,83 @@ document.addEventListener('click', () => { langDrop?.classList.add('hidden'); cu
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
 window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
 
-/* === PRECIOS POR SEGMENTO Y DIVISA (ES) === */
+//* === PRECIOS (ES) — mismas cifras que FR/EN, textos en español === */
 const PRICES = {
-  EUR: { economique: '35€ / día',  standard: '40€ / día',  berline: '47€ / día',  suv5: '52€ / día',  suv7: '62€ / día',  van: '105€ / día' },
-  USD: { economique: '$42 USD / día', standard: '$48 USD / día', berline: '$56 USD / día', suv5: '$62 USD / día', suv7: '$74 USD / día', van: '$125 USD / día' },
-  CAD: { economique: '$58 CAD / día', standard: '$66 CAD / día', berline: '$78 CAD / día', suv5: '$86 CAD / día', suv7: '$100 CAD / día', van: '$170 CAD / día' },
-  MXN: { economique: '$750 MXN / día', standard: '$850 MXN / día', berline: '$1,000 MXN / día', suv5: '$1,100 MXN / día', suv7: '$1,300 MXN / día', van: '$2,200 MXN / día' }
+  EUR: {
+    economy: '35€ / día',
+    standard:'40€ / día',
+    sedan:   '47€ / día',
+    suv5:    '62€ / día',
+    suv7:    '75€ / día',
+    van:     '105€ / día',
+  },
+  USD: {
+    economy: '$42 USD / día',
+    standard:'$48 USD / día',
+    sedan:   '$56 USD / día',
+    suv5:    '$74 USD / día',
+    suv7:    '$84 USD / día',
+    van:     '$125 USD / día',
+  },
+  CAD: {
+    economy: '$58 CAD / día',
+    standard:'$66 CAD / día',
+    sedan:   '$78 CAD / día',
+    suv5:    '$100 CAD / día',
+    suv7:    '$115 CAD / día',
+    van:     '$170 CAD / día',
+  },
+  MXN: {
+    economy: '$750 MXN / día',
+    standard:'$850 MXN / día',
+    sedan:   '$1,000 MXN / día',
+    suv5:    '$1,300 MXN / día',
+    suv7:    '$1,500 MXN / día',
+    van:     '$2,200 MXN / día',
+  }
 };
-const CURRENCY_LABEL = { EUR: '€ EUR', USD: '$ USD', CAD: '$ CAD', MXN: '$ MXN' };
 
-function updatePriceCards(cur) {
-  document.querySelectorAll('.js-price').forEach(el => {
+const CURRENCY_LABEL = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
+
+/* Nota inferior (en español) */
+function noteFor(cur, seg){
+  const full = PRICES[cur][seg] || '';
+  const pricePart = full.replace(' / día','');
+  return `*Tarifa desde ${pricePart}, al tipo de cambio del día`;
+}
+
+/* Pinta todos los precios + notas */
+function renderPrices(cur){
+  document.body.setAttribute('data-currency', cur);
+  document.querySelectorAll('.js-price').forEach(el=>{
     const seg = el.dataset.segment;
     el.textContent = PRICES[cur]?.[seg] || '';
   });
+  document.querySelectorAll('.js-note').forEach(el=>{
+    const seg = el.dataset.segment;
+    el.textContent = noteFor(cur, seg);
+  });
 }
-(function initCurrencySwitcher() {
-  const currencySel   = document.getElementById('currencySel');
-  const currencyLabel = currencySel?.querySelector('.js-currency-label');
-  const currentStored = 'EUR';
-  localStorage.setItem('SCS_CURRENCY', 'EUR');
-  updatePriceCards(currentStored);
-  if (currencyLabel) currencyLabel.textContent = CURRENCY_LABEL[currentStored] || '€ EUR';
 
-  currencySel?.querySelectorAll('[data-cur]').forEach(a => {
-    a.addEventListener('click', (e) => {
+/* Init + selector de divisa (usa elementos con [data-cur]) */
+document.addEventListener('DOMContentLoaded', () => {
+  const cur = localStorage.getItem('SCS_CURRENCY') || 'EUR';
+  renderPrices(cur);
+
+  const lbl = document.querySelector('#currencyLabel');
+  if (lbl) lbl.textContent = CURRENCY_LABEL[cur] || cur;
+
+  document.querySelectorAll('[data-cur]').forEach(a=>{
+    a.addEventListener('click', e=>{
       e.preventDefault();
-      const cur = a.getAttribute('data-cur');
-      localStorage.setItem('SCS_CURRENCY', cur);
-      updatePriceCards(cur);
-      if (currencyLabel) currencyLabel.textContent = CURRENCY_LABEL[cur] || cur;
-      currencySel.querySelector('.currency-dropdown')?.classList.add('hidden');
+      const next = a.getAttribute('data-cur');
+      localStorage.setItem('SCS_CURRENCY', next);
+      renderPrices(next);
+      if (lbl) lbl.textContent = CURRENCY_LABEL[next] || next;
+      a.closest('.currency-dropdown')?.classList.add('hidden');
     });
   });
-})();
+});
 
 /* Envío de pre-reserva */
 const form = document.getElementById('reservationForm');
