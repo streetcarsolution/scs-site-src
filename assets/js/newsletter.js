@@ -1,6 +1,6 @@
 (() => {
   // ⚠️ Mets ici l'URL "…/exec" du déploiement Apps Script
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzor6BHjdOn1QiPgBzrE2kaYN_hQRaKx3NsS2fxnexO5dA1GxZE9oNzKPImfi1TtdQD/exec';
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzZTRC3sRt3GZdcAUWysxUqXZaaYyLBxwfV1KW87K-YZYvaa4zpbeGauZmncIBVQnsb/exec';
 
   // Texte par langue (affiché sous le champ)
   const MSG = {
