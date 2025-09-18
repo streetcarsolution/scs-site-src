@@ -305,7 +305,7 @@
               </span>
               <a href="/en/vehicles.html" class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">See models</a>
             </div>
-            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $750 MXN, at today's exchange rate</p>
+            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $750 MXN, at the daily exchange ratee</p>
           </div>
         </div>
 
@@ -323,7 +323,7 @@
               </span>
               <a href="/en/vehicles.html" class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">See models</a>
             </div>
-            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $850 MXN, at today's exchange rate</p>
+            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $850 MXN, at the daily exchange rate</p>
           </div>
         </div>
 
@@ -341,7 +341,7 @@
               </span>
               <a href="/en/vehicles.html" class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">See models</a>
             </div>
-            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $1,000 MXN, at today's exchange rate</p>
+            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $1,000 MXN, at the daily exchange rate</p>
           </div>
         </div>
 
@@ -359,7 +359,7 @@
               </span>
               <a href="/en/vehicles.html" class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">See models</a>
             </div>
-            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $1,100 MXN, at today's exchange rate</p>
+            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $1,300 MXN, at the daily exchange rate</p>
           </div>
         </div>
 
@@ -377,7 +377,7 @@
               </span>
               <a href="/en/vehicles.html" class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">See models</a>
             </div>
-            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $1,300 MXN, at today's exchange rate</p>
+            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $1,500 MXN, at the daily exchange rate</p>
           </div>
         </div>
 
@@ -395,7 +395,7 @@
               </span>
               <a href="/en/vehicles.html" class="text-caribbean-blue hover:text-caribbean-green font-medium whitespace-nowrap">See models</a>
             </div>
-            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $2,200 MXN, at today's exchange rate</p>
+            <p class="text-[14px] text-gray-500 mt-2 break-words whitespace-normal">*Rate from $2,200 MXN, at the daily exchange rate</p>
           </div>
         </div>
       </div>
@@ -1051,12 +1051,14 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop
 window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
 
 /* Prices by currency (EN labels) */
-const PRICES = {
-  EUR: { economique:'35€ per day', standard:'40€ per day', berline:'47€ per day', suv5:'52€ per day', suv7:'62€ per day', van:'105€ per day' },
-  USD: { economique:'$42 USD per day', standard:'$48 USD per day', berline:'$56 USD per day', suv5:'$62 USD per day', suv7:'$74 USD per day', van:'$125 USD per day' },
-  CAD: { economique:'$58 CAD per day', standard:'$66 CAD per day', berline:'$78 CAD per day', suv5:'$86 CAD per day', suv7:'$100 CAD per day', van:'$170 CAD per day' },
-  MXN: { economique:'$750 MXN per day', standard:'$850 MXN per day', berline:'$1,000 MXN per day', suv5:'$1,100 MXN per day', suv7:'$1,300 MXN per day', van:'$2,200 MXN per day' }
-};
+ const CATEGORY_PRICES = {
+    ECON: { EUR: 35,  USD: 42,  CAD: 58,  MXN:  750 },   // Économique
+    STD:  { EUR: 40,  USD: 48,  CAD: 66,  MXN:  850 },   // Standard
+    BER:  { EUR: 47,  USD: 56,  CAD: 78,  MXN: 1000 },   // Berline
+    SUV5: { EUR: 62,  USD: 74,  CAD: 100,  MXN: 1300 },   // SUV 5
+    SUV7: { EUR: 75,  USD: 84,  CAD: 115, MXN: 1500 },   // SUV 7
+    VAN:  { EUR: 105, USD: 125, CAD: 170, MXN: 2200 }    // Van
+  };
 const CURRENCY_LABEL = { EUR: '€ EUR', USD: '$ USD', CAD: '$ CAD', MXN: '$ MXN' };
 
 function updatePriceCards(cur) {
