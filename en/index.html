@@ -316,7 +316,7 @@
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2 text-gray-800">Standard</h3>
-            <p class="text-[18px] text-gray-600 mb-4">Ideal for road trips with great value for money.</p>
+            <p class="text-[18px] text-gray-600 mb-4">Ideal for road trips and offers great value for money.</p>
             <div class="flex justify-between items-baseline mb-1">
               <span class="text-lg font-bold text-mexican-orange">
                 From <span class="js-price" data-segment="standard"></span>
@@ -1061,66 +1061,25 @@ window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); cur
   };
 const CURRENCY_LABEL = { EUR: '€ EUR', USD: '$ USD', CAD: '$ CAD', MXN: '$ MXN' };
 
-function fmt(n, cur) {
-    if (cur === 'EUR') return `${n}€`;
-    if (cur === 'USD') return `$${n} USD`;
-    if (cur === 'CAD') return `$${n} CAD`;
-    if (cur === 'MXN') return `$${n.toLocaleString('en-US')} MXN`;
-    return `${n}€`;
-  }
-
-  function getCurrency() {
+function getCurrency(){
     return localStorage.getItem('SCS_CURRENCY') || 'EUR';
   }
-
-  function setLabel(cur) {
-    const lbl = document.getElementById('currencyLabel');
-    if (lbl) lbl.textContent = LABEL[cur];
-    document.body.setAttribute('data-currency', cur); // utile si tu as du CSS selon la devise
+  function fmt(n, cur){
+    if(cur==='EUR') return `${n}€`;
+    if(cur==='USD') return `$${n} USD`;
+    if(cur==='CAD') return `$${n} CAD`;
+    if(cur==='MXN') return `$${n.toLocaleString('fr-FR')} MXN`;
+    return `${n}€`;
   }
-
-  function render(cur) {
-    const PER_DAY = '/ day'; // libellé anglais
-
-    Object.keys(ID_TO_CAT).forEach(id => {
-      const card = document.getElementById(id);
-      if (!card) return;
-
-      // NE MET À JOUR QUE LE NOMBRE
-      const priceNum = card.querySelector('.js-price');
-      if (!priceNum) return;
-
-      const cat = ID_TO_CAT[id];
-      const val = CATEGORY_PRICES[cat][cur];
-
-      priceNum.textContent = fmt(val, cur);
-
-      // Optionnel : si tu veux aussi forcer le libellé par langue
-      const perDay = card.querySelector('.per-day');
-      if (perDay) perDay.textContent = PER_DAY;
+  function render(cur){
+    document.querySelectorAll('.js-price').forEach(el=>{
+      const seg = el.dataset.segment;
+      const val = CATEGORY_PRICES[seg]?.[cur];
+      if(val!=null) el.textContent = fmt(val, cur);
     });
   }
-
-  // clic sur une devise
-  document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      e.stopPropagation();
-      const cur = a.dataset.currency;
-      localStorage.setItem('SCS_CURRENCY', cur);
-      setLabel(cur);
-      render(cur);
-      document.querySelector('.currency-dropdown')?.classList.add('hidden');
-    });
-  });
-
-  // init
-  document.addEventListener('DOMContentLoaded', () => {
-    const cur = getCurrency();
-    setLabel(cur);
-    render(cur);
-  });
-})();
+  document.addEventListener('DOMContentLoaded', ()=>{
+    render(getCurrency());
 
 /* Pre-booking submit */
 const form = document.getElementById('reservationForm');
