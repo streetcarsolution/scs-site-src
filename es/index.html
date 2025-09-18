@@ -1049,23 +1049,28 @@
         </div>
 
         <div>
-          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-          <p class="text-gray-400 mb-4">Suscríbete para recibir nuestras ofertas.</p>
-          <form class="flex">
-            <input type="email" placeholder="Tu email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
-            <button type="submit" class="bg-mexican-orange hover:bg-mexican-red px-4 py-2 rounded-r-lg">
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2023 Street Car Solution. Todos los derechos reservados.</p>
+        <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+        <p class="text-gray-400 mb-4">
+          Suscríbete para recibir nuestras ofertas especiales.
+        </p>
+      
+        <!-- Si tu <html> ya tiene lang="es", puedes omitir data-lang -->
+        <form data-newsletter data-lang="es" class="flex items-stretch gap-0">
+          <input type="email" placeholder="Tu correo electrónico"
+                 class="w-full px-4 py-3 rounded-l-lg text-gray-800" required>
+          <button type="submit"
+                  class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red"
+                  aria-label="Suscribirse al boletín">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      
+        <!-- Un solo elemento para el mensaje -->
+        <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
       </div>
     </div>
   </footer>
-
+  
   <script>
 /* ===============================
    Street Car Solution – JS global
@@ -1328,5 +1333,7 @@ if (aboutVideo && videoOverlay) {
     <a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank">DeepSite</a> - 🧬
     <a href="https://enzostvs-deepsite.hf.space?remix=Streetcarsolution/streetcarsolution-update-2" style="color: #fff;text-decoration: underline;" target="_blank">Remix</a>
   </p>
+  
+  <script defer src="/assets/js/newsletter.js"></script>
 </body>
 </html>
