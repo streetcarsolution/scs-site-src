@@ -1492,14 +1492,14 @@ function updatePriceCards(cur) {
 })();
 
 // 👉 nouvelle URL Apps Script (pré-réservation)
-  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyP8KDnh8nhsEztmOGZVwdd4Q_xIompxoclGtQ_B3xii4EaEijh9hNVBOb85Vrjvn6qSw/exec';
+  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzl6KQY_ntEhyDp0LZz3EoPEJYFHRVy1vdHd-MJ6SXnUWC-KHzkHTMrg0nlrex2kCj04g/exec';
 
 // --- Envoi vers Google Apps Script (sans estimation) ---
 const form = document.getElementById('reservationForm');
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const fd = new FormData(form);
+    const fd   = new FormData(form);
     const data = Object.fromEntries(fd.entries());
 
     try {
@@ -1508,16 +1508,25 @@ if (form) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
         body: new URLSearchParams(data).toString()
       });
-      const json = await resp.json().catch(() => ({}));
 
+      // DEBUG utile : log si pas OK
+      if (!resp.ok) {
+        const txt = await resp.text();
+        console.error('WebApp status:', resp.status, txt);
+        alert("Désolé, l’envoi a échoué. Réessayez un peu plus tard.");
+        return;
+      }
+
+      const json = await resp.json().catch(() => ({}));
       if (json && json.ok) {
         alert("Merci ! Votre pré-réservation a bien été envoyée. Nous revenons vers vous rapidement.");
         form.reset();
       } else {
-        alert("Désolé, l'envoi a échoué. Réessayez un peu plus tard.");
+        console.error('Réponse JSON inattendue:', json);
+        alert("Désolé, l’envoi a échoué. Réessayez un peu plus tard.");
       }
     } catch (err) {
-      console.error(err);
+      console.error('Fetch error:', err);
       alert("Erreur réseau : vérifiez votre connexion et réessayez.");
     }
   });
