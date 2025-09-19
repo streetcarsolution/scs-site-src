@@ -1281,7 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try { obj = JSON.parse(txt); } catch (_) {}
 
       if (resp.ok && obj && obj.ok) {
-        alert('¡Gracias! Tu pre-reserva se ha enviado correctamente. Nos pondremos en contacto contigo en breve.');
+        alert('¡Gracias! Su pre-reserva se ha enviado correctamente. Nos pondremos en contacto con usted en breve.');
         form.reset();
       } else {
         console.error('Respuesta de Apps Script:', resp.status, txt);
