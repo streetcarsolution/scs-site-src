@@ -1310,7 +1310,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       await fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' });
       form.reset();
-      status.textContent = '¡Gracias! Tu mensaje ha sido enviado.';
+      status.textContent = '¡Gracias! Su mensaje ha sido enviado.';
       status.className = 'mt-3 text-center text-sm text-green-600';
     } catch (err) {
       status.textContent = 'Lo sentimos, ocurrió un error. Intenta más tarde.';
