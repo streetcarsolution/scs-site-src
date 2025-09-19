@@ -1323,6 +1323,9 @@
    Street Car Solution – JS global
    =============================== */
 
+// 👉 nouvelle URL Apps Script (pré-réservation)
+  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyUXlYED3OUxU6MpLkiCwvCAsaOHGV838zLjXiRCXV89ZkP2gSyDG6FvXl4LNBCCSjCKw/exec';
+
 // ➜ NOUVEAU : Web App des témoignages
 const TESTI_URL = "https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec"; // colle ton URL ici
 
@@ -1491,8 +1494,6 @@ function updatePriceCards(cur) {
   });
 })();
 
-// 👉 nouvelle URL Apps Script (pré-réservation)
-  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyUXlYED3OUxU6MpLkiCwvCAsaOHGV838zLjXiRCXV89ZkP2gSyDG6FvXl4LNBCCSjCKw/exec';
 
 // --- Envoi vers Google Apps Script (sans estimation) ---
 const form = document.getElementById('reservationForm');
@@ -1558,41 +1559,6 @@ if (form) {
     });
   })();
 
-
-//-- Script d envoi (AJAX) : formulaire de contact -->
-(function () {
-    const form   = document.getElementById('contactForm');
-    const btn    = document.getElementById('contactSubmit');
-    const status = document.getElementById('contactStatus');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      status.textContent = '';
-      btn.disabled = true;
-      const original = btn.textContent;
-      btn.textContent = 'Envoi…';
-
-      try {
-        // On envoie les données au Web App Apps Script
-        await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          // no-cors évite les soucis CORS (on ne lit pas la réponse, mais ça envoie bien)
-          mode: 'no-cors'
-        });
-
-        form.reset();
-        status.textContent = 'Merci, votre message a bien été envoyé !';
-        status.className = 'mt-3 text-center text-sm text-green-600';
-      } catch (err) {
-        status.textContent = 'Désolé, une erreur est survenue. Réessayez plus tard.';
-        status.className = 'mt-3 text-center text-sm text-red-600';
-      } finally {
-        btn.disabled = false;
-        btn.textContent = original;
-      }
-    });
-  })();
 
 /* === Gestion de la vidéo “About” (si présente sur la page) === */
 const aboutVideo = document.getElementById("aboutVideo");
