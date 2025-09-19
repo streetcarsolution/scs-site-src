@@ -1323,9 +1323,6 @@
    Street Car Solution – JS global
    =============================== */
 
-// 👉 nouvelle URL Apps Script (pré-réservation)
-  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwIXQCDG3IZwzA7MNJzTqEwIX_xSFPDSbg-OqEEFFOldvO-kpWrSea-OANWaRDVgK9j9g/exec';
-
 // ➜ NOUVEAU : Web App des témoignages
 const TESTI_URL = "https://script.google.com/macros/s/AKfycbw9iJ-eP_hBgOHTn3w0FRRB1jo1fSGAhcCAfsAQMUUHwn5ssTbAH3UeYr-nhnWkoXHhsg/exec"; // colle ton URL ici
 
@@ -1495,35 +1492,41 @@ function updatePriceCards(cur) {
 })();
 
 
-// --- Envoi vers Google Apps Script (sans estimation) ---
+// URL de ton Web App (finissant par /exec)
+const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxQi4gbbpGEYzIMSyhiGu7DqSMmHod6MAFUYTaF1vpsdz05Z5aGOucCLQBJqit5WjkqlQ/exec';
+
 const form = document.getElementById('reservationForm');
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // FormData -> URLSearchParams (envoi simple, pas de préflight)
     const fd = new FormData(form);
-    const data = Object.fromEntries(fd.entries());
+    const body = new URLSearchParams();
+    fd.forEach((v, k) => body.append(k, v));
 
     try {
-  // On passe en GET pour éviter toute pré-requête CORS
-  const qs  = new URLSearchParams(data);
-  const url = `${WEBAPP_URL}?${qs.toString()}&t=${Date.now()}`; // cache-bust
+      const resp = await fetch(WEBAPP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: body.toString()
+      });
 
-  const resp = await fetch(url, { method: 'GET' });
-  const text = await resp.text();           // pour log utile si JSON invalide
-  let json = {};
-  try { json = JSON.parse(text); } catch (_) {}
+      const text = await resp.text();          // utile en debug
+      let json = {};
+      try { json = JSON.parse(text); } catch (_) {}
 
-  if (resp.ok && json && json.ok) {
-    alert("Merci ! Votre pré-réservation a bien été envoyée. Nous revenons vers vous rapidement.");
-    form.reset();
-  } else {
-    console.error('Réponse Apps Script:', resp.status, text);
-    alert("Désolé, l’envoi a échoué. Réessayez un peu plus tard.");
-  }
-} catch (err) {
-  console.error('Fetch error:', err);
-  alert("Erreur réseau : vérifiez votre connexion et réessayez.");
-}
+      if (resp.ok && json && json.ok) {
+        alert("Merci ! Votre pré-réservation a bien été envoyée. Nous revenons vers vous rapidement.");
+        form.reset();
+      } else {
+        console.error('Réponse Apps Script:', resp.status, text);
+        alert("Désolé, l’envoi a échoué. Réessayez un peu plus tard.");
+      }
+    } catch (err) {
+      console.error('Fetch error:', err);
+      alert("Erreur réseau : vérifiez votre connexion et réessayez.");
+    }
   });
 }
 
