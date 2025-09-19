@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="index, follow">
+  <title>Política de Privacidad – Street Car Solution</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind = window.tailwind || {};
+    tailwind.config = {
+      theme: {
+        fontSize: {
+          sm: '0.95rem', base: '1.05rem', lg: '1.20rem', xl: '1.35rem',
+          '2xl': '1.65rem', '3xl': '2rem', '4xl': '2.5rem', '5xl': '3rem'
+        },
+        extend: {
+          colors: {
+            caribbean: { blue:'#1DA1F2', green:'#00B894', yellow:'#FDCB6E', orange:'#E17055' },
+            mexican:   { red:'#E63946', yellow:'#F1C40F', green:'#2ECC71', blue:'#3498DB', orange:'#E67E22' }
+          },
+          fontFamily: {
+            sans: ['Montserrat','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','sans-serif'],
+            heading: ['"Fredoka One"', 'cursive']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Iconos / banderas -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://streetcarsolution.com/es/privacy.html">
+  <meta name="description" content="Política de privacidad de Street Car Solution (Cancún, México): qué datos recopilamos, para qué fines, plazos de conservación, destinatarios y derechos.">
+  <meta property="og:site_name" content="Street Car Solution">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Política de Privacidad – Street Car Solution">
+  <meta property="og:description" content="Cómo recopilamos, usamos y protegemos tus datos al reservar un coche en Cancún y la Riviera Maya.">
+  <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+  <meta property="og:url" content="https://streetcarsolution.com/es/privacy.html">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+
+  <!-- Estilos legales -->
+  <style>
+    .legal h2{
+      margin-top: 1.25rem;
+      font-weight: 700;
+      font-size: 1.125rem;
+      line-height: 1.4;
+    }
+    .legal h2:first-of-type{ margin-top: .5rem; }
+    .legal p, .legal ul{ margin-top: .5rem; }
+    .legal ul{ padding-left: 1.25rem; }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+
+  <!-- Barra idioma/moneda -->
+  <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
+    <!-- Idiomas -->
+    <div class="language-selector relative">
+      <button class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span class="fi fi-mx mr-2"></span>
+        Español
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-44">
+        <!-- ES (actual) -->
+        <a href="privacy.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-mx mr-2"></span> Español
+        </a>
+        <!-- FR -->
+        <a href="../privacy.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-fr mr-2"></span> Français
+        </a>
+        <!-- EN -->
+        <a href="../en/privacy.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-us mr-2"></span> English
+        </a>
+      </div>
+    </div>
+
+    <!-- Moneda (solo visual) -->
+    <div class="currency-selector relative">
+      <button id="currencyBtn" class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span id="currencyLabel">€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+        <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+        <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+        <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+        <a href="#" data-currency="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="bg-white shadow-md sticky top-10 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="../index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution Logo" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+
+        <div class="hidden md:flex space-x-8">
+          <a href="../index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Inicio</a>
+          <a href="../vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nuestros Vehículos</a>
+          <a href="../services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Servicios</a>
+          <a href="../testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Testimonios</a>
+          <a href="../index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contacto</a>
+        </div>
+
+        <!-- Burger -->
+        <button id="mobileMenuBtn" class="md:hidden text-gray-800" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menú móvil -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t mt-12">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="../index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Inicio</a>
+      <a href="../vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nuestros Vehículos</a>
+      <a href="../services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Servicios</a>
+      <a href="../testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Testimonios</a>
+      <a href="../index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contacto</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
+    <div class="container mx-auto px-4 py-10">
+      <h1 class="text-3xl md:text-4xl font-bold">Política de Privacidad</h1>
+      <p class="mt-2 text-white/90">Cómo recopilamos, utilizamos y protegemos tus datos.</p>
+    </div>
+  </header>
+
+  <!-- Contenido legal -->
+  <main class="container mx-auto px-4 py-10 prose prose-lg max-w-4xl legal">
+    <p><strong>Última actualización:</strong> 15/09/2025</p>
+
+    <p>Esta política explica qué datos recopilamos, con qué fines, durante cuánto tiempo los conservamos y qué derechos tienes. Se aplica a todos los servicios ofrecidos por <strong>Street Car Solution</strong> (Cancún, Quintana Roo, México).</p>
+
+    <h2><strong>1. Responsable del tratamiento</strong></h2>
+    <ul>
+      <li><strong>Street Car Solution</strong> – Cancún, Quintana Roo, México<br>
+      Email: reservation@streetcarsolution.com</li>
+    </ul>
+
+    <h2><strong>2. Datos que recopilamos</strong></h2>
+    <ul>
+      <li>Datos de identificación y contacto: nombre, apellidos, fecha de nacimiento, email, teléfono, dirección.</li>
+      <li>Datos de reserva: fechas, lugares de recogida/devolución, categoría del vehículo, opciones seleccionadas.</li>
+      <li>Datos procedentes de formularios del sitio (p. ej., testimonios): valoración, mensaje, vídeo, consentimiento para la publicación.</li>
+      <li>Datos técnicos de navegación (logs) y preferencias (idioma, moneda). Cookies detalladas más abajo.</li>
+      <li>Facturación: importes y estado del pago. <em>No almacenamos los números de tarjeta en nuestro sitio.</em></li>
+      <li>Documentos de identidad: copia/foto de documentos oficiales (pasaporte y permiso de conducir — número, país de expedición, fecha de caducidad). Se recogen únicamente para la verificación de identidad, la formalización del contrato y el cumplimiento de obligaciones legales/seguro. Acceso estrictamente limitado; conservación durante el tiempo necesario y posterior eliminación segura.</li>
+    </ul>
+
+    <h2><strong>3. Finalidades</strong></h2>
+    <ul>
+      <li>Gestionar solicitudes, presupuestos, reservas y el contrato de alquiler.</li>
+      <li>Proporcionar asistencia (antes, durante y después del alquiler).</li>
+      <li>Comunicar información útil (pre-reserva, recordatorios, devolución del vehículo).</li>
+      <li>Publicar, con tu consentimiento, determinados testimonios.</li>
+      <li>Mejorar el sitio, prevenir el fraude y garantizar la seguridad.</li>
+      <li>Cumplir con obligaciones legales (contabilidad, facturación, atención a autoridades competentes).</li>
+    </ul>
+
+    <h2><strong>4. Bases legales</strong></h2>
+    <ul>
+      <li><strong>Ejecución contractual</strong>: tratamiento necesario para gestionar tu solicitud y tu alquiler.</li>
+      <li><strong>Interés legítimo</strong>: seguridad, mejora de nuestros servicios, prevención del fraude.</li>
+      <li><strong>Obligación legal</strong>: conservación contable, respuestas a autoridades.</li>
+      <li><strong>Consentimiento</strong>: publicación de testimonios, uso de cookies no esenciales.</li>
+    </ul>
+
+    <h2><strong>5. Plazos de conservación</strong></h2>
+    <ul>
+      <li>Expedientes de reserva/contrato: duración de la relación + plazos legales aplicables.</li>
+      <li>Contabilidad/facturación: según la normativa vigente.</li>
+      <li>Testimonios publicados: hasta la retirada de tu consentimiento.</li>
+      <li>Cookies: ver plazos en la sección «Cookies y rastreadores».</li>
+    </ul>
+
+    <h2><strong>6. Destinatarios y transferencias</strong></h2>
+    <ul>
+      <li>Nuestro equipo operativo (reservas, soporte, facturación).</li>
+      <li>Proveedores técnicos y herramientas habituales de alojamiento, email y formularios (p. ej., hosting del sitio, servicios de Google como Gmail/Sheets, CDN/iconos), estrictamente para prestar el servicio.</li>
+      <li>Autoridades competentes cuando la ley lo exija (multas, infracciones, litigios).</li>
+      <li>Algunos proveedores pueden estar ubicados fuera de tu país de residencia; procuramos utilizar proveedores de confianza y mecanismos adecuados (cláusulas contractuales tipo, políticas internas) cuando sea necesario.</li>
+    </ul>
+
+    <h2><strong>7. Cookies y rastreadores</strong></h2>
+    <ul>
+      <li>Utilizamos cookies/rastreadores para:</li>
+      <li><strong>Técnicas/ necesarias</strong> (p. ej., recordar idioma y moneda, seguridad del sitio). Son imprescindibles para el funcionamiento.</li>
+      <li><strong>Medición de audiencia</strong> (si está activada): entender el uso del sitio para mejorarlo. Sujeto a tu consentimiento cuando sea exigible.</li>
+      <li>Puedes gestionar tus preferencias desde la configuración de tu navegador (bloqueo, eliminación) y, en su caso, a través de nuestro banner/centro de preferencias. Rechazar ciertas cookies puede degradar la experiencia.</li>
+    </ul>
+
+    <h2><strong>8. Tus derechos</strong></h2>
+    <ul>
+      <li><strong>Acceso</strong>: obtener una copia de tus datos.</li>
+      <li><strong>Rectificación</strong>: corregir datos inexactos.</li>
+      <li><strong>Supresión</strong>: solicitar el borrado cuando la ley lo permita.</li>
+      <li><strong>Limitación</strong> y <strong>Oposición</strong>: según las condiciones legales.</li>
+      <li><strong>Retirada del consentimiento</strong>: en cualquier momento para los tratamientos afectados (p. ej., testimonio publicado).</li>
+      <li><strong>Portabilidad</strong>: recibir tus datos en un formato estructurado cuando corresponda.</li>
+      <li>Para ejercer tus derechos: <strong>reservation@streetcarsolution.com</strong> (adjunta una prueba de identidad si es necesario). También puedes presentar una reclamación ante tu autoridad local de protección de datos.</li>
+    </ul>
+
+    <h2><strong>9. Seguridad</strong></h2>
+    <ul>
+      <li>Aplicamos medidas técnicas y organizativas razonables (controles de acceso, copias de seguridad, buenas prácticas de alojamiento). No obstante, ningún sistema es infalible: te recomendamos mantener la prudencia al compartir información en línea.</li>
+    </ul>
+
+    <h2><strong>10. Menores</strong></h2>
+    <ul>
+      <li>Nuestros servicios no están dirigidos a menores no acompañados. Cualquier reserva requiere un conductor que cumpla las condiciones de edad y permiso.</li>
+    </ul>
+
+    <h2><strong>11. Cambios en la política</strong></h2>
+    <ul>
+      <li>Podemos actualizar esta política para reflejar cambios legales o técnicos. La fecha de actualización se modificará en consecuencia. En caso de cambios importantes, podremos informarte por email o a través del sitio.</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+      <p>Para cualquier consulta sobre protección de datos:<br>
+      <strong>Street Car Solution – reservation@streetcarsolution.com</strong><br>
+      Consulta también nuestros <a href="terms.html" class="text-caribbean-blue underline">Términos y Condiciones</a>.</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <p class="text-gray-400">Tu socio de confianza para alquilar coche en Cancún y en toda la Península de Yucatán.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Canal de YouTube Street Car Solution"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Enlaces útiles</h3>
+          <ul class="space-y-2">
+            <li><a href="../index.html" class="text-gray-400 hover:text-white">Inicio</a></li>
+            <li><a href="../vehicles.html" class="text-gray-400 hover:text-white">Nuestros Vehículos</a></li>
+            <li><a href="../services.html" class="text-gray-400 hover:text-white">Servicios</a></li>
+            <li><a href="../testimonials.html" class="text-gray-400 hover:text-white">Testimonios</a></li>
+            <li><a href="../index.html#contact" class="text-gray-400 hover:text-white">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Información</h3>
+          <ul class="space-y-2">
+            <li><a href="es/terms.html" class="text-gray-400 hover:text-white">Términos y Condiciones</a></li>
+            <li><a href="es/privacy.html" class="text-gray-400 hover:text-white">Política de Privacidad</a></li>
+            <li><a href="es/fag.html" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="es/blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Suscríbete para recibir nuestras ofertas especiales.</p>
+
+          <form data-newsletter data-lang="es" class="flex items-stretch gap-0">
+            <input type="email" placeholder="Tu correo electrónico" class="w-full px-4 py-3 rounded-l-lg text-gray-800" required />
+            <button type="submit" class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red" aria-label="Suscribirse al boletín">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
+        </div>
+
+        <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2023 Street Car Solution. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Burger
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+      };
+      const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
+      };
+      burgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+
+    // Dropdown idioma/moneda
+    const langSel = document.querySelector('.language-selector');
+    const langDrop = document.querySelector('.language-dropdown');
+    const curSel  = document.querySelector('.currency-selector');
+    const curDrop = document.querySelector('.currency-dropdown');
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    function setupDropdown(trigger, panel) {
+      if (!trigger || !panel) return;
+      panel.classList.add('hidden');
+      let hideTimer = null;
+      const btn = trigger.querySelector('button');
+      const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
+      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
+      const toggle = (e) => {
+        e.stopPropagation();
+        const show = panel.classList.contains('hidden');
+        if (panel !== langDrop) langDrop?.classList.add('hidden');
+        if (panel !== curDrop)  curDrop?.classList.add('hidden');
+        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); }
+        else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
+      };
+      if (isDesktop.matches) {
+        trigger.addEventListener('mouseenter', open);
+        trigger.addEventListener('mouseleave', close);
+        panel.addEventListener('mouseenter', open);
+        panel.addEventListener('mouseleave', close);
+        btn?.addEventListener('focus', open);
+        btn?.addEventListener('blur', close);
+      } else {
+        trigger.addEventListener('click', toggle);
+      }
+      panel.addEventListener('click', (e) => e.stopPropagation());
+    }
+    setupDropdown(langSel, langDrop);
+    setupDropdown(curSel, curDrop);
+
+    document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        const map = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
+        document.getElementById('currencyLabel').textContent = map[a.dataset.currency] || '€ EUR';
+        curDrop?.classList.add('hidden');
+      });
+    });
+    document.addEventListener('click',   () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+    window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+  </script>
+
+  <script defer src="/assets/js/newsletter.js"></script>
+</body>
+</html>
