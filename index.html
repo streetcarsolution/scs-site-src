@@ -1492,43 +1492,47 @@ function updatePriceCards(cur) {
 })();
 
 
-// URL de ton Web App (finissant par /exec)
-const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxQi4gbbpGEYzIMSyhiGu7DqSMmHod6MAFUYTaF1vpsdz05Z5aGOucCLQBJqit5WjkqlQ/exec';
+/* TEMP – handler pré-réservation (POST vers Apps Script) */
+(function () {
+  // Remplace par l'URL /exec de TON déploiement actif si elle change
+  const WEBAPPURL = 'https://script.google.com/macros/s/AKfycbwXxNT2kISyzvlcyNYCxS27CbE3wT5GBORgdWJT1TFtFB8SM9bx8LlgeDcEPR5pYw_mqQ/exec';
 
-const form = document.getElementById('reservationForm');
-if (form) {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  const form = document.getElementById('reservationForm');
+  if (!form) { console.error('Form #reservationForm introuvable'); return; }
 
-    // FormData -> URLSearchParams (envoi simple, pas de préflight)
+  form.addEventListener('submit', async function (ev) {
+    ev.preventDefault();
+
+    // FormData -> URLSearchParams (pas de préflight)
     const fd = new FormData(form);
     const body = new URLSearchParams();
     fd.forEach((v, k) => body.append(k, v));
 
     try {
-      const resp = await fetch(WEBAPP_URL, {
+      const resp = await fetch(WEBAPPURL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
         body: body.toString()
       });
 
-      const text = await resp.text();          // utile en debug
-      let json = {};
-      try { json = JSON.parse(text); } catch (_) {}
+      const txt = await resp.text();  // utile pour voir les erreurs renvoyées par Apps Script
+      let obj = {};
+      try { obj = JSON.parse(txt); } catch (e) {}
 
-      if (resp.ok && json && json.ok) {
-        alert("Merci ! Votre pré-réservation a bien été envoyée. Nous revenons vers vous rapidement.");
+      if (resp.ok && obj && obj.ok) {
+        alert('Merci ! Votre pré-réservation a bien été envoyée. Nous revenons vers vous rapidement.');
         form.reset();
       } else {
-        console.error('Réponse Apps Script:', resp.status, text);
-        alert("Désolé, l’envoi a échoué. Réessayez un peu plus tard.");
+        console.error('Réponse Apps Script:', resp.status, txt);
+        // TEMP: affiche l’erreur exacte renvoyée par Apps Script pour qu’on cible vite
+        alert('Échec: ' + (obj && obj.error ? obj.error : txt.slice(0, 300)));
       }
     } catch (err) {
       console.error('Fetch error:', err);
-      alert("Erreur réseau : vérifiez votre connexion et réessayez.");
+      alert('Erreur réseau : ' + err.message);
     }
   });
-}
+})();
 
 //-- Script d envoi (AJAX) : formulaire de contact -->
 (function () {
