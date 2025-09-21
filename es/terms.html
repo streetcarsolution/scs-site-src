@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="index, follow">
+  <title>Términos y Condiciones – Street Car Solution</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind = window.tailwind || {};
+    tailwind.config = {
+      theme: {
+        fontSize:{
+          sm:'0.95rem', base:'1.05rem', lg:'1.20rem', xl:'1.35rem',
+          '2xl':'1.65rem', '3xl':'2rem', '4xl':'2.5rem', '5xl':'3rem'
+        },
+        extend:{
+          colors:{
+            caribbean:{blue:'#1DA1F2', green:'#00B894', yellow:'#FDCB6E', orange:'#E17055'},
+            mexican:{red:'#E63946', yellow:'#F1C40F', green:'#2ECC71', blue:'#3498DB', orange:'#E67E22'}
+          },
+          fontFamily:{
+            sans:['Montserrat','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','sans-serif'],
+            heading:['"Fredoka One"','cursive']
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://streetcarsolution.com/es/terms.html">
+  <meta name="description" content="Términos de alquiler de Street Car Solution en Cancún, México: reservas, pago, depósito, seguros, combustible, kilometraje, devoluciones, cancelaciones.">
+  <meta property="og:site_name" content="Street Car Solution">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Términos y Condiciones – Street Car Solution">
+  <meta property="og:description" content="Todo sobre nuestras condiciones de alquiler en Cancún y la Riviera Maya.">
+  <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+  <meta property="og:url" content="https://streetcarsolution.com/es/terms.html">
+
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+
+  <style>
+    .legal h2{ margin-top:1.25rem; font-weight:700; font-size:1.125rem; line-height:1.4; }
+    .legal h2:first-of-type{ margin-top:.5rem; }
+    .legal p, .legal ul{ margin-top:.5rem; }
+    .legal ul{ padding-left:1.25rem; }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+
+  <!-- Barra de idioma/moneda -->
+  <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
+    <div class="language-selector relative">
+      <button class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span class="fi fi-mx mr-2"></span>
+        Español
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-44">
+        <a href="/terms.html"    class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-fr mr-2"></span> Français
+        </a>
+        <a href="/en/terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-us mr-2"></span> English
+        </a>
+        <a href="/es/terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-mx mr-2"></span> Español
+        </a>
+      </div>
+    </div>
+
+    <div class="currency-selector relative">
+      <button id="currencyBtn" class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span id="currencyLabel">$ MXN</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+        <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+        <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+        <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+        <a href="#" data-currency="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="bg-white shadow-md sticky top-10 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="/es/index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Logo Street Car Solution" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+
+        <div class="hidden md:flex space-x-8">
+          <a href="/es/index.html"        class="text-gray-800 hover:text-caribbean-blue font-medium">Inicio</a>
+          <a href="/es/vehicles.html"     class="text-gray-800 hover:text-caribbean-blue font-medium">Vehículos</a>
+          <a href="/es/services.html"     class="text-gray-800 hover:text-caribbean-blue font-medium">Servicios</a>
+          <a href="/es/testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Testimonios</a>
+          <a href="/es/index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contacto</a>
+        </div>
+
+        <button id="mobileMenuBtn" class="md:hidden text-gray-800" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menú móvil -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t mt-12">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="/es/index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Inicio</a>
+      <a href="/es/vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Vehículos</a>
+      <a href="/es/services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Servicios</a>
+      <a href="/es/testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Testimonios</a>
+      <a href="/es/index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contacto</a>
+    </div>
+  </div>
+
+  <!-- Encabezado -->
+  <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
+    <div class="container mx-auto px-4 py-10">
+      <h1 class="text-3xl md:text-4xl font-bold">Términos y Condiciones de Alquiler</h1>
+      <p class="mt-2 text-white/90">Aplicables a los alquileres de Street Car Solution en Cancún y la Riviera Maya.</p>
+    </div>
+  </header>
+
+  <!-- Contenido legal -->
+  <main class="container mx-auto px-4 py-10 prose prose-lg max-w-4xl legal">
+    <p><strong>Última actualización:</strong> 15/09/2025</p>
+
+    <h2><strong>1. Objeto</strong></h2>
+    <ul>
+      <li>Estos términos regulan la reserva y el alquiler de vehículos ofrecidos por <strong>Street Car Solution</strong> (Cancún, Quintana Roo, México). Cualquier reserva implica la aceptación sin reservas de estos términos.</li>
+    </ul>
+
+    <h2><strong>2. Reserva y contrato</strong></h2>
+    <ul>
+      <li>La solicitud en línea constituye una petición de reserva; se confirma por mensaje (WhatsApp / Email) y/o mediante el pago de un anticipo si se requiere.</li>
+      <li>El contrato se firma al entregar el vehículo, previa verificación de los documentos oficiales (licencia de conducir + pasaporte o INE) del conductor o conductores.</li>
+      <li>Según disponibilidad, puede entregarse un vehículo “similar”.</li>
+    </ul>
+
+    <h2><strong>3. Conductor, edad y documentos</strong></h2>
+    <ul>
+      <li>Edad mínima: 21 años, o 25 para ciertos modelos. Licencia válida con al menos 2 años de antigüedad.</li>
+      <li>* Posible alquiler a conductores jóvenes con cargo adicional.</li>
+      <li>Documentos de identidad requeridos: licencia de conducir + pasaporte o INE.</li>
+      <li>Conductor adicional posible (ver página Servicios).</li>
+    </ul>
+
+    <h2><strong>4. Tarifas, pago y depósito</strong></h2>
+    <ul>
+      <li>Las tarifas incluyen seguro y kilometraje ilimitado, a menos que se indique lo contrario.</li>
+      <li>Medios de pago aceptados: efectivo o tarjeta de débito/crédito (aplica 5% de comisión bancaria para pagos con tarjeta).</li>
+      <li>Las tarifas se fijan en Pesos Mexicanos (MXN). Se aceptan divisas extranjeras al tipo de cambio del día de la entrega del vehículo.</li>
+      <li>Se requiere un depósito de garantía en la entrega; se devuelve tras la devolución, descontando posibles cargos (combustible faltante, multas, daños, lavado, retrasos, etc.).</li>
+    </ul>
+
+    <h2><strong>5. Seguros y responsabilidad</strong></h2>
+    <ul>
+      <li>La tarifa de alquiler incluye el seguro de colisión (CDW) y el seguro de robo (TP) con deducible del 10% del valor del vehículo. Se pueden ofrecer opciones adicionales.</li>
+      <li>La cobertura incluye responsabilidad civil a terceros (RC) y asistencia médica.</li>
+      <li>Se aplican las exclusiones habituales (conducir bajo los efectos, fuera de las carreteras autorizadas, negligencia, uso no autorizado, etc).</li>
+      <li>En caso de accidente, robo o siniestro, los inquilinos deben notificar de inmediato a Street Car Solution.</li>
+      <li>Bajo ninguna circunstancia Street Car Solution es responsable del robo de los efectos personales de los inquilinos en los vehículos.</li>
+    </ul>
+
+    <h2><strong>6. Gasolina</strong></h2>
+    <ul>
+    <li>El vehículo se entrega con un nivel de gasolina determinado y debe devolverse con el mismo nivel. En caso contrario, se aplicarán cargos de repostaje. El excedente de gasolina no es reembolsable.</li>
+    </ul>
+
+    <h2><strong>7. Entrega, devoluciones y retraso</strong></h2>
+    <ul>
+      <li>Los lugares de entrega y devolución (aeropuerto, hotel, etc.) se acuerda al momento de la reserva.</li>
+      <li>La entrega y/o devolución del vehículo entre las 21:00 y las 9:00 genera cargos adicionales.</li>
+      <li>Cualquier retraso genera cargos adicionales según la tarifa vigente.</li>
+      <li>Se realizan inspecciones del vehículo (al inicio y al final); cualquier anomalía no reportada al inicio puede ser facturada.</li>
+    </ul>
+
+    <h2><strong>8. Uso del vehículo</strong></h2>
+    <ul>
+      <li>El vehículo debe ser utilizado de acuerdo con el código de tránsito mexicano.</li>
+      <li>El vehículo debe ser devuelto después de un lavado en un autolavado, de lo contrario se aplicarán cargos de lavado.</li>
+      <li>Los viajes fuera de la zonas autorizadas requieren aprobación previa. Está prohibido salir del país con el vehículo.</li>
+    </ul>
+
+    <h2><strong>9. Multas, daños e inmovilización</strong></h2>
+    <ul>
+      <li>Las multas, peajes e infracciones durante el periodo de alquiler son responsabilidad del arrendatario.</li>
+      <li>En caso de daños, se podrán cobrar gastos de reparación y/o inmovilización según las condiciones del seguro.</li>
+    </ul>
+
+    <h2><strong>10. Cancelación y no presentarse (no-show)</strong></h2>
+    <ul>
+      <li>El cliente debe notificar a Street Car Solution lo antes posible sobre cualquier modificación de fechas o cancelación.</li>
+    </ul>
+
+    <h2><strong>11. Fuerza mayor</strong></h2>
+    <ul>
+      <li>Street Car Solution no será responsable por la falta de cumplimiento o retraso debido a fuerza mayor (circunstancias externas imprevisibles, desastre natural, destrucción del vehículo reservado, etc.).</li>
+    </ul>
+
+    <h2><strong>12. Datos personales</strong></h2>
+    <ul>
+      <li>Sus datos se tratan conforme a nuestra <a href="/es/privacy.html" class="text-caribbean-blue underline">Política de Privacidad</a>.</li>
+    </ul>
+
+    <h2><strong>13. Ley aplicable y disputas</strong></h2>
+    <ul>
+      <li>Estos términos están sujetos a la ley mexicana. A falta de un acuerdo amistoso, los litigios serán resueltos por los tribunales competentes de Cancún, Quintana Roo.</li>
+    </ul>
+
+    <p class="text-sm text-gray-500">Esta información se proporciona a título informativo y no constituye un asesoramiento legal. Por favor, verifique los términos exactos de su contrato al momento de la entrega del vehículo.</p>
+
+    <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+      <p><strong>Contacto:</strong> Street Car Solution – E-mail: <a href="mailto:reservation@streetcarsolution.com" class="underline">reservation@streetcarsolution.com</a></p>
+    </div>
+  </main>
+
+  <!-- Pie -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <p class="text-gray-400">Tu socio de confianza para rentar autos en Cancún y en toda la península de Yucatán.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Canal YouTube Street Car Solution"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Enlaces útiles</h3>
+          <ul class="space-y-2">
+            <li><a href="/es/index.html" class="text-gray-400 hover:text-white">Inicio</a></li>
+            <li><a href="/es/vehicles.html" class="text-gray-400 hover:text-white">Vehículos</a></li>
+            <li><a href="/es/services.html" class="text-gray-400 hover:text-white">Servicios</a></li>
+            <li><a href="/es/testimonials.html" class="text-gray-400 hover:text-white">Testimonios</a></li>
+            <li><a href="/es/index.html#contact" class="text-gray-400 hover:text-white">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Información</h3>
+          <ul class="space-y-2">
+            <li><a href="/es/terms.html" class="text-gray-400 hover:text-white">Términos y Condiciones</a></li>
+            <li><a href="/es/privacy.html" class="text-gray-400 hover:text-white">Política de Privacidad</a></li>
+            <li><a href="/es/faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="/es/blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Boletín</h3>
+          <p class="text-gray-400 mb-4">Suscríbete para recibir ofertas especiales.</p>
+          <form data-newsletter data-lang="es" class="flex items-stretch gap-0">
+            <input type="email" placeholder="Tu correo electrónico" class="w-full px-4 py-3 rounded-l-lg text-gray-800" required />
+            <button type="submit" class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red" aria-label="Suscribirse al boletín">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
+        </div>
+
+        <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2023 Street Car Solution. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const burgerBtn=document.getElementById('mobileMenuBtn');
+    const mobileMenu=document.getElementById('mobileMenu');
+    if(burgerBtn&&mobileMenu){
+      const icon=burgerBtn.querySelector('i');
+      const closeMenu=()=>{mobileMenu.classList.add('hidden');document.body.classList.remove('overflow-hidden');burgerBtn.setAttribute('aria-expanded','false');if(icon){icon.classList.remove('fa-times');icon.classList.add('fa-bars');}};
+      const openMenu =()=>{mobileMenu.classList.remove('hidden');document.body.classList.add('overflow-hidden');burgerBtn.setAttribute('aria-expanded','true');if(icon){icon.classList.remove('fa-bars');icon.classList.add('fa-times');}};
+      burgerBtn.addEventListener('click',()=>{mobileMenu.classList.contains('hidden')?openMenu():closeMenu();});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+      window.addEventListener('resize',()=>{if(window.innerWidth>=768)closeMenu();});
+    }
+    const langSel=document.querySelector('.language-selector');
+    const langDrop=document.querySelector('.language-dropdown');
+    const curSel=document.querySelector('.currency-selector');
+    const curDrop=document.querySelector('.currency-dropdown');
+    const isDesktop=window.matchMedia('(hover:hover) and (pointer:fine)');
+    function setupDropdown(trigger,panel){
+      if(!trigger||!panel)return;
+      panel.classList.add('hidden');
+      let t=null; const btn=trigger.querySelector('button');
+      const open =()=>{ if(t)clearTimeout(t); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
+      const close=()=>{ t=setTimeout(()=>{panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false');},120); };
+      const toggle=e=>{ e.stopPropagation(); const show=panel.classList.contains('hidden'); if(panel!==langDrop)langDrop?.classList.add('hidden'); if(panel!==curDrop)curDrop?.classList.add('hidden'); show?open():close(); };
+      if(isDesktop.matches){ trigger.addEventListener('mouseenter',open); trigger.addEventListener('mouseleave',close); panel.addEventListener('mouseenter',open); panel.addEventListener('mouseleave',close); btn?.addEventListener('focus',open); btn?.addEventListener('blur',close); }
+      else trigger.addEventListener('click',toggle);
+      panel.addEventListener('click',e=>e.stopPropagation());
+    }
+    setupDropdown(langSel,langDrop); setupDropdown(curSel,curDrop);
+    document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a=>{
+      a.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const map={EUR:'€ EUR',USD:'$ USD',CAD:'$ CAD',MXN:'$ MXN'};document.getElementById('currencyLabel').textContent=map[a.dataset.currency]||'$ MXN';curDrop?.classList.add('hidden');});
+    });
+    document.addEventListener('click',()=>{langDrop?.classList.add('hidden');curDrop?.classList.add('hidden');});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){langDrop?.classList.add('hidden');curDrop?.classList.add('hidden');}});
+    window.addEventListener('resize',()=>{langDrop?.classList.add('hidden');curDrop?.classList.add('hidden');});
+  </script>
+
+  <script defer src="/assets/js/newsletter.js"></script>
+</body>
+</html>
