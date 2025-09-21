@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="index, follow">
+  <title>FAQ – Street Car Solution</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind = window.tailwind || {};
+    tailwind.config = {
+      theme: {
+        fontSize: {
+          sm: '0.95rem', base: '1.05rem', lg: '1.20rem', xl: '1.35rem',
+          '2xl': '1.65rem', '3xl': '2rem', '4xl': '2.5rem', '5xl': '3rem'
+        },
+        extend: {
+          colors: {
+            caribbean: { blue:'#1DA1F2', green:'#00B894', yellow:'#FDCB6E', orange:'#E17055' },
+            mexican:   { red:'#E63946', yellow:'#F1C40F', green:'#2ECC71', blue:'#3498DB', orange:'#E67E22' }
+          },
+          fontFamily: {
+            sans: ['Montserrat','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','sans-serif'],
+            heading: ['"Fredoka One"','cursive']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Icons / flags -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://streetcarsolution.com/en/faq.html">
+  <meta name="description" content="Frequently asked questions about Street Car Solution: booking, security deposit, insurance, mileage, delivery/return, fines and 24/7 assistance.">
+  <meta property="og:site_name" content="Street Car Solution">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FAQ – Street Car Solution">
+  <meta property="og:description" content="All the answers you need for a smooth car rental in Cancún and along the Riviera Maya.">
+  <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+  <meta property="og:url" content="https://streetcarsolution.com/en/faq.html">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+
+  <!-- FAQ styles -->
+  <style>
+    details summary { list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] summary .chev { transform: rotate(180deg); }
+    .faq-card { transition: box-shadow .2s, transform .2s; }
+    .faq-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,.08); transform: translateY(-1px); }
+  </style>
+
+  <!-- JSON-LD FAQPage (excerpt) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How do I book?","acceptedAnswer":{"@type":"Answer","text":"Choose your vehicle and dates on the website and submit the pre-booking form. We will then confirm by WhatsApp/email and, if needed, request a small deposit."}},
+      {"@type":"Question","name":"What is the security deposit?","acceptedAnswer":{"@type":"Answer","text":"A refundable security deposit is held when you receive the vehicle. The amount depends on the category and is released after the return inspection."}},
+      {"@type":"Question","name":"Is mileage unlimited?","acceptedAnswer":{"@type":"Answer","text":"Yes, unlimited mileage is included on all categories unless otherwise stated."}},
+      {"@type":"Question","name":"Assistance in case of breakdown or accident?","acceptedAnswer":{"@type":"Answer","text":"24/7 assistance. Contact us immediately; we coordinate roadside help, replacement or towing as appropriate."}},
+      {"@type":"Question","name":"Can I add a driver?","acceptedAnswer":{"@type":"Answer","text":"Yes. One additional driver can be added for free; further drivers are possible for a small fee per driver."}},
+      {"@type":"Question","name":"Fuel policy","acceptedAnswer":{"@type":"Answer","text":"Same-to-same. Return the car with the same fuel level as at pick-up; refuelling and service fees apply otherwise."}}
+    ]
+  }
+  </script>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 overflow-x-hidden">
+
+  <!-- Top language / currency bar -->
+  <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
+    <!-- Languages -->
+    <div class="language-selector relative">
+      <button class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span class="fi fi-us mr-2"></span>
+        English
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
+        <a href="../faq.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-fr mr-2"></span> Français
+        </a>
+        <a href="faq.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-us mr-2"></span> English
+        </a>
+        <a href="../es/faq.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-mx mr-2"></span> Español
+        </a>
+      </div>
+    </div>
+
+    <!-- Currency (visual only) -->
+    <div class="currency-selector relative">
+      <button id="currencyBtn" class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span id="currencyLabel">$ USD</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
+        <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+        <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+        <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+        <a href="#" data-currency="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="bg-white shadow-md sticky top-10 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution Logo" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Home</a>
+          <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Vehicles</a>
+          <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+          <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Testimonials</a>
+          <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+        </div>
+
+        <!-- Burger -->
+        <button id="mobileMenuBtn" class="md:hidden text-gray-800" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t mt-12">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Home</a>
+      <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Vehicles</a>
+      <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+      <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Testimonials</a>
+      <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
+    <div class="container mx-auto px-4 py-10">
+      <h1 class="text-3xl md:text-4xl font-bold">Frequently Asked Questions</h1>
+      <p class="mt-2 text-white/90">Everything you need to know for a 100% worry-free rental.</p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <section class="py-8">
+    <!-- Full-width light band -->
+    <div class="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-gray-200">
+      <div class="container mx-auto px-4">
+        <main class="py-10 max-w-5xl mx-auto">
+
+          <!-- Quick filters -->
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+            <a href="#resa" class="bg-white rounded-xl shadow px-4 py-3 hover:shadow-md">🗓️ Booking</a>
+            <a href="#assurance" class="bg-white rounded-xl shadow px-4 py-3 hover:shadow-md">🛡️ Insurance & Payments</a>
+            <a href="#utilisation" class="bg-white rounded-xl shadow px-4 py-3 hover:shadow-md">🚗 Vehicle Use</a>
+            <a href="#ferry" class="bg-white rounded-xl shadow px-4 py-3 hover:shadow-md">🚢 Ferry, Borders & Restricted Areas</a>
+            <a href="#safety" class="bg-white rounded-xl shadow px-4 py-3 hover:shadow-md">⚠️ Safety $ Roads</a>
+            <a href="#logistics" class="bg-white rounded-xl shadow px-4 py-3 hover:shadow-md">📍 Delivery & Return</a>
+          </div>
+
+          <!-- Booking -->
+          <section id="resa" class="mb-10">
+            <h2 class="text-2xl font-bold text-caribbean-blue mb-4">Booking</h2>
+
+            <div class="space-y-3">
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">How to book?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  <ul class="list-disc pl-6">
+                    <li>Choose your <a href="vehicles.html" class="text-caribbean-blue underline">vehicle</a> on our website, then complete the <a href="index.html#reservation" class="text-caribbean-blue underline">pre-booking</a> form.</li>
+                    <li>We will contact you promptly via WhatsApp to finalize the booking details and assign you a vehicle.</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">What documents do I need to provide to book?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  <ul class="list-disc pl-6">
+                    <li>Your driver's license and passport are required for all reservations, as well as round-trip flight tickets.</li>
+                    <li>For Mexican residents, a driver's license and INE card are required..</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Do I need an international driver's license?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  No matter your nationality, an international driver's license is not mandatory. For more information, please visit the official website of your general consulate in Mexico.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">What is the minimum age to book?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  <ul class="list-disc pl-6">
+                    <li>The minimum age is 21, or 25 for certain vehicle models. The driver's license must have been valid for at least 2 years.</li>
+                    <li>* Rental is possible for young drivers with an additional fee. Contact us for more information.</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">What is the minimum number of days I can book?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  We rent for a minimum of five days. The exception is for pick-up and drop-off in Cancun, where we can rent for four or three days, subject to availability.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">In what language is the rental agreement written?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  All rental agreements are written in Spanish, according to Mexican law. Don't worry, one of our advisors will translate it for you if needed.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Can I modify or cancel my reservation?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Yes, contact us as soon as possible. Modifications depend on availability. Cancellation conditions are specified in our
+                  <a href="terms.html" class="text-caribbean-blue underline">Terms & Conditions</a>.
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Insurance & Payments -->
+          <section id="assurance" class="mb-10">
+            <h2 class="text-2xl font-bold text-caribbean-blue mb-4">Insurance & Payments</h2>
+
+            <div class="space-y-3">
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">What insurance is included?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  <ul class="list-disc pl-6">
+                    <li>Third-party liability (RC) and medical assistance are included.</li>
+                    <li>Collision Damage Waiver (CDW) and Theft Protection (TP) with a 10% deductible on the value of the vehicle are also included.</li>
+                    <li>We recommend you subscribe to our "24/7 Police Assistance Service" for complete peace of mind during checks with local authorities.</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">What is the security deposit amount?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  The security deposit is between $3,000 Pesos and $7,000 Pesos, depending on the vehicle category. The deposit is blocked upon vehicle delivery and will be released upon return after the vehicle has been checked.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Do I need to pay for my reservation in advance?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  The full payment for the rental is made in person when you sign the contract and we hand over the vehicle keys.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">What payment methods do you accept?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  <ul class="list-disc pl-6">
+                    <li>We accept payments in cash or by bank card (Debit/Credit). Bank card numbers are not stored on our website. A 5% bank fee is added for all card payments.</li>
+                    <li>The rates are set in Mexican Pesos, but we can accept foreign currencies based on the daily exchange rate on the day of payment.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Vehicle use -->
+          <section id="utilisation" class="mb-10">
+            <h2 class="text-2xl font-bold text-caribbean-blue mb-4">Vehicle Use</h2>
+
+            <div class="space-y-3">
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Is mileage unlimited?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Yes—within the states of Quintana Roo, Yucatán and Campeche, so you can explore all the amazing sites across the region.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Is there a spare wheel in the car?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  All our vehicles include a spare wheel and the tools needed to change a tire.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Can I drive with a photocopy of my license?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  No. A photocopy is not an official document and the police may require the original. Always carry your physical driver’s license to avoid fines or complications.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Are your license plates local?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Yes, all our vehicles have local plates.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Additional drivers</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  A second driver is free of charge. Additional drivers can be added for a small fee per extra driver.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Can I bring my pet?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Yes—pets are welcome at Street Car Solution. Please protect the interior and return the vehicle clean.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">What should I do in case of breakdown, accident or a fine?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  <ul class="list-disc pl-6">
+                    <li>Contact us immediately—24/7. We’ll assist you with roadside help, reports and guidance.</li>
+                    <li>Consider the optional “24/7 Police Assistance” service for direct support during complex checks with law enforcement.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Ferry / borders -->
+          <section id="ferry" class="mb-10">
+            <h2 class="text-2xl font-bold text-caribbean-blue mb-4">Ferry, Borders & Restricted Areas</h2>
+
+            <div class="space-y-3">
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Parking & ferry</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Ferry terminals in Chiquilá, Cancún and Playa del Carmen all have secure paid parking lots.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Cozumel: can I take the ferry with the vehicle?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Yes—vehicles can cross to Cozumel by ferry. Prices vary depending on the operator.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Holbox: can I drive onto the island?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  <ul class="list-disc pl-6">
+                    <li>No vehicle ferries operate to Holbox. Please park in Chiquilá at one of the lots near the passenger ferry. Typical rate: ~$100 MXN/day.</li>
+                    <li>Important: keep your car key with you.</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Chiapas: can I drive to Palenque?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Yes, but you must inform us in advance; a supplement applies. Contact us for details.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Can I cross the Mexican border to Belize?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  No—taking the vehicle outside Mexico is prohibited and not covered by insurance.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Punta Allen / Sian Ka'an: can I drive there?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  No—off-road tracks in these areas are excluded from insurance coverage; damage or accidents are not covered.
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Safety / roads / climate -->
+          <section id="safety" class="mb-10">
+            <h2 class="text-2xl font-bold text-caribbean-blue mb-4">Safety, Roads & Climate</h2>
+
+            <div class="space-y-3">
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Is Mexico safe for travelers?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  <ul class="list-disc pl-6">
+                    <li>Yes—especially the Yucatán Peninsula, which hosts millions of visitors every year and a large expat community.</li>
+                    <li>Locals are welcoming and used to tourism; as everywhere, common-sense precautions apply.</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Can I drive at night?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Yes—many main roads are lit. Always adapt your speed and stay alert.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Is vehicle theft common?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  To date, we have not experienced a single vehicle theft.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Are child seats mandatory?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Mexican law requires child restraint systems for minors under 12. In practice there is tolerance for locals, but we strongly recommend a child seat for any kid under 4 for safety.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">What are the road conditions like?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Major highways are in good condition; some roads or streets can be rough. Watch for potholes and topes (speed bumps)!
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">What’s the climate like in Quintana Roo / Yucatán?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  <ul class="list-disc pl-6">
+                    <li>Mostly hot and humid. The rainy season typically spans August to October. November–February is milder, then heat returns through August.</li>
+                    <li>Tropical showers are intense but brief; the sun usually returns quickly and roads dry fast. Several hours of continuous rain are uncommon but can happen.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Delivery & Return -->
+          <section id="logistics" class="mb-10">
+            <h2 class="text-2xl font-bold text-caribbean-blue mb-4">Delivery & Return</h2>
+
+            <div class="space-y-3">
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">How can I be sure a car will be ready on arrival?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Once you receive our rental confirmation message from an advisor, your vehicle is guaranteed and will be delivered to you upon arrival.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Where can I pick up and return the car?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Airport, hotel or an agreed meeting point in Cancún and across the Riviera Maya. Please share your flight/meeting details at booking for a smooth handover.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Late return: how is it handled?</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Let us know as early as possible. A grace period of up to 1 hour may apply depending on availability; beyond that, daily extra charges apply.
+                </div>
+              </details>
+
+              <details class="bg-white rounded-xl p-5 faq-card">
+                <summary class="flex items-center justify-between cursor-pointer">
+                  <span class="font-semibold">Fuel policy</span>
+                  <i class="chev fas fa-chevron-down transition-transform"></i>
+                </summary>
+                <div class="mt-3 text-gray-700">
+                  Same fuel level at pick-up and return. If returned with less fuel, refuelling and a service fee will be charged.
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <div class="bg-white rounded-2xl p-6 shadow">
+            <div class="rounded-2xl bg-white p-6 shadow-sm hover:shadow-lg border border-gray-100">
+              <h3 class="text-xl font-semibold mb-1">Another question?</h3>
+              <p class="text-gray-600">
+                <a href="index.html#contact" class="text-caribbean-blue underline hover:no-underline">
+                  Contact us
+                </a> — we reply fast.
+              </p>
+            </div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-gray-900 text-white">
+    <div class="container mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <p class="text-gray-400">Your trusted partner for car rental in Cancún and across the Yucatán Peninsula.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Street Car Solution YouTube channel"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Useful Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Vehicles</a></li>
+            <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+            <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Testimonials</a></li>
+            <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Information</h3>
+          <ul class="space-y-2">
+            <li><a href="terms.html" class="text-gray-400 hover:text-white">Terms & Conditions</a></li>
+            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Subscribe to receive our special offers.</p>
+          <form data-newsletter data-lang="en" class="flex items-stretch gap-0">
+            <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-l-lg text-gray-800" required />
+            <button type="submit" class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red" aria-label="Subscribe to the newsletter">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
+        </div>
+
+        <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2023 Street Car Solution. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts (same behaviour as other pages) -->
+  <script>
+    // Burger
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+      };
+      const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
+      };
+      burgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+
+    // Language / currency dropdowns
+    const langSel = document.querySelector('.language-selector');
+    const langDrop = document.querySelector('.language-dropdown');
+    const curSel  = document.querySelector('.currency-selector');
+    const curDrop = document.querySelector('.currency-dropdown');
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    function setupDropdown(trigger, panel) {
+      if (!trigger || !panel) return;
+      panel.classList.add('hidden');
+      let hideTimer = null;
+      const btn = trigger.querySelector('button');
+      const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
+      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
+      const toggle = (e) => {
+        e.stopPropagation();
+        const show = panel.classList.contains('hidden');
+        if (panel !== langDrop) langDrop?.classList.add('hidden');
+        if (panel !== curDrop)  curDrop?.classList.add('hidden');
+        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); }
+        else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
+      };
+
+      if (isDesktop.matches) {
+        trigger.addEventListener('mouseenter', open);
+        trigger.addEventListener('mouseleave', close);
+        panel.addEventListener('mouseenter', open);
+        panel.addEventListener('mouseleave', close);
+        btn?.addEventListener('focus', open);
+        btn?.addEventListener('blur', close);
+      } else {
+        trigger.addEventListener('click', toggle);
+      }
+      panel.addEventListener('click', (e) => e.stopPropagation());
+    }
+    setupDropdown(langSel, langDrop);
+    setupDropdown(curSel, curDrop);
+
+    // Currency label (visual only)
+    document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        const map = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
+        document.getElementById('currencyLabel').textContent = map[a.dataset.currency] || '$ USD';
+        curDrop?.classList.add('hidden');
+      });
+    });
+
+    document.addEventListener('click',   () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+    window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+  </script>
+
+  <script defer src="/assets/js/newsletter.js"></script>
+</body>
+</html>
