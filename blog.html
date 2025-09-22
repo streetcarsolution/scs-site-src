@@ -735,42 +735,132 @@
             </div>
           </article>
 
-          <!-- Article 6 -->
-          <article class="article-card bg-white rounded-xl shadow overflow-hidden"
-                  data-category="Famille" data-tags="enfants,sièges auto,organisation"
+          <!-- Article 4 -->
+          <article id="famille" class="article-card bg-white rounded-xl shadow overflow-hidden"
+                  data-category="Famille" data-tags="enfants,sièges auto,organisation,parents,road trip"
                   data-title="Vacances en famille : locations adaptées aux enfants">
-            <img src="http://static.photos/travel/640x360/6" alt="Famille en vacances" class="w-full h-48 object-cover">
+
+            <img src="/assets/blog/famille-voiture.jpg"
+                alt="Famille avec enfants chargeant une voiture de location avant un road-trip au Mexique"
+                loading="lazy"
+                class="w-full h-72 md:h-80 object-cover">
+
             <div class="p-6">
               <span class="text-caribbean-green text-sm font-semibold">Famille</span>
-              <h2 class="text-xl font-bold mt-2 mb-3">Vacances en famille : locations adaptées aux enfants</h2>
-              <p class="text-gray-600 mb-4">Choisir le bon véhicule, sièges auto, pauses, rangement : nos astuces parents.</p>
+
+              <h2 class="text-xl font-bold mt-2 mb-3">
+                Vacances en famille : locations adaptées aux enfants
+              </h2>
+
+              <p class="text-gray-600 mb-4">
+                Choisir le bon véhicule, sièges auto, pauses, rangement&nbsp;: nos astuces parents.
+              </p>
+
+              <!-- Barre d’actions -->
               <div class="flex items-center justify-between">
-                <a href="#" class="text-caribbean-blue font-semibold hover:underline readmore" aria-expanded="false">Lire plus</a>
+                <a href="#"
+                  class="text-caribbean-blue font-semibold hover:underline readmore"
+                  aria-expanded="false">
+                  Lire plus
+                </a>
               </div>
 
+              <!-- Contenu complet (injecté au clic, bouton Réduire en bas) -->
               <template class="post-full">
-                <div class="mt-4 border-t pt-4 space-y-4 leading-relaxed text-gray-700">
-                  <h3 class="text-lg font-semibold">Choisir le véhicule</h3>
+                <div class="mt-4 border-t pt-4 leading-normal text-gray-700">
+
+                  <h3 class="text-lg font-semibold">Voyager avec des enfants, c’est possible… et agréable&nbsp;!</h3>
+                  <p>
+                    La voiture reste le moyen le plus flexible pour explorer la Riviera Maya en famille&nbsp;: vous gérez
+                    les pauses, les siestes, les horaires des repas et les imprévus. Avec une voiture de location bien
+                    choisie, les trajets deviennent une partie de l’aventure et non une contrainte.
+                  </p>
+
+                  <h4 class="font-semibold">Quel véhicule choisir&nbsp;?</h4>
+                  <p>
+                    Pour une famille de 3 à 5 personnes, un SUV compact offre l’équilibre idéal entre espace, hauteur
+                    d’assise (pratique pour installer un siège enfant) et coffre. À partir de 5&nbsp;voyageurs ou si vous
+                    transportez beaucoup d’affaires (poussette, lit parapluie), pensez au <em>minivan</em> ou au SUV 7&nbsp;places.
+                  </p>
+                  <p>
+                    Les coffres mexicains sont parfois moins profonds qu’en Europe&nbsp;: privilégiez des valises souples ou
+                    des sacs de voyage pour optimiser le chargement. Besoin d’un coup de main&nbsp;? Notre équipe peut vous
+                    conseiller le modèle adapté lors de la réservation.
+                  </p>
+
+                  <h4 class="font-semibold">Sièges auto&nbsp;: sécurité et règles simples</h4>
+                  <p>
+                    Au Mexique, l’usage du siège enfant est recommandé et de plus en plus contrôlé. Nous proposons des sièges
+                    homologués (bébé, enfant, rehausseur) sur demande. Indiquez l’âge et le poids de vos enfants pour que nous
+                    préparions le bon modèle. À l’installation, vérifiez la tension de la ceinture et la stabilité du siège&nbsp;:
+                    l’assise doit bouger de moins de 2&nbsp;cm latéralement.
+                  </p>
+                  <p>
+                    Astuce confort&nbsp;: prévoyez une serviette fine sous le siège (chaleur), une protection de dossier contre
+                    les traces de chaussures et une petite couverture pour la clim.
+                  </p>
+
+                  <h4 class="font-semibold">Organisation à bord</h4>
+                  <p>
+                    Réservez un bac ou sac «&nbsp;à portée de main&nbsp;» avec lingettes, crème solaire, spray anti-moustiques, petits
+                    snacks non friables et gourdes. Un deuxième sac accueille les jeux calmes&nbsp;: livres, coloriages, autocollants,
+                    et une playlist hors-ligne. Rangez les objets lourds au fond du coffre pour la sécurité.
+                  </p>
+
+                  <h4 class="font-semibold">Rythme, pauses et siestes</h4>
+                  <p>
+                    Sur la côte, les distances paraissent courtes mais la circulation peut être dense à certaines heures.
+                    Planifiez les trajets longs au moment des siestes et prévoyez une vraie pause toutes les 2&nbsp;heures&nbsp;:
+                    toilettes, étirements, fruits et eau. Évitez de rouler de nuit avec de jeunes enfants, et si vous devez
+                    le faire, privilégiez la route 307 et les axes principaux bien éclairés.
+                  </p>
+
+                  <h4 class="font-semibold">Où aller avec des enfants&nbsp;?</h4>
+                  <p>
+                    Les plages de Playa del Carmen et Puerto Morelos sont parfaites le matin quand la mer est calme. Les
+                    <a href="#cenotes" class="text-caribbean-blue hover:underline">cénotes peu profonds et bien aménagés</a> sont
+                    des haltes magiques à la mi-journée. Pour une première journée sans stress, notre
+                    <a href="#riviera-maya" class="text-caribbean-blue hover:underline">guide de conduite sur la Riviera Maya</a>
+                    rassemble les réflexes utiles (limitations, topes, stations).
+                  </p>
+
+                  <h4 class="font-semibold">Santé &amp; chaleur</h4>
+                  <p>
+                    Le soleil tape fort&nbsp;: casquettes, lunettes, T-shirts anti-UV et crème SPF&nbsp;50 sont vos meilleurs alliés.
+                    Gardez de l’eau fraîche dans une glacière souple et renouvelez-la à chaque station-service. En cas de petit
+                    bobo, les pharmacies (<em>farmacias</em>) sont fréquentes et les agents parlent souvent anglais.
+                  </p>
+
+                  <h4 class="font-semibold">Assurance &amp; tranquillité d’esprit</h4>
+                  <p>
+                    Pour voyager serein, choisissez une couverture incluant la responsabilité civile et la réduction de
+                    franchise. Nous pouvons vous expliquer simplement les options au comptoir, et notre équipe reste joignable
+                    24/7 en cas de pépin. Conservez toujours sur vous permis, contrat et numéro d’assistance.
+                  </p>
+
+                  <h4 class="font-semibold">Budget malin</h4>
+                  <p>
+                    Anticipez le coût des parkings dans les zones touristiques et privilégiez les stations-service de grandes
+                    enseignes. Pour manger bien et local, sortez de la zone hôtelière&nbsp;: les <em>taquerías</em> familiales sont
+                    savoureuses et conviviales (et kids-friendly).
+                  </p>
+
+                  <h4 class="font-semibold">Check-list express</h4>
+                  <p>Avant de partir, vérifiez&nbsp;:</p>
                   <ul class="list-disc pl-5 space-y-1">
-                    <li>SUV compact pour 2 adultes + 2 enfants, coffre suffisant pour poussette.</li>
-                    <li>Si 5 à 7 personnes, privilégier SUV 7 places avec clim efficace.</li>
+                    <li>Siège(s) enfant adapté(s) à l’âge/poids, correctement installé(s)</li>
+                    <li>Deux sacs d’accès rapide&nbsp;: «&nbsp;soins/soleil&nbsp;» et «&nbsp;activités&nbsp;»</li>
+                    <li>Eau fraîche, snacks, lingettes, vêtements de rechange</li>
+                    <li>Téléphone chargé + câble + mode hors-ligne (cartes, musique)</li>
+                    <li>Horaires des pauses et trajet planifié sur la journée</li>
                   </ul>
 
-                  <h4 class="font-semibold">Sièges auto et sécurité</h4>
-                  <ul class="list-disc pl-5 space-y-1">
-                    <li>Réserver sièges auto à l’avance. Vérifier l’installation à la prise du véhicule.</li>
-                    <li>Verrouillage enfant aux portes, pare-soleil et bouteilles d’eau à portée.</li>
-                  </ul>
-
-                  <h4 class="font-semibold">Organisation du trajet</h4>
-                  <ul class="list-disc pl-5 space-y-1">
-                    <li>Pauses toutes les 2 heures, snacks non salissants, sacs zip pour déchets.</li>
-                    <li>Cartes hors ligne, playlist, jeux calmes pour la route.</li>
-                    <li>Prévoir tenue de rechange accessible pour les plus petits.</li>
-                  </ul>
-
+                  <!-- Bouton Réduire tout en bas -->
                   <div class="pt-2">
-                    <a href="#" class="reduce inline-flex items-center gap-2 text-caribbean-blue font-semibold hover:underline">Réduire</a>
+                    <a href="#"
+                      class="reduce inline-flex items-center gap-2 text-caribbean-blue font-semibold hover:underline">
+                      Réduire
+                    </a>
                   </div>
                 </div>
               </template>
