@@ -852,7 +852,7 @@
         <div class="bg-white rounded-xl shadow p-5">
           <h3 class="text-lg font-semibold mb-3">Populaires</h3>
           <ul class="space-y-3 text-sm">
-            <li><a class="hover:underline" href="#">Conduire sur la Riviera Maya</a></li>
+            <li><a class="hover:underline" href="#">Conduire sur la Riviera Maya: info pratique</a></li>
             <li><a class="hover:underline" href="#">Les plus beaux cenotes accessibles en voiture</a></li>
             <li><a class="hover:underline" href="#">Location de voiture adaptées aux enfants</a></li>
           </ul>
@@ -1114,7 +1114,7 @@
     });
 
     // Ouvrir automatiquement l'article "Cenotes" quand on clique le lien
-    document.addEventListener('click', (e) => {
+      document.addEventListener('click', (e) => {
       const a = e.target.closest('a[href="#cenotes"]');
       if (!a) return;
       e.preventDefault();
@@ -1137,20 +1137,7 @@
       // 4) Petit surlignage visuel
       target.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
       setTimeout(() => target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white'), 1500);
-    });
-    
-    // Copier le lien
-    document.addEventListener('click', (e) => {
-      const b = e.target.closest('.copylink');
-      if(!b) return;
-      const card = b.closest('.article-card');
-      const slug = (card?.dataset.title || 'article').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
-      const url = location.origin + '/blog/' + slug + '.html';
-      navigator.clipboard.writeText(url).then(()=>{
-        b.textContent = 'Lien copié !';
-        setTimeout(()=> b.textContent = 'Copier le lien', 1500);
-      });
-    });
+    });   
   })();
   </script>
 
