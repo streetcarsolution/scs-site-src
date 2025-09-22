@@ -992,6 +992,7 @@
     makeChips(chipBarMobile);
 
     let activeCat = '';
+    // --- Correctif #1 : version "safe" (protège resultCount absent) ---
     function applyFilters(){
       const term = (q?.value || q2?.value || '').toLowerCase().trim();
       let shown = 0;
@@ -1003,7 +1004,11 @@
         card.classList.toggle('hidden', !ok);
         if (ok) shown++;
       });
-      resultCount.textContent = shown === cards.length ? `${shown} articles` : `${shown} article${shown>1?'s':''} affiché${shown>1?'s':''}`;
+      if (resultCount) {
+        resultCount.textContent = shown === cards.length
+          ? `${shown} articles`
+          : `${shown} article${shown>1?'s':''} affiché${shown>1?'s':''}`;
+      }
     }
     applyFilters();
 
@@ -1024,15 +1029,9 @@
       .find(h => h.textContent.trim() === 'Catégories')?.parentElement;
 
     if (asideCatsBlock) {
-      // map des boutons sidebar -> dataset.category des cartes
       const map = {
-        all: '',
-        assurance: 'assurance',
-        city: 'city guides',
-        tips: 'conseils',
-        dest: 'destinations',
-        family: 'famille',
-        roadtrip: 'road trip'
+        all: '', assurance: 'assurance', city: 'city guides',
+        tips: 'conseils', dest: 'destinations', family: 'famille', roadtrip: 'road trip'
       };
 
       asideCatsBlock.addEventListener('click', (e) => {
@@ -1040,7 +1039,6 @@
         if (!btn) return;
         const key = (btn.dataset.filter || 'all').toLowerCase();
         activeCat = map[key] || '';
-        // état visuel des puces de la sidebar
         asideCatsBlock.querySelectorAll('button[data-filter]')
           .forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
         applyFilters();
@@ -1059,13 +1057,11 @@
           const label = a.textContent.trim().toLowerCase();
           const target = cards.find(c => (c.dataset.title || '').toLowerCase().includes(label));
           if (!target) return;
-          // réinitialise les filtres pour assurer la visibilité
           activeCat = '';
           if (q)  q.value = '';
           if (q2) q2.value = '';
           applyFilters();
           target.scrollIntoView({ behavior:'smooth', block:'center' });
-          // surlignage temporaire
           target.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
           setTimeout(() => target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white'), 1500);
         });
@@ -1079,12 +1075,13 @@
       if (openLink) {
         e.preventDefault();
         const card = openLink.closest('.article-card');
-        const container = card.querySelector('.p-6');
+        // --- Correctif #2 : container plus robuste ---
+        const container = card.querySelector('.p-6, .p-5, .p-4') || card;
         let panel = card.querySelector('.post-panel');
 
         if (!panel) {
           const tpl = card.querySelector('template.post-full');
-          if (!tpl) return;
+          if (!tpl || !container) return;          // garde-fou
           panel = document.createElement('div');
           panel.className = 'post-panel mt-4 border-t pt-4 hidden';
           panel.appendChild(tpl.content.cloneNode(true));
@@ -1092,7 +1089,7 @@
         }
 
         panel.classList.remove('hidden');
-        openLink.classList.add('hidden');              // masque "Lire plus" en haut
+        openLink.classList.add('hidden');          // masque "Lire plus" en haut
         openLink.setAttribute('aria-expanded', 'true');
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         return;
@@ -1107,14 +1104,15 @@
         const topLink = card.querySelector('.readmore');
 
         panel?.classList.add('hidden');
-        topLink?.classList.remove('hidden');           // ré-affiche "Lire plus"
+        topLink?.classList.remove('hidden');       // ré-affiche "Lire plus"
         topLink?.setAttribute('aria-expanded', 'false');
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
       }
     });
 
     // Ouvrir automatiquement l'article "Cenotes" quand on clique le lien
-      document.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
       const a = e.target.closest('a[href="#cenotes"]');
       if (!a) return;
       e.preventDefault();
@@ -1137,9 +1135,10 @@
       // 4) Petit surlignage visuel
       target.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
       setTimeout(() => target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white'), 1500);
-    });   
+    });
   })();
   </script>
+
 
   <!-- Scripts : burger + dropdown + newsletter (identiques aux autres pages) -->
   <script>
