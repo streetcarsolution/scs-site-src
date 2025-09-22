@@ -169,6 +169,16 @@
         hyphens: auto;             /* césure propre en français (lang="fr" déjà présent) */
       }
 
+      /* Pas d’hyphénation dans les articles (contenu déplié + extrait) */
+      .post-panel p,
+      .article-card .p-6 > p {
+        hyphens: none !important;
+        -webkit-hyphens: none !important; /* iOS/Safari */
+        -ms-hyphens: none !important;      /* vieux Edge */
+        word-break: normal;                 /* conserve la coupure aux espaces */
+        overflow-wrap: normal;              /* évite de casser les mots */
+      }
+
       /* On garde les titres et listes alignés à gauche pour la lisibilité */
       .post-panel h3,
       .post-panel h4,
@@ -542,7 +552,7 @@
                 <div class="mt-4 border-t pt-4 leading-normal text-gray-700">
                   <h3 class="text-lg font-semibold">Pourquoi un week-end à Playa del Carmen&nbsp;?</h3>
                   <p>
-                    Playa del Carmen combine plage urbaine et ambiance cosmopolite.Elle est une destination idéale pour un week-end ensoleillé.
+                    Playa del Carmen combine plage urbaine et ambiance cosmopolite. Elle est une destination idéale pour un week-end ensoleillé.
                     En deux jours, on peut alterner baignade, balades et bonnes tables grâce aux déplacements faciles en voiture.
                   </p>
 
@@ -842,9 +852,9 @@
         <div class="bg-white rounded-xl shadow p-5">
           <h3 class="text-lg font-semibold mb-3">Populaires</h3>
           <ul class="space-y-3 text-sm">
-            <li><a class="hover:underline" href="#">Comprendre l'assurance auto au Mexique</a></li>
+            <li><a class="hover:underline" href="#">Conduire sur la Riviera Maya</a></li>
             <li><a class="hover:underline" href="#">Les plus beaux cenotes accessibles en voiture</a></li>
-            <li><a class="hover:underline" href="#">Week-end à Playa del Carmen : itinéraire</a></li>
+            <li><a class="hover:underline" href="#">Location de voiture adaptées aux enfants</a></li>
           </ul>
         </div>        
 
@@ -1101,6 +1111,32 @@
         topLink?.setAttribute('aria-expanded', 'false');
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
+    });
+
+    // Ouvrir automatiquement l'article "Cenotes" quand on clique le lien
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href="#cenotes"]');
+      if (!a) return;
+      e.preventDefault();
+
+      // 1) Réinitialise les recherches pour que la carte soit visible
+      document.getElementById('q')?.value = '';
+      document.getElementById('q2')?.value = '';
+      document.querySelectorAll('#postGrid .article-card.hidden')
+        .forEach(el => el.classList.remove('hidden'));
+
+      // 2) Fait défiler jusqu'à la carte
+      const target = document.getElementById('cenotes');
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // 3) Ouvre le contenu si "Lire plus" est visible
+      const read = target.querySelector('.readmore');
+      if (read && !read.classList.contains('hidden')) read.click();
+
+      // 4) Petit surlignage visuel
+      target.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
+      setTimeout(() => target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white'), 1500);
     });
     
     // Copier le lien
