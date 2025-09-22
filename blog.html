@@ -240,17 +240,63 @@
         <div id="postGrid" class="grid sm:grid-cols-2 gap-6">
 
           <!-- Article 1 -->
-          <article class="article-card bg-white rounded-xl shadow overflow-hidden"
-                   data-category="Conseils" data-tags="conduite,riviera maya,code de la route"
-                   data-title="Conduire sur la Riviera Maya : ce qu'il faut savoir">
-            <img src="http://static.photos/travel/640x360/1" alt="Routes de la Riviera Maya" class="w-full h-48 object-cover">
-            <div class="p-6">
-              <span class="text-caribbean-green text-sm font-semibold">Conseils de conduite</span>
-              <h2 class="text-xl font-bold mt-2 mb-3">Conduire sur la Riviera Maya : ce qu'il faut savoir</h2>
-              <p class="text-gray-600 mb-4">Nos recommandations pour conduire en toute sécurité (limitations, dos d’âne, police, stations-service)…</p>
-              <div class="flex items-center justify-between">
-                <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
-              </div>
+<article class="article-card bg-white rounded-xl shadow overflow-hidden"
+         data-category="Conseils" data-tags="conduite,riviera maya,code de la route"
+         data-title="Conduire sur la Riviera Maya : ce qu'il faut savoir">
+
+  <img src="http://static.photos/travel/640x360/1"
+       alt="Routes de la Riviera Maya"
+       class="w-full h-48 object-cover">
+
+  <div class="p-6">
+    <span class="text-caribbean-green text-sm font-semibold">Conseils de conduite</span>
+
+    <h2 class="text-xl font-bold mt-2 mb-3">
+      Conduire sur la Riviera Maya : ce qu'il faut savoir
+    </h2>
+
+    <p class="text-gray-600 mb-4">
+      Nos recommandations pour conduire en toute sécurité
+      (limitations, dos d’âne, police, stations-service)…
+    </p>
+
+    <!-- Barre d’actions -->
+    <div class="flex items-center justify-between">
+      <!-- Le lien qui déclenche l’ouverture -->
+      <a href="#"
+         class="text-caribbean-blue font-semibold hover:underline readmore"
+         aria-expanded="false">
+        Lire plus
+      </a>
+    </div>
+    
+              <!-- Contenu complet caché (sera injecté au clic) -->
+              <template class="post-full">
+                <div class="mt-4 border-t pt-4 space-y-4 leading-relaxed text-gray-700">
+                  <h3 class="text-lg font-semibold">L’essentiel à connaître</h3>
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>Vitesses usuelles : 40–60 en ville, 80–90 hors agglomération, 100–110 sur 4 voies.</li>
+                    <li>Topes (dos d’âne) fréquents : ralentis avant les entrées de villages et stations-service.</li>
+                    <li>Stations fiables : Pemex, BP, Repsol. Vérifie que le compteur est à zéro.</li>
+                    <li>Contrôles : reste courtois, présente permis, contrat, assurance. Demande un reçu officiel pour toute amende.</li>
+                    <li>Conduite de nuit : évite les routes secondaires (animaux, nids-de-poule), privilégie les axes principaux.</li>
+                  </ul>
+
+                  <h4 class="font-semibold">Assurance</h4>
+                  <p>
+                    La responsabilité civile est incluse dans nos tarifs. Options complémentaires disponibles
+                    selon l’itinéraire et l’usage (franchises, bris de glace, assistance étendue).
+                  </p>
+
+                  <h4 class="font-semibold">Check-list express</h4>
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>Permis de conduire et passeport</li>
+                    <li>Contrat de location et couverture choisie</li>
+                    <li>Google Maps hors ligne et câble de charge</li>
+                    <li>Cash pour péages éventuels et pourboires</li>
+                  </ul>
+                </div>
+              </template>
             </div>
           </article>
 
@@ -619,6 +665,35 @@
       });
     }
 
+    // Lire plus / Réduire (inline)
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('.readmore');
+      if (!link) return;
+      e.preventDefault();
+
+      const card = link.closest('.article-card');
+      const container = card.querySelector('.p-6');
+      let panel = card.querySelector('.post-panel');
+
+      if (!panel) {
+        const tpl = card.querySelector('template.post-full');
+        if (!tpl) return; // si pas de contenu, on ne fait rien
+        panel = document.createElement('div');
+        panel.className = 'post-panel mt-4 border-t pt-4 hidden';
+        panel.appendChild(tpl.content.cloneNode(true));
+        container.appendChild(panel);
+      }
+
+      const wasHidden = panel.classList.contains('hidden');
+      panel.classList.toggle('hidden');
+      link.setAttribute('aria-expanded', wasHidden ? 'true' : 'false');
+      link.textContent = wasHidden ? 'Réduire' : 'Lire plus';
+
+      if (wasHidden) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+    
     // Copier le lien
     document.addEventListener('click', (e) => {
       const b = e.target.closest('.copylink');
