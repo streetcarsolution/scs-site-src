@@ -133,15 +133,20 @@
       .chip:hover{ transform:translateY(-1px); }
       .chip[aria-pressed="true"]{ box-shadow:0 0 0 3px rgba(0,0,0,.06); }
      
-      /* Style global pour le contenu des articles ouverts */
+      /* Titres en bleu */
       .post-panel h3,
-      .post-panel h4 { color: #1DA1F2; } /* text-caribbean-blue */
+      .post-panel h4 { color:#1DA1F2; }
 
-      /* Espace vertical confortable entre les blocs */
-      .post-panel > * + * { margin-top: 1rem; }          /* ~16px */
-      .post-panel p       { margin-top: 0.75rem; }       /* ~12px */
-      .post-panel ul      { margin-top: 0.75rem; list-style: disc; padding-left: 1.25rem; }
-      .post-panel li + li { margin-top: 0.375rem; }      /* ~6px entre items */
+      /* Espacements confortables */
+      .post-panel > * + * { margin-top:1rem; }
+      .post-panel p       { margin-top:0.75rem; }
+      .post-panel li + li { margin-top:0.375rem; }
+
+      /* >>> LISTES : pas de puces par défaut */
+      .post-panel ul { list-style:none; padding-left:0; margin-top:0.75rem; }
+      /* …mais si tu mets explicitement list-disc/decimal, on affiche les puces */
+      .post-panel ul.list-disc, .post-panel .list-disc { list-style:disc; padding-left:1.25rem; }
+      .post-panel ol.list-decimal, .post-panel .list-decimal { list-style:decimal; padding-left:1.25rem; }
     </style>
   </head>
   <body class="font-sans bg-gray-50 text-gray-800">
@@ -296,7 +301,7 @@
 
                   <h4 class="font-semibold">La Police</h4>
                   <ul class="text-gray-700 mb-4">
-                    <li>Un contrôle de police au Mexique est toujours impressionnant, mais il n'y a pas lieu de s'inquiéter. Conduisez prudemment et en toute légalité. En cas d’arrêtpar la police, restez calme, poli et coopératif. Gardez toujours votre permis de conduire et vos documents de location à portée de main.</li>
+                    <li>Un contrôle de police au Mexique est toujours impressionnant, mais il n'y a pas lieu de s'inquiéter. Conduisez prudemment et en toute légalité. En cas d’arrêt par la police, restez calme, poli et coopératif. Gardez toujours votre permis de conduire et vos documents de location à portée de main.</li>
                   </ul>
                   <ul class="text-gray-700 mb-4">
                     <li>Nous vous recommandons de souscrire à notre service "Assistance Police 24/7" au moment de votre réservation, car les contrôles avec les touristes sont souvent compliqués, mais notre équipe pourra vous aider et discuter avec l'agent de police pour résoudre la situation rapidement si vous n'avez rien à vous reprocher, ou limiter les problèmes en cas d'infraction confirmée.</li>
