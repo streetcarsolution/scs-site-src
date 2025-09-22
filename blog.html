@@ -161,6 +161,18 @@
       .post-panel ul + h4,
       .post-panel ol + h3,
       .post-panel ol + h4 { margin-top: 1.75rem; }
+
+      /* Texte des articles (contenu déplié) : justifié proprement */
+      .post-panel p {
+        text-align: justify;
+        text-justify: inter-word;  /* espace entre mots plutôt qu’entre lettres */
+        hyphens: auto;             /* césure propre en français (lang="fr" déjà présent) */
+      }
+
+      /* On garde les titres et listes alignés à gauche pour la lisibilité */
+      .post-panel h3,
+      .post-panel h4,
+      .post-panel li { text-align: left; }
     </style>
   </head>
   <body class="font-sans bg-gray-50 text-gray-800">
@@ -263,7 +275,7 @@
         <div id="postGrid" class="grid sm:grid-cols-2 gap-6">
 
           <!-- Article 1 -->
-          <article id="onseils-de-conduite" class="article-card bg-white rounded-xl shadow overflow-hidden"
+          <article id="conseils-de-conduite" class="article-card bg-white rounded-xl shadow overflow-hidden"
                   data-category="Conseils" data-tags="conduite,riviera maya,code de la route"
                   data-title="Conduire sur la Riviera Maya : ce qu'il faut savoir">
 
@@ -500,7 +512,7 @@
                   data-category="City Guides" data-tags="playa del carmen,weekend,itinéraire"
                   data-title="Week-end à Playa del Carmen : itinéraire parfait">
 
-            <img src="/assets/blog/playa-del-carmen.jpg"
+            <img src="/assets/blog/playa-del-carmen.png"
                 alt="Playa del Carmen : plage de sable clair, mer turquoise et cocotiers"
                 loading="lazy"
                 class="w-full h-72 md:h-80 object-cover">
@@ -536,7 +548,7 @@
 
                   <h4 class="font-semibold">Voici notre itinéraire parfait pour un week-end inoubliable.</h4>
                   <p>
-                    Après avoir récupéré votre voiture de location chez Street Car Solution, installez-vous dans le centre touristique, autour des Avenidas 10–30.
+                    Après avoir récupéré votre voiture de location chez Street Car Solution, installez-vous dans le centre touristique, autour des Avenidas 10-30.
                     Vous serez à distance de marche de de toutes commodités et de la célèbre Quinta Avenida. Playacar est plus résidentiel et calme,
                     pratique si vous cherchez une atmosphère “Resort” tout en restant proche du centre.
                   </p>
@@ -548,7 +560,7 @@
                     nécessaire pour la plage ou les balades, et gardez vos papiers sur vous.
                   </p>
 
-                  <h4 class="font-semibold">Jour 1 : Arrivée et exploration de la ville</h4>
+                  <h4 class="font-semibold">Jour 1 : Arrivée & Exploration de la ville</h4>
 
                   <h4 class="font-semibold">Matinée : Détendez-vous sur l'une des plus belles plages de Playa</h4>
                   <p>
@@ -559,7 +571,7 @@
 
                   <h4 class="font-semibold">Midi : Cuisine locale</h4>
                   <p>
-                    Sur l’Avenida 10 ou l’Avenida Constituyentes, vous trouverez de petites taquerías et fondas où l’on déjeune simple et bon. Ne manquez pas de goûter aux tacos al pastor, garnis de porc mariné et cuit à la broche, c'est une spécialité du coin.
+                    Sur l’Avenida 10 ou l’Avenida Constituyentes, vous trouverez de petites taquerías et fondas où l’on déjeune simple et bon. Ne manquez pas de goûter aux "tacos al pastor", garni de porc mariné et cuit à la broche, c'est une spécialité du coin.
                     Les menus du jour sont économiques et vous plongent immédiatement dans l’ambiance de la ville.
                   </p>
 
@@ -603,7 +615,9 @@
                   </p>
 
                   <p>
-                    Lisez notre article sur <a href="#cenotes" class="text-caribbean-blue hover:underline"></a>.                    
+                    Lisez notre article sur 
+                    <a href="#cenotes" class="text-caribbean-blue hover:underline">les plus beaux cenotes accessibles en voiture
+                    </a>.                    
                   </p>
 
                   <!-- Bouton Réduire tout en bas -->
