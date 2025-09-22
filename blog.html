@@ -117,12 +117,25 @@
   }
   </script>
 
-  <style>
-    .article-card{transition:box-shadow .2s, transform .2s}
-    .article-card:hover{box-shadow:0 10px 25px rgba(0,0,0,.08); transform:translateY(-2px)}
-  </style>
-</head>
-<body class="font-sans bg-gray-50 text-gray-800">
+    <style>
+      .article-card{transition:box-shadow .2s, transform .2s}
+      .article-card:hover{box-shadow:0 10px 25px rgba(0,0,0,.08); transform:translateY(-2px)}
+    </style>
+
+    <style>
+      /* style de base pour toutes les puces */
+      .chip{
+        display:inline-flex; align-items:center; gap:.375rem;
+        border-width:1px; border-radius:9999px;
+        padding:.375rem .75rem; font-weight:600; font-size:.875rem; line-height:1;
+        transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+        box-shadow:0 1px 0 rgba(0,0,0,.03);
+      }
+      .chip:hover{ transform:translateY(-1px); }
+      .chip[aria-pressed="true"]{ box-shadow:0 0 0 3px rgba(0,0,0,.06); }
+    </style>
+  </head>
+  <body class="font-sans bg-gray-50 text-gray-800">
 
   <!-- Barre langue/devise -->
   <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
@@ -233,11 +246,10 @@
                    data-title="Conduire sur la Riviera Maya : ce qu'il faut savoir">
             <img src="http://static.photos/travel/640x360/1" alt="Routes de la Riviera Maya" class="w-full h-48 object-cover">
             <div class="p-6">
-              <span class="text-caribbean-blue text-sm font-semibold">Conseils de conduite</span>
+              <span class="text-caribbean-green text-sm font-semibold">Conseils de conduite</span>
               <h2 class="text-xl font-bold mt-2 mb-3">Conduire sur la Riviera Maya : ce qu'il faut savoir</h2>
               <p class="text-gray-600 mb-4">Nos recommandations pour conduire en toute sécurité (limitations, dos d’âne, police, stations-service)…</p>
               <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500" data-date="2025-09-15">15 Septembre 2025</span>
                 <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
               </div>
             </div>
@@ -249,11 +261,10 @@
                    data-title="Les plus beaux cenotes accessibles en voiture">
             <img src="http://static.photos/travel/640x360/2" alt="Cenotes du Yucatán" class="w-full h-48 object-cover">
             <div class="p-6">
-              <span class="text-caribbean-green text-sm font-semibold">Destinations</span>
+              <span class="text-caribbean-orange text-sm font-semibold">Destinations</span>
               <h2 class="text-xl font-bold mt-2 mb-3">Les plus beaux cenotes accessibles en voiture</h2>
               <p class="text-gray-600 mb-4">Notre sélection de cenotes (accès, horaires, budget, conseils pratiques) pour un road-trip rafraîchissant.</p>
               <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500" data-date="2025-09-10">10 Septembre 2025</span>
                 <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
               </div>
             </div>
@@ -265,11 +276,10 @@
                    data-title="Week-end à Playa del Carmen : itinéraire parfait">
             <img src="http://static.photos/travel/640x360/3" alt="Playa del Carmen" class="w-full h-48 object-cover">
             <div class="p-6">
-              <span class="text-mexican-orange text-sm font-semibold">City Guides</span>
+              <span class="text-mexican-blue text-sm font-semibold">City Guides</span>
               <h2 class="text-xl font-bold mt-2 mb-3">Week-end à Playa del Carmen : itinéraire parfait</h2>
               <p class="text-gray-600 mb-4">Que voir, où se garer, où manger : notre itinéraire clé en main sur 2 jours.</p>
               <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500" data-date="2025-09-05">5 Septembre 2025</span>
                 <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
               </div>
             </div>
@@ -285,7 +295,6 @@
               <h2 class="text-xl font-bold mt-2 mb-3">Comprendre l'assurance auto au Mexique</h2>
               <p class="text-gray-600 mb-4">CDW, TP, RC, franchises… on vous explique simplement ce qui est inclus et les options utiles.</p>
               <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500" data-date="2025-09-01">1 Septembre 2025</span>
                 <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
               </div>
             </div>
@@ -297,11 +306,10 @@
                    data-title="Où manger authentique autour de Cancún">
             <img src="http://static.photos/travel/640x360/5" alt="Nourriture mexicaine" class="w-full h-48 object-cover">
             <div class="p-6">
-              <span class="text-mexican-green text-sm font-semibold">Road Trip</span>
+              <span class="text-mexican-orange text-sm font-semibold">Road Trip</span>
               <h2 class="text-xl font-bold mt-2 mb-3">Où manger authentique autour de Cancún</h2>
               <p class="text-gray-600 mb-4">Nos adresses locales (taquerías, marisquerías) pour goûter la vraie cuisine mexicaine.</p>
               <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500" data-date="2025-08-28">28 Août 2025</span>
                 <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
               </div>
             </div>
@@ -313,11 +321,10 @@
                    data-title="Vacances en famille : locations adaptées aux enfants">
             <img src="http://static.photos/travel/640x360/6" alt="Famille en vacances" class="w-full h-48 object-cover">
             <div class="p-6">
-              <span class="text-caribbean-blue text-sm font-semibold">Famille</span>
+              <span class="text-caribbean-green text-sm font-semibold">Famille</span>
               <h2 class="text-xl font-bold mt-2 mb-3">Vacances en famille : locations adaptées aux enfants</h2>
               <p class="text-gray-600 mb-4">Choisir le bon véhicule, sièges auto, pauses, rangement : nos astuces parents.</p>
               <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500" data-date="2025-08-25">25 Août 2025</span>
                 <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
               </div>
             </div>
@@ -344,9 +351,46 @@
         </div>
 
         <!-- Catégories -->
-        <div class="bg-white rounded-xl shadow p-5">
+        <div class="bg-white rounded-2xl border border-gray-200 p-4">
           <h3 class="text-lg font-semibold mb-3">Catégories</h3>
-          <div id="chipBar" class="flex flex-wrap gap-2"></div>
+
+          <div class="flex flex-wrap gap-2">
+            <!-- Toutes -->
+            <button data-filter="all"
+                    class="chip border text-caribbean-blue hover:opacity-90"
+                    style="background-color: rgba(29,161,242,.12); border-color: rgba(29,161,242,.25);"
+                    aria-pressed="true">Toutes</button>
+
+            <!-- Assurance -->
+            <button data-filter="assurance"
+                    class="chip border text-mexican-red hover:opacity-90"
+                    style="background-color: rgba(230,57,70,.12); border-color: rgba(230,57,70,.25);">Assurance</button>
+
+            <!-- City Guides -->
+            <button data-filter="city"
+                    class="chip border text-mexican-blue hover:opacity-90"
+                    style="background-color: rgba(52,152,219,.12); border-color: rgba(52,152,219,.25);">City Guides</button>
+
+            <!-- Conseils -->
+            <button data-filter="tips"
+                    class="chip border text-caribbean-green hover:opacity-90"
+                    style="background-color: rgba(0,184,148,.12); border-color: rgba(0,184,148,.25);">Conseils</button>
+
+            <!-- Destinations -->
+            <button data-filter="dest"
+                    class="chip border text-mexican-orange hover:opacity-90"
+                    style="background-color: rgba(230,126,34,.12); border-color: rgba(230,126,34,.25);">Destinations</button>
+
+            <!-- Famille -->
+            <button data-filter="family"
+                    class="chip border text-caribbean-green hover:opacity-90"
+                    style="background-color: rgba(0,184,148,.12); border-color: rgba(0,184,148,.25);">Famille</button>
+
+            <!-- Road Trip -->
+            <button data-filter="roadtrip"
+                    class="chip border text-caribbean-orange hover:opacity-90"
+                    style="background-color: rgba(225,112,85,.12); border-color: rgba(225,112,85,.25);">Road Trip</button>
+          </div>
         </div>
 
         <!-- Populaires -->
@@ -360,12 +404,17 @@
         </div>
 
         <!-- Bio -->
-        <div class="bg-white rounded-xl shadow p-5 flex items-center gap-4">
-          <img src="/assets/logo.png" alt="Street Car Solution" class="w-16 h-16 rounded-full object-cover">
+        <div class="bg-white rounded-xl p-5 flex items-center gap-4
+                    border-2 border-mexican-orange
+                    shadow transition-shadow hover:shadow-[0_6px_22px_rgba(230,126,34,.18)]">
+          <img src="/assets/logo.png" alt="Street Car Solution"
+              class="w-16 h-16 rounded-full object-cover ring-2 ring-white shadow" />
           <div>
             <h3 class="font-semibold">Street Car Solution</h3>
-            <p class="text-sm text-gray-600">Location de voitures à Cancún & Riviera Maya. Conseils imparables pour un road-trip serein.</p>
-            <a href="#contact" target="_blank" class="inline-block mt-2 text-caribbean-blue hover:underline">Contactez-nous</a>
+            <p class="text-sm text-gray-600">
+              Location de voitures à Cancún & Riviera Maya. Conseils imparables pour un road-trip serein.
+            </p>
+            <a href="#contact" class="inline-block mt-2 text-caribbean-blue hover:underline">Contactez-nous</a>
           </div>
         </div>
 
@@ -406,7 +455,7 @@
           <div class="flex space-x-4 mt-4">
             <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Chaîne YouTube Street Car Solution"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
