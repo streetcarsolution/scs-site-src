@@ -1126,26 +1126,40 @@
       }
     });
 
-    // Ouvrir automatiquement l'article "Cenotes" quand on clique le lien
+    // Ouvrir automatiquement l'article "Cenotes" puis recadrer sur le titre
     document.addEventListener('click', function(e){
       const a = e.target.closest && e.target.closest('a[href="#cenotes"]');
       if (!a) return;
       e.preventDefault();
 
+      // Rendre visibles toutes les cartes et vider les recherches
       var qEl  = document.getElementById('q');  if (qEl)  qEl.value = '';
       var q2El = document.getElementById('q2'); if (q2El) q2El.value = '';
       [].slice.call(document.querySelectorAll('#postGrid .article-card.hidden'))
         .forEach(function(el){ el.classList.remove('hidden'); });
 
+      // Cible
       const target = document.getElementById('cenotes');
       if (!target) return;
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+      // Ouvre si nécessaire, puis RECENTRE sur le titre (pas en bas)
       const read = target.querySelector('.readmore');
-      if (read && !read.classList.contains('hidden')) read.click();
+      if (read && !read.classList.contains('hidden')) {
+        read.click(); // injection du contenu
+        setTimeout(function(){
+          const anchor = target.querySelector('h2, h3') || target;
+          anchor.scrollIntoView({ behavior:'smooth', block:'start' });
+        }, 50); // laisse le temps au DOM de s’agrandir
+      } else {
+        const anchor = target.querySelector('h2, h3') || target;
+        anchor.scrollIntoView({ behavior:'smooth', block:'start' });
+      }
 
+      // Surlignage visuel
       target.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
-      setTimeout(function(){ target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white'); }, 1500);
+      setTimeout(function(){
+        target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
+      }, 1500);
     });
   })();
   </script>
