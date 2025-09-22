@@ -7,7 +7,7 @@
   <title>Blog – Street Car Solution</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  
+  <!-- Tailwind config AVANT le CDN -->
   <script>
     tailwind = window.tailwind || {};
     tailwind.config = {
@@ -32,65 +32,71 @@
   
 
   <!-- Icônes / drapeaux -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.极速4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
 
   <!-- SEO -->
-  <link rel="canonical" href="https://streetcarsolution.com/blog.html">
-  <meta name="description" content="Conseils, actualités et guides pour votre location de voiture à Cancún et sur la Riviera Maya. Découvrez nos articles sur les routes, attractions et bons plans.">
+  <link rel="canonical" href="https://streetcarsolution.com/terms.html">
+  <meta name="description" content="Conditions générales de location Street Car Solution (Cancún, Mexique) : réservations, paiement, caution, assurances, carburant, kilométrage, retours, annulations.">
   <meta property="og:site_name" content="Street Car Solution">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Blog – Street Car Solution">
-  <meta property="og:description" content="Conseils, actualités et guides pour votre location de voiture à Cancún et sur la Riviera Maya.">
+  <meta property="og:title" content="Conditions Générales – Street Car Solution">
+  <meta property="og:description" content="Tout savoir sur nos conditions de location à Cancún et sur la Riviera Maya.">
   <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
-  <meta property="og:url" content="https://streetcarsolution.com/blog.html">
+  <meta property="og:url" content="https://streetcarsolution.com/terms.html">
 
   <!-- Favicons -->
   <link rel="icon" href="/assets/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/logo.png">
 
-  <!-- Styles spécifiques -->
+  <!-- Styles spécifiques page légale -->
   <style>
-    .article-card {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Titres numérotés en gras + espacement régulier */
+    .legal h2{
+      margin-top: 1.25rem;   /* espace entre les points */
+      font-weight: 700;
+      font-size: 1.125rem;
+      line-height: 1.4;
     }
-    .article-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
+    .legal h2:first-of-type{ margin-top: .5rem; }
+    .legal p, .legal ul{ margin-top: .5rem; }
+    .legal ul{ padding-left: 1.25rem; }
   </style>
 </head>
 <body class="font-sans bg-gray-50 text-gray-800">
 
-  <!-- Barre langue/devise -->
+  <!-- Barre langue/devise (identique au site) -->
   <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
     <!-- Langues -->
     <div class="language-selector relative">
-      <button class="极速flex items-center" aria-haspopup="true" aria-expanded="false">
+      <button class="flex items-center" aria-haspopup="true" aria-expanded="false">
         <span class="fi fi-fr mr-2"></span>
         Français
         <i class="fas fa-chevron-down ml-2 text-xs"></i>
       </button>
       <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
-        <a href="blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
-          <span class="fi极速 fi-fr mr-2"></span> Français
+        <!-- FR (page actuelle) -->
+        <a href="terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-fr mr-2"></span> Français
         </a>
-        <a href="en/blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+        <!-- EN -->
+        <a href="en/terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
           <span class="fi fi-us mr-2"></span> English
         </a>
-        <a href="es/blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+        <!-- ES -->
+        <a href="es/terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
           <span class="fi fi-mx mr-2"></span> Español
         </a>
       </div>
     </div>
 
-    <!-- Devise -->
+    <!-- Devise (esthétique, n’impacte pas cette page) -->
     <div class="currency-selector relative">
       <button id="currencyBtn" class="flex items-center" aria-haspopup="true" aria-expanded="false">
         <span id="currencyLabel">€ EUR</span>
-        <i class="fas fa-chevron-down ml-2 text-xs"></极速i>
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
       </button>
-      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt极速-1 rounded shadow-lg z-50 right-0 w-32">
+      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 right-0 w-32">
         <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
         <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
         <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
@@ -99,7 +105,7 @@
     </div>
   </div>
 
-  <!-- NAV -->
+  <!-- NAV (comme les autres pages) -->
   <nav class="bg-white shadow-md sticky top-10 z-40">
     <div class="container mx-auto px-4 py-3">
       <div class="flex items-center justify-between">
@@ -116,9 +122,8 @@
           <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
           <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
           <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
-          <a href="testimonials.html" class="text极速-gray-800 hover:text-caribbean-blue font-medium">Témoignages</a>
-          <a href="blog.html" class="text-caribbean-blue font-semibold">Blog</a>
-          <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+          <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages</a>
+          <a href="#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
         </div>
 
         <!-- Burger -->
@@ -129,15 +134,14 @@
     </div>
   </nav>
 
-  <!-- Menu mobile -->
+  <!-- Menu mobile (SÉPARÉ, caché en desktop) -->
   <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t mt-12">
     <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-      <a href="index.html极速" class="text-gray-800 hover:text-car极速ibbean-blue font-medium">Accueil</a>
+      <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
       <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
       <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
       <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages Clients</a>
-      <a href="blog.html" class="text-caribbean-blue font-semibold">Blog</a>
-      <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+      <a href="#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
     </div>
   </div>
 
@@ -145,7 +149,7 @@
   <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
     <div class="container mx-auto px-4 py-10">
       <h1 class="text-3xl md:text-4xl font-bold">Blog</h1>
-      <p class="mt-2 text-white/90">Conseils, actualités et guides pour votre location de voiture à Cancún</p>
+      <p class="mt-2 text-white/90">Conseils, itinéraires et infos pratiques pour votre location de voiture à Cancún</p>
     </div>
   </header>
 
@@ -251,71 +255,101 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-12">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
-          <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
-          <div class="flex space-x-4 mt-4">
-            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXL极速zCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F极速%3Fmibextid%3Dww极速XIfr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel极速="noopener noreferrer">
-              <i极速 class="fab fa-instagram"></i>
-            </a>
-            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Chaîne YouTube Street Car Solution">
-              <i class="fab fa-youtube"></i>
-            </a>
-          </div>
-        </div>
-        
-        <div>
-          <h3 class="text-xl font-bold mb极速-4">Liens Utiles</h3>
-          <ul class="space-y-2">
-            <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil极速</a></li>
-            <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
-            <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
-            <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
-            <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h3 class="text-xl font-bold mb-4">Informations</h3>
-          <ul class="space-y-2">
-            <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
-            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
-            <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
-            <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-          <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
-          <form data-newsletter data-lang="fr" class="flex items-stretch gap-0">
-            <input type="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-l-lg text-gray-800" required />
-            <button type="submit" class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red" aria-label="S’inscrire à la newsletter">
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </form>
-          <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
-        </div>
-      </div>
-      
-      <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
-      </div>
-    </div>
-  </footer>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+                    <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
+                    <div class="flex space-x-4 mt-4">
 
-  <!-- Scripts -->
+
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+          </a>
+          
+          <!-- TikTok -->
+          <a href="http://www.tiktok.com/@yoancremona" 
+             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-tiktok"></i>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@StreetCarSolution"
+             class="text-gray-400 hover:text-white"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Chaîne YouTube Street Car Solution">
+            <i class="fab fa-youtube"></i>
+          </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Informations</h3>
+                    <ul class="space-y-2">
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                  <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                  <p class="text-gray-400 mb-4">
+                    Abonnez-vous pour recevoir nos offres spéciales.
+                  </p>
+
+                  <!-- UN SEUL form newsletter -->
+                  <form data-newsletter data-lang="fr" class="flex items-stretch gap-0">
+                    <input
+                      type="email"
+                      placeholder="Votre email"
+                      class="w-full px-4 py-3 rounded-l-lg text-gray-800"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red"
+                      aria-label="S’inscrire à la newsletter"
+                    >
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </form>
+
+                  <!-- Message (un seul) — laissé vide au départ -->
+                  <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
+                </div>
+
+                <!-- Keep this OUTSIDE the grid to center across the full width -->
+            <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+              <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+  <!-- Scripts : burger + dropdown (identiques au site) -->
   <script>
-    // Burger menu
+    // Burger
     const burgerBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     if (burgerBtn && mobileMenu) {
@@ -330,7 +364,7 @@
         mobileMenu.classList.remove('hidden');
         document.body.classList.add('overflow-hidden');
         burgerBtn.setAttribute('aria-expanded', 'true');
-        if (icon极速) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
       };
       burgerBtn.addEventListener('click', () => {
         if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
@@ -351,6 +385,7 @@
       panel.classList.add('hidden');
       let hideTimer = null;
       const btn = trigger.querySelector('button');
+
       const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
       const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
       const toggle = (e) => {
@@ -358,9 +393,10 @@
         const show = panel.classList.contains('hidden');
         if (panel !== langDrop) langDrop?.classList.add('hidden');
         if (panel !== curDrop)  curDrop?.classList.add('hidden');
-        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','极速true'); }
+        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); }
         else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
       };
+
       if (isDesktop.matches) {
         trigger.addEventListener('mouseenter', open);
         trigger.addEventListener('mouseleave', close);
@@ -392,6 +428,6 @@
     window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
   </script>
 
-  <script defer src="/assets/js/newsletter.js"></script>
+<script defer src="/assets/js/newsletter.js"></script>
 </body>
 </html>
