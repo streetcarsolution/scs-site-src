@@ -262,7 +262,6 @@
 
               <!-- Barre d’actions -->
               <div class="flex items-center justify-between">
-                <!-- Déclencheur -->
                 <a href="#"
                   class="text-caribbean-blue font-semibold hover:underline readmore"
                   aria-expanded="false">
@@ -270,7 +269,7 @@
                 </a>
               </div>
 
-              <!-- Contenu complet (injecté au clic, avec bouton Réduire en bas) -->
+              <!-- Contenu complet (injecté au clic, bouton Réduire en bas) -->
               <template class="post-full">
                 <div class="mt-4 border-t pt-4 space-y-4 leading-relaxed text-gray-700">
                   <h3 class="text-lg font-semibold">L’essentiel à connaître</h3>
@@ -296,7 +295,7 @@
                   <!-- Bouton Réduire tout en bas -->
                   <div class="pt-2">
                     <a href="#"
-                      class="collapse inline-flex items-center gap-2 text-caribbean-blue font-semibold hover:underline">
+                      class="reduce inline-flex items-center gap-2 text-caribbean-blue font-semibold hover:underline">
                       Réduire
                     </a>
                   </div>
@@ -697,7 +696,7 @@
       }
 
       // Fermer (clic sur "Réduire" en bas)
-      const closeLink = e.target.closest('.collapse');
+      const closeLink = e.target.closest('.reduce');
       if (closeLink) {
         e.preventDefault();
         const card = closeLink.closest('.article-card');
