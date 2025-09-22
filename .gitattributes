@@ -90,3 +90,4 @@ Blog[[:space:]]conseils[[:space:]]de[[:space:]]conduite[[:space:]]3.png filter=l
 Blog[[:space:]]cenote.png filter=lfs diff=lfs merge=lfs -text
 assets/blog/cenotes-yucatan.png filter=lfs diff=lfs merge=lfs -text
 Blog[[:space:]]weekend[[:space:]]Playa.png filter=lfs diff=lfs merge=lfs -text
+assets/blog/playa-del-carmen.png filter=lfs diff=lfs merge=lfs -text
