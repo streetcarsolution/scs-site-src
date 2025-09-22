@@ -32,6 +32,8 @@
   <!-- Icônes / drapeaux -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+  <!-- Google Fonts (facultatif mais recommandé) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
 
   <!-- SEO (corrigé) -->
   <link rel="canonical" href="https://streetcarsolution.com/blog.html">
@@ -120,9 +122,6 @@
     <style>
       .article-card{transition:box-shadow .2s, transform .2s}
       .article-card:hover{box-shadow:0 10px 25px rgba(0,0,0,.08); transform:translateY(-2px)}
-    </style>
-
-    <style>
       /* style de base pour toutes les puces */
       .chip{
         display:inline-flex; align-items:center; gap:.375rem;
@@ -192,7 +191,7 @@
           <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
           <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
           <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages</a>
-          <a href="#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+          <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
         </div>
 
         <!-- Burger -->
@@ -210,7 +209,7 @@
       <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
       <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
       <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages Clients</a>
-      <a href="#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+      <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
     </div>
   </div>
   
@@ -224,7 +223,7 @@
     </div>
   </header>
 
-  <!-- Contenu principal + sidebar -->
+    <!-- Contenu principal + sidebar -->
   <main class="container mx-auto px-4 py-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
@@ -330,6 +329,13 @@
             </div>
           </article>
 
+          <script>
+          document.querySelectorAll('#postGrid .article-card a').forEach(a=>{
+            a.classList.remove('font-medium');
+            a.classList.add('font-semibold');
+          });
+          </script>
+
         </div>
 
         <!-- Compteur -->
@@ -408,7 +414,7 @@
           <h3 class="text-lg font-semibold mb-3">Newsletter</h3>
           <form data-newsletter data-lang="fr" class="flex items-stretch gap-0">
             <input type="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-l-lg border" required />
-            <button class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red text-white">S’abonner</button>
+            <button class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-caribbean-green text-white">S’abonner</button>
           </form>
           <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
         </div>
@@ -486,7 +492,7 @@
           <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
           <form data-newsletter data-lang="fr" class="flex items-stretch gap-0">
             <input type="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-l-lg text-gray-800" required />
-            <button type="submit" class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red" aria-label="S’inscrire à la newsletter">
+            <button type="submit" class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-caribbean-green" aria-label="S’inscrire à la newsletter">
               <i class="fas fa-paper-plane"></i>
             </button>
           </form>
@@ -559,6 +565,59 @@
     }
     chipBar?.addEventListener('click', onChipClick);
     chipBarMobile?.addEventListener('click', onChipClick);
+
+    // === Sidebar : Catégories -> filtre la grille ===
+    const asideCatsBlock = [...document.querySelectorAll('h3')]
+      .find(h => h.textContent.trim() === 'Catégories')?.parentElement;
+
+    if (asideCatsBlock) {
+      // map des boutons sidebar -> dataset.category des cartes
+      const map = {
+        all: '',
+        assurance: 'assurance',
+        city: 'city guides',
+        tips: 'conseils',
+        dest: 'destinations',
+        family: 'famille',
+        roadtrip: 'road trip'
+      };
+
+      asideCatsBlock.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-filter]');
+        if (!btn) return;
+        const key = (btn.dataset.filter || 'all').toLowerCase();
+        activeCat = map[key] || '';
+        // état visuel des puces de la sidebar
+        asideCatsBlock.querySelectorAll('button[data-filter]')
+          .forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+        applyFilters();
+        document.getElementById('postGrid')?.scrollIntoView({ behavior:'smooth', block:'start' });
+      });
+    }
+
+    // === Sidebar : Populaires -> scroll vers la bonne carte ===
+    const popularBlock = [...document.querySelectorAll('h3')]
+      .find(h => h.textContent.trim() === 'Populaires')?.parentElement;
+
+    if (popularBlock) {
+      popularBlock.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const label = a.textContent.trim().toLowerCase();
+          const target = cards.find(c => (c.dataset.title || '').toLowerCase().includes(label));
+          if (!target) return;
+          // réinitialise les filtres pour assurer la visibilité
+          activeCat = '';
+          if (q)  q.value = '';
+          if (q2) q2.value = '';
+          applyFilters();
+          target.scrollIntoView({ behavior:'smooth', block:'center' });
+          // surlignage temporaire
+          target.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
+          setTimeout(() => target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white'), 1500);
+        });
+      });
+    }
 
     // Copier le lien
     document.addEventListener('click', (e) => {
