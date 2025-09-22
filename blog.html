@@ -46,17 +46,73 @@
   <!-- JSON-LD Blog -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"Blog",
-    "name":"Street Car Solution – Blog",
-    "url":"https://streetcarsolution.com/blog.html",
-    "blogPost":[
-      {"@type":"BlogPosting","headline":"Conduire sur la Riviera Maya : ce qu'il faut savoir","url":"https://streetcarsolution.com/blog/conduire-sur-la-riviera-maya.html","image":"https://streetcarsolution.com/assets/blog/riviera-maya.jpg","datePublished":"2025-09-15","author":{"@type":"Organization","name":"Street Car Solution"}},
-      {"@type":"BlogPosting","headline":"Les plus beaux cenotes accessibles en voiture","url":"https://streetcarsolution.com/blog/cenotes-en-voiture.html","image":"https://streetcarsolution.com/assets/blog/cenotes.jpg","datePublished":"2025-09-10","author":{"@type":"Organization","name":"Street Car Solution"}},
-      {"@type":"BlogPosting","headline":"Week-end à Playa del Carmen : itinéraire parfait","url":"https://streetcarsolution.com/blog/weekend-playa-del-carmen.html","image":"https://streetcarsolution.com/assets/blog/playa.jpg","datePublished":"2025-09-05","author":{"@type":"Organization","name":"Street Car Solution"}},
-      {"@type":"BlogPosting","headline":"Comprendre l'assurance auto au Mexique","url":"https://streetcarsolution.com/blog/assurance-auto-mexique.html","image":"https://streetcarsolution.com/assets/blog/assurance.jpg","datePublished":"2025-09-01","author":{"@type":"Organization","name":"Street Car Solution"}},
-      {"@type":"BlogPosting","headline":"Où manger authentique autour de Cancún","url":"https://streetcarsolution.com/blog/restos-authentiques-cancun.html","image":"https://streetcarsolution.com/assets/blog/food.jpg","datePublished":"2025-08-28","author":{"@type":"Organization","name":"Street Car Solution"}},
-      {"@type":"BlogPosting","headline":"Vacances en famille : locations adaptées aux enfants","url":"https://streetcarsolution.com/blog/famille-enfants-voiture.html","image":"https://streetcarsolution.com/assets/blog/family.jpg","datePublished":"2025-08-25","author":{"@type":"Organization","name":"Street Car Solution"}}
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Street Car Solution – Blog",
+    "url": "https://streetcarsolution.com/blog.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Street Car Solution",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://streetcarsolution.com/assets/logo.png"
+      }
+    },
+    "blogPost": [
+      {
+        "@type": "BlogPosting",
+        "headline": "Conduire sur la Riviera Maya : ce qu’il faut savoir",
+        "url": "https://streetcarsolution.com/blog/conduire-sur-la-riviera-maya.html",
+        "image": "https://streetcarsolution.com/assets/blog/riviera-maya.jpg",
+        "datePublished": "2025-09-15",
+        "dateModified": "2025-09-15",
+        "author": { "@type": "Organization", "name": "Street Car Solution" }
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Les plus beaux cenotes accessibles en voiture",
+        "url": "https://streetcarsolution.com/blog/cenotes-en-voiture.html",
+        "image": "https://streetcarsolution.com/assets/blog/cenotes.jpg",
+        "datePublished": "2025-09-10",
+        "dateModified": "2025-09-10",
+        "author": { "@type": "Organization", "name": "Street Car Solution" }
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Week-end à Playa del Carmen : itinéraire parfait",
+        "url": "https://streetcarsolution.com/blog/weekend-playa-del-carmen.html",
+        "image": "https://streetcarsolution.com/assets/blog/playa.jpg",
+        "datePublished": "2025-09-05",
+        "dateModified": "2025-09-05",
+        "author": { "@type": "Organization", "name": "Street Car Solution" }
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Comprendre l’assurance auto au Mexique",
+        "url": "https://streetcarsolution.com/blog/assurance-auto-mexique.html",
+        "image": "https://streetcarsolution.com/assets/blog/assurance.jpg",
+        "datePublished": "2025-09-01",
+        "dateModified": "2025-09-01",
+        "author": { "@type": "Organization", "name": "Street Car Solution" }
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Où manger authentique autour de Cancún",
+        "url": "https://streetcarsolution.com/blog/restos-authentiques-cancun.html",
+        "image": "https://streetcarsolution.com/assets/blog/food.jpg",
+        "datePublished": "2025-08-28",
+        "dateModified": "2025-08-28",
+        "author": { "@type": "Organization", "name": "Street Car Solution" }
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Vacances en famille : locations adaptées aux enfants",
+        "url": "https://streetcarsolution.com/blog/famille-enfants-voiture.html",
+        "image": "https://streetcarsolution.com/assets/blog/family.jpg",
+        "datePublished": "2025-08-25",
+        "dateModified": "2025-08-25",
+        "author": { "@type": "Organization", "name": "Street Car Solution" }
+      }
     ]
   }
   </script>
@@ -144,12 +200,14 @@
       <a href="#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
     </div>
   </div>
-
+  
   <!-- Header -->
   <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
-    <div class="container mx-auto px-4 py-10">
+    <div class="container mx-auto px-4 min-h-[160px] md:min-h-[200px] flex flex-col justify-center py-6">
       <h1 class="text-3xl md:text-4xl font-bold">Blog</h1>
-      <p class="mt-2 text-white/90">Conseils, itinéraires et infos pratiques pour votre location de voiture à Cancún</p>
+      <p class="mt-2 text-white/90">
+        Conseils, itinéraires et infos pratiques pour votre location de voiture à Cancún
+      </p>
     </div>
   </header>
 
@@ -235,11 +293,11 @@
 
           <!-- Article 5 -->
           <article class="article-card bg-white rounded-xl shadow overflow-hidden"
-                   data-category="Gastronomie" data-tags="cancun,restaurants,authentique"
+                   data-category="Road Trip" data-tags="cancun,restaurants,authentique"
                    data-title="Où manger authentique autour de Cancún">
             <img src="http://static.photos/travel/640x360/5" alt="Nourriture mexicaine" class="w-full h-48 object-cover">
             <div class="p-6">
-              <span class="text-mexican-green text-sm font-semibold">Gastronomie</span>
+              <span class="text-mexican-green text-sm font-semibold">Road Trip</span>
               <h2 class="text-xl font-bold mt-2 mb-3">Où manger authentique autour de Cancún</h2>
               <p class="text-gray-600 mb-4">Nos adresses locales (taquerías, marisquerías) pour goûter la vraie cuisine mexicaine.</p>
               <div class="flex items-center justify-between">
@@ -307,7 +365,7 @@
           <div>
             <h3 class="font-semibold">Street Car Solution</h3>
             <p class="text-sm text-gray-600">Location de voitures à Cancún & Riviera Maya. Conseils imparables pour un road-trip serein.</p>
-            <a href="https://wa.me/521234567890" target="_blank" class="inline-block mt-2 text-caribbean-blue hover:underline">WhatsApp 24/7</a>
+            <a href="#contact" target="_blank" class="inline-block mt-2 text-caribbean-blue hover:underline">Contactez-nous</a>
           </div>
         </div>
 
@@ -324,7 +382,7 @@
         <!-- CTA -->
         <div class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white rounded-xl p-5 shadow">
           <h3 class="text-lg font-semibold">Prêt à réserver ?</h3>
-          <p class="text-white/90 mt-1">Tarifs clairs, kilométrage illimité et assistance 24/7.</p>
+          <p class="text-white/90 mt-1">Assurances incluses, Kilométrage illimité et Assistance 24/7.</p>
           <a href="index.html#reservation" class="inline-block mt-3 bg-white text-caribbean-blue font-medium px-4 py-2 rounded-lg">Voir les véhicules</a>
         </div>
       </aside>
@@ -547,6 +605,34 @@
     document.addEventListener('click',   () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
     window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+  
+  // Recherche + catégories (client-side)
+    const search = document.getElementById('search');
+    const cards  = Array.from(document.querySelectorAll('#cards article'));
+    const catBox = document.getElementById('cats');
+
+    function applyFilters() {
+      const q = (search?.value || '').toLowerCase().trim();
+      const activeBtn = catBox?.querySelector('button.active');
+      const cat = activeBtn ? activeBtn.dataset.cat : 'all';
+      cards.forEach(card => {
+        const title = card.querySelector('h2')?.textContent.toLowerCase() || '';
+        const tags  = (card.dataset.tags || '').toLowerCase();
+        const c     = card.dataset.category || 'all';
+        const matchText = !q || title.includes(q) || tags.includes(q);
+        const matchCat  = (cat === 'all') || (c === cat);
+        card.style.display = (matchText && matchCat) ? '' : 'none';
+      });
+    }
+
+    search?.addEventListener('input', applyFilters);
+    catBox?.addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-cat]');
+      if (!b) return;
+      catBox.querySelectorAll('button').forEach(x => x.classList.remove('active','bg-gray-100'));
+      b.classList.add('active','bg-gray-100');
+      applyFilters();
+    });
   </script>
 
   <script defer src="/assets/js/newsletter.js"></script>
