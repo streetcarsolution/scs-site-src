@@ -7,7 +7,6 @@
   <title>Blog – Street Car Solution</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Tailwind config AVANT le CDN -->
   <script>
     tailwind = window.tailwind || {};
     tailwind.config = {
@@ -29,43 +28,47 @@
       }
     };
   </script>
-  
 
   <!-- Icônes / drapeaux -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
 
-  <!-- SEO -->
-  <link rel="canonical" href="https://streetcarsolution.com/terms.html">
-  <meta name="description" content="Conditions générales de location Street Car Solution (Cancún, Mexique) : réservations, paiement, caution, assurances, carburant, kilométrage, retours, annulations.">
+  <!-- SEO (corrigé) -->
+  <link rel="canonical" href="https://streetcarsolution.com/blog.html">
+  <meta name="description" content="Le blog Street Car Solution : conseils de conduite, itinéraires, assurance, logistique et bonnes adresses pour votre road-trip à Cancún et sur la Riviera Maya.">
   <meta property="og:site_name" content="Street Car Solution">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Conditions Générales – Street Car Solution">
-  <meta property="og:description" content="Tout savoir sur nos conditions de location à Cancún et sur la Riviera Maya.">
+  <meta property="og:title" content="Blog – Street Car Solution">
+  <meta property="og:description" content="Conseils pratiques, itinéraires et actu pour louer et conduire sereinement au Mexique.">
   <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
-  <meta property="og:url" content="https://streetcarsolution.com/terms.html">
+  <meta property="og:url" content="https://streetcarsolution.com/blog.html">
 
-  <!-- Favicons -->
-  <link rel="icon" href="/assets/logo.png" type="image/png">
-  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <!-- JSON-LD Blog -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Blog",
+    "name":"Street Car Solution – Blog",
+    "url":"https://streetcarsolution.com/blog.html",
+    "blogPost":[
+      {"@type":"BlogPosting","headline":"Conduire sur la Riviera Maya : ce qu'il faut savoir","url":"https://streetcarsolution.com/blog/conduire-sur-la-riviera-maya.html","image":"https://streetcarsolution.com/assets/blog/riviera-maya.jpg","datePublished":"2025-09-15","author":{"@type":"Organization","name":"Street Car Solution"}},
+      {"@type":"BlogPosting","headline":"Les plus beaux cenotes accessibles en voiture","url":"https://streetcarsolution.com/blog/cenotes-en-voiture.html","image":"https://streetcarsolution.com/assets/blog/cenotes.jpg","datePublished":"2025-09-10","author":{"@type":"Organization","name":"Street Car Solution"}},
+      {"@type":"BlogPosting","headline":"Week-end à Playa del Carmen : itinéraire parfait","url":"https://streetcarsolution.com/blog/weekend-playa-del-carmen.html","image":"https://streetcarsolution.com/assets/blog/playa.jpg","datePublished":"2025-09-05","author":{"@type":"Organization","name":"Street Car Solution"}},
+      {"@type":"BlogPosting","headline":"Comprendre l'assurance auto au Mexique","url":"https://streetcarsolution.com/blog/assurance-auto-mexique.html","image":"https://streetcarsolution.com/assets/blog/assurance.jpg","datePublished":"2025-09-01","author":{"@type":"Organization","name":"Street Car Solution"}},
+      {"@type":"BlogPosting","headline":"Où manger authentique autour de Cancún","url":"https://streetcarsolution.com/blog/restos-authentiques-cancun.html","image":"https://streetcarsolution.com/assets/blog/food.jpg","datePublished":"2025-08-28","author":{"@type":"Organization","name":"Street Car Solution"}},
+      {"@type":"BlogPosting","headline":"Vacances en famille : locations adaptées aux enfants","url":"https://streetcarsolution.com/blog/famille-enfants-voiture.html","image":"https://streetcarsolution.com/assets/blog/family.jpg","datePublished":"2025-08-25","author":{"@type":"Organization","name":"Street Car Solution"}}
+    ]
+  }
+  </script>
 
-  <!-- Styles spécifiques page légale -->
   <style>
-    /* Titres numérotés en gras + espacement régulier */
-    .legal h2{
-      margin-top: 1.25rem;   /* espace entre les points */
-      font-weight: 700;
-      font-size: 1.125rem;
-      line-height: 1.4;
-    }
-    .legal h2:first-of-type{ margin-top: .5rem; }
-    .legal p, .legal ul{ margin-top: .5rem; }
-    .legal ul{ padding-left: 1.25rem; }
+    .article-card{transition:box-shadow .2s, transform .2s}
+    .article-card:hover{box-shadow:0 10px 25px rgba(0,0,0,.08); transform:translateY(-2px)}
   </style>
 </head>
 <body class="font-sans bg-gray-50 text-gray-800">
 
-  <!-- Barre langue/devise (identique au site) -->
+  <!-- Barre langue/devise -->
   <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
     <!-- Langues -->
     <div class="language-selector relative">
@@ -75,22 +78,19 @@
         <i class="fas fa-chevron-down ml-2 text-xs"></i>
       </button>
       <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
-        <!-- FR (page actuelle) -->
-        <a href="terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+        <a href="blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
           <span class="fi fi-fr mr-2"></span> Français
         </a>
-        <!-- EN -->
-        <a href="en/terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+        <a href="en/blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
           <span class="fi fi-us mr-2"></span> English
         </a>
-        <!-- ES -->
-        <a href="es/terms.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+        <a href="es/blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
           <span class="fi fi-mx mr-2"></span> Español
         </a>
       </div>
     </div>
 
-    <!-- Devise (esthétique, n’impacte pas cette page) -->
+    <!-- Devise (visuel) -->
     <div class="currency-selector relative">
       <button id="currencyBtn" class="flex items-center" aria-haspopup="true" aria-expanded="false">
         <span id="currencyLabel">€ EUR</span>
@@ -105,7 +105,7 @@
     </div>
   </div>
 
-  <!-- NAV (comme les autres pages) -->
+  <!-- NAV -->
   <nav class="bg-white shadow-md sticky top-10 z-40">
     <div class="container mx-auto px-4 py-3">
       <div class="flex items-center justify-between">
@@ -134,7 +134,7 @@
     </div>
   </nav>
 
-  <!-- Menu mobile (SÉPARÉ, caché en desktop) -->
+  <!-- Menu mobile -->
   <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t mt-12">
     <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
       <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
@@ -153,206 +153,322 @@
     </div>
   </header>
 
-  <!-- Contenu principal -->
+  <!-- Contenu principal + sidebar -->
   <main class="container mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      
-      <!-- Article 1 -->
-      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
-        <img src="http://static.photos/travel/640x360/1" alt="Routes de la Riviera Maya" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <span class="text-caribbean-blue text-sm font-semibold">Conseils de conduite</span>
-          <h2 class="text-xl font-bold mt-2 mb-3">Conduire sur la Riviera Maya : ce qu'il faut savoir</h2>
-          <p class="text-gray-600 mb-4">Découvrez nos conseils pour conduire en toute sécurité sur les routes mexicaines...</p>
-          <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-500">15 Septembre 2025</span>
-            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- Colonne principale -->
+      <section class="lg:col-span-8 space-y-8">
+
+        <!-- Filtres (mobile) -->
+        <div class="lg:hidden bg-white rounded-xl shadow p-4 space-y-3">
+          <input id="q" type="search" placeholder="Rechercher un article..." class="w-full border rounded-lg px-3 py-2" />
+          <div class="flex flex-wrap gap-2 text-sm" id="chipBarMobile"></div>
+        </div>
+
+        <!-- Grille d’articles -->
+        <div id="postGrid" class="grid sm:grid-cols-2 gap-6">
+
+          <!-- Article 1 -->
+          <article class="article-card bg-white rounded-xl shadow overflow-hidden"
+                   data-category="Conseils" data-tags="conduite,riviera maya,code de la route"
+                   data-title="Conduire sur la Riviera Maya : ce qu'il faut savoir">
+            <img src="http://static.photos/travel/640x360/1" alt="Routes de la Riviera Maya" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <span class="text-caribbean-blue text-sm font-semibold">Conseils de conduite</span>
+              <h2 class="text-xl font-bold mt-2 mb-3">Conduire sur la Riviera Maya : ce qu'il faut savoir</h2>
+              <p class="text-gray-600 mb-4">Nos recommandations pour conduire en toute sécurité (limitations, dos d’âne, police, stations-service)…</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500" data-date="2025-09-15">15 Septembre 2025</span>
+                <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="article-card bg-white rounded-xl shadow overflow-hidden"
+                   data-category="Destinations" data-tags="cenotes,yucatan,nature"
+                   data-title="Les plus beaux cenotes accessibles en voiture">
+            <img src="http://static.photos/travel/640x360/2" alt="Cenotes du Yucatán" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <span class="text-caribbean-green text-sm font-semibold">Destinations</span>
+              <h2 class="text-xl font-bold mt-2 mb-3">Les plus beaux cenotes accessibles en voiture</h2>
+              <p class="text-gray-600 mb-4">Notre sélection de cenotes (accès, horaires, budget, conseils pratiques) pour un road-trip rafraîchissant.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500" data-date="2025-09-10">10 Septembre 2025</span>
+                <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="article-card bg-white rounded-xl shadow overflow-hidden"
+                   data-category="City Guides" data-tags="playa del carmen,weekend,itinéraire"
+                   data-title="Week-end à Playa del Carmen : itinéraire parfait">
+            <img src="http://static.photos/travel/640x360/3" alt="Playa del Carmen" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <span class="text-mexican-orange text-sm font-semibold">City Guides</span>
+              <h2 class="text-xl font-bold mt-2 mb-3">Week-end à Playa del Carmen : itinéraire parfait</h2>
+              <p class="text-gray-600 mb-4">Que voir, où se garer, où manger : notre itinéraire clé en main sur 2 jours.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500" data-date="2025-09-05">5 Septembre 2025</span>
+                <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 4 -->
+          <article class="article-card bg-white rounded-xl shadow overflow-hidden"
+                   data-category="Assurance" data-tags="assurance,cdw,tp,responsabilite"
+                   data-title="Comprendre l'assurance auto au Mexique">
+            <img src="http://static.photos/travel/640x360/4" alt="Assurance voiture au Mexique" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <span class="text-mexican-red text-sm font-semibold">Assurance</span>
+              <h2 class="text-xl font-bold mt-2 mb-3">Comprendre l'assurance auto au Mexique</h2>
+              <p class="text-gray-600 mb-4">CDW, TP, RC, franchises… on vous explique simplement ce qui est inclus et les options utiles.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500" data-date="2025-09-01">1 Septembre 2025</span>
+                <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 5 -->
+          <article class="article-card bg-white rounded-xl shadow overflow-hidden"
+                   data-category="Gastronomie" data-tags="cancun,restaurants,authentique"
+                   data-title="Où manger authentique autour de Cancún">
+            <img src="http://static.photos/travel/640x360/5" alt="Nourriture mexicaine" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <span class="text-mexican-green text-sm font-semibold">Gastronomie</span>
+              <h2 class="text-xl font-bold mt-2 mb-3">Où manger authentique autour de Cancún</h2>
+              <p class="text-gray-600 mb-4">Nos adresses locales (taquerías, marisquerías) pour goûter la vraie cuisine mexicaine.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500" data-date="2025-08-28">28 Août 2025</span>
+                <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 6 -->
+          <article class="article-card bg-white rounded-xl shadow overflow-hidden"
+                   data-category="Famille" data-tags="enfants,sièges auto,organisation"
+                   data-title="Vacances en famille : locations adaptées aux enfants">
+            <img src="http://static.photos/travel/640x360/6" alt="Famille en vacances" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <span class="text-caribbean-blue text-sm font-semibold">Famille</span>
+              <h2 class="text-xl font-bold mt-2 mb-3">Vacances en famille : locations adaptées aux enfants</h2>
+              <p class="text-gray-600 mb-4">Choisir le bon véhicule, sièges auto, pauses, rangement : nos astuces parents.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500" data-date="2025-08-25">25 Août 2025</span>
+                <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Compteur -->
+        <div class="flex items-center justify-between pt-2">
+          <p id="resultCount" class="text-sm text-gray-500"></p>
+          <nav class="hidden" id="pager"></nav>
+        </div>
+      </section>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Recherche -->
+        <div class="bg-white rounded-xl shadow p-5">
+          <h3 class="text-lg font-semibold mb-3">Recherche</h3>
+          <div class="relative">
+            <input id="q2" type="search" placeholder="Tapez un mot-clé..." class="w-full border rounded-lg px-4 py-2 pr-10">
+            <i class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
           </div>
         </div>
-      </article>
 
-      <!-- Article 2 -->
-      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
-        <img src="http://static.photos/travel/640x360/2" alt="Cenotes du Yucatan" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <span class="text-caribbean-green text-sm font-semibold">Destinations</span>
-          <h2 class="text-xl font-bold mt-2 mb-3">Les plus beaux cenotes accessibles en voiture</h2>
-          <p class="text-gray-600 mb-4">Explorez les cenotes cachés de la péninsule du Yucatan avec notre guide...</p>
-          <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-500">10 Septembre 2025</span>
-            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+        <!-- Catégories -->
+        <div class="bg-white rounded-xl shadow p-5">
+          <h3 class="text-lg font-semibold mb-3">Catégories</h3>
+          <div id="chipBar" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Populaires -->
+        <div class="bg-white rounded-xl shadow p-5">
+          <h3 class="text-lg font-semibold mb-3">Populaires</h3>
+          <ul class="space-y-3 text-sm">
+            <li><a class="hover:underline" href="#">Comprendre l'assurance auto au Mexique</a></li>
+            <li><a class="hover:underline" href="#">Les plus beaux cenotes accessibles en voiture</a></li>
+            <li><a class="hover:underline" href="#">Week-end à Playa del Carmen : itinéraire</a></li>
+          </ul>
+        </div>
+
+        <!-- Bio -->
+        <div class="bg-white rounded-xl shadow p-5 flex items-center gap-4">
+          <img src="/assets/logo.png" alt="Street Car Solution" class="w-16 h-16 rounded-full object-cover">
+          <div>
+            <h3 class="font-semibold">Street Car Solution</h3>
+            <p class="text-sm text-gray-600">Location de voitures à Cancún & Riviera Maya. Conseils imparables pour un road-trip serein.</p>
+            <a href="https://wa.me/521234567890" target="_blank" class="inline-block mt-2 text-caribbean-blue hover:underline">WhatsApp 24/7</a>
           </div>
         </div>
-      </article>
 
-      <!-- Article 3 -->
-      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
-        <img src="http://static.photos/travel/640x360/3" alt="Playa del Carmen" class="w-full极速 h-48 object-cover">
-        <div class="p-6">
-          <span class="text-mexican-orange text-sm font-semibold">City Guides</span>
-          <h2 class="text-xl font-bold mt-2 mb-3">Week-end à Playa del Carmen : itinéraire parfait</h2>
-          <p class="text-gray-600 mb-4">Comment profiter au maximum de Playa del Carmen en un week-end...</p>
-          <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-500">5 Septembre 2025</span>
-            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
-          </div>
+        <!-- Newsletter -->
+        <div class="bg-white rounded-xl shadow p-5">
+          <h3 class="text-lg font-semibold mb-3">Newsletter</h3>
+          <form data-newsletter data-lang="fr" class="flex items-stretch gap-0">
+            <input type="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-l-lg border" required />
+            <button class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red text-white">S’abonner</button>
+          </form>
+          <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
         </div>
-      </article>
 
-      <!-- Article 4 -->
-      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
-        <img src="http://static.photos/travel/640x360/4" alt="Assurance voiture" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <span class="text-mexican-red text-sm font-semibold">Assurance</span>
-          <h2 class="text-xl font-bold mt-2 mb-3">Comprendre l'assurance auto au Mexique</h2>
-          <p class="text-gray-600 mb-4">Tout ce que vous devez savoir sur les assurances pour louer une voiture...</p>
-          <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-500">1 Septembre 2025</span>
-            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
-          </div>
+        <!-- CTA -->
+        <div class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white rounded-xl p-5 shadow">
+          <h3 class="text-lg font-semibold">Prêt à réserver ?</h3>
+          <p class="text-white/90 mt-1">Tarifs clairs, kilométrage illimité et assistance 24/7.</p>
+          <a href="index.html#reservation" class="inline-block mt-3 bg-white text-caribbean-blue font-medium px-4 py-2 rounded-lg">Voir les véhicules</a>
         </div>
-      </article>
+      </aside>
 
-      <!-- Article 5 -->
-      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
-        <img src="http://static.photos/travel/640x360/5" alt="Nourriture mexicaine" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <span class="text-mexican-green text-sm font-semibold">Gastronomie</span>
-          <h2 class="text-xl font-bold mt-2 mb-3">Où manger authentique autour de Cancún</h2>
-          <p class="text-gray-600 mb-4">Découvrez les meilleurs restaurants locaux loin des sentiers touristiques...</p>
-          <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-500">28 Août 2025</span>
-            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Article 6 -->
-      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
-        <img src="http://static.photos/travel/640x360/6" alt="Famille en vacances" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <span class="text-caribbean-purple text-sm font-semibold">Famille</span>
-          <h2 class="text-xl font-bold mt-2 mb-3">Vacances en famille : locations adaptées aux enfants</h2>
-          <p class="text-gray-600 mb-4">Nos conseils pour voyager avec des enfants et choisir le bon véhicule...</p>
-          <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-500">25 Août 2025</span>
-            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- Pagination -->
-    <div class="flex justify-center mt-12">
-      <nav class="flex items-center space-x-2">
-        <a href="#" class="px-3 py-2 bg-caribbean-blue text-white rounded-lg">1</a>
-        <a href="#" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">2</a>
-        <a href="#" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">3</a>
-        <a href="#" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">Suivant →</a>
-      </nav>
     </div>
   </main>
 
   <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
-                    <div class="text-gray-400">
-                      <ul>
-                      <li>Votre partenaire de confiance pour la location</li>
-                      <li>de voiture à Cancún, sur la Riviera Maya et</li>
-                      <li>dans toute la Péninsule du Yucatán.</li>
-                      </ul>
-                    </div>
-                    <div class="flex space-x-4 mt-4">
-
-          <!-- Facebook -->
-          <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          
-          <!-- Instagram -->
-          <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-instagram"></i>
-          </a>
-          
-          <!-- TikTok -->
-          <a href="http://www.tiktok.com/@yoancremona" 
-             class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-tiktok"></i>
-          </a>
-
-          <!-- YouTube -->
-          <a href="https://www.youtube.com/@StreetCarSolution"
-             class="text-gray-400 hover:text-white"
-             target="_blank" rel="noopener noreferrer"
-             aria-label="Chaîne YouTube Street Car Solution">
-            <i class="fab fa-youtube"></i>
-          </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
-                        <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
-                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Informations</h3>
-                    <ul class="space-y-2">
-                        <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
-                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
-                        <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
-                        <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                  <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-                  <p class="text-gray-400 mb-4">
-                    Abonnez-vous pour recevoir nos offres spéciales.
-                  </p>
-
-                  <!-- UN SEUL form newsletter -->
-                  <form data-newsletter data-lang="fr" class="flex items-stretch gap-0">
-                    <input
-                      type="email"
-                      placeholder="Votre email"
-                      class="w-full px-4 py-3 rounded-l-lg text-gray-800"
-                      required
-                    />
-                    <button
-                      type="submit"
-                      class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red"
-                      aria-label="S’inscrire à la newsletter"
-                    >
-                      <i class="fas fa-paper-plane"></i>
-                    </button>
-                  </form>
-
-                  <!-- Message (un seul) — laissé vide au départ -->
-                  <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
-                </div>
-
-                <!-- Keep this OUTSIDE the grid to center across the full width -->
-            <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-              <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
-            </div>
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <div class="text-gray-400">
+            <ul>
+              <li>Votre partenaire de confiance pour la location</li>
+              <li>de voiture à Cancún, sur la Riviera Maya et</li>
+              <li>dans toute la Péninsule du Yucatán.</li>
+            </ul>
+          </div>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Chaîne YouTube Street Car Solution"><i class="fab fa-youtube"></i></a>
+          </div>
         </div>
-    </footer>
-    
-  <!-- Scripts : burger + dropdown (identiques au site) -->
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Liens Utiles</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+            <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+            <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+            <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Informations</h3>
+          <ul class="space-y-2">
+            <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
+          <form data-newsletter data-lang="fr" class="flex items-stretch gap-0">
+            <input type="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-l-lg text-gray-800" required />
+            <button type="submit" class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red" aria-label="S’inscrire à la newsletter">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
+        </div>
+
+        <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts : filtres + copier lien -->
+  <script>
+  (function(){
+    const cards   = [...document.querySelectorAll('#postGrid .article-card')];
+    const q       = document.getElementById('q');
+    const q2      = document.getElementById('q2');
+    const chipBar = document.getElementById('chipBar');
+    const chipBarMobile = document.getElementById('chipBarMobile');
+    const resultCount = document.getElementById('resultCount');
+
+    // Catégories uniques
+    const cats = [...new Set(cards.map(c => (c.dataset.category || 'Autres').trim()))].sort();
+
+    function makeChips(container){
+      if(!container) return;
+      container.innerHTML = '';
+      const all = document.createElement('button');
+      all.textContent = 'Toutes';
+      all.className = 'px-3 py-1 rounded-full border text-sm hover:bg-gray-100';
+      all.dataset.cat = '';
+      container.appendChild(all);
+      cats.forEach(cat => {
+        const b = document.createElement('button');
+        b.textContent = cat;
+        b.className = 'px-3 py-1 rounded-full border text-sm hover:bg-gray-100';
+        b.dataset.cat = cat.toLowerCase();
+        container.appendChild(b);
+      });
+    }
+    makeChips(chipBar);
+    makeChips(chipBarMobile);
+
+    let activeCat = '';
+    function applyFilters(){
+      const term = (q?.value || q2?.value || '').toLowerCase().trim();
+      let shown = 0;
+      cards.forEach(card => {
+        const hay = (card.dataset.title + ' ' + (card.dataset.tags||'') + ' ' + (card.dataset.category||'')).toLowerCase();
+        const matchTerm = !term || hay.includes(term);
+        const matchCat  = !activeCat || (card.dataset.category||'').toLowerCase() === activeCat;
+        const ok = matchTerm && matchCat;
+        card.classList.toggle('hidden', !ok);
+        if (ok) shown++;
+      });
+      resultCount.textContent = shown === cards.length ? `${shown} articles` : `${shown} article${shown>1?'s':''} affiché${shown>1?'s':''}`;
+    }
+    applyFilters();
+
+    [q, q2].forEach(inp => inp && inp.addEventListener('input', applyFilters));
+    function onChipClick(e){
+      const t = e.target.closest('button[data-cat]');
+      if(!t) return;
+      activeCat = t.dataset.cat;
+      t.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('bg-gray-900','text-white'));
+      t.classList.add('bg-gray-900','text-white');
+      applyFilters();
+    }
+    chipBar?.addEventListener('click', onChipClick);
+    chipBarMobile?.addEventListener('click', onChipClick);
+
+    // Copier le lien
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('.copylink');
+      if(!b) return;
+      const card = b.closest('.article-card');
+      const slug = (card?.dataset.title || 'article').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+      const url = location.origin + '/blog/' + slug + '.html';
+      navigator.clipboard.writeText(url).then(()=>{
+        b.textContent = 'Lien copié !';
+        setTimeout(()=> b.textContent = 'Copier le lien', 1500);
+      });
+    });
+  })();
+  </script>
+
+  <!-- Scripts : burger + dropdown + newsletter (identiques aux autres pages) -->
   <script>
     // Burger
     const burgerBtn = document.getElementById('mobileMenuBtn');
@@ -418,7 +534,7 @@
     setupDropdown(langSel, langDrop);
     setupDropdown(curSel, curDrop);
 
-    // Label devise (purement visuel pour cette page)
+    // Label devise (visuel)
     document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault(); e.stopPropagation();
@@ -433,6 +549,6 @@
     window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
   </script>
 
-<script defer src="/assets/js/newsletter.js"></script>
+  <script defer src="/assets/js/newsletter.js"></script>
 </body>
 </html>
