@@ -88,3 +88,4 @@ assets/blog/riviera-maya.png filter=lfs diff=lfs merge=lfs -text
 assets/blog/riviera-maya0.png filter=lfs diff=lfs merge=lfs -text
 Blog[[:space:]]conseils[[:space:]]de[[:space:]]conduite[[:space:]]3.png filter=lfs diff=lfs merge=lfs -text
 Blog[[:space:]]cenote.png filter=lfs diff=lfs merge=lfs -text
+assets/blog/cenotes-yucatan.png filter=lfs diff=lfs merge=lfs -text
