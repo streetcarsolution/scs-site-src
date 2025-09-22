@@ -962,7 +962,7 @@
   <!-- Scripts : filtres + copier lien -->
   <script>
   (function(){
-    const cards   = [...document.querySelectorAll('#postGrid .article-card')];
+    const cards   = [].slice.call(document.querySelectorAll('#postGrid .article-card'));
     const q       = document.getElementById('q');
     const q2      = document.getElementById('q2');
     const chipBar = document.getElementById('chipBar');
@@ -970,7 +970,9 @@
     const resultCount = document.getElementById('resultCount');
 
     // Catégories uniques
-    const cats = [...new Set(cards.map(c => (c.dataset.category || 'Autres').trim()))].sort();
+    const cats = [].slice.call(cards).map(function(c){
+      return (c.dataset.category || 'Autres').trim();
+    }).filter(function(v, i, arr){ return arr.indexOf(v) === i; }).sort();
 
     function makeChips(container){
       if(!container) return;
@@ -980,7 +982,7 @@
       all.className = 'px-3 py-1 rounded-full border text-sm hover:bg-gray-100';
       all.dataset.cat = '';
       container.appendChild(all);
-      cats.forEach(cat => {
+      cats.forEach(function(cat){
         const b = document.createElement('button');
         b.textContent = cat;
         b.className = 'px-3 py-1 rounded-full border text-sm hover:bg-gray-100';
@@ -992,70 +994,82 @@
     makeChips(chipBarMobile);
 
     let activeCat = '';
-    // --- Correctif #1 : version "safe" (protège resultCount absent) ---
+
+    // --- Correctif #1 : applyFilters "safe" (protège resultCount absent) ---
     function applyFilters(){
-      const term = (q?.value || q2?.value || '').toLowerCase().trim();
+      const term = ((q && q.value) || (q2 && q2.value) || '').toLowerCase().trim();
       let shown = 0;
-      cards.forEach(card => {
+
+      cards.forEach(function(card){
         const hay = (card.dataset.title + ' ' + (card.dataset.tags||'') + ' ' + (card.dataset.category||'')).toLowerCase();
-        const matchTerm = !term || hay.includes(term);
-        const matchCat  = !activeCat || (card.dataset.category||'').toLowerCase() === activeCat;
+        const matchTerm = !term || hay.indexOf(term) !== -1;
+        const matchCat  = !activeCat || ((card.dataset.category||'').toLowerCase() === activeCat);
         const ok = matchTerm && matchCat;
-        card.classList.toggle('hidden', !ok);
         if (ok) shown++;
+        if (ok) card.classList.remove('hidden'); else card.classList.add('hidden');
       });
+
       if (resultCount) {
-        resultCount.textContent = shown === cards.length
-          ? `${shown} articles`
-          : `${shown} article${shown>1?'s':''} affiché${shown>1?'s':''}`;
+        resultCount.textContent = (shown === cards.length)
+          ? (shown + ' articles')
+          : (shown + ' article' + (shown>1?'s':'') + ' affiché' + (shown>1?'s':''));
       }
     }
     applyFilters();
 
-    [q, q2].forEach(inp => inp && inp.addEventListener('input', applyFilters));
+    [q, q2].forEach(function(inp){
+      if (inp) inp.addEventListener('input', applyFilters);
+    });
+
     function onChipClick(e){
-      const t = e.target.closest('button[data-cat]');
+      const t = e.target.closest && e.target.closest('button[data-cat]');
       if(!t) return;
       activeCat = t.dataset.cat;
-      t.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('bg-gray-900','text-white'));
+      [].slice.call(t.parentElement.querySelectorAll('button')).forEach(function(b){
+        b.classList.remove('bg-gray-900','text-white');
+      });
       t.classList.add('bg-gray-900','text-white');
       applyFilters();
     }
-    chipBar?.addEventListener('click', onChipClick);
-    chipBarMobile?.addEventListener('click', onChipClick);
+    if (chipBar) chipBar.addEventListener('click', onChipClick);
+    if (chipBarMobile) chipBarMobile.addEventListener('click', onChipClick);
 
     // === Sidebar : Catégories -> filtre la grille ===
-    const asideCatsBlock = [...document.querySelectorAll('h3')]
-      .find(h => h.textContent.trim() === 'Catégories')?.parentElement;
+    var h3s = document.querySelectorAll('h3');
+    var asideCatsBlockH3 = null;
+    for (var i=0;i<h3s.length;i++){
+      if (h3s[i].textContent.trim() === 'Catégories'){ asideCatsBlockH3 = h3s[i]; break; }
+    }
+    var asideCatsBlock = asideCatsBlockH3 ? asideCatsBlockH3.parentElement : null;
 
     if (asideCatsBlock) {
-      const map = {
-        all: '', assurance: 'assurance', city: 'city guides',
-        tips: 'conseils', dest: 'destinations', family: 'famille', roadtrip: 'road trip'
-      };
-
-      asideCatsBlock.addEventListener('click', (e) => {
-        const btn = e.target.closest('button[data-filter]');
+      const map = { all:'', assurance:'assurance', city:'city guides', tips:'conseils', dest:'destinations', family:'famille', roadtrip:'road trip' };
+      asideCatsBlock.addEventListener('click', function(e){
+        const btn = e.target.closest && e.target.closest('button[data-filter]');
         if (!btn) return;
         const key = (btn.dataset.filter || 'all').toLowerCase();
         activeCat = map[key] || '';
-        asideCatsBlock.querySelectorAll('button[data-filter]')
-          .forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+        [].slice.call(asideCatsBlock.querySelectorAll('button[data-filter]'))
+          .forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
         applyFilters();
-        document.getElementById('postGrid')?.scrollIntoView({ behavior:'smooth', block:'start' });
+        var pg = document.getElementById('postGrid');
+        if (pg) pg.scrollIntoView({ behavior:'smooth', block:'start' });
       });
     }
 
     // === Sidebar : Populaires -> scroll vers la bonne carte ===
-    const popularBlock = [...document.querySelectorAll('h3')]
-      .find(h => h.textContent.trim() === 'Populaires')?.parentElement;
+    var popularBlockH3 = null;
+    for (var j=0;j<h3s.length;j++){
+      if (h3s[j].textContent.trim() === 'Populaires'){ popularBlockH3 = h3s[j]; break; }
+    }
+    var popularBlock = popularBlockH3 ? popularBlockH3.parentElement : null;
 
     if (popularBlock) {
-      popularBlock.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', (e) => {
+      [].slice.call(popularBlock.querySelectorAll('a')).forEach(function(a){
+        a.addEventListener('click', function(e){
           e.preventDefault();
           const label = a.textContent.trim().toLowerCase();
-          const target = cards.find(c => (c.dataset.title || '').toLowerCase().includes(label));
+          const target = cards.find(function(c){ return ((c.dataset.title || '').toLowerCase().indexOf(label) !== -1); });
           if (!target) return;
           activeCat = '';
           if (q)  q.value = '';
@@ -1063,25 +1077,24 @@
           applyFilters();
           target.scrollIntoView({ behavior:'smooth', block:'center' });
           target.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
-          setTimeout(() => target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white'), 1500);
+          setTimeout(function(){ target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white'); }, 1500);
         });
       });
     }
 
     // Lire plus (ouvre) / Réduire (ferme en bas)
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', function(e){
       // Ouvrir
-      const openLink = e.target.closest('.readmore');
+      const openLink = e.target.closest && e.target.closest('.readmore');
       if (openLink) {
         e.preventDefault();
         const card = openLink.closest('.article-card');
-        // --- Correctif #2 : container plus robuste ---
-        const container = card.querySelector('.p-6, .p-5, .p-4') || card;
+        const container = card.querySelector('.p-6, .p-5, .p-4') || card; // --- Correctif #2
         let panel = card.querySelector('.post-panel');
 
         if (!panel) {
           const tpl = card.querySelector('template.post-full');
-          if (!tpl || !container) return;          // garde-fou
+          if (!tpl || !container) return; // garde-fou
           panel = document.createElement('div');
           panel.className = 'post-panel mt-4 border-t pt-4 hidden';
           panel.appendChild(tpl.content.cloneNode(true));
@@ -1089,56 +1102,53 @@
         }
 
         panel.classList.remove('hidden');
-        openLink.classList.add('hidden');          // masque "Lire plus" en haut
+        openLink.classList.add('hidden');
         openLink.setAttribute('aria-expanded', 'true');
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         return;
       }
 
-      // Fermer (clic sur "Réduire" en bas)
-      const closeLink = e.target.closest('.reduce');
+      // Fermer
+      const closeLink = e.target.closest && e.target.closest('.reduce');
       if (closeLink) {
         e.preventDefault();
         const card = closeLink.closest('.article-card');
         const panel = card.querySelector('.post-panel');
         const topLink = card.querySelector('.readmore');
 
-        panel?.classList.add('hidden');
-        topLink?.classList.remove('hidden');       // ré-affiche "Lire plus"
-        topLink?.setAttribute('aria-expanded', 'false');
+        if (panel) panel.classList.add('hidden');
+        if (topLink){
+          topLink.classList.remove('hidden');
+          topLink.setAttribute('aria-expanded', 'false');
+        }
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         return;
       }
     });
 
     // Ouvrir automatiquement l'article "Cenotes" quand on clique le lien
-    document.addEventListener('click', (e) => {
-      const a = e.target.closest('a[href="#cenotes"]');
+    document.addEventListener('click', function(e){
+      const a = e.target.closest && e.target.closest('a[href="#cenotes"]');
       if (!a) return;
       e.preventDefault();
 
-      // 1) Réinitialise les recherches pour que la carte soit visible
-      document.getElementById('q')?.value = '';
-      document.getElementById('q2')?.value = '';
-      document.querySelectorAll('#postGrid .article-card.hidden')
-        .forEach(el => el.classList.remove('hidden'));
+      var qEl  = document.getElementById('q');  if (qEl)  qEl.value = '';
+      var q2El = document.getElementById('q2'); if (q2El) q2El.value = '';
+      [].slice.call(document.querySelectorAll('#postGrid .article-card.hidden'))
+        .forEach(function(el){ el.classList.remove('hidden'); });
 
-      // 2) Fait défiler jusqu'à la carte
       const target = document.getElementById('cenotes');
       if (!target) return;
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      // 3) Ouvre le contenu si "Lire plus" est visible
       const read = target.querySelector('.readmore');
       if (read && !read.classList.contains('hidden')) read.click();
 
-      // 4) Petit surlignage visuel
       target.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
-      setTimeout(() => target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white'), 1500);
+      setTimeout(function(){ target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white'); }, 1500);
     });
   })();
   </script>
-
 
   <!-- Scripts : burger + dropdown + newsletter (identiques aux autres pages) -->
   <script>
