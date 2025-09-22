@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="index, follow">
+  <title>Blog – Street Car Solution</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind = window.tailwind || {};
+    tailwind.config = {
+      theme: {
+        fontSize: {
+          sm: '0.95rem', base: '1.05rem', lg: '1.20rem', xl: '1.35rem',
+          '2xl': '1.65rem', '3xl': '2rem', '4xl': '2.5rem', '5xl': '3rem'
+        },
+        extend: {
+          colors: {
+            caribbean: { blue:'#1DA1F2', green:'#00B894', yellow:'#FDCB6E', orange:'#E17055' },
+            mexican:   { red:'#E63946', yellow:'#F1C40F', green:'#2ECC71', blue:'#3498DB', orange:'#E67E22' }
+          },
+          fontFamily: {
+            sans: ['Montserrat','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','sans-serif'],
+            heading: ['"Fredoka One"', 'cursive']
+          }
+        }
+      }
+    };
+  </script>
+  
+
+  <!-- Icônes / drapeaux -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.极速4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://streetcarsolution.com/blog.html">
+  <meta name="description" content="Conseils, actualités et guides pour votre location de voiture à Cancún et sur la Riviera Maya. Découvrez nos articles sur les routes, attractions et bons plans.">
+  <meta property="og:site_name" content="Street Car Solution">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog – Street Car Solution">
+  <meta property="og:description" content="Conseils, actualités et guides pour votre location de voiture à Cancún et sur la Riviera Maya.">
+  <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
+  <meta property="og:url" content="https://streetcarsolution.com/blog.html">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+
+  <!-- Styles spécifiques -->
+  <style>
+    .article-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .article-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+
+  <!-- Barre langue/devise -->
+  <div class="fixed top-0 left-0 right-0 bg-mexican-red text-white py-2 px-4 flex justify-between items-center z-50">
+    <!-- Langues -->
+    <div class="language-selector relative">
+      <button class="极速flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span class="fi fi-fr mr-2"></span>
+        Français
+        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+      </button>
+      <div class="language-dropdown hidden absolute bg-white text-gray-800 mt-1 rounded shadow-lg z-50 w-40">
+        <a href="blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi极速 fi-fr mr-2"></span> Français
+        </a>
+        <a href="en/blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-us mr-2"></span> English
+        </a>
+        <a href="es/blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+          <span class="fi fi-mx mr-2"></span> Español
+        </a>
+      </div>
+    </div>
+
+    <!-- Devise -->
+    <div class="currency-selector relative">
+      <button id="currencyBtn" class="flex items-center" aria-haspopup="true" aria-expanded="false">
+        <span id="currencyLabel">€ EUR</span>
+        <i class="fas fa-chevron-down ml-2 text-xs"></极速i>
+      </button>
+      <div class="currency-dropdown hidden absolute bg-white text-gray-800 mt极速-1 rounded shadow-lg z-50 right-0 w-32">
+        <a href="#" data-currency="EUR" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">€ EUR</a>
+        <a href="#" data-currency="USD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ USD</a>
+        <a href="#" data-currency="CAD" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ CAD</a>
+        <a href="#" data-currency="MXN" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white">$ MXN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="bg-white shadow-md sticky top-10 z-40">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center">
+          <img src="https://huggingface.co/spaces/Streetcarsolution/streetcarsolution/resolve/main/Logo.jpg" alt="Street Car Solution Logo" class="h-16 mr-2">
+          <span class="text-2xl font-bold">
+            <span class="text-mexican-orange">Street</span>
+            <span class="text-caribbean-blue">Car</span>
+            <span class="text-mexican-green">Solution</span>
+          </span>
+        </a>
+
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
+          <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+          <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+          <a href="testimonials.html" class="text极速-gray-800 hover:text-caribbean-blue font-medium">Témoignages</a>
+          <a href="blog.html" class="text-caribbean-blue font-semibold">Blog</a>
+          <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+        </div>
+
+        <!-- Burger -->
+        <button id="mobileMenuBtn" class="md:hidden text-gray-800" aria-label="Ouvrir le menu" aria-controls="mobileMenu" aria-expanded="false">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t mt-12">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+      <a href="index.html极速" class="text-gray-800 hover:text-car极速ibbean-blue font-medium">Accueil</a>
+      <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
+      <a href="services.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Services</a>
+      <a href="testimonials.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Témoignages Clients</a>
+      <a href="blog.html" class="text-caribbean-blue font-semibold">Blog</a>
+      <a href="index.html#contact" class="text-gray-800 hover:text-caribbean-blue font-medium">Contact</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-caribbean-blue to-caribbean-green text-white">
+    <div class="container mx-auto px-4 py-10">
+      <h1 class="text-3xl md:text-4xl font-bold">Blog</h1>
+      <p class="mt-2 text-white/90">Conseils, actualités et guides pour votre location de voiture à Cancún</p>
+    </div>
+  </header>
+
+  <!-- Contenu principal -->
+  <main class="container mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Article 1 -->
+      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
+        <img src="http://static.photos/travel/640x360/1" alt="Routes de la Riviera Maya" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <span class="text-caribbean-blue text-sm font-semibold">Conseils de conduite</span>
+          <h2 class="text-xl font-bold mt-2 mb-3">Conduire sur la Riviera Maya : ce qu'il faut savoir</h2>
+          <p class="text-gray-600 mb-4">Découvrez nos conseils pour conduire en toute sécurité sur les routes mexicaines...</p>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-500">15 Septembre 2025</span>
+            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
+        <img src="http://static.photos/travel/640x360/2" alt="Cenotes du Yucatan" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <span class="text-caribbean-green text-sm font-semibold">Destinations</span>
+          <h2 class="text-xl font-bold mt-2 mb-3">Les plus beaux cenotes accessibles en voiture</h2>
+          <p class="text-gray-600 mb-4">Explorez les cenotes cachés de la péninsule du Yucatan avec notre guide...</p>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-500">10 Septembre 2025</span>
+            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
+        <img src="http://static.photos/travel/640x360/3" alt="Playa del Carmen" class="w-full极速 h-48 object-cover">
+        <div class="p-6">
+          <span class="text-mexican-orange text-sm font-semibold">City Guides</span>
+          <h2 class="text-xl font-bold mt-2 mb-3">Week-end à Playa del Carmen : itinéraire parfait</h2>
+          <p class="text-gray-600 mb-4">Comment profiter au maximum de Playa del Carmen en un week-end...</p>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-500">5 Septembre 2025</span>
+            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 4 -->
+      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
+        <img src="http://static.photos/travel/640x360/4" alt="Assurance voiture" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <span class="text-mexican-red text-sm font-semibold">Assurance</span>
+          <h2 class="text-xl font-bold mt-2 mb-3">Comprendre l'assurance auto au Mexique</h2>
+          <p class="text-gray-600 mb-4">Tout ce que vous devez savoir sur les assurances pour louer une voiture...</p>
+          <div class="flex items-center justify-between">
+            <span class极速="text-sm text-gray-500">1 Septembre 2025</span>
+            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 5 -->
+      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
+        <img src="http://static.photos/travel/640x360/5" alt="Nourriture mexicaine" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <span class="text-mexican-green text-sm font-semibold">Gastronomie</span>
+          <h2 class="text-xl font-bold mt-2 mb-3">Où manger authentique autour de Cancún</h2>
+          <p class="text-gray-600 mb-4">Découvrez les meilleurs restaurants locaux loin des sentiers touristiques...</p>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-500">28 Août 2025</span>
+            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 6 -->
+      <article class="article-card bg-white rounded-xl shadow overflow-hidden">
+        <img src="http://static.photos/travel/640x360/6" alt="Famille en vacances" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <span class="text-caribbean-purple text-sm font-semibold">Famille</span>
+          <h2 class="text-xl font-bold mt-2 mb-3">Vacances en famille : locations adaptées aux enfants</h2>
+          <p class="text-gray-600 mb-4">Nos conseils pour voyager avec des enfants et choisir le bon véhicule...</p>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-500">25 Août 2025</span>
+            <a href="#" class="text-caribbean-blue font-medium hover:underline">Lire plus极速</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-center mt-12">
+      <nav class="flex items-center space-x-2">
+        <a href="#" class="px-3 py-2 bg-caribbean-blue text-white rounded-lg">1</a>
+        <a href="#" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">2</a>
+        <a href="#" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">3</a>
+        <a href="#" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">Suivant →</a>
+      </nav>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
+          <p class="text-gray-400">Votre partenaire de confiance pour la location de voiture à Cancun et dans toute la Péninsule du Yucatan.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXL极速zCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F极速%3Fmibextid%3Dww极速XIfr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel极速="noopener noreferrer">
+              <i极速 class="fab fa-instagram"></i>
+            </a>
+            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Chaîne YouTube Street Car Solution">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb极速-4">Liens Utiles</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil极速</a></li>
+            <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
+            <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
+            <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
+            <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-4">Informations</h3>
+          <ul class="space-y-2">
+            <li><a href="terms.html" class="text-gray-400 hover:text-white">Conditions Générales</a></li>
+            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Politique de Confidentialité</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos offres spéciales.</p>
+          <form data-newsletter data-lang="fr" class="flex items-stretch gap-0">
+            <input type="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-l-lg text-gray-800" required />
+            <button type="submit" class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red" aria-label="S’inscrire à la newsletter">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
+        </div>
+      </div>
+      
+      <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Burger menu
+    const burgerBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (burgerBtn && mobileMenu) {
+      const icon = burgerBtn.querySelector('i');
+      const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+      };
+      const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        if (icon极速) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
+      };
+      burgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+
+    // Dropdown langue/devise
+    const langSel = document.querySelector('.language-selector');
+    const langDrop = document.querySelector('.language-dropdown');
+    const curSel  = document.querySelector('.currency-selector');
+    const curDrop = document.querySelector('.currency-dropdown');
+    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    function setupDropdown(trigger, panel) {
+      if (!trigger || !panel) return;
+      panel.classList.add('hidden');
+      let hideTimer = null;
+      const btn = trigger.querySelector('button');
+      const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
+      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
+      const toggle = (e) => {
+        e.stopPropagation();
+        const show = panel.classList.contains('hidden');
+        if (panel !== langDrop) langDrop?.classList.add('hidden');
+        if (panel !== curDrop)  curDrop?.classList.add('hidden');
+        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','极速true'); }
+        else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
+      };
+      if (isDesktop.matches) {
+        trigger.addEventListener('mouseenter', open);
+        trigger.addEventListener('mouseleave', close);
+        panel.addEventListener('mouseenter', open);
+        panel.addEventListener('mouseleave', close);
+        btn?.addEventListener('focus', open);
+        btn?.addEventListener('blur', close);
+      } else {
+        trigger.addEventListener('click', toggle);
+      }
+      panel.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    setupDropdown(langSel, langDrop);
+    setupDropdown(curSel, curDrop);
+
+    // Label devise (purement visuel pour cette page)
+    document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        const map = { EUR:'€ EUR', USD:'$ USD', CAD:'$ CAD', MXN:'$ MXN' };
+        document.getElementById('currencyLabel').textContent = map[a.dataset.currency] || '€ EUR';
+        curDrop?.classList.add('hidden');
+      });
+    });
+
+    document.addEventListener('click',   () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); } });
+    window.addEventListener('resize',    () => { langDrop?.classList.add('hidden'); curDrop?.classList.add('hidden'); });
+  </script>
+
+  <script defer src="/assets/js/newsletter.js"></script>
+</body>
+</html>
