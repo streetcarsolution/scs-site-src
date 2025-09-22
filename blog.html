@@ -1126,39 +1126,40 @@
       }
     });
 
-    // Ouvrir automatiquement l'article "Cenotes" puis recadrer sur le titre
+    // Rediriger vers l'entête de l'article "Cenotes" SANS l'ouvrir
     document.addEventListener('click', function(e){
-      const a = e.target.closest && e.target.closest('a[href="#cenotes"]');
-      if (!a) return;
+      const link = e.target.closest && e.target.closest('a[href="#cenotes"]');
+      if (!link) return;
       e.preventDefault();
 
-      // Rendre visibles toutes les cartes et vider les recherches
+      // 1) Réinitialise les recherches et réaffiche toutes les cartes
       var qEl  = document.getElementById('q');  if (qEl)  qEl.value = '';
       var q2El = document.getElementById('q2'); if (q2El) q2El.value = '';
       [].slice.call(document.querySelectorAll('#postGrid .article-card.hidden'))
         .forEach(function(el){ el.classList.remove('hidden'); });
 
-      // Cible
-      const target = document.getElementById('cenotes');
-      if (!target) return;
+      // 2) Cible l'article
+      var art = document.getElementById('cenotes');
+      if (!art) return;
 
-      // Ouvre si nécessaire, puis RECENTRE sur le titre (pas en bas)
-      const read = target.querySelector('.readmore');
-      if (read && !read.classList.contains('hidden')) {
-        read.click(); // injection du contenu
-        setTimeout(function(){
-          const anchor = target.querySelector('h2, h3') || target;
-          anchor.scrollIntoView({ behavior:'smooth', block:'start' });
-        }, 50); // laisse le temps au DOM de s’agrandir
-      } else {
-        const anchor = target.querySelector('h2, h3') || target;
-        anchor.scrollIntoView({ behavior:'smooth', block:'start' });
+      // 3) S'il est ouvert, on le referme pour afficher l'entête
+      var panel = art.querySelector('.post-panel');
+      var read  = art.querySelector('a.readmore');
+      if (panel && !panel.classList.contains('hidden')) {
+        panel.classList.add('hidden');
+        if (read) { read.classList.remove('hidden'); read.setAttribute('aria-expanded','false'); }
       }
 
-      // Surlignage visuel
-      target.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
+      // 4) Scroll au DÉBUT de la carte (compense la barre fixe)
+      var rect = art.getBoundingClientRect();
+      var offset = window.matchMedia('(min-width: 768px)').matches ? 120 : 140; // ajuste si besoin
+      var top = rect.top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+
+      // 5) Petit surlignage visuel
+      art.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
       setTimeout(function(){
-        target.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
+        art.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
       }, 1500);
     });
   })();
