@@ -852,9 +852,9 @@
         <div class="bg-white rounded-xl shadow p-5">
           <h3 class="text-lg font-semibold mb-3">Populaires</h3>
           <ul class="space-y-3 text-sm">
-            <li><a class="hover:underline" href="#">Conduire sur la Riviera Maya: info pratique</a></li>
+            <li><a class="hover:underline" href="#">Conduire sur la Riviera Maya : ce qu'il faut savoir</a></li>
             <li><a class="hover:underline" href="#">Les plus beaux cenotes accessibles en voiture</a></li>
-            <li><a class="hover:underline" href="#">Location de voiture adaptées aux enfants</a></li>
+            <li><a class="hover:underline" href="#">Vacances en famille : locations adaptées aux enfants</a></li>
           </ul>
         </div>        
 
@@ -1126,23 +1126,28 @@
       }
     });
 
-    // Rediriger vers l'entête de l'article "Cenotes" SANS l'ouvrir
+    // Rediriger vers l'entête de n'importe quel article via <a href="#ID">
     document.addEventListener('click', function(e){
-      const link = e.target.closest && e.target.closest('a[href="#cenotes"]');
+      const link = e.target.closest && e.target.closest('a[href^="#"]');
       if (!link) return;
+
+      const hash = link.getAttribute('href');
+      if (!hash || hash.length <= 1) return; // "#", vide -> on laisse faire
+      const id = hash.slice(1);
+
+      // On ne s'active que si la cible est une carte d'article du blog
+      const art = document.getElementById(id);
+      if (!art || !art.matches('#postGrid .article-card')) return;
+
       e.preventDefault();
 
-      // 1) Réinitialise les recherches et réaffiche toutes les cartes
+      // 1) Rendre visibles toutes les cartes et vider les recherches
       var qEl  = document.getElementById('q');  if (qEl)  qEl.value = '';
       var q2El = document.getElementById('q2'); if (q2El) q2El.value = '';
       [].slice.call(document.querySelectorAll('#postGrid .article-card.hidden'))
         .forEach(function(el){ el.classList.remove('hidden'); });
 
-      // 2) Cible l'article
-      var art = document.getElementById('cenotes');
-      if (!art) return;
-
-      // 3) S'il est ouvert, on le referme pour afficher l'entête
+      // 2) Si la carte est ouverte, on la referme (on veut montrer l'entête)
       var panel = art.querySelector('.post-panel');
       var read  = art.querySelector('a.readmore');
       if (panel && !panel.classList.contains('hidden')) {
@@ -1150,13 +1155,13 @@
         if (read) { read.classList.remove('hidden'); read.setAttribute('aria-expanded','false'); }
       }
 
-      // 4) Scroll au DÉBUT de la carte (compense la barre fixe)
+      // 3) Scroll au DÉBUT de la carte (compense la barre fixe)
       var rect = art.getBoundingClientRect();
       var offset = window.matchMedia('(min-width: 768px)').matches ? 120 : 140; // ajuste si besoin
       var top = rect.top + window.scrollY - offset;
       window.scrollTo({ top: top, behavior: 'smooth' });
 
-      // 5) Petit surlignage visuel
+      // 4) Surlignage visuel
       art.classList.add('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
       setTimeout(function(){
         art.classList.remove('ring-2','ring-caribbean-blue','ring-offset-2','ring-offset-white');
