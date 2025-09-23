@@ -1267,53 +1267,117 @@
     });
   </script>
 
-  <!-- === Bouton flottant Google Translate (à coller avant </body>) === -->
+  <!-- === Bouton flottant : sélection par drapeaux (Google Translate) === -->
   <style>
-    /* Empêche le grand bandeau Google en haut de la page */
+    /* Masquer le bandeau Google en haut */
     .goog-te-banner-frame { display: none !important; }
     body { top: 0 !important; }
+    /* Cacher le gadget Google : on pilote via nos drapeaux */
+    #google_translate_element { display: none; }
   </style>
 
   <div id="gt-fab" class="fixed bottom-4 right-4 z-50">
+    <!-- Bouton globe pour ouvrir/fermer le panneau -->
     <button id="gt-toggle"
-            class="rounded-full bg-caribbean-blue text-white px-4 py-2 shadow-lg hover:opacity-90">
-      Traduire
+            class="rounded-full bg-white border px-3 py-3 shadow-lg hover:bg-gray-50"
+            aria-label="Traduire" aria-expanded="false" aria-controls="gt-panel">
+      <i class="fas fa-globe text-gray-700"></i>
     </button>
 
+    <!-- Panneau avec drapeaux -->
     <div id="gt-panel"
-        class="hidden mt-2 bg-white border rounded-xl shadow-xl p-3 w-64">
+        class="hidden mt-2 bg-white border rounded-xl shadow-xl p-3 w-[15.5rem]">
+      <div class="text-xs text-gray-500 mb-2">Traduction automatique</div>
+      <div class="flex items-center justify-between gap-2">
+        <!-- FR (reset) – utile pour revenir à l’original -->
+        <button type="button" class="gt-flag-btn" data-lang="fr" title="Français">
+          <span class="fi fi-fr"></span>
+        </button>
+        <!-- EN-US -->
+        <button type="button" class="gt-flag-btn" data-lang="en" title="English (US)">
+          <span class="fi fi-us"></span>
+        </button>
+        <!-- ES-MX (Google = 'es') -->
+        <button type="button" class="gt-flag-btn" data-lang="es" title="Español (México)">
+          <span class="fi fi-mx"></span>
+        </button>
+        <!-- DE -->
+        <button type="button" class="gt-flag-btn" data-lang="de" title="Deutsch">
+          <span class="fi fi-de"></span>
+        </button>
+        <!-- IT -->
+        <button type="button" class="gt-flag-btn" data-lang="it" title="Italiano">
+          <span class="fi fi-it"></span>
+        </button>
+        <!-- RU -->
+        <button type="button" class="gt-flag-btn" data-lang="ru" title="Русский">
+          <span class="fi fi-ru"></span>
+        </button>
+      </div>
+
+      <!-- Gadget Google (caché, mais nécessaire) -->
       <div id="google_translate_element"></div>
-      <p class="text-[11px] text-gray-500 mt-2">
-        Traduction automatique par Google.
-      </p>
     </div>
   </div>
 
+  <style>
+    /* style des “boutons drapeaux” */
+    .gt-flag-btn { display:inline-flex; align-items:center; justify-content:center;
+      width:2.25rem; height:1.6rem; border:1px solid #e5e7eb; border-radius:.5rem;
+      background:#fff; transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    .gt-flag-btn:hover { background:#f9fafb; transform:translateY(-1px);
+      box-shadow:0 4px 12px rgba(0,0,0,.08); }
+    .gt-flag-btn .fi { width:1.5rem; height:1.1rem; border-radius:2px; }
+  </style>
+
   <script>
-    (function(){
-      var btn   = document.getElementById('gt-toggle');
-      var panel = document.getElementById('gt-panel');
+  (function(){
+    var btn   = document.getElementById('gt-toggle');
+    var panel = document.getElementById('gt-panel');
 
-      if (btn && panel) {
-        btn.addEventListener('click', function(e){
-          e.stopPropagation();
-          panel.classList.toggle('hidden');
-        });
-        document.addEventListener('click', function(){
+    // Ouvrir/fermer le panneau
+    if (btn && panel) {
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var hidden = panel.classList.contains('hidden');
+        if (hidden) panel.classList.remove('hidden'); else panel.classList.add('hidden');
+        btn.setAttribute('aria-expanded', hidden ? 'true' : 'false');
+      });
+      document.addEventListener('click', function(){ panel.classList.add('hidden'); btn.setAttribute('aria-expanded','false'); });
+      panel.addEventListener('click', function(e){ e.stopPropagation(); });
+    }
+
+    // Initialisation Google (appelée par le script Google)
+    window.googleTranslateElementInit = function () {
+      new google.translate.TranslateElement({
+        pageLanguage: 'fr',
+        includedLanguages: 'fr,en,es,de,it,ru',   // FR pour “reset” + langues demandées
+        autoDisplay: false
+      }, 'google_translate_element');
+    };
+
+    // Sélection de langue via les drapeaux
+    function switchLang(lang){
+      // Google insère un <select class="goog-te-combo"> ; on l'actionne
+      var trySelect = function(tries){
+        var sel = document.querySelector('select.goog-te-combo');
+        if (sel) {
+          sel.value = lang;
+          sel.dispatchEvent(new Event('change'));
           panel.classList.add('hidden');
-        });
-        panel.addEventListener('click', function(e){ e.stopPropagation(); });
-      }
-
-      // Appelé par le script Google
-      window.googleTranslateElementInit = function () {
-        new google.translate.TranslateElement({
-          pageLanguage: 'fr',          // langue source de ta page
-          includedLanguages: 'en,es,fr',
-          autoDisplay: false
-        }, 'google_translate_element');
+          btn.setAttribute('aria-expanded','false');
+        } else if ((tries||0) < 40) {
+          setTimeout(function(){ trySelect((tries||0)+1); }, 100);
+        }
       };
-    })();
+      trySelect(0);
+    }
+
+    [].slice.call(document.querySelectorAll('.gt-flag-btn')).forEach(function(b){
+      b.addEventListener('click', function(){ switchLang(b.dataset.lang); });
+    });
+  })();
   </script>
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
