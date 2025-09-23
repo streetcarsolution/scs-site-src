@@ -1186,43 +1186,29 @@
 
     // Dropdown langue/devise
     const langSel = document.querySelector('.language-selector');
-    const langDrop = document.querySelector('.language-dropdown');
-    const curSel  = document.querySelector('.currency-selector');
-    const curDrop = document.querySelector('.currency-dropdown');
-    const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+      const langDrop = document.querySelector('.language-dropdown');
+      const curSel  = document.querySelector('.currency-selector');
+      const curDrop = document.querySelector('.currency-dropdown');
+      const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
 
-    function setupDropdown(trigger, panel) {
-      if (!trigger || !panel) return;
-      panel.classList.add('hidden');
-      let hideTimer = null;
-      const btn = trigger.querySelector('button');
-
-      const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
-      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
-      const toggle = (e) => {
-        e.stopPropagation();
-        const show = panel.classList.contains('hidden');
-        if (panel !== langDrop) langDrop?.classList.add('hidden');
-        if (panel !== curDrop)  curDrop?.classList.add('hidden');
-        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); }
-        else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
-      };
-
-      if (isDesktop.matches) {
-        trigger.addEventListener('mouseenter', open);
-        trigger.addEventListener('mouseleave', close);
-        panel.addEventListener('mouseenter', open);
-        panel.addEventListener('mouseleave', close);
-        btn?.addEventListener('focus', open);
-        btn?.addEventListener('blur', close);
+      // >>> Désactiver la dropdown langues UNIQUEMENT sur blog.html
+      const isBlog = /\/blog\.html(?:$|\?)/i.test(location.pathname);
+      if (isBlog) {
+        // on retire le panneau et on rend le bouton inactif
+        langDrop?.remove();
+        const langBtn = langSel?.querySelector('button');
+        if (langBtn) {
+          langBtn.setAttribute('aria-disabled', 'true');
+          langBtn.classList.add('opacity-60','pointer-events-none','cursor-not-allowed');
+          langBtn.title = 'Utilisez le bouton de traduction en bas à droite';
+        }
       } else {
-        trigger.addEventListener('click', toggle);
+        // comportement normal sur les autres pages
+        setupDropdown(langSel, langDrop);
       }
-      panel.addEventListener('click', (e) => e.stopPropagation());
-    }
 
-    setupDropdown(langSel, langDrop);
-    setupDropdown(curSel, curDrop);
+      // devise : inchangé
+      setupDropdown(curSel, curDrop);
 
     // Label devise (visuel)
     document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a => {
