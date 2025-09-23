@@ -947,23 +947,25 @@
     </div>
   </footer>
 
- <script>
-  (async () => {
-    try {
-      const res = await fetch('https://script.google.com/macros/s/AKfycbwGmv9FJQhXFlJ_za2jjYP8YH5pXNDTfNNqQn332NXXVEqlzsfw_aXk0smbu1hbTR-B2g/exec');
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const html = await res.text();
-      const grid = document.getElementById('postGrid');
-      if (grid) {
-        grid.innerHTML = html;
-        // Signale aux autres scripts que les cartes sont en place
-        window.dispatchEvent(new Event('blog-cards-loaded'));
+  <script>
+    // Callback appelée par la Web App (JSONP)
+    window.loadBlogCards = function (data) {
+      try {
+        const grid = document.getElementById('postGrid');
+        if (grid && data && data.html) {
+          grid.innerHTML = data.html;
+          // Signale aux autres scripts que les cartes sont en place
+          window.dispatchEvent(new Event('blog-cards-loaded'));
+        }
+      } catch (err) {
+        console.error('JSONP loader error:', err);
       }
-    } catch (e) {
-      console.error('Blog loader:', e);
-    }
-  })();
- </script>
+    };
+  </script>
+
+  <!-- Charge le “script” JSONP (pas de CORS) -->
+  <script src="https://script.google.com/macros/s/AKfycbwAEDRFOU46aNEDAfDKhVgSjuX3zYT2QziVXd99W5n-3ydDdd4E5o7oMX85aBIA4LziaA/exec?callback=loadBlogCards"></script>
+
 
   <!-- Scripts : filtres + copier lien -->
   <script>
