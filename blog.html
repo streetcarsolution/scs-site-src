@@ -1267,6 +1267,56 @@
     });
   </script>
 
+  <!-- === Bouton flottant Google Translate (à coller avant </body>) === -->
+  <style>
+    /* Empêche le grand bandeau Google en haut de la page */
+    .goog-te-banner-frame { display: none !important; }
+    body { top: 0 !important; }
+  </style>
+
+  <div id="gt-fab" class="fixed bottom-4 right-4 z-50">
+    <button id="gt-toggle"
+            class="rounded-full bg-caribbean-blue text-white px-4 py-2 shadow-lg hover:opacity-90">
+      Traduire
+    </button>
+
+    <div id="gt-panel"
+        class="hidden mt-2 bg-white border rounded-xl shadow-xl p-3 w-64">
+      <div id="google_translate_element"></div>
+      <p class="text-[11px] text-gray-500 mt-2">
+        Traduction automatique par Google.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      var btn   = document.getElementById('gt-toggle');
+      var panel = document.getElementById('gt-panel');
+
+      if (btn && panel) {
+        btn.addEventListener('click', function(e){
+          e.stopPropagation();
+          panel.classList.toggle('hidden');
+        });
+        document.addEventListener('click', function(){
+          panel.classList.add('hidden');
+        });
+        panel.addEventListener('click', function(e){ e.stopPropagation(); });
+      }
+
+      // Appelé par le script Google
+      window.googleTranslateElementInit = function () {
+        new google.translate.TranslateElement({
+          pageLanguage: 'fr',          // langue source de ta page
+          includedLanguages: 'en,es,fr',
+          autoDisplay: false
+        }, 'google_translate_element');
+      };
+    })();
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
   <script defer src="/assets/js/newsletter.js"></script>
 </body>
 </html>
