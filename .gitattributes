@@ -92,3 +92,4 @@ assets/blog/cenotes-yucatan.png filter=lfs diff=lfs merge=lfs -text
 Blog[[:space:]]weekend[[:space:]]Playa.png filter=lfs diff=lfs merge=lfs -text
 assets/blog/playa-del-carmen.png filter=lfs diff=lfs merge=lfs -text
 Blog[[:space:]]famille[[:space:]]2.png filter=lfs diff=lfs merge=lfs -text
+assets/blog/famille-voiture.png filter=lfs diff=lfs merge=lfs -text
