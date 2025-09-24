@@ -183,6 +183,17 @@
       .post-panel h3,
       .post-panel h4,
       .post-panel li { text-align: left; }
+
+      /* Couleur par défaut si aucune correspondance (vert comme aujourd'hui) */
+      #postGrid .article-card .p-6 > span { color: #059669; }
+
+      /* Mappage par catégorie → même ton que les chips */
+      #postGrid .article-card[data-category="Assurance"]    .p-6 > span { color: #e11d48; } /* rose/rouge */
+      #postGrid .article-card[data-category="City Guides"]  .p-6 > span { color: #0284c7; } /* bleu ciel */
+      #postGrid .article-card[data-category="Conseils"]     .p-6 > span { color: #10b981; } /* vert émeraude */
+      #postGrid .article-card[data-category="Destinations"] .p-6 > span { color: #f59e0b; } /* ambre */
+      #postGrid .article-card[data-category="Famille"]      .p-6 > span { color: #14b8a6; } /* teal */
+      #postGrid .article-card[data-category="Road Trip"]    .p-6 > span { color: #f97316; } /* orange */
     </style>
   </head>
   <body class="font-sans bg-gray-50 text-gray-800">
