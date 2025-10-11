@@ -1663,29 +1663,86 @@ if (aboutVideo && videoOverlay) {
 })();
 </script>
 
-<!-- ChatKit - Conseiller Street Car Solution -->
-<script type="module">
-  import ChatKit from "https://cdn.openai.com/chatkit/v1/chatkit.js";
+<!-- Conseiller Street Car Solution - widget (CTA lien formulaire) -->
+<style>
+  .scc-fab{position:fixed;right:16px;bottom:16px;border-radius:9999px;padding:12px 16px;background:#223256;color:#fff;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.15);cursor:pointer}
+  .scc-panel{position:fixed;right:16px;bottom:76px;width:340px;height:460px;background:#fff;border-radius:16px;box-shadow:0 12px 28px rgba(0,0,0,.18);display:none;flex-direction:column;overflow:hidden;z-index:99999}
+  .scc-head{background:#223256;color:#fff;padding:10px 14px;font-weight:600}
+  .scc-log{flex:1;padding:10px;overflow:auto;font-size:14px;background:#fafafa}
+  .scc-form{display:flex;gap:8px;padding:10px;border-top:1px solid #eee}
+  .scc-input{flex:1;border:1px solid #ddd;border-radius:12px;padding:10px}
+  .scc-bub{display:inline-block;padding:8px 12px;border-radius:12px;margin:6px 0;max-width:85%}
+  .scc-u{background:#223256;color:#fff;margin-left:auto}
+  .scc-a{background:#f1f5f9;color:#111}
+  .scc-cta{background:#fff3cd;border:1px solid #ffe08a}
+  .scc-cta a{display:inline-block;padding:8px 10px;border-radius:10px;background:#223256;color:#fff;text-decoration:none}
+</style>
 
-  ChatKit.mount({
-    workflow: "wf_68e9da3ef3548190a8e8c528596b0b470c76e3c", // ID de ton workflow
-    version: "1",
-    domainPublicKey: "domain_pk_68e9ddb362808190be48ad55a6e5369d0fe90ad864274ac7", // ta clé publique
-    theme: {
-      button: {
-        color: "#223256",       // bleu foncé Signature
-        icon: "💬"              // icône du bouton
-      },
-      chat: {
-        title: "Conseiller Street Car Solution",
-        subtitle: "Besoin d’aide ? Je suis là pour vous.",
-        background: "#ffffff",
-        textColor: "#000000",
-        accentColor: "#4481eb"  // turquoise caribéen
-      }
+<div id="scc-fab" class="scc-fab">💬 Conseiller</div>
+<div id="scc-panel" class="scc-panel">
+  <div class="scc-head">Conseiller Street Car Solution</div>
+  <div id="scc-log" class="scc-log"></div>
+  <form id="scc-form" class="scc-form">
+    <input id="scc-input" class="scc-input" placeholder="Écrire un message…">
+    <button>Envoyer</button>
+  </form>
+</div>
+
+<script>
+  const API = "https://scs-chat-api.vercel.app/api/scc-chat"; // ← ton endpoint Vercel
+  const FORM_URL = "https://huggingface.co/spaces/Streetcarsolution/streetcarsolution-update-2#reservation";          // ← mets ici l’URL du formulaire
+
+  const fab = document.getElementById('scc-fab');
+  const panel = document.getElementById('scc-panel');
+  const log = document.getElementById('scc-log');
+  const form = document.getElementById('scc-form');
+  const input = document.getElementById('scc-input');
+  const history = [];
+  let lastCTA = 0;
+
+  function bubble(text, cls){
+    const d=document.createElement('div');
+    d.className='scc-bub '+cls; d.textContent=text;
+    log.appendChild(d); log.scrollTop=log.scrollHeight;
+    return d;
+  }
+  function cta(){
+    const now = Date.now();
+    if (now - lastCTA < 30000) return; // 1 CTA max toutes 30s
+    lastCTA = now;
+    const d=document.createElement('div');
+    d.className='scc-bub scc-cta';
+    d.innerHTML = `Pour finaliser en 1 minute, cliquez ici : <a href="${FORM_URL}" target="_blank" rel="noopener">Pré-réservation</a>`;
+    log.appendChild(d); log.scrollTop=log.scrollHeight;
+  }
+
+  fab.onclick=()=>{
+    panel.style.display = panel.style.display==='flex'?'none':'flex';
+    if(!panel.dataset.boot){
+      panel.dataset.boot=1;
+      bubble("Bonjour ! Je réponds à vos questions, puis vous pouvez finaliser via notre formulaire sécurisé.", 'scc-a');
+      cta(); // CTA dès l’ouverture
     }
+  };
+
+  form.addEventListener('submit', async e=>{
+    e.preventDefault();
+    const text = input.value.trim(); if(!text) return; input.value='';
+    bubble(text,'scc-u'); history.push({role:'user',content:text});
+
+    const r = await fetch(API,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:history})
+    });
+    const data = await r.json();
+    const reply = data.reply || 'Désolé, une erreur est survenue.';
+    bubble(reply,'scc-a'); history.push({role:'assistant',content:reply});
+
+    cta(); // rappeler le lien après chaque réponse
   });
 </script>
+
 
 <script defer src="/assets/js/newsletter.js"></script>
 </body>
