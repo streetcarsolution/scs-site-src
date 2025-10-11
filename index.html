@@ -1668,19 +1668,20 @@ if (aboutVideo && videoOverlay) {
   import ChatKit from "https://cdn.openai.com/chatkit/v1/chatkit.js";
 
   ChatKit.mount({
-    workflow: "wf_68e9da3ef3548190a8e8c528596b0b470c76e3c", // Ton Workflow ID exact
-    version: "1", // ou supprime cette ligne pour toujours prendre la dernière version
-    token: "", // vide pour test public
+    workflow: "wf_68e9da3ef3548190a8e8c528596b0b470c76e3c", // ID de ton workflow
+    version: "1",
+    domainPublicKey: "domain_pk_68e9ddb362808190be48ad55a6e5369d0fe90ad864274ac7", // ta clé publique
     theme: {
       button: {
-        color: "#223256",
-        icon: "💬"
+        color: "#223256",       // bleu foncé Signature
+        icon: "💬"              // icône du bouton
       },
       chat: {
         title: "Conseiller Street Car Solution",
         subtitle: "Besoin d’aide ? Je suis là pour vous.",
         background: "#ffffff",
-        textColor: "#000000"
+        textColor: "#000000",
+        accentColor: "#4481eb"  // turquoise caribéen
       }
     }
   });
