@@ -1695,18 +1695,9 @@ if (aboutVideo && videoOverlay) {
   .scc-send:active{transform:translateY(1px)}
 </style>
 <style>
-  /* --- SCS Chat : petit bump de taille --- */
-  #scc-panel .scc-log { font-size: 16px; line-height: 1.35; }
-  #scc-panel .scc-ctaBar,
-  #scc-panel .scc-ctaBar a { font-size: 16px; }
-  #scc-panel .scc-input { font-size: 15px; height: 44px; }
-  
-  /* Optionnel : sur très petits écrans, on réduit d'un cran */
-  @media (max-width: 380px){
-    #scc-panel .scc-log,
-    #scc-panel .scc-ctaBar,
-    #scc-panel .scc-ctaBar a { font-size: 15px; }
-  }
+  /* Agrandir seulement les bulles du chat */
+  #scc-panel .scc-log { font-size: 16px; line-height: 1.35; }  /* 14px → 16px */
+  #scc-panel .scc-bub { font-size: inherit; }                  /* s'assure que les bulles héritent */
 </style>
 
 <div id="scc-fab" class="scc-fab">💬 Chat</div>
