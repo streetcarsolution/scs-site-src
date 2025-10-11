@@ -1663,25 +1663,34 @@ if (aboutVideo && videoOverlay) {
 })();
 </script>
 
-<!-- Conseiller Street Car Solution - widget (CTA lien formulaire) -->
+<!-- Conseiller Street Car Solution - widget (CTA fixe + FR welcome) -->
 <style>
   .scc-fab{position:fixed;right:16px;bottom:16px;border-radius:9999px;padding:12px 16px;background:#223256;color:#fff;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.15);cursor:pointer}
   .scc-panel{position:fixed;right:16px;bottom:76px;width:340px;height:460px;background:#fff;border-radius:16px;box-shadow:0 12px 28px rgba(0,0,0,.18);display:none;flex-direction:column;overflow:hidden;z-index:99999}
   .scc-head{background:#223256;color:#fff;padding:10px 14px;font-weight:600}
   .scc-log{flex:1;padding:10px;overflow:auto;font-size:14px;background:#fafafa}
-  .scc-form{display:flex;gap:8px;padding:10px;border-top:1px solid #eee}
+  .scc-form{display:flex;gap:8px;padding:10px;border-top:1px solid #eee;background:#fff}
   .scc-input{flex:1;border:1px solid #ddd;border-radius:12px;padding:10px}
-  .scc-bub{display:inline-block;padding:8px 12px;border-radius:12px;margin:6px 0;max-width:85%}
+  /* ✅ chaque bulle prend sa propre ligne, plus de bulles côte à côte */
+  .scc-bub{display:block;padding:8px 12px;border-radius:12px;margin:6px 0;max-width:85%}
   .scc-u{background:#223256;color:#fff;margin-left:auto}
   .scc-a{background:#f1f5f9;color:#111}
-  .scc-cta{background:#fff3cd;border:1px solid #ffe08a}
-  .scc-cta a{display:inline-block;padding:8px 10px;border-radius:10px;background:#223256;color:#fff;text-decoration:none}
+  /* ✅ barre CTA fixe (entre le log et la zone de saisie) */
+  .scc-ctaBar{border-top:1px solid #ffe08a;background:#fff8dc;padding:10px;text-align:center}
+  .scc-ctaBar a{display:inline-block;padding:8px 12px;border-radius:10px;background:#223256;color:#fff;text-decoration:none}
 </style>
 
 <div id="scc-fab" class="scc-fab">💬 Conseiller</div>
 <div id="scc-panel" class="scc-panel">
   <div class="scc-head">Conseiller Street Car Solution</div>
   <div id="scc-log" class="scc-log"></div>
+
+  <!-- ✅ CTA toujours visible et ancré en bas du panneau -->
+  <div class="scc-ctaBar">
+    Pour finaliser en 1 minute :
+    <a href="#" id="scc-go">Pré-réservation</a>
+  </div>
+
   <form id="scc-form" class="scc-form">
     <input id="scc-input" class="scc-input" placeholder="Écrire un message…">
     <button>Envoyer</button>
@@ -1698,33 +1707,37 @@ if (aboutVideo && videoOverlay) {
   const form = document.getElementById('scc-form');
   const input = document.getElementById('scc-input');
   const history = [];
-  let lastCTA = 0;
 
-  function bubble(text, cls){
-    const d=document.createElement('div');
-    d.className='scc-bub '+cls; d.textContent=text;
-    log.appendChild(d); log.scrollTop=log.scrollHeight;
-    return d;
-  }
-  function cta(){
-    const now = Date.now();
-    if (now - lastCTA < 30000) return; // 1 CTA max toutes 30s
-    lastCTA = now;
-    const d=document.createElement('div');
-    d.className='scc-bub scc-cta';
-    d.innerHTML = `Pour finaliser en 1 minute, cliquez ici : <a href="${FORM_URL}" target="_blank" rel="noopener">Pré-réservation</a>`;
-    log.appendChild(d); log.scrollTop=log.scrollHeight;
-  }
-
+  // Ouverture/fermeture + message d’accueil FR
   fab.onclick=()=>{
     panel.style.display = panel.style.display==='flex'?'none':'flex';
     if(!panel.dataset.boot){
       panel.dataset.boot=1;
-      bubble("Bonjour ! Je réponds à vos questions, puis vous pouvez finaliser via notre formulaire sécurisé.", 'scc-a');
-      cta(); // CTA dès l’ouverture
+      bubble("Bonjour, je suis Julie, votre conseillère virtuelle. Comment puis-je vous aider aujourd'hui ?", 'scc-a');
     }
   };
 
+  // Bulles
+  function bubble(text, cls){
+    const d=document.createElement('div');
+    d.className='scc-bub '+cls; d.textContent=text;
+    log.appendChild(d); log.scrollTop=log.scrollHeight;
+  }
+
+  // ✅ Aller au formulaire (ancre locale ou URL complète)
+  function goToForm(){
+    if (FORM_URL.startsWith('#')) {
+      const el = document.querySelector(FORM_URL);
+      if (el) { panel.style.display='none'; el.scrollIntoView({behavior:'smooth',block:'start'}); return; }
+    }
+    const url = FORM_URL.startsWith('http')
+      ? FORM_URL
+      : (location.origin + (FORM_URL.startsWith('/') ? FORM_URL : '/' + FORM_URL));
+    window.open(url,'_blank');
+  }
+  document.getElementById('scc-go').addEventListener('click', (e)=>{ e.preventDefault(); goToForm(); });
+
+  // Envoi du message
   form.addEventListener('submit', async e=>{
     e.preventDefault();
     const text = input.value.trim(); if(!text) return; input.value='';
@@ -1738,8 +1751,7 @@ if (aboutVideo && videoOverlay) {
     const data = await r.json();
     const reply = data.reply || 'Désolé, une erreur est survenue.';
     bubble(reply,'scc-a'); history.push({role:'assistant',content:reply});
-
-    cta(); // rappeler le lien après chaque réponse
+    // (plus de CTA répété ici — la barre fixe en bas reste visible)
   });
 </script>
 
