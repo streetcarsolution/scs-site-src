@@ -1693,7 +1693,10 @@ if (aboutVideo && videoOverlay) {
   /* bouton flèche */
   .scc-send{width:40px;height:40px;border:0;border-radius:12px;background:#223256;color:#fff;display:grid;place-items:center;cursor:pointer}
   .scc-send:active{transform:translateY(1px)}
-   /* Les \n dans le texte deviennent des vrais retours à la ligne */
+  .scc-send[disabled]{opacity:.5;cursor:not-allowed}
+  /* typing indicator */
+  .scc-typing{opacity:.65;font-style:italic}
+  /* Les \n dans le texte deviennent des vrais retours à la ligne */
   #scc-panel .scc-bub { white-space: pre-wrap; }
 </style>
 <style>
@@ -1707,7 +1710,8 @@ if (aboutVideo && videoOverlay) {
   <!-- ✅ titre demandé -->
   <div class="scc-head" id="scc-head">Julie - Street Car Solution</div>
 
-  <div id="scc-log" class="scc-log"></div>
+  <!-- aria-live pour lecteurs d'écran -->
+  <div id="scc-log" class="scc-log" aria-live="polite"></div>
 
   <!-- ✅ CTA fixe et discret (taille du chat) -->
   <div class="scc-ctaBar">
@@ -1716,69 +1720,149 @@ if (aboutVideo && videoOverlay) {
   </div>
 
   <form id="scc-form" class="scc-form">
-    <input id="scc-input" class="scc-input" placeholder="Message…">
+    <input id="scc-input" class="scc-input" placeholder="Message…" autocomplete="off">
     <!-- ✅ bouton flèche multilingue -->
-    <button class="scc-send" aria-label="Envoyer" title="Envoyer">➤</button>
+    <button class="scc-send" id="scc-send" aria-label="Envoyer" title="Envoyer">➤</button>
   </form>
 </div>
 
 <script>
-  const API = "https://scs-chat-api.vercel.app/api/scc-chat"; // ← ton endpoint Vercel
-  const FORM_URL = "#reservation";    // ← mets ici l’URL du formulaire
+  // === Réglages ===
+  const API = "https://scs-chat-api.vercel.app/api/scc-chat"; // Endpoint Vercel
+  const FORM_URL = "/#reservation"; // marche depuis toutes les pages
 
-  const fab = document.getElementById('scc-fab');
-  const panel = document.getElementById('scc-panel');
-  const log = document.getElementById('scc-log');
-  const form = document.getElementById('scc-form');
-  const input = document.getElementById('scc-input');
-  const history = [];
+  // === Sélecteurs ===
+  const fab    = document.getElementById('scc-fab');
+  const panel  = document.getElementById('scc-panel');
+  const log    = document.getElementById('scc-log');
+  const form   = document.getElementById('scc-form');
+  const input  = document.getElementById('scc-input');
+  const sendBtn= document.getElementById('scc-send');
 
-  fab.onclick=()=>{
-    panel.style.display = panel.style.display==='flex'?'none':'flex';
-    if(!panel.dataset.boot){
-      panel.dataset.boot=1;
-      bubble("Bonjour, je suis Julie, votre conseillère virtuelle.\nComment puis-je vous aider aujourd'hui ?", 'scc-a');
-    }
-  };
+  // Historique côté client (par page)
+  const STORAGE_KEY = 'scs_chat_history_v1';
+  let history = [];
+
+  function loadHistory(){
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      history = raw ? JSON.parse(raw) : [];
+      if (history.length) {
+        for (const m of history) {
+          if (m.role === 'user') bubble(m.content, 'scc-u');
+          if (m.role === 'assistant') bubble(m.content, 'scc-a');
+        }
+      }
+    } catch(e){ history = []; }
+  }
+  function saveHistory(){ sessionStorage.setItem(STORAGE_KEY, JSON.stringify(history)); }
 
   function bubble(text, cls){
-    const d=document.createElement('div');
-    d.className='scc-bub '+cls; d.textContent=text;
-    log.appendChild(d); log.scrollTop=log.scrollHeight;
+    const d = document.createElement('div');
+    d.className = 'scc-bub ' + cls;
+    d.textContent = text;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
   }
 
-  // Aller au formulaire (ancre locale ou URL complète)
+  // Typing indicator
+  let typingEl = null;
+  function showTyping(){
+    if (typingEl) return;
+    typingEl = document.createElement('div');
+    typingEl.className = 'scc-bub scc-a scc-typing';
+    typingEl.textContent = 'Julie est en train d’écrire…';
+    log.appendChild(typingEl);
+    log.scrollTop = log.scrollHeight;
+  }
+  function hideTyping(){
+    if (!typingEl) return;
+    typingEl.remove();
+    typingEl = null;
+  }
+
+  // Ouvre/ferme le panneau
+  fab?.addEventListener('click', () => {
+    const willOpen = panel.style.display !== 'flex';
+    panel.style.display = willOpen ? 'flex' : 'none';
+    if (willOpen && !panel.dataset.boot){
+      panel.dataset.boot = 1;
+      loadHistory();
+      if (!history.length) {
+        const greet = "Bonjour, je suis Julie, votre conseillère virtuelle.\nComment puis-je vous aider aujourd'hui ?";
+        bubble(greet, 'scc-a');
+        history.push({role:'assistant', content:greet});
+        saveHistory();
+      }
+    }
+  });
+
+  // Aller au formulaire (ancre ou URL)
   function goToForm(){
     if (FORM_URL.startsWith('#')) {
       const el = document.querySelector(FORM_URL);
-      if (el) { panel.style.display='none'; el.scrollIntoView({behavior:'smooth',block:'start'}); return; }
+      if (el) { panel.style.display='none'; el.scrollIntoView({behavior:'smooth', block:'start'}); return; }
     }
     const url = FORM_URL.startsWith('http')
       ? FORM_URL
       : (location.origin + (FORM_URL.startsWith('/') ? FORM_URL : '/' + FORM_URL));
-    window.open(url,'_blank');
+    window.open(url, '_blank', 'noopener');
   }
-  document.getElementById('scc-go').addEventListener('click',(e)=>{e.preventDefault(); goToForm();});
 
-  form.addEventListener('submit', async e=>{
+  const goBtn = document.getElementById('scc-go');
+  if (goBtn) goBtn.addEventListener('click', (e) => { e.preventDefault(); goToForm(); });
+
+  // Envoi du message
+  let sending = false;
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const text = input.value.trim(); if(!text) return; input.value='';
-    bubble(text,'scc-u'); history.push({role:'user',content:text});
+    const text = (input?.value || '').trim();
+    if (!text || sending) return;
 
-    const r = await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history})});
-    const data = await r.json();
-    const reply = data.reply || 'Désolé, une erreur est survenue.';
-    bubble(reply,'scc-a'); history.push({role:'assistant',content:reply});
+    input.disabled = true; sendBtn.disabled = true; sending = true;
+    bubble(text, 'scc-u');
+    history.push({role:'user', content:text});
+    saveHistory();
+    input.value = '';
+
+    // Timeout 20s
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 20000);
+
+    showTyping();
+    try {
+      const r = await fetch(API, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ messages: history }),
+        signal: ctrl.signal
+      });
+      clearTimeout(t);
+
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const data = await r.json();
+      hideTyping();
+
+      const reply = data.reply || "Merci ! Si vous avez d’autres questions, je suis là. Sinon, vous pouvez finaliser via le bouton ci-dessous.";
+      bubble(reply, 'scc-a');
+      history.push({role:'assistant', content:reply});
+      saveHistory();
+    } catch (err) {
+      hideTyping();
+      const msg = "Désolé, je n’arrive pas à répondre pour le moment. Vous pouvez réessayer, ou finaliser via le bouton ci-dessous.";
+      bubble(msg, 'scc-a');
+      history.push({role:'assistant', content:msg});
+      saveHistory();
+    } finally {
+      input.disabled = false; sendBtn.disabled = false; sending = false;
+      input.focus();
+    }
   });
-</script>
 
-<script>
   // Ouvre le chat (réutilise le bouton 💬 existant)
   window.sccOpen = window.sccOpen || function () {
-    const fab   = document.getElementById('scc-fab');
-    const panel = document.getElementById('scc-panel');
     if (fab && panel && panel.style.display !== 'flex') fab.click();
-    if (panel) panel.focus();
+    panel?.focus();
   };
 
   // Lie la carte à l'ouverture du chat (clic + clavier)
