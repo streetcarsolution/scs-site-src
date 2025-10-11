@@ -1157,8 +1157,17 @@
             
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
   
-  <!-- Agent Virtuel -->
-  <div class="bg-white p-8 rounded-xl shadow-md h-full">
+  <!-- Service Client (cliquable : ouvre le chat) -->
+<div
+  id="service-client-card"
+  class="bg-white p-8 rounded-xl shadow-md h-full relative cursor-pointer hover:shadow-lg
+         focus:outline-none focus:ring-2 focus:ring-caribbean-blue"
+  tabindex="0"
+  role="button"
+  aria-haspopup="dialog"
+  aria-controls="scc-panel"
+  aria-label="Ouvrir le chat Service Client"
+>
   <div class="flex items-center mb-4">
     <!-- Icône Call Center -->
     <div class="bg-caribbean-blue text-white rounded-full w-12 h-12 flex items-center justify-center">
@@ -1169,8 +1178,10 @@
 
   <p class="text-caribbean-blue font-semibold">Des questions ?</p>
   <p class="text-gray-600">Notre Agent Virtuel répond 24/7 à toutes vos questions</p>
-</div>
 
+  <!-- Rend toute la carte cliquable -->
+  <span class="absolute inset-0" aria-hidden="true"></span>
+</div>
 
   <!-- WhatsApp -->
   <div class="bg-white p-8 rounded-xl shadow-md h-full">
@@ -1752,6 +1763,26 @@ if (aboutVideo && videoOverlay) {
     const reply = data.reply || 'Désolé, une erreur est survenue.';
     bubble(reply,'scc-a'); history.push({role:'assistant',content:reply});
   });
+</script>
+
+<script>
+  // Ouvre le chat (réutilise le bouton 💬 existant)
+  window.sccOpen = window.sccOpen || function () {
+    const fab   = document.getElementById('scc-fab');
+    const panel = document.getElementById('scc-panel');
+    if (fab && panel && panel.style.display !== 'flex') fab.click();
+    if (panel) panel.focus();
+  };
+
+  // Lie la carte à l'ouverture du chat (clic + clavier)
+  (function () {
+    const card = document.getElementById('service-client-card');
+    if (!card) return;
+    card.addEventListener('click', window.sccOpen);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.sccOpen(); }
+    });
+  })();
 </script>
 
 <script defer src="/assets/js/newsletter.js"></script>
