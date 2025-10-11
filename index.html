@@ -1693,6 +1693,8 @@ if (aboutVideo && videoOverlay) {
   /* bouton flèche */
   .scc-send{width:40px;height:40px;border:0;border-radius:12px;background:#223256;color:#fff;display:grid;place-items:center;cursor:pointer}
   .scc-send:active{transform:translateY(1px)}
+   /* Les \n dans le texte deviennent des vrais retours à la ligne */
+  #scc-panel .scc-bub { white-space: pre-wrap; }
 </style>
 <style>
   /* Agrandir seulement les bulles du chat */
@@ -1735,7 +1737,7 @@ if (aboutVideo && videoOverlay) {
     panel.style.display = panel.style.display==='flex'?'none':'flex';
     if(!panel.dataset.boot){
       panel.dataset.boot=1;
-      bubble("Bonjour, je suis Julie, votre conseillère virtuelle. Comment puis-je vous aider aujourd'hui ?", 'scc-a');
+      bubble("Bonjour, je suis Julie, votre conseillère virtuelle.\nComment puis-je vous aider aujourd'hui ?", 'scc-a');
     }
   };
 
