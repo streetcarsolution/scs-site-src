@@ -1663,6 +1663,29 @@ if (aboutVideo && videoOverlay) {
 })();
 </script>
 
+<!-- ChatKit - Conseiller Street Car Solution -->
+<script type="module">
+  import ChatKit from "https://cdn.openai.com/chatkit/v1/chatkit.js";
+
+  ChatKit.mount({
+    workflow: "wf_68e9da3ef3548190a8e8c528596b0b470c76e3c", // Ton Workflow ID exact
+    version: "1", // ou supprime cette ligne pour toujours prendre la dernière version
+    token: "", // vide pour test public
+    theme: {
+      button: {
+        color: "#223256",
+        icon: "💬"
+      },
+      chat: {
+        title: "Conseiller Street Car Solution",
+        subtitle: "Besoin d’aide ? Je suis là pour vous.",
+        background: "#ffffff",
+        textColor: "#000000"
+      }
+    }
+  });
+</script>
+
 <script defer src="/assets/js/newsletter.js"></script>
 </body>
 </html>
