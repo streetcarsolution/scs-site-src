@@ -1,8 +1,8 @@
-name: Deploy to OVH via FTPS
+name: Deploy to OVH via SFTP
 
 on:
   push:
-    branches: [ main ]   # si ta branche par défaut est "master", remplace par master
+    branches: [ main ]   # si ta branche par défaut est "master", remplace ici
   workflow_dispatch:
 
 jobs:
@@ -12,14 +12,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Upload via FTPS
+      - name: Upload via SFTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.OVH_FTP_SERVER }}
+          server: ssh.cluster100.hosting.ovh.net
           username: ${{ secrets.OVH_FTP_USERNAME }}
           password: ${{ secrets.OVH_FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
+          protocol: sftp
+          port: 22
           server-dir: /www/
           local-dir: ./
           exclude: |
