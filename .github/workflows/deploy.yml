@@ -5,6 +5,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+concurrency:
+  group: deploy-ovh
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -24,7 +28,11 @@ jobs:
           local-dir: ./
           exclude: |
             **/.git*
+            **/.git*/**
             **/.github/**
             **/node_modules/**
             **/.DS_Store
+            **/README.md
+            **/prompts.txt
+          dangerous-clean-slate: true
           log-level: standard
