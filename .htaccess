@@ -1,38 +1,37 @@
-# ===========================
-#  .htaccess – StreetCarSolution
-#  (placer ce fichier dans /www)
-# ===========================
+# =========================================================
+# OVH / Apache 2.4 - .htaccess propre et compatible
+# =========================================================
 
+# 1) Réécritures
 RewriteEngine On
 
-# Bloquer fichiers/dossiers cachés (.git, .env, .ht*, etc.)
-# …mais laisser passer .well-known pour Let's Encrypt
-RewriteRule "(^|/)\.(?!well-known/)" - [F]
+# ⚠️ Laisser passer les challenges Let's Encrypt
+RewriteRule ^\.well-known/ - [L]
 
-<IfModule mod_alias.c>
-  RedirectMatch 404 ^/\.git
-  RedirectMatch 404 ^/\.hg
-  RedirectMatch 404 ^/\.svn
-</IfModule>
+# Bloquer tout fichier/dossier "caché" (.git, .env, .ht*, etc.)
+# ...sauf .well-known (juste au-dessus)
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+RewriteRule "(^|/)\." - [F]
 
-# Canonique : HTTPS + WWW (hors ACME)
-RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/ [NC]
+# Canonique + HTTPS en une redirection (choix: sans "www")
 RewriteCond %{HTTPS} !=on [OR]
-RewriteCond %{HTTP_HOST} !^www\.streetcarsolution\.com$ [NC]
-RewriteRule ^ https://www.streetcarsolution.com%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.streetcarsolution\.com$ [NC]
+RewriteRule ^ https://streetcarsolution.com%{REQUEST_URI} [L,R=301]
 
+# 2) Caching long sur les assets
 <IfModule mod_headers.c>
-  # Cache long pour assets (1 an)
-  <FilesMatch "(?i)\.(css|js|png|jpe?g|gif|webp|svg|ico|ttf|woff|woff2|mp4)$">
+  <FilesMatch "(?i)\.(css|js|png|jpg|jpeg|gif|webp|svg|ico|ttf|woff|woff2|mp4)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
-  # HTML non mis en cache
-  <FilesMatch "(?i)\.(html?)$">
-    Header set Cache-Control "no-cache, no-store, must-revalidate"
-    Header set Pragma "no-cache"
-    Header set Expires "0"
-  </FilesMatch>
+  # 3) Petites en-têtes de sécurité
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
-  # Sécurité
-  Header always set X-Content-Type-O
+  # HSTS seulement en HTTPS
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+</IfModule>
+
+# 4) Compression (si dispo côté OVH)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html tex
