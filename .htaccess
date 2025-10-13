@@ -1,0 +1,23 @@
+# Active mod_rewrite
+RewriteEngine On
+
+# Force HTTPS + www
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^www\.streetcarsolution\.com$ [NC]
+RewriteRule ^ https://www.streetcarsolution.com%{REQUEST_URI} [L,R=301]
+
+# Cache + en-têtes + HSTS
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg|ico|ttf|woff|woff2|mp4)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Compression (si dispo côté OVH)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
