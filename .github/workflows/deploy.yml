@@ -1,4 +1,4 @@
-name: Deploy to OVH via SFTP
+name: Deploy to OVH (FTP)
 
 on:
   push:
@@ -12,13 +12,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Upload via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ssh.cluster100.hosting.ovh.net
-          port: 22
+          server: ${{ secrets.OVH_FTP_SERVER }}
           username: ${{ secrets.OVH_FTP_USERNAME }}
           password: ${{ secrets.OVH_FTP_PASSWORD }}
-          local_path: ./
-          remote_path: www
-          args: "-o StrictHostKeyChecking=no"
+          protocol: ftp
+          port: 21
+          server-dir: /www/
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/node_modules/**
+            **/.DS_Store
+          log-level: standard
