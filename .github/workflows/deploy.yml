@@ -20,5 +20,5 @@ jobs:
           username: ${{ secrets.OVH_FTP_USERNAME }}
           password: ${{ secrets.OVH_FTP_PASSWORD }}
           local_path: ./
-          remote_path: /www/
+          remote_path: www
           args: "-o StrictHostKeyChecking=no"
