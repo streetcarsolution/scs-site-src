@@ -41,9 +41,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://huggingface.co" crossorigin>
 
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/logo.png" type="image/png">
-  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico?v=3" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
 
   <!-- Imagen OG duplicada (mantener por compatibilidad) -->
   <meta property="og:image" content="https://streetcarsolution.com/assets/og-cover.jpg">
@@ -1079,18 +1083,18 @@
             referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-12">
-    <div class="container mx-auto px-4">
+  <!-- Pie de página -->
+  <footer class="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-gray-900 text-white">
+    <div class="container mx-auto px-4 py-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h3 class="text-xl font-bold mb-4">Street Car Solution</h3>
-          <p class="text-gray-400">Tu aliado de confianza para la renta de autos en Cancún y en toda la Península de Yucatán.</p>
+          <p class="text-gray-400">Tu socio de confianza para alquilar coche en Cancún y en toda la península de Yucatán.</p>
           <div class="flex space-x-4 mt-4">
-            <a href="https://www.facebook.com/yoan.cremona.3?mibextid=wwXIfr&rdid=HAUZXLzCCeoukD1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CWzZYeuyy%2F%3Fmibextid%3DwwXIfr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.facebook.com/streetcarsolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
             <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="YouTube Street Car Solution"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Canal YouTube Street Car Solution"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
 
@@ -1110,38 +1114,29 @@
           <ul class="space-y-2">
             <li><a href="/es/terms.html" class="text-gray-400 hover:text-white">Términos y Condiciones</a></li>
             <li><a href="/es/privacy.html" class="text-gray-400 hover:text-white">Política de Privacidad</a></li>
-            <li><a href="/es/fag.html" class="text-gray-400 hover:text-white">FAQ</a></li>
-            <li><a href="/blog.html?lang=es" class="text-gray-400 hover:text-white">Blog</a></li>
+            <li><a href="/es/faq.html" class="text-gray-400 hover:text-white">FAQ</a></li>
+            <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
           </ul>
         </div>
 
         <div>
-        <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-        <p class="text-gray-400 mb-4">
-          Suscríbete para recibir nuestras ofertas especiales.
-        </p>
-      
-        <!-- Si tu <html> ya tiene lang="es", puedes omitir data-lang -->
-        <form data-newsletter data-lang="es" class="flex items-stretch gap-0">
-          <input type="email" placeholder="Su correo electrónico"
-                 class="w-full px-4 py-3 rounded-l-lg text-gray-800" required>
-          <button type="submit"
-                  class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red"
-                  aria-label="Suscribirse al boletín">
-            <i class="fas fa-paper-plane"></i>
-          </button>
-        </form>
-      
-        <!-- Un solo elemento para el mensaje -->
-        <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
-      </div>
-
-      <!-- Keep this OUTSIDE the grid to center across the full width -->
-            <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-              <p>&copy; 2023 Street Car Solution. Todos los derechos reservados.</p>
-            </div>
+          <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">Suscríbete para recibir nuestras ofertas.</p>
+          <form data-newsletter data-lang="es" class="flex items-stretch gap-0">
+            <input type="email" placeholder="Tu correo" class="w-full px-4 py-3 rounded-l-lg text-gray-800" required />
+            <button type="submit" class="px-4 py-3 rounded-r-lg bg-mexican-orange hover:bg-mexican-red" aria-label="Suscribirse al boletín">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          <p class="newsletter-msg mt-2 text-sm min-h-[1.25rem]"></p>
         </div>
-    </footer>
+
+        <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2023 Street Car Solution. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
   
   <script>
 /* ===============================
