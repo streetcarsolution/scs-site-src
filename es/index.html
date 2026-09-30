@@ -215,34 +215,48 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label class="block mb-1 font-medium">Lugar de recogida</label>
-                  <select class="w-full h-12 p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none">
-                    <option>Aeropuerto de Cancún</option>
-                    <option>Zona Hotelera de Cancún</option>
-                    <option>Centro de Cancún</option>
-                    <option>Puerto Morelos</option>
-                    <option>Playa del Carmen</option>
-                    <option>Puerto Aventuras</option>
-                    <option>Tulum</option>
-                    <option>Mérida</option>
-                    <option>Aeropuerto de Guadalajara</option>
-                    <option>Aeropuerto de Ciudad de México</option>
-                    <option>Centro de Ciudad de México</option>
+                  <select class="w-full h-12 p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none" data-lieux>
+                    <option value="Aéroport de Cancun">Aeropuerto de Cancún</option>
+                    <option value="Zone Hôtelière de Cancun">Zona Hotelera de Cancún</option>
+                    <option value="Centre-ville de Cancun">Centro de Cancún</option>
+                    <option value="Ferry Cancún">Ferry de Cancún</option>
+                    <option value="Puerto Morelos">Puerto Morelos</option>
+                    <option value="Playa del Carmen">Playa del Carmen</option>
+                    <option value="Ferry Playa del Carmen">Ferry de Playa del Carmen</option>
+                    <option value="Puerto Aventuras">Puerto Aventuras</option>
+                    <option value="Akumal">Akumal</option>
+                    <option value="Tulum">Tulum</option>
+                    <option value="Aéroport de Tulum">Aeropuerto de Tulum</option>
+                    <option value="Bacalar">Bacalar</option>
+                    <option value="Chiquilá">Chiquilá</option>
+                    <option value="Valladolid">Valladolid</option>
+                    <option value="Mérida">Mérida</option>
+                    <option value="Aéroport de Guadalajara">Aeropuerto de Guadalajara</option>
+                    <option value="Aéroport de Mexico DF">Aeropuerto de Ciudad de México</option>
+                    <option value="Centre-ville de Mexico DF">Centro de Ciudad de México</option>
                   </select>
                 </div>
                 <div>
                   <label class="block mb-1 font-medium">Lugar de devolución</label>
-                  <select class="w-full h-12 p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none">
-                    <option>Aeropuerto de Cancún</option>
-                    <option>Zona Hotelera de Cancún</option>
-                    <option>Centro de Cancún</option>
-                    <option>Puerto Morelos</option>
-                    <option>Playa del Carmen</option>
-                    <option>Puerto Aventuras</option>
-                    <option>Tulum</option>
-                    <option>Mérida</option>
-                    <option>Aeropuerto de Guadalajara</option>
-                    <option>Aeropuerto de Ciudad de México</option>
-                    <option>Centro de Ciudad de México</option>
+                  <select class="w-full h-12 p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 border-none" data-lieux>
+                    <option value="Aéroport de Cancun">Aeropuerto de Cancún</option>
+                    <option value="Zone Hôtelière de Cancun">Zona Hotelera de Cancún</option>
+                    <option value="Centre-ville de Cancun">Centro de Cancún</option>
+                    <option value="Ferry Cancún">Ferry de Cancún</option>
+                    <option value="Puerto Morelos">Puerto Morelos</option>
+                    <option value="Playa del Carmen">Playa del Carmen</option>
+                    <option value="Ferry Playa del Carmen">Ferry de Playa del Carmen</option>
+                    <option value="Puerto Aventuras">Puerto Aventuras</option>
+                    <option value="Akumal">Akumal</option>
+                    <option value="Tulum">Tulum</option>
+                    <option value="Aéroport de Tulum">Aeropuerto de Tulum</option>
+                    <option value="Bacalar">Bacalar</option>
+                    <option value="Chiquilá">Chiquilá</option>
+                    <option value="Valladolid">Valladolid</option>
+                    <option value="Mérida">Mérida</option>
+                    <option value="Aéroport de Guadalajara">Aeropuerto de Guadalajara</option>
+                    <option value="Aéroport de Mexico DF">Aeropuerto de Ciudad de México</option>
+                    <option value="Centre-ville de Mexico DF">Centro de Ciudad de México</option>
                   </select>
                 </div>
               </div>
@@ -741,6 +755,7 @@
 
       <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl shadow-md p-8">
         <form id="reservationForm" method="POST" class="space-y-6">
+<div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label for="champ_piege">Deje este campo vacío</label><input type="text" id="champ_piege" name="champ_piege" tabindex="-1" autocomplete="off"></div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label for="firstName" class="block mb-1 font-medium">Nombre *</label>
@@ -754,12 +769,12 @@
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label for="permis" class="block mb-1 font-medium">Licencia vigente +2 años *</label>
-              <input type="text" id="permis" name="permis" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none" placeholder="Sí o No">
+              <label for="permis" class="block mb-1 font-medium">Licencia de conducir con más de 2 años *</label>
+              <select id="permis" name="permis" required class="w-full h-12 p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none"><option value="">Selecciona</option><option value="OUI">Sí</option><option value="NON">No</option></select>
             </div>
             <div>
-              <label for="age" class="block mb-1 font-medium">Edad *</label>
-              <input type="number" id="age" name="age" min="18" max="99" required class="w-full p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+              <label for="age" class="block mb-1 font-medium">Fecha de nacimiento *</label>
+              <input type="text" id="age" name="age" required inputmode="numeric" autocomplete="off" maxlength="10" placeholder="DD/MM/AAAA" class="w-full h-12 p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
             </div>
           </div>
 
@@ -780,36 +795,50 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 mb-8">
               <div>
                 <label for="pickupLocation" class="block mb-1 font-medium">Lugar de recogida *</label>
-                <select id="pickupLocation" name="pickupLocation" required class="w-full h-12 p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                <select id="pickupLocation" name="pickupLocation" required class="w-full h-12 p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none" data-lieux>
                   <option value="">Selecciona</option>
-                  <option>Aeropuerto de Cancún</option>
-                  <option>Zona Hotelera de Cancún</option>
-                  <option>Centro de Cancún</option>
-                  <option>Puerto Morelos</option>
-                  <option>Playa del Carmen</option>
-                  <option>Puerto Aventuras</option>
-                  <option>Tulum</option>
-                  <option>Mérida</option>
-                  <option>Aeropuerto de Guadalajara</option>
-                  <option>Aeropuerto de Ciudad de México</option>
-                  <option>Centro de Ciudad de México</option>
+                  <option value="Aéroport de Cancun">Aeropuerto de Cancún</option>
+                  <option value="Zone Hôtelière de Cancun">Zona Hotelera de Cancún</option>
+                  <option value="Centre-ville de Cancun">Centro de Cancún</option>
+                  <option value="Ferry Cancún">Ferry de Cancún</option>
+                  <option value="Puerto Morelos">Puerto Morelos</option>
+                  <option value="Playa del Carmen">Playa del Carmen</option>
+                  <option value="Ferry Playa del Carmen">Ferry de Playa del Carmen</option>
+                  <option value="Puerto Aventuras">Puerto Aventuras</option>
+                  <option value="Akumal">Akumal</option>
+                  <option value="Tulum">Tulum</option>
+                  <option value="Aéroport de Tulum">Aeropuerto de Tulum</option>
+                  <option value="Bacalar">Bacalar</option>
+                  <option value="Chiquilá">Chiquilá</option>
+                  <option value="Valladolid">Valladolid</option>
+                  <option value="Mérida">Mérida</option>
+                  <option value="Aéroport de Guadalajara">Aeropuerto de Guadalajara</option>
+                  <option value="Aéroport de Mexico DF">Aeropuerto de Ciudad de México</option>
+                  <option value="Centre-ville de Mexico DF">Centro de Ciudad de México</option>
                 </select>
               </div>
               <div>
                 <label for="returnLocation" class="block mb-1 font-medium">Lugar de devolución *</label>
-                <select id="returnLocation" name="returnLocation" required class="w-full h-12 p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
+                <select id="returnLocation" name="returnLocation" required class="w-full h-12 p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none" data-lieux>
                   <option value="">Selecciona</option>
-                  <option>Aeropuerto de Cancún</option>
-                  <option>Zona Hotelera de Cancún</option>
-                  <option>Centro de Cancún</option>
-                  <option>Puerto Morelos</option>
-                  <option>Playa del Carmen</option>
-                  <option>Puerto Aventuras</option>
-                  <option>Tulum</option>
-                  <option>Mérida</option>
-                  <option>Aeropuerto de Guadalajara</option>
-                  <option>Aeropuerto de Ciudad de México</option>
-                  <option>Centro de Ciudad de México</option>
+                  <option value="Aéroport de Cancun">Aeropuerto de Cancún</option>
+                  <option value="Zone Hôtelière de Cancun">Zona Hotelera de Cancún</option>
+                  <option value="Centre-ville de Cancun">Centro de Cancún</option>
+                  <option value="Ferry Cancún">Ferry de Cancún</option>
+                  <option value="Puerto Morelos">Puerto Morelos</option>
+                  <option value="Playa del Carmen">Playa del Carmen</option>
+                  <option value="Ferry Playa del Carmen">Ferry de Playa del Carmen</option>
+                  <option value="Puerto Aventuras">Puerto Aventuras</option>
+                  <option value="Akumal">Akumal</option>
+                  <option value="Tulum">Tulum</option>
+                  <option value="Aéroport de Tulum">Aeropuerto de Tulum</option>
+                  <option value="Bacalar">Bacalar</option>
+                  <option value="Chiquilá">Chiquilá</option>
+                  <option value="Valladolid">Valladolid</option>
+                  <option value="Mérida">Mérida</option>
+                  <option value="Aéroport de Guadalajara">Aeropuerto de Guadalajara</option>
+                  <option value="Aéroport de Mexico DF">Aeropuerto de Ciudad de México</option>
+                  <option value="Centre-ville de Mexico DF">Centro de Ciudad de México</option>
                 </select>
               </div>
             </div>
@@ -855,20 +884,20 @@
                 <label for="vehicleType" class="block mb-1 font-medium">Tipo de vehículo *</label>
                 <select id="vehicleType" name="vehicleType" required class="w-full h-12 p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
                   <option value="">Selecciona</option>
-                  <option>Económico</option>
-                  <option>Estándar</option>
-                  <option>Sedán</option>
-                  <option>SUV 5 plazas</option>
-                  <option>SUV 7 plazas</option>
-                  <option>Van 14 plazas</option>
+                  <option value="Économique">Económico</option>
+                  <option value="Standard">Estándar</option>
+                  <option value="Berline">Sedán</option>
+                  <option value="SUV 5 places">SUV 5 plazas</option>
+                  <option value="SUV 7 places">SUV 7 plazas</option>
+                  <option value="Van 14 places">Van 14 plazas</option>
                 </select>
               </div>
               <div>
                 <label for="transmission" class="block mb-1 font-medium">Transmisión *</label>
                 <select id="transmission" name="transmission" required class="w-full h-12 p-3 rounded-lg border border-gray-300 focus:border-caribbean-blue focus:ring-2 focus:ring-caribbean-blue focus:outline-none">
                   <option value="">Selecciona</option>
-                  <option>Automática</option>
-                  <option>Manual</option>
+                  <option value="Automatique">Automática</option>
+                  <option value="Manuelle">Manual</option>
                 </select>
               </div>
             </div>
@@ -912,6 +941,7 @@
             Enviar pre-reserva
             </button>
           </div>
+<p id="reservationStatus" role="status" aria-live="polite" class="mt-4 text-center font-semibold" hidden></p>
         </form>
       </div>
     </div>
@@ -1029,7 +1059,6 @@
 
         <form id="contactForm"
               class="space-y-4"
-              action="https://script.google.com/macros/s/AKfycbw0_Uk_gspyg997J6yA8AVvCJBgjOXt9jHHFXCjkq2tzrLaSJR4fgvO5dlS42kWSopZ/exec"
               method="POST">
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1293,74 +1322,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* TEMP – manejador de pre-reserva (POST a Apps Script) */
-(function () {
-  // Sustituye por la URL /exec de tu implementación activa si cambia
-  const WEBAPPURL = 'https://script.google.com/macros/s/AKfycbyxSspD7_p0P1Xkj6lGL7BoW2Y_AA-fThbQON5F-6sqxttRr_GcDGVNVXCnRsfnUjF2ew/exec';
 
-  const form = document.getElementById('reservationForm');
-  if (!form) { console.error('No se encontró el formulario #reservationForm'); return; }
 
-  form.addEventListener('submit', async function (ev) {
-    ev.preventDefault();
 
-    // FormData -> URLSearchParams (sin preflight CORS)
-    const fd = new FormData(form);
-    const body = new URLSearchParams();
-    fd.forEach((v, k) => body.append(k, v));
-
-    try {
-      const resp = await fetch(WEBAPPURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-        body: body.toString()
-      });
-
-      const txt = await resp.text(); // útil para ver errores del servidor
-      let obj = {};
-      try { obj = JSON.parse(txt); } catch (_) {}
-
-      if (resp.ok && obj && obj.ok) {
-        alert('¡Gracias! Su pre-reserva se ha enviado correctamente. Nos pondremos en contacto con usted en breve.');
-        form.reset();
-      } else {
-        console.error('Respuesta de Apps Script:', resp.status, txt);
-        alert('Fallo: ' + (obj && obj.error ? obj.error : txt.slice(0, 300)));
-      }
-    } catch (err) {
-      console.error('Error de red:', err);
-      alert('Error de red: ' + err.message);
-    }
-  });
-})();
-
-/* Envío del formulario de contacto (AJAX) */
-(function () {
-  const form   = document.getElementById('contactForm');
-  const btn    = document.getElementById('contactSubmit');
-  const status = document.getElementById('contactStatus');
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    status.textContent = '';
-    btn.disabled = true;
-    const original = btn.textContent;
-    btn.textContent = 'Enviando…';
-    try {
-      await fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' });
-      form.reset();
-      status.textContent = '¡Gracias! Su mensaje ha sido enviado.';
-      status.className = 'mt-3 text-center text-sm text-green-600';
-    } catch (err) {
-      status.textContent = 'Lo sentimos, ocurrió un error. Intenta más tarde.';
-      status.className = 'mt-3 text-center text-sm text-red-600';
-    } finally {
-      btn.disabled = false;
-      btn.textContent = original;
-    }
-  });
-})();
 
 /* Video About */
 const aboutVideo = document.getElementById("aboutVideo");
@@ -1586,5 +1550,6 @@ window.sccOpen = window.sccOpen || function () {
 </script>
   
 <script defer src="/assets/js/newsletter.js"></script>
+<script src="/assets/js/formulaires.js?v=1" defer></script>
 </body>
 </html>

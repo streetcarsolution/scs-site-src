@@ -1,0 +1,326 @@
+/*
+ * ==========================================================================
+ * LES DEUX FORMULAIRES DU SITE : PRE-RESERVATION ET CONTACT
+ * ==========================================================================
+ *
+ * Une seule copie pour les trois langues (/, /en/, /es/). Jusqu'au
+ * 29 septembre 2026, chaque page portait la sienne, et elles divergeaient.
+ *
+ * CE QUE CE FICHIER FAIT, et pourquoi (lot 3, valide par Sabrina le 29/09/2026) :
+ *
+ *   1. LE BOUTON SE GRISE AU PREMIER CLIC, et un message s'affiche tout de
+ *      suite. « Le message d'information met du temps a apparaitre, donc le
+ *      client clique plusieurs fois sur le bouton » : 128 demandes en double
+ *      sur 1420, dont une cliente trois fois en 2,4 secondes.
+ *   2. LA DEMANDE PART DANS L'APP ET DANS LA FEUILLE. L'App la recoit a
+ *      l'instant (la pastille du menu s'allume), la feuille reste le filet si
+ *      l'App se deploie a ce moment-la. Les deux se reconnaissent : pas de
+ *      doublon.
+ *   3. LES LIEUX VIENNENT DE L'APP (Reglages, « Lieux du site »). La liste
+ *      ecrite dans la page n'est que le secours, si l'App ne repond pas.
+ *   4. CHAQUE CHOIX ENVOIE LE MOT FRANCAIS, quelle que soit la langue de la
+ *      page : la page anglaise envoyait « Cancún Airport », que l'App ne
+ *      savait pas lire, et le navigateur qui traduit la page envoyait du
+ *      neerlandais.
+ *   5. LA DATE DE NAISSANCE REMPLACE L'AGE, et se tape en huit chiffres, sans
+ *      calendrier : quarante ans en arriere, un calendrier est un supplice.
+ *   6. UN CHAMP PIEGE ET UN CHRONOMETRE contre les robots, avant tout captcha.
+ */
+(function () {
+  'use strict';
+
+  var APP = 'https://street-car-solution.vercel.app';
+  var FEUILLE_RESERVATION = 'https://script.google.com/macros/s/AKfycbyxSspD7_p0P1Xkj6lGL7BoW2Y_AA-fThbQON5F-6sqxttRr_GcDGVNVXCnRsfnUjF2ew/exec';
+  var FEUILLE_CONTACT = 'https://script.google.com/macros/s/AKfycbw0_Uk_gspyg997J6yA8AVvCJBgjOXt9jHHFXCjkq2tzrLaSJR4fgvO5dlS42kWSopZ/exec';
+
+  // PERSONNE NE REMPLIT CE FORMULAIRE EN TROIS SECONDES, UN ROBOT SI.
+  var DELAI_MINIMUM = 3000;
+  var ouverte = Date.now();
+
+  var langue = String(document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
+  if (['fr', 'en', 'es'].indexOf(langue) < 0) langue = 'fr';
+
+  var TEXTES = {
+    fr: {
+      envoi: 'Envoi en cours…',
+      merci: 'Merci ! Votre pré-réservation est bien envoyée. Nous revenons vers vous très vite, sur WhatsApp ou par email.',
+      echec: "Votre demande n'a pas pu partir. Vérifiez votre connexion et réessayez, ou écrivez-nous sur WhatsApp.",
+      naissanceFormat: 'Écrivez la date de naissance en chiffres : jour, mois, année. Par exemple 16/12/1980.',
+      naissanceJeune: 'Le conducteur doit avoir au moins 18 ans le jour du départ.',
+      naissanceVieux: "Vérifiez l'année de naissance.",
+      contactEnvoi: 'Envoi…',
+      contactMerci: 'Merci, votre message a bien été envoyé !',
+      contactEchec: 'Désolé, une erreur est survenue. Réessayez plus tard.'
+    },
+    en: {
+      envoi: 'Sending…',
+      merci: 'Thank you! Your pre-booking has been sent. We will get back to you very soon, on WhatsApp or by email.',
+      echec: 'Your request could not be sent. Check your connection and try again, or message us on WhatsApp.',
+      naissanceFormat: 'Type the date of birth in digits: day, month, year. For example 16/12/1980.',
+      naissanceJeune: 'The driver must be at least 18 years old on the pick-up day.',
+      naissanceVieux: 'Please check the year of birth.',
+      contactEnvoi: 'Sending…',
+      contactMerci: 'Thanks, your message has been sent!',
+      contactEchec: 'Sorry, an error occurred. Please try again later.'
+    },
+    es: {
+      envoi: 'Enviando…',
+      merci: '¡Gracias! Su pre-reserva ha sido enviada. Le responderemos muy pronto, por WhatsApp o por correo.',
+      echec: 'Su solicitud no pudo enviarse. Revise su conexión e inténtelo de nuevo, o escríbanos por WhatsApp.',
+      naissanceFormat: 'Escriba la fecha de nacimiento en números: día, mes, año. Por ejemplo 16/12/1980.',
+      naissanceJeune: 'El conductor debe tener al menos 18 años el día de la entrega.',
+      naissanceVieux: 'Revise el año de nacimiento.',
+      contactEnvoi: 'Enviando…',
+      contactMerci: '¡Gracias, su mensaje ha sido enviado!',
+      contactEchec: 'Lo sentimos, ocurrió un error. Inténtelo más tarde.'
+    }
+  };
+  var T = TEXTES[langue];
+
+  /** Un envoi qui abandonne au bout de `ms`, au lieu d'attendre pour toujours. */
+  function envoyer(adresse, options, ms) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var minuterie = setTimeout(function () { if (ctrl) ctrl.abort(); }, ms);
+    if (ctrl) options.signal = ctrl.signal;
+    return fetch(adresse, options).then(
+      function (r) { clearTimeout(minuterie); return r; },
+      function (e) { clearTimeout(minuterie); throw e; }
+    );
+  }
+
+  // ========================================================================
+  // LES LIEUX, LUS DANS L'APP
+  // ========================================================================
+  function remplirLesLieux(lieux) {
+    var menus = document.querySelectorAll('select[data-lieux]');
+    Array.prototype.forEach.call(menus, function (menu) {
+      var choisi = menu.value;
+      var premier = menu.options[0];
+      // « Sélectionnez » reste en tete ; le petit formulaire du haut n'en a pas.
+      var enTete = premier && premier.value === '' ? premier.cloneNode(true) : null;
+      while (menu.firstChild) menu.removeChild(menu.firstChild);
+      if (enTete) menu.appendChild(enTete);
+      lieux.forEach(function (l) {
+        var o = document.createElement('option');
+        o.value = l.valeur;
+        o.textContent = l[langue] || l.fr || l.valeur;
+        menu.appendChild(o);
+      });
+      // UN CHOIX DEJA FAIT NE SE PERD PAS : le client a pu choisir avant que
+      // la liste arrive.
+      if (choisi) menu.value = choisi;
+    });
+  }
+
+  function chargerLesLieux() {
+    if (!document.querySelector('select[data-lieux]')) return;
+    envoyer(APP + '/api/site/lieux', { method: 'GET' }, 5000)
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (j && j.lieux && j.lieux.length) remplirLesLieux(j.lieux);
+      })
+      .catch(function () {
+        /* LA LISTE ECRITE DANS LA PAGE RESTE : c'est exactement son role. */
+      });
+  }
+
+  // ========================================================================
+  // LA DATE DE NAISSANCE, EN HUIT CHIFFRES
+  // ========================================================================
+  function masqueDeDate(champ) {
+    champ.addEventListener('input', function () {
+      var chiffres = champ.value.replace(/\D/g, '').slice(0, 8);
+      var t = chiffres.slice(0, 2);
+      if (chiffres.length > 2) t += '/' + chiffres.slice(2, 4);
+      if (chiffres.length > 4) t += '/' + chiffres.slice(4);
+      champ.value = t;
+      champ.setCustomValidity('');
+    });
+  }
+
+  /** `16/12/1980` devient `1980-12-16`, et un 31/02 n'existe pas. */
+  function naissanceEnIso(texte) {
+    var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(texte || '').trim());
+    if (!m) return null;
+    var j = Number(m[1]);
+    var mo = Number(m[2]);
+    var a = Number(m[3]);
+    var d = new Date(Date.UTC(a, mo - 1, j));
+    if (d.getUTCFullYear() !== a || d.getUTCMonth() !== mo - 1 || d.getUTCDate() !== j) return null;
+    return m[3] + '-' + m[2] + '-' + m[1];
+  }
+
+  /** L'age en annees pleines, le jour du depart : c'est ce jour-la qu'il conduit. */
+  function ageAu(naissance, jour) {
+    var n = naissance.split('-').map(Number);
+    var j = jour.split('-').map(Number);
+    var age = j[0] - n[0];
+    if (j[1] < n[1] || (j[1] === n[1] && j[2] < n[2])) age -= 1;
+    return age;
+  }
+
+  function refuser(champ, texte) {
+    champ.setCustomValidity(texte);
+    champ.reportValidity();
+    champ.focus();
+  }
+
+  // ========================================================================
+  // LA PRE-RESERVATION
+  // ========================================================================
+  function preReservation() {
+    var form = document.getElementById('reservationForm');
+    if (!form) return;
+    var bouton = form.querySelector('button[type="submit"]');
+    var etat = document.getElementById('reservationStatus');
+    var naissance = document.getElementById('age');
+    var libelle = bouton ? bouton.textContent : '';
+    var enCours = false;
+    if (naissance) masqueDeDate(naissance);
+
+    function dire(texte, sorte) {
+      if (!etat) return;
+      etat.textContent = texte;
+      etat.hidden = !texte;
+      etat.className = 'mt-4 text-center font-semibold '
+        + (sorte === 'ok' ? 'text-green-700' : sorte === 'mal' ? 'text-red-600' : 'text-gray-700');
+      if (texte && etat.scrollIntoView) etat.scrollIntoView({ block: 'nearest' });
+    }
+    function rendreLaMain() {
+      enCours = false;
+      if (bouton) {
+        bouton.disabled = false;
+        bouton.textContent = libelle;
+      }
+    }
+    function reussi() {
+      form.reset();
+      rendreLaMain();
+      dire(T.merci, 'ok');
+    }
+    function rate() {
+      rendreLaMain();
+      dire(T.echec, 'mal');
+    }
+
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      // LE DEUXIEME CLIC NE PART JAMAIS : c'etait la cause des doublons.
+      if (enCours) return;
+
+      var fd = new FormData(form);
+      var piege = String(fd.get('champ_piege') || '').trim();
+      var duree = Date.now() - ouverte;
+
+      var naissanceIso = null;
+      if (naissance) {
+        naissanceIso = naissanceEnIso(naissance.value);
+        if (!naissanceIso) return refuser(naissance, T.naissanceFormat);
+        var depart = String(fd.get('pickupDate') || '') || new Date().toISOString().slice(0, 10);
+        var age = ageAu(naissanceIso, depart);
+        if (age < 18) return refuser(naissance, T.naissanceJeune);
+        if (age > 99) return refuser(naissance, T.naissanceVieux);
+      }
+
+      enCours = true;
+      if (bouton) {
+        bouton.disabled = true;
+        bouton.textContent = T.envoi;
+      }
+      dire(T.envoi, 'attente');
+
+      // UN ROBOT CROIT AVOIR REUSSI, pour ne pas chercher un autre chemin.
+      if (piege || duree < DELAI_MINIMUM) {
+        setTimeout(reussi, 800);
+        return;
+      }
+
+      // LE MEME CORPS POUR LA FEUILLE ET POUR L'APP, aux memes noms de champs.
+      // La case « age » porte desormais la date de naissance, dans la MEME
+      // colonne de la feuille : en inserer une decalerait celles de l'equipe.
+      var corps = new URLSearchParams();
+      fd.forEach(function (v, k) {
+        if (k === 'champ_piege' || typeof v !== 'string') return;
+        corps.append(k, k === 'age' && naissanceIso ? naissanceIso : v);
+      });
+      var versLApp = new URLSearchParams(corps.toString());
+      versLApp.append('website', piege);
+      versLApp.append('duree', String(duree));
+      var entete = { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' };
+
+      var laFeuille = envoyer(FEUILLE_RESERVATION, { method: 'POST', headers: entete, body: corps.toString() }, 30000)
+        .then(function (r) {
+          return r.text().then(function (t) {
+            try { return r.ok && JSON.parse(t).ok === true; } catch (e) { return false; }
+          });
+        })
+        .catch(function () { return false; });
+      var lApp = envoyer(APP + '/api/site/demande', { method: 'POST', headers: entete, body: versLApp.toString() }, 30000)
+        .then(function (r) { return r.ok; })
+        .catch(function () { return false; });
+
+      // IL SUFFIT QU'UN DES DEUX L'AIT : l'autre la rattrape, ou le releve.
+      Promise.all([laFeuille, lApp]).then(function (res) {
+        if (res[0] || res[1]) reussi();
+        else rate();
+      });
+    });
+  }
+
+  // ========================================================================
+  // LE MESSAGE DE CONTACT
+  // ========================================================================
+  // ⚠️ L'ADRESSE D'ENVOI N'EST PLUS DANS LE HTML (`action`) : un robot qui
+  // remplit les formulaires sans executer de script postait tout droit vers
+  // la feuille. Quarante messages sur 137 etaient du pourriel.
+  function contact() {
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+    var bouton = document.getElementById('contactSubmit');
+    var etat = document.getElementById('contactStatus');
+    var enCours = false;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (enCours) return;
+      enCours = true;
+      if (etat) etat.textContent = '';
+      var original = bouton ? bouton.textContent : '';
+      if (bouton) {
+        bouton.disabled = true;
+        bouton.textContent = T.contactEnvoi;
+      }
+      var fd = new FormData(form);
+      var robot = String(fd.get('_gotcha') || '').trim() !== '' || Date.now() - ouverte < DELAI_MINIMUM;
+      var envoi = robot
+        ? new Promise(function (ok) { setTimeout(ok, 800); })
+        : envoyer(FEUILLE_CONTACT, { method: 'POST', body: fd, mode: 'no-cors' }, 30000);
+      envoi.then(function () {
+        form.reset();
+        if (etat) {
+          etat.textContent = T.contactMerci;
+          etat.className = 'mt-3 text-center text-sm text-green-600';
+        }
+      }, function () {
+        if (etat) {
+          etat.textContent = T.contactEchec;
+          etat.className = 'mt-3 text-center text-sm text-red-600';
+        }
+      }).then(function () {
+        enCours = false;
+        if (bouton) {
+          bouton.disabled = false;
+          bouton.textContent = original;
+        }
+      });
+    });
+  }
+
+  function demarrer() {
+    chargerLesLieux();
+    preReservation();
+    contact();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', demarrer);
+  else demarrer();
+})();
