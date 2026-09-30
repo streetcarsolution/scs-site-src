@@ -43,7 +43,7 @@
   var TEXTES = {
     fr: {
       envoi: 'Envoi en cours…',
-      merci: 'Merci ! Votre pré-réservation est bien envoyée. Nous revenons vers vous très vite, sur WhatsApp ou par email.',
+      merci: 'Merci ! Votre pré-réservation est bien envoyée.\nVotre conseiller vous contactera rapidement par WhatsApp.',
       echec: "Votre demande n'a pas pu partir. Vérifiez votre connexion et réessayez, ou écrivez-nous sur WhatsApp.",
       naissanceFormat: 'Écrivez la date de naissance en chiffres : jour, mois, année. Par exemple 16/12/1980.',
       naissanceJeune: 'Le conducteur doit avoir au moins 18 ans le jour du départ.',
@@ -54,7 +54,7 @@
     },
     en: {
       envoi: 'Sending…',
-      merci: 'Thank you! Your pre-booking has been sent. We will get back to you very soon, on WhatsApp or by email.',
+      merci: 'Thank you! Your pre-booking has been sent.\nYour advisor will contact you shortly on WhatsApp.',
       echec: 'Your request could not be sent. Check your connection and try again, or message us on WhatsApp.',
       naissanceFormat: 'Type the date of birth in digits: day, month, year. For example 16/12/1980.',
       naissanceJeune: 'The driver must be at least 18 years old on the pick-up day.',
@@ -65,7 +65,7 @@
     },
     es: {
       envoi: 'Enviando…',
-      merci: '¡Gracias! Su pre-reserva ha sido enviada. Le responderemos muy pronto, por WhatsApp o por correo.',
+      merci: '¡Gracias! Su pre-reserva ha sido enviada.\nSu asesor se pondrá en contacto con usted rápidamente por WhatsApp.',
       echec: 'Su solicitud no pudo enviarse. Revise su conexión e inténtelo de nuevo, o escríbanos por WhatsApp.',
       naissanceFormat: 'Escriba la fecha de nacimiento en números: día, mes, año. Por ejemplo 16/12/1980.',
       naissanceJeune: 'El conductor debe tener al menos 18 años el día de la entrega.',
@@ -182,7 +182,9 @@
       if (!etat) return;
       etat.textContent = texte;
       etat.hidden = !texte;
-      etat.className = 'mt-4 text-center font-semibold '
+      // SUR DEUX LIGNES, comme Sabrina l'a ecrit le 30/09/2026 : le « \n » du
+      // texte devient un vrai retour a la ligne.
+      etat.className = 'mt-4 text-center font-semibold whitespace-pre-line '
         + (sorte === 'ok' ? 'text-green-700' : sorte === 'mal' ? 'text-red-600' : 'text-gray-700');
       if (texte && etat.scrollIntoView) etat.scrollIntoView({ block: 'nearest' });
     }
