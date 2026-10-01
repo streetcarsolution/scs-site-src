@@ -48,6 +48,7 @@
       naissanceFormat: 'Écrivez la date de naissance en chiffres : jour, mois, année. Par exemple 16/12/1980.',
       naissanceJeune: 'Le conducteur doit avoir au moins 18 ans le jour du départ.',
       naissanceVieux: "Vérifiez l'année de naissance.",
+      minimum: 'La location doit contenir un minimum de 3 jours.',
       contactEnvoi: 'Envoi…',
       contactMerci: 'Merci, votre message a bien été envoyé !',
       contactEchec: 'Désolé, une erreur est survenue. Réessayez plus tard.'
@@ -59,6 +60,7 @@
       naissanceFormat: 'Type the date of birth in digits: day, month, year. For example 16/12/1980.',
       naissanceJeune: 'The driver must be at least 18 years old on the pick-up day.',
       naissanceVieux: 'Please check the year of birth.',
+      minimum: 'The rental must be for a minimum of 3 days.',
       contactEnvoi: 'Sending…',
       contactMerci: 'Thanks, your message has been sent!',
       contactEchec: 'Sorry, an error occurred. Please try again later.'
@@ -70,6 +72,7 @@
       naissanceFormat: 'Escriba la fecha de nacimiento en números: día, mes, año. Por ejemplo 16/12/1980.',
       naissanceJeune: 'El conductor debe tener al menos 18 años el día de la entrega.',
       naissanceVieux: 'Revise el año de nacimiento.',
+      minimum: 'La renta debe ser de un mínimo de 3 días.',
       contactEnvoi: 'Enviando…',
       contactMerci: '¡Gracias, su mensaje ha sido enviado!',
       contactEchec: 'Lo sentimos, ocurrió un error. Inténtelo más tarde.'
@@ -178,6 +181,49 @@
     var enCours = false;
     if (naissance) masqueDeDate(naissance);
 
+    // TROIS JOURS AU MOINS (Lisa, 1er octobre 2026 : elle recoit « souvent des
+    // demandes par le formulaire de pré-réservation pour des locations de
+    // moins de 3 jours »). Le message parait SOUS la date de retour des que
+    // les deux dates sont choisies, et l'envoi est retenu tant qu'il est la.
+    // Les jours se comptent comme dans l'App, colonne « Jours » : du 10 au 12,
+    // deux jours.
+    var JOURS_MINIMUM = 3;
+    var depart = document.getElementById('pickupDate');
+    var retour = document.getElementById('returnDate');
+    var avis = null;
+    if (retour && retour.parentNode) {
+      avis = document.createElement('p');
+      avis.id = 'dureeMinimum';
+      avis.setAttribute('role', 'alert');
+      avis.hidden = true;
+      avis.style.cssText = 'color:#dc2626;font-weight:600;font-size:.95rem;margin-top:.5rem';
+      retour.parentNode.appendChild(avis);
+    }
+    function joursDemandes() {
+      if (!depart || !retour || !depart.value || !retour.value) return null;
+      var a = Date.parse(depart.value + 'T00:00:00Z');
+      var b = Date.parse(retour.value + 'T00:00:00Z');
+      if (!isFinite(a) || !isFinite(b)) return null;
+      return Math.round((b - a) / 86400000);
+    }
+    function dureeAcceptee() {
+      var n = joursDemandes();
+      var court = n !== null && n < JOURS_MINIMUM;
+      if (retour) retour.setCustomValidity(court ? T.minimum : '');
+      if (avis) {
+        avis.textContent = court ? T.minimum : '';
+        avis.hidden = !court;
+      }
+      return !court;
+    }
+    [depart, retour].forEach(function (champ) {
+      if (!champ) return;
+      champ.addEventListener('change', dureeAcceptee);
+      champ.addEventListener('input', dureeAcceptee);
+    });
+    // Apres le merci, le formulaire se vide : le message part avec lui.
+    form.addEventListener('reset', function () { setTimeout(dureeAcceptee, 0); });
+
     function dire(texte, sorte) {
       if (!etat) return;
       etat.textContent = texte;
@@ -223,6 +269,7 @@
         if (age < 18) return refuser(naissance, T.naissanceJeune);
         if (age > 99) return refuser(naissance, T.naissanceVieux);
       }
+      if (!dureeAcceptee()) return refuser(retour, T.minimum);
 
       enCours = true;
       if (bouton) {
