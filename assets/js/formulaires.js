@@ -24,6 +24,8 @@
  *      neerlandais.
  *   5. LA DATE DE NAISSANCE REMPLACE L'AGE, et se tape en huit chiffres, sans
  *      calendrier : quarante ans en arriere, un calendrier est un supplice.
+ *      L'annee d'abord sur la page anglaise (YYYY/MM/DD), le jour d'abord
+ *      sur les deux autres.
  *   6. UN CHAMP PIEGE ET UN CHRONOMETRE contre les robots, avant tout captcha.
  */
 (function () {
@@ -57,7 +59,7 @@
       envoi: 'Sending…',
       merci: 'Thank you! Your pre-booking has been sent.\nYour advisor will contact you shortly on WhatsApp.',
       echec: 'Your request could not be sent. Check your connection and try again, or message us on WhatsApp.',
-      naissanceFormat: 'Type the date of birth in digits: day, month, year. For example 16/12/1980.',
+      naissanceFormat: 'Type the date of birth in digits: year, month, day. For example 1980/12/16.',
       naissanceJeune: 'The driver must be at least 18 years old on the pick-up day.',
       naissanceVieux: 'Please check the year of birth.',
       minimum: 'The rental must be for a minimum of 3 days.',
@@ -130,27 +132,42 @@
   // ========================================================================
   // LA DATE DE NAISSANCE, EN HUIT CHIFFRES
   // ========================================================================
+  // L'ORDRE SUIT LA PAGE. Sabrina, le 1er octobre 2026, devant la page
+  // anglaise qui montrait DD/MM/YYYY : « C'est une erreur, il devrait montrer
+  // YYYY/MM/DD ». Une date qui commence par l'annee ne se lit que d'une
+  // facon, quand 01/02 est le 2 janvier pour un Americain et le 1er fevrier
+  // pour un Anglais. Le francais et l'espagnol gardent le jour d'abord.
+  var ANNEE_DABORD = langue === 'en';
+  var GROUPES = ANNEE_DABORD ? [4, 2, 2] : [2, 2, 4];
+
   function masqueDeDate(champ) {
     champ.addEventListener('input', function () {
       var chiffres = champ.value.replace(/\D/g, '').slice(0, 8);
-      var t = chiffres.slice(0, 2);
-      if (chiffres.length > 2) t += '/' + chiffres.slice(2, 4);
-      if (chiffres.length > 4) t += '/' + chiffres.slice(4);
-      champ.value = t;
+      var morceaux = [];
+      var debut = 0;
+      GROUPES.forEach(function (n) {
+        if (chiffres.length > debut) morceaux.push(chiffres.slice(debut, debut + n));
+        debut += n;
+      });
+      champ.value = morceaux.join('/');
       champ.setCustomValidity('');
     });
   }
 
-  /** `16/12/1980` devient `1980-12-16`, et un 31/02 n'existe pas. */
+  /** `16/12/1980` (ou `1980/12/16` en anglais) devient `1980-12-16`, et un
+   *  31/02 n'existe pas. */
   function naissanceEnIso(texte) {
-    var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(texte || '').trim());
+    var t = String(texte || '').trim();
+    var m = ANNEE_DABORD ? /^(\d{4})\/(\d{2})\/(\d{2})$/.exec(t) : /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(t);
     if (!m) return null;
-    var j = Number(m[1]);
+    var annee = ANNEE_DABORD ? m[1] : m[3];
+    var jour = ANNEE_DABORD ? m[3] : m[1];
+    var j = Number(jour);
     var mo = Number(m[2]);
-    var a = Number(m[3]);
+    var a = Number(annee);
     var d = new Date(Date.UTC(a, mo - 1, j));
     if (d.getUTCFullYear() !== a || d.getUTCMonth() !== mo - 1 || d.getUTCDate() !== j) return null;
-    return m[3] + '-' + m[2] + '-' + m[1];
+    return annee + '-' + m[2] + '-' + jour;
   }
 
   /** L'age en annees pleines, le jour du depart : c'est ce jour-la qu'il conduit. */
