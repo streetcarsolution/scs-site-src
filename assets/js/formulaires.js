@@ -289,10 +289,14 @@
       // colonne de la feuille : en inserer une decalerait celles de l'equipe.
       var corps = new URLSearchParams();
       fd.forEach(function (v, k) {
-        if (k === 'champ_piege' || typeof v !== 'string') return;
+        // LE MESSAGE DU CLIENT NE VA PAS A LA FEUILLE : son script range des
+        // colonnes fixes, et une case qu'il ne connait pas n'a rien a y
+        // faire. L'App le recoit, a cote de l'empreinte (1er octobre 2026).
+        if (k === 'champ_piege' || k === 'message' || typeof v !== 'string') return;
         corps.append(k, k === 'age' && naissanceIso ? naissanceIso : v);
       });
       var versLApp = new URLSearchParams(corps.toString());
+      versLApp.append('message', String(fd.get('message') || '').trim());
       versLApp.append('website', piege);
       versLApp.append('duree', String(duree));
       var entete = { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' };
@@ -365,10 +369,59 @@
     });
   }
 
+  // ========================================================================
+  // UN LIEN QUI VISE UNE SECTION Y ARRIVE VRAIMENT
+  // ========================================================================
+  // Sabrina, le 1er octobre 2026, avec deux captures : le lien
+  // streetcarsolution.com/#reservation, donne aux clients pour arriver sur le
+  // formulaire, s'arretait au-dessus, dans « Témoignages de Nos Clients ». Le
+  // navigateur saute a la section des que le HTML est lu ; puis les images
+  // et les blocs du haut prennent leur vraie hauteur, et le formulaire
+  // descend sans que la page suive.
+  //
+  // On se recale donc sur la section pendant que la page finit de se
+  // construire, trois secondes au plus, et on s'arrete au premier geste du
+  // visiteur : il ne faut jamais lui reprendre la page des mains.
+  function suivreLAncre() {
+    var id = decodeURIComponent(String(location.hash || '').slice(1));
+    var cible = id ? document.getElementById(id) : null;
+    if (!cible) return;
+    var lache = false;
+    var lacher = function () { lache = true; };
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (t) {
+      window.addEventListener(t, lacher, { once: true, passive: true });
+    });
+    var aligner = function () {
+      if (lache) return;
+      // `instant` : le site a `scroll-smooth`, et une glissade n'arriverait
+      // jamais a rattraper une page qui grandit encore.
+      cible.scrollIntoView({ block: 'start', behavior: 'instant' });
+    };
+    // MESURE DU 1er OCTOBRE SUR LE VRAI SITE : a 1280 px, la page finit de
+    // charger au bout de six secondes ; a 390 px elle grandit encore apres
+    // le saut du navigateur, et le formulaire restait 1 304 px plus bas. On
+    // se recale donc pendant trois secondes, puis encore deux apres la fin
+    // du chargement, quand les dernieres images ont pris leur place.
+    var fin = 0;
+    var tourne = false;
+    var boucle = function () {
+      if (lache || Date.now() > fin) { tourne = false; return; }
+      aligner();
+      setTimeout(boucle, 250);
+    };
+    var prolonger = function (ms) {
+      fin = Math.max(fin, Date.now() + ms);
+      if (!tourne) { tourne = true; boucle(); }
+    };
+    prolonger(3000);
+    window.addEventListener('load', function () { prolonger(2000); });
+  }
+
   function demarrer() {
     chargerLesLieux();
     preReservation();
     contact();
+    suivreLAncre();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', demarrer);
   else demarrer();
