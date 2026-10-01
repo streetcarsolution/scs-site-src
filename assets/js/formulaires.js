@@ -314,6 +314,10 @@
       });
       var versLApp = new URLSearchParams(corps.toString());
       versLApp.append('message', String(fd.get('message') || '').trim());
+      // LA LANGUE DE LA PAGE, pour le drapeau a cote du nom du client dans
+      // l'App (Sabrina, 1er octobre 2026). L'App seule : la feuille range des
+      // colonnes fixes.
+      versLApp.append('langue', langue);
       versLApp.append('website', piege);
       versLApp.append('duree', String(duree));
       var entete = { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' };
