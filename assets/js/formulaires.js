@@ -25,7 +25,8 @@
  *   5. LA DATE DE NAISSANCE REMPLACE L'AGE, et se tape en huit chiffres, sans
  *      calendrier : quarante ans en arriere, un calendrier est un supplice.
  *      L'annee d'abord sur la page anglaise (YYYY/MM/DD), le jour d'abord
- *      sur les deux autres.
+ *      sur les deux autres, et les calendriers des dates de location suivent
+ *      le meme ordre (flatpickr, 1er octobre 2026).
  *   6. UN CHAMP PIEGE ET UN CHRONOMETRE contre les robots, avant tout captcha.
  */
 (function () {
@@ -51,6 +52,7 @@
       naissanceJeune: 'Le conducteur doit avoir au moins 18 ans le jour du départ.',
       naissanceVieux: "Vérifiez l'année de naissance.",
       minimum: 'La location doit contenir un minimum de 3 jours.',
+      dateManquante: 'Choisissez la date dans le calendrier.',
       contactEnvoi: 'Envoi…',
       contactMerci: 'Merci, votre message a bien été envoyé !',
       contactEchec: 'Désolé, une erreur est survenue. Réessayez plus tard.'
@@ -63,6 +65,7 @@
       naissanceJeune: 'The driver must be at least 18 years old on the pick-up day.',
       naissanceVieux: 'Please check the year of birth.',
       minimum: 'The rental must be for a minimum of 3 days.',
+      dateManquante: 'Please choose the date from the calendar.',
       contactEnvoi: 'Sending…',
       contactMerci: 'Thanks, your message has been sent!',
       contactEchec: 'Sorry, an error occurred. Please try again later.'
@@ -75,6 +78,7 @@
       naissanceJeune: 'El conductor debe tener al menos 18 años el día de la entrega.',
       naissanceVieux: 'Revise el año de nacimiento.',
       minimum: 'La renta debe ser de un mínimo de 3 días.',
+      dateManquante: 'Elija la fecha en el calendario.',
       contactEnvoi: 'Enviando…',
       contactMerci: '¡Gracias, su mensaje ha sido enviado!',
       contactEchec: 'Lo sentimos, ocurrió un error. Inténtelo más tarde.'
@@ -170,6 +174,63 @@
     return annee + '-' + m[2] + '-' + jour;
   }
 
+  // ========================================================================
+  // LES CALENDRIERS, AU FORMAT DE LA PAGE
+  // ========================================================================
+  // Sabrina, le 1er octobre 2026 : « encore des bugs sur la page en anglais
+  // avec jj/mm/aaaa au lieu de yyyy/mm/dd, ainsi que pour la page en espagnol
+  // qui devrait afficher dd/mm/aaaa ». La case de date du NAVIGATEUR ecrit la
+  // date dans la langue du navigateur, jamais dans celle de la page :
+  // jj/mm/aaaa sur son Chrome francais, mm/dd/yyyy chez un Americain. Le
+  // calendrier flatpickr (copie dans le site, assets/vendor, licence MIT)
+  // ecrit celle de la page, comme la date de naissance juste au-dessus, et
+  // nomme les mois dans sa langue. La valeur envoyee reste AAAA-MM-JJ.
+  //
+  // ⚠️ SI LE CALENDRIER NE SE CHARGE PAS, la case du navigateur reste : on
+  // perd le format, jamais la demande.
+  //
+  // ⚠️ SUR UN TELEPHONE, LE CALENDRIER SEUL, sans clavier par-dessus : la case
+  // y est en lecture seule. A la souris, on peut aussi taper les huit
+  // chiffres, et les barres se posent seules.
+  var FORMAT_AFFICHE = ANNEE_DABORD ? 'Y/m/d' : 'd/m/Y';
+  var GABARIT = { fr: 'JJ/MM/AAAA', en: 'YYYY/MM/DD', es: 'DD/MM/AAAA' }[langue];
+  var TACTILE = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+
+  function calendriers() {
+    if (!window.flatpickr) return;
+    var style = document.createElement('style');
+    style.textContent = '.flatpickr-day.selected,.flatpickr-day.selected:hover,'
+      + '.flatpickr-day.selected:focus{background:#1DA1F2;border-color:#1DA1F2}';
+    document.head.appendChild(style);
+    var traduction = window.flatpickr.l10ns && window.flatpickr.l10ns[langue];
+    Array.prototype.forEach.call(document.querySelectorAll('input[type="date"]'), function (champ) {
+      champ.setAttribute('placeholder', GABARIT);
+      var fp = window.flatpickr(champ, {
+        locale: langue !== 'en' && traduction ? traduction : 'default',
+        dateFormat: 'Y-m-d',
+        altInput: true,
+        altFormat: FORMAT_AFFICHE,
+        altInputClass: champ.className,
+        allowInput: !TACTILE,
+        disableMobile: true,
+        minDate: 'today'
+      });
+      if (!fp || !fp.altInput) return;
+      fp.altInput.setAttribute('autocomplete', 'off');
+      if (!TACTILE) masqueDeDate(fp.altInput);
+      // UNE DATE TAPEE SE LIT A LA SORTIE DE LA CASE, et flatpickr ne le dit
+      // a personne : on le dit, pour que les trois jours se recomptent.
+      fp.altInput.addEventListener('blur', function () {
+        setTimeout(function () { champ.dispatchEvent(new Event('change')); }, 0);
+      });
+    });
+  }
+
+  /** La case que le client voit : celle du calendrier quand il est la. */
+  function visible(champ) {
+    return champ && champ._flatpickr && champ._flatpickr.altInput ? champ._flatpickr.altInput : champ;
+  }
+
   /** L'age en annees pleines, le jour du depart : c'est ce jour-la qu'il conduit. */
   function ageAu(naissance, jour) {
     var n = naissance.split('-').map(Number);
@@ -226,7 +287,7 @@
     function dureeAcceptee() {
       var n = joursDemandes();
       var court = n !== null && n < JOURS_MINIMUM;
-      if (retour) retour.setCustomValidity(court ? T.minimum : '');
+      if (retour) visible(retour).setCustomValidity(court ? T.minimum : '');
       if (avis) {
         avis.textContent = court ? T.minimum : '';
         avis.hidden = !court;
@@ -237,9 +298,52 @@
       if (!champ) return;
       champ.addEventListener('change', dureeAcceptee);
       champ.addEventListener('input', dureeAcceptee);
+      champ.addEventListener('change', function () { manque(champ, false); });
     });
-    // Apres le merci, le formulaire se vide : le message part avec lui.
-    form.addEventListener('reset', function () { setTimeout(dureeAcceptee, 0); });
+    // LE RETOUR NE SE CHOISIT PAS AVANT LE DEPART : son calendrier commence
+    // au jour du depart.
+    if (depart && retour && retour._flatpickr) {
+      depart.addEventListener('change', function () {
+        retour._flatpickr.set('minDate', depart.value || 'today');
+      });
+    }
+    // Apres le merci, le formulaire se vide : le message part avec lui, et
+    // les calendriers oublient leur choix.
+    form.addEventListener('reset', function () {
+      setTimeout(function () {
+        [depart, retour].forEach(function (champ) {
+          if (champ && champ._flatpickr) champ._flatpickr.clear(false);
+        });
+        if (retour && retour._flatpickr) retour._flatpickr.set('minDate', 'today');
+        dureeAcceptee();
+      }, 0);
+    });
+
+    // UNE DATE QUI MANQUE SE DIT SOUS SA CASE. La bulle du navigateur ne sait
+    // pas se poser sur une case en lecture seule (le calendrier du
+    // telephone) : le message s'ecrit dessous, et le calendrier s'ouvre.
+    function manque(champ, oui) {
+      if (!champ) return;
+      var v = visible(champ);
+      var p = v.parentNode ? v.parentNode.querySelector('[data-date-manquante]') : null;
+      if (!oui) {
+        if (p) p.hidden = true;
+        return;
+      }
+      if (!p && v.parentNode) {
+        p = document.createElement('p');
+        p.setAttribute('data-date-manquante', '');
+        p.setAttribute('role', 'alert');
+        p.style.cssText = 'color:#dc2626;font-weight:600;font-size:.95rem;margin-top:.5rem';
+        v.parentNode.insertBefore(p, v.nextSibling);
+      }
+      if (p) {
+        p.textContent = T.dateManquante;
+        p.hidden = false;
+      }
+      if (v.scrollIntoView) v.scrollIntoView({ block: 'center' });
+      if (champ._flatpickr) champ._flatpickr.open();
+    }
 
     function dire(texte, sorte) {
       if (!etat) return;
@@ -281,12 +385,17 @@
       if (naissance) {
         naissanceIso = naissanceEnIso(naissance.value);
         if (!naissanceIso) return refuser(naissance, T.naissanceFormat);
-        var depart = String(fd.get('pickupDate') || '') || new Date().toISOString().slice(0, 10);
-        var age = ageAu(naissanceIso, depart);
+        // ⚠️ PAS « depart » : ce nom est celui de la case, et un `var` du meme
+        // nom la masquait dans toute la fonction (la garde des dates lisait
+        // un texte au lieu de la case, et retenait l'envoi sans un mot).
+        var jourDuDepart = String(fd.get('pickupDate') || '') || new Date().toISOString().slice(0, 10);
+        var age = ageAu(naissanceIso, jourDuDepart);
         if (age < 18) return refuser(naissance, T.naissanceJeune);
         if (age > 99) return refuser(naissance, T.naissanceVieux);
       }
-      if (!dureeAcceptee()) return refuser(retour, T.minimum);
+      if (depart && !depart.value) return manque(depart, true);
+      if (retour && !retour.value) return manque(retour, true);
+      if (!dureeAcceptee()) return refuser(visible(retour), T.minimum);
 
       enCours = true;
       if (bouton) {
@@ -439,6 +548,7 @@
   }
 
   function demarrer() {
+    calendriers();
     chargerLesLieux();
     preReservation();
     contact();
