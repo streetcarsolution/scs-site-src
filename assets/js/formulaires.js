@@ -474,18 +474,44 @@
         bouton.textContent = T.contactEnvoi;
       }
       var fd = new FormData(form);
-      var robot = String(fd.get('_gotcha') || '').trim() !== '' || Date.now() - ouverte < DELAI_MINIMUM;
-      var envoi = robot
-        ? new Promise(function (ok) { setTimeout(ok, 800); })
-        : envoyer(FEUILLE_CONTACT, { method: 'POST', body: fd, mode: 'no-cors' }, 30000);
-      envoi.then(function () {
-        form.reset();
-        if (etat) {
-          etat.textContent = T.contactMerci;
-          etat.className = 'mt-3 text-center text-sm text-green-600';
-        }
-      }, function () {
-        if (etat) {
+      var piege = String(fd.get('_gotcha') || '').trim();
+      var duree = Date.now() - ouverte;
+      var robot = piege !== '' || duree < DELAI_MINIMUM;
+      // LE MESSAGE PART DANS L'APP ET DANS LA FEUILLE (Sabrina, 1er octobre
+      // 2026 : « Pourquoi ils n'arrivent pas directement dans l'App ? »). La
+      // pastille du menu s'allume au clic du client ; la feuille reste le
+      // filet, et l'App reconnait le meme message arrive par les deux
+      // chemins. Il suffit que l'un des deux reussisse pour dire merci.
+      var envoi;
+      if (robot) {
+        envoi = new Promise(function (ok) { setTimeout(function () { ok(true); }, 800); });
+      } else {
+        var versLApp = new URLSearchParams();
+        ['name', 'email', 'subject', 'message'].forEach(function (k) {
+          versLApp.append(k, String(fd.get(k) || ''));
+        });
+        versLApp.append('langue', langue);
+        versLApp.append('website', piege);
+        versLApp.append('duree', String(duree));
+        var laFeuille = envoyer(FEUILLE_CONTACT, { method: 'POST', body: fd, mode: 'no-cors' }, 30000)
+          .then(function () { return true; }, function () { return false; });
+        var lApp = envoyer(APP + '/api/site/message', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: versLApp.toString()
+        }, 30000)
+          .then(function (r) { return r.ok; })
+          .catch(function () { return false; });
+        envoi = Promise.all([laFeuille, lApp]).then(function (r) { return r[0] || r[1]; });
+      }
+      envoi.then(function (ok) {
+        if (ok) {
+          form.reset();
+          if (etat) {
+            etat.textContent = T.contactMerci;
+            etat.className = 'mt-3 text-center text-sm text-green-600';
+          }
+        } else if (etat) {
           etat.textContent = T.contactEchec;
           etat.className = 'mt-3 text-center text-sm text-red-600';
         }
@@ -547,8 +573,59 @@
     window.addEventListener('load', function () { prolonger(2000); });
   }
 
+  // ========================================================================
+  // LE BANDEAU DU HAUT REMPLIT LA PRE-RESERVATION
+  // ========================================================================
+  // « Trouvez votre véhicule » menait a la page Vehicules, et le lieu, les
+  // dates et les heures choisis etaient perdus. Sabrina, le 1er octobre
+  // 2026 : « On a toujours trouvé que ce tableau ne servait à rien, mais
+  // maintenant les clients seraient redirigés pour terminer leur
+  // pré-réservation, top ! » Le bouton recopie donc ses choix dans le
+  // formulaire et y descend.
+  function copier(source, id) {
+    var champ = document.getElementById(id);
+    if (!source || !champ || !source.value) return;
+    if (champ._flatpickr) {
+      champ._flatpickr.setDate(source.value, true);
+      return;
+    }
+    champ.value = source.value;
+    champ.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
+  function bandeau() {
+    var bouton = document.querySelector('[data-vers-reservation]');
+    var form = document.getElementById('reservationForm');
+    if (!bouton || !form || !bouton.parentNode) return;
+    var carte = bouton.parentNode;
+    var lieux = carte.querySelectorAll('select[data-lieux]');
+    var heures = Array.prototype.filter.call(carte.querySelectorAll('select'), function (s) {
+      return !s.hasAttribute('data-lieux');
+    });
+    var dates = carte.querySelectorAll('input.flatpickr-input, input[type="date"]');
+    // LE RETOUR DU BANDEAU COMMENCE AU DEPART DU BANDEAU, comme dans le
+    // formulaire.
+    if (dates[0] && dates[1] && dates[1]._flatpickr) {
+      dates[0].addEventListener('change', function () {
+        dates[1]._flatpickr.set('minDate', dates[0].value || 'today');
+      });
+    }
+    bouton.addEventListener('click', function () {
+      copier(lieux[0], 'pickupLocation');
+      copier(lieux[1], 'returnLocation');
+      // Le depart d'abord : le calendrier du retour commence a sa date.
+      copier(dates[0], 'pickupDate');
+      copier(dates[1], 'returnDate');
+      copier(heures[0], 'pickupTime');
+      copier(heures[1], 'returnTime');
+      var section = document.getElementById('reservation') || form;
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
   function demarrer() {
     calendriers();
+    bandeau();
     chargerLesLieux();
     preReservation();
     contact();
