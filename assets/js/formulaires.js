@@ -53,6 +53,9 @@
       naissanceVieux: "Vérifiez l'année de naissance.",
       minimum: 'La location doit contenir un minimum de 3 jours.',
       dateManquante: 'Choisissez la date dans le calendrier.',
+      telAide: "Commencez par « + » et l'indicatif de votre pays : +52 Mexique, +33 France, +1 Canada.",
+      telSansPlus: "Il manque le « + » et l'indicatif de votre pays avant le numéro. Exemples : +52 998 123 4567 (Mexique), +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada).",
+      telIncomplet: "Ce numéro semble incomplet. Vérifiez l'indicatif du pays et tous les chiffres, par exemple +52 998 123 4567.",
       contactEnvoi: 'Envoi…',
       contactMerci: 'Merci, votre message a bien été envoyé !',
       contactEchec: 'Désolé, une erreur est survenue. Réessayez plus tard.'
@@ -66,6 +69,9 @@
       naissanceVieux: 'Please check the year of birth.',
       minimum: 'The rental must be for a minimum of 3 days.',
       dateManquante: 'Please choose the date from the calendar.',
+      telAide: 'Start with “+” and your country code: +1 Canada/USA, +33 France, +52 Mexico.',
+      telSansPlus: 'Please add the “+” and your country code before the number. Examples: +1 514 123 4567 (Canada/USA), +33 6 12 34 56 78 (France), +52 998 123 4567 (Mexico).',
+      telIncomplet: 'This number looks incomplete. Please check the country code and all the digits, for example +1 514 123 4567.',
       contactEnvoi: 'Sending…',
       contactMerci: 'Thanks, your message has been sent!',
       contactEchec: 'Sorry, an error occurred. Please try again later.'
@@ -79,6 +85,9 @@
       naissanceVieux: 'Revise el año de nacimiento.',
       minimum: 'La renta debe ser de un mínimo de 3 días.',
       dateManquante: 'Elija la fecha en el calendario.',
+      telAide: 'Empiece con «+» y el código de su país: +52 México, +1 EE. UU./Canadá, +33 Francia.',
+      telSansPlus: 'Falta el «+» y el código de su país antes del número. Ejemplos: +52 998 123 4567 (México), +1 514 123 4567 (Canadá/EE. UU.), +33 6 12 34 56 78 (Francia).',
+      telIncomplet: 'Este número parece incompleto. Revise el código del país y todos los dígitos, por ejemplo +52 998 123 4567.',
       contactEnvoi: 'Enviando…',
       contactMerci: '¡Gracias, su mensaje ha sido enviado!',
       contactEchec: 'Lo sentimos, ocurrió un error. Inténtelo más tarde.'
@@ -247,6 +256,89 @@
   }
 
   // ========================================================================
+  // LE NUMERO WHATSAPP : « + » ET INDICATIF, OU PAS DE DEMANDE
+  // ========================================================================
+  // Sabrina, le 9 octobre 2026 : « Nous recevons énormément de demandes avec
+  // des numéros sans indicatif. L'App est capable de détecter un numéro avec
+  // un indicatif manquant : le site pourrait également le détecter, et
+  // rappeler au client de mettre un "+" et son indicatif suivi du numéro. »
+  //
+  // Un « 9842696189 » est un numéro mexicain amputé de son 52 : il a l'air
+  // juste, WhatsApp n'ouvre rien avec, et on le découvre le jour de la
+  // livraison. La règle est celle de l'App (`lib/completude.ts`) : un « + »,
+  // puis 11 à 15 chiffres. Ne pas la changer ici sans la changer là-bas.
+  //
+  // ON NE DEVINE PAS LE PAYS : 514 773 1495 est canadien, 998 123 4567
+  // mexicain, et dix chiffres ne disent pas lesquels. On rappelle, on ne
+  // complète pas.
+  var NUMERO_COMPLET = /^\+[0-9]{11,15}$/;
+
+  /** Ce que le client a tapé, rangé : espaces, points, tirets et parenthèses
+   *  s'en vont, et « 00 » (l'appel international) vaut « + ». */
+  function numeroRange(brut) {
+    var t = String(brut || '').replace(/[\s().\-]/g, '');
+    if (t.indexOf('00') === 0) t = '+' + t.slice(2);
+    return t;
+  }
+
+  /** `null` quand le numéro est bon, sinon le texte qui dit pourquoi. */
+  function refusDuNumero(brut) {
+    var t = numeroRange(brut);
+    if (!t) return T.telSansPlus;
+    if (t.charAt(0) !== '+') return T.telSansPlus;
+    return NUMERO_COMPLET.test(t) ? null : T.telIncomplet;
+  }
+
+  /**
+   * L'AIDE EST TOUJOURS LA, sous la case, en gris ; elle devient rouge et dit
+   * le défaut quand le numéro est refusé. Un seul paragraphe, écrit ici pour
+   * les trois langues : le HTML des trois pages n'a pas à le porter.
+   *
+   * LE « + » SE POSE TOUT SEUL à l'arrivée dans la case vide : le défaut le
+   * plus courant est de ne pas y penser.
+   */
+  function numeroDeTelephone(champ) {
+    if (!champ || !champ.parentNode) return;
+    var aide = document.createElement('p');
+    aide.setAttribute('data-aide-telephone', '');
+    aide.style.cssText = 'font-size:.85rem;margin-top:.35rem;color:#6b7280';
+    aide.textContent = T.telAide;
+    champ.parentNode.insertBefore(aide, champ.nextSibling);
+
+    function montrer(refus) {
+      champ.setCustomValidity(refus || '');
+      aide.textContent = refus || T.telAide;
+      aide.setAttribute('role', refus ? 'alert' : 'note');
+      aide.style.color = refus ? '#dc2626' : '#6b7280';
+      aide.style.fontWeight = refus ? '600' : '400';
+    }
+
+    champ.addEventListener('focus', function () {
+      if (!champ.value) {
+        champ.value = '+';
+        // Le curseur après le « + », pas devant.
+        setTimeout(function () {
+          try { champ.setSelectionRange(1, 1); } catch (e) { /* type tel : selon le navigateur */ }
+        }, 0);
+      }
+    });
+    champ.addEventListener('blur', function () {
+      // Un « + » seul n'est pas un numéro : la case redevient vide, et
+      // « obligatoire » reprend la main.
+      if (champ.value.trim() === '+') champ.value = '';
+      if (!champ.value.trim()) { montrer(null); return; }
+      montrer(refusDuNumero(champ.value));
+    });
+    // Le défaut disparaît dès qu'il est réparé, et jamais avant.
+    champ.addEventListener('input', function () {
+      if (champ.validationMessage || aide.getAttribute('role') === 'alert') {
+        montrer(refusDuNumero(champ.value));
+      }
+    });
+    champ.dire = montrer;
+  }
+
+  // ========================================================================
   // LA PRE-RESERVATION
   // ========================================================================
   function preReservation() {
@@ -255,9 +347,11 @@
     var bouton = form.querySelector('button[type="submit"]');
     var etat = document.getElementById('reservationStatus');
     var naissance = document.getElementById('age');
+    var telephone = document.getElementById('phone');
     var libelle = bouton ? bouton.textContent : '';
     var enCours = false;
     if (naissance) masqueDeDate(naissance);
+    if (telephone) numeroDeTelephone(telephone);
 
     // TROIS JOURS AU MOINS (Lisa, 1er octobre 2026 : elle recoit « souvent des
     // demandes par le formulaire de pré-réservation pour des locations de
@@ -311,6 +405,7 @@
     // les calendriers oublient leur choix.
     form.addEventListener('reset', function () {
       setTimeout(function () {
+        if (telephone && telephone.dire) telephone.dire(null);
         [depart, retour].forEach(function (champ) {
           if (champ && champ._flatpickr) champ._flatpickr.clear(false);
         });
@@ -381,6 +476,19 @@
       var piege = String(fd.get('champ_piege') || '').trim();
       var duree = Date.now() - ouverte;
 
+      // LE NUMERO D'ABORD : c'est le seul moyen de rappeler le client, et le
+      // defaut le plus courant des demandes recues (9 octobre 2026).
+      if (telephone) {
+        var refusTel = refusDuNumero(telephone.value);
+        if (refusTel) {
+          if (telephone.dire) telephone.dire(refusTel);
+          telephone.reportValidity();
+          if (telephone.scrollIntoView) telephone.scrollIntoView({ block: 'center' });
+          telephone.focus();
+          return;
+        }
+      }
+
       var naissanceIso = null;
       if (naissance) {
         naissanceIso = naissanceEnIso(naissance.value);
@@ -419,7 +527,8 @@
         // colonnes fixes, et une case qu'il ne connait pas n'a rien a y
         // faire. L'App le recoit, a cote de l'empreinte (1er octobre 2026).
         if (k === 'champ_piege' || k === 'message' || typeof v !== 'string') return;
-        corps.append(k, k === 'age' && naissanceIso ? naissanceIso : v);
+        // Le numero part RANGE (« +529981234567 ») : la meme forme que l'App.
+        corps.append(k, k === 'age' && naissanceIso ? naissanceIso : k === 'phone' ? numeroRange(v) : v);
       });
       var versLApp = new URLSearchParams(corps.toString());
       versLApp.append('message', String(fd.get('message') || '').trim());
