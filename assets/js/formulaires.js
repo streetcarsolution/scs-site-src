@@ -53,9 +53,9 @@
       naissanceVieux: "Vérifiez l'année de naissance.",
       minimum: 'La location doit contenir un minimum de 3 jours.',
       dateManquante: 'Choisissez la date dans le calendrier.',
-      telAide: "Commencez par « + » et l'indicatif de votre pays : +52 Mexique, +33 France, +1 Canada.",
-      telSansPlus: "Il manque le « + » et l'indicatif de votre pays avant le numéro. Exemples : +52 998 123 4567 (Mexique), +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada).",
-      telIncomplet: "Ce numéro semble incomplet. Vérifiez l'indicatif du pays et tous les chiffres, par exemple +52 998 123 4567.",
+      telAide: "Commencez par « + » et l'indicatif de votre pays : +33 France, +1 Canada, +52 Mexique.",
+      telSansPlus: "Il manque le « + » et l'indicatif de votre pays avant le numéro. Exemples : +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada), +52 998 123 4567 (Mexique).",
+      telIncomplet: "Ce numéro semble incomplet. Vérifiez l'indicatif du pays et tous les chiffres, par exemple +33 6 12 34 56 78.",
       contactEnvoi: 'Envoi…',
       contactMerci: 'Merci, votre message a bien été envoyé !',
       contactEchec: 'Désolé, une erreur est survenue. Réessayez plus tard.'
@@ -69,9 +69,9 @@
       naissanceVieux: 'Please check the year of birth.',
       minimum: 'The rental must be for a minimum of 3 days.',
       dateManquante: 'Please choose the date from the calendar.',
-      telAide: 'Start with “+” and your country code: +1 Canada/USA, +33 France, +52 Mexico.',
-      telSansPlus: 'Please add the “+” and your country code before the number. Examples: +1 514 123 4567 (Canada/USA), +33 6 12 34 56 78 (France), +52 998 123 4567 (Mexico).',
-      telIncomplet: 'This number looks incomplete. Please check the country code and all the digits, for example +1 514 123 4567.',
+      telAide: 'Start with “+” and your country code: +33 France, +1 Canada/USA, +52 Mexico.',
+      telSansPlus: 'Please add the “+” and your country code before the number. Examples: +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada/USA), +52 998 123 4567 (Mexico).',
+      telIncomplet: 'This number looks incomplete. Please check the country code and all the digits, for example +33 6 12 34 56 78.',
       contactEnvoi: 'Sending…',
       contactMerci: 'Thanks, your message has been sent!',
       contactEchec: 'Sorry, an error occurred. Please try again later.'
@@ -85,9 +85,9 @@
       naissanceVieux: 'Revise el año de nacimiento.',
       minimum: 'La renta debe ser de un mínimo de 3 días.',
       dateManquante: 'Elija la fecha en el calendario.',
-      telAide: 'Empiece con «+» y el código de su país: +52 México, +1 EE. UU./Canadá, +33 Francia.',
-      telSansPlus: 'Falta el «+» y el código de su país antes del número. Ejemplos: +52 998 123 4567 (México), +1 514 123 4567 (Canadá/EE. UU.), +33 6 12 34 56 78 (Francia).',
-      telIncomplet: 'Este número parece incompleto. Revise el código del país y todos los dígitos, por ejemplo +52 998 123 4567.',
+      telAide: 'Empiece con «+» y el código de su país: +33 Francia, +1 Canadá/EE. UU., +52 México.',
+      telSansPlus: 'Falta el «+» y el código de su país antes del número. Ejemplos: +33 6 12 34 56 78 (Francia), +1 514 123 4567 (Canadá/EE. UU.), +52 998 123 4567 (México).',
+      telIncomplet: 'Este número parece incompleto. Revise el código del país y todos los dígitos, por ejemplo +33 6 12 34 56 78.',
       contactEnvoi: 'Enviando…',
       contactMerci: '¡Gracias, su mensaje ha sido enviado!',
       contactEchec: 'Lo sentimos, ocurrió un error. Inténtelo más tarde.'
@@ -294,8 +294,10 @@
    * le défaut quand le numéro est refusé. Un seul paragraphe, écrit ici pour
    * les trois langues : le HTML des trois pages n'a pas à le porter.
    *
-   * LE « + » SE POSE TOUT SEUL à l'arrivée dans la case vide : le défaut le
-   * plus courant est de ne pas y penser.
+   * LE « + » EST DEJA DANS LA CASE, des l'ouverture de la page (Sabrina, le
+   * 9 octobre 2026 : « le + pourrait être enregistré par défaut ») : le défaut le
+   * plus courant est de ne pas y penser, et il ne se retape pas. Le client tape
+   * l'indicatif juste derrière.
    */
   function numeroDeTelephone(champ) {
     if (!champ || !champ.parentNode) return;
@@ -313,20 +315,18 @@
       aide.style.fontWeight = refus ? '600' : '400';
     }
 
+    if (!champ.value.trim()) champ.value = '+';
     champ.addEventListener('focus', function () {
-      if (!champ.value) {
-        champ.value = '+';
-        // Le curseur après le « + », pas devant.
-        setTimeout(function () {
-          try { champ.setSelectionRange(1, 1); } catch (e) { /* type tel : selon le navigateur */ }
-        }, 0);
-      }
+      // Une case vidée a la main retrouve son « + » ; le curseur se pose après lui.
+      if (!champ.value.trim()) champ.value = '+';
+      setTimeout(function () {
+        try { var n = champ.value.length; champ.setSelectionRange(n, n); } catch (e) { /* type tel : selon le navigateur */ }
+      }, 0);
     });
     champ.addEventListener('blur', function () {
-      // Un « + » seul n'est pas un numéro : la case redevient vide, et
-      // « obligatoire » reprend la main.
-      if (champ.value.trim() === '+') champ.value = '';
-      if (!champ.value.trim()) { montrer(null); return; }
+      // Un « + » seul n'est pas un numéro, mais ce n'est pas un défaut a crier :
+      // le client n'a rien tape. L'envoi, lui, le refuse.
+      if (champ.value.trim() === '+' || !champ.value.trim()) { montrer(null); return; }
       montrer(refusDuNumero(champ.value));
     });
     // Le défaut disparaît dès qu'il est réparé, et jamais avant.
@@ -405,7 +405,7 @@
     // les calendriers oublient leur choix.
     form.addEventListener('reset', function () {
       setTimeout(function () {
-        if (telephone && telephone.dire) telephone.dire(null);
+        if (telephone && telephone.dire) { telephone.value = '+'; telephone.dire(null); }
         [depart, retour].forEach(function (champ) {
           if (champ && champ._flatpickr) champ._flatpickr.clear(false);
         });
