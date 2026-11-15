@@ -11,6 +11,7 @@ langues, hébergées chez OVH.
 | `en/`, `es/` | Les mêmes pages en anglais et en espagnol (sauf le blog, en français seulement) |
 | `assets/js/formulaires.js` | La pré-réservation et le message de contact, pour les trois langues |
 | `assets/js/newsletter.js` | L'inscription à la newsletter |
+| `assets/js/consentement.js` | Le bandeau cookies : les vidéos Facebook, la carte Google et la traduction du blog attendent l'accord du visiteur |
 | `assets/vehicules/` | Les photos des véhicules, en WebP |
 | `assets/vendor/` | Le calendrier flatpickr, copié dans le site |
 | `.htaccess` | Redirections, cache, compression et en-têtes de sécurité |

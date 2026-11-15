@@ -15,7 +15,6 @@
 
   <!-- Perf: pré-connecte les domaines lourds -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
   <link rel="preconnect" href="https://www.facebook.com" crossorigin>
 
   <!-- Canonical + SEO + Social (testimonials.html) -->
@@ -240,7 +239,7 @@
           <!-- Vidéo 1 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
             <div class="aspect-video bg-black">
-              <div class="fb-video w-full h-full"
+              <div class="fb-video w-full h-full" data-consent="facebook"
                    data-href="https://www.facebook.com/yoan.cremona.3/videos/24216455441318195/"
                    data-width="auto"
                    data-allowfullscreen="true"
@@ -254,7 +253,7 @@
           <!-- Vidéo 2 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
             <div class="aspect-video bg-black">
-              <div class="fb-video w-full h-full"
+              <div class="fb-video w-full h-full" data-consent="facebook"
                    data-href="https://www.facebook.com/yoan.cremona.3/videos/783062530742767/"
                    data-width="auto"
                    data-allowfullscreen="true"
@@ -268,7 +267,7 @@
           <!-- Vidéo 3 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
             <div class="aspect-video bg-black">
-              <div class="fb-video w-full h-full"
+              <div class="fb-video w-full h-full" data-consent="facebook"
                    data-href="https://www.facebook.com/yoan.cremona.3/videos/1268199234454838/"
                    data-width="auto"
                    data-allowfullscreen="true"
@@ -282,7 +281,7 @@
           <!-- Vidéo 4 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
             <div class="aspect-video bg-black">
-              <div class="fb-video w-full h-full"
+              <div class="fb-video w-full h-full" data-consent="facebook"
                    data-href="https://www.facebook.com/yoan.cremona.3/videos/1111144331119753/"
                    data-width="auto"
                    data-allowfullscreen="true"
@@ -296,7 +295,7 @@
           <!-- Vidéo 5 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
             <div class="aspect-video bg-black">
-              <div class="fb-video w-full h-full"
+              <div class="fb-video w-full h-full" data-consent="facebook"
                    data-href="https://www.facebook.com/yoan.cremona.3/videos/1285043749837606/"
                    data-width="auto"
                    data-allowfullscreen="true"
@@ -310,7 +309,7 @@
           <!-- Vidéo 6 (FB) -->
           <article class="bg-white rounded-xl shadow overflow-hidden">
             <div class="aspect-video bg-black">
-              <div class="fb-video w-full h-full"
+              <div class="fb-video w-full h-full" data-consent="facebook"
                    data-href="https://www.facebook.com/yoan.cremona.3/videos/1856348745096733/"
                    data-width="auto"
                    data-allowfullscreen="true"
@@ -672,9 +671,10 @@ window.addEventListener('resize', () => { langDrop?.classList.add('hidden'); cur
 
   <!-- SDK Facebook (fermé correctement) -->
   <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous"
-          src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v20.0"></script>
+  <script type="text/plain" data-consent="facebook" data-crossorigin="anonymous"
+          data-consent-src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v20.0"></script>
 
 <script defer src="/assets/js/newsletter.js"></script>
+<script defer src="/assets/js/consentement.js?v=1"></script>
 </body>
 </html>

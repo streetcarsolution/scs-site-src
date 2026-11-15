@@ -1410,15 +1410,22 @@
 
     // Sélection de langue via les drapeaux
     function switchLang(lang){
+      // Google Traduction n'est chargé qu'après l'accord du visiteur (consentement.js)
+      var accord = window.SCSConsent;
+      if (accord && !accord.ok('translate')) {
+        if (lang !== 'fr') accord.demander('translate', function(){ switchLang(lang); });
+        return;
+      }
       // Google insère un <select class="goog-te-combo"> ; on l'actionne
       var trySelect = function(tries){
         var sel = document.querySelector('select.goog-te-combo');
-        if (sel) {
+        // Google remplit la liste des langues un instant après l'avoir créée
+        if (sel && sel.options.length > 1) {
           sel.value = lang;
           sel.dispatchEvent(new Event('change'));
           panel.classList.add('hidden');
           btn.setAttribute('aria-expanded','false');
-        } else if ((tries||0) < 40) {
+        } else if ((tries||0) < 100) {
           setTimeout(function(){ trySelect((tries||0)+1); }, 100);
         }
       };
@@ -1430,8 +1437,10 @@
     });
   })();
   </script>
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script type="text/plain" data-consent="translate"
+          data-consent-src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script defer src="/assets/js/newsletter.js"></script>
+<script defer src="/assets/js/consentement.js?v=1"></script>
 </body>
 </html>
