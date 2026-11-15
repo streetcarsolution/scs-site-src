@@ -71,19 +71,6 @@
   </script>
 
   <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"Street Car Solution",
-    "url":"https://streetcarsolution.com/",
-    "potentialAction":{
-      "@type":"SearchAction",
-      "target":"https://streetcarsolution.com/es/services.html?q={search_term_string}",
-      "query-input":"required name=search_term_string"
-    }
-  }
-  </script>
 </head>
 <body class="overflow-x-hidden font-sans">
 
@@ -430,7 +417,7 @@
           <div class="flex space-x-4 mt-4">
             <a href="https://www.facebook.com/streetcarsolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/streetcarsolution_rentcars/?igsh=M21nMWk3Z2ltdXpo&utm_source=qr#" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-            <a href="http://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.tiktok.com/@yoancremona" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@StreetCarSolution" class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer" aria-label="Canal YouTube Street Car Solution"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
@@ -442,7 +429,7 @@
             <li><a href="/es/vehicles.html" class="text-gray-400 hover:text-white">Nuestros Vehículos</a></li>
             <li><a href="/es/services.html" class="text-gray-400 hover:text-white">Servicios</a></li>
             <li><a href="/es/testimonials.html" class="text-gray-400 hover:text-white">Testimonios</a></li>
-            <li><a href="#contact" class="text-gray-400 hover:text-white">Contacto</a></li>
+            <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contacto</a></li>
           </ul>
         </div>
 
@@ -469,7 +456,7 @@
         </div>
 
         <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2023 Street Car Solution. Todos los derechos reservados.</p>
+          <p>&copy; 2026 Street Car Solution. Todos los derechos reservados.</p>
         </div>
       </div>
     </div>
@@ -493,7 +480,7 @@
       function renderPrices(force){const cur=force||detectCurrency(),cfg=MAP[cur];document.querySelectorAll('.js-price').forEach(el=>{const val=el.dataset[cfg.key];if(val)el.textContent=cfg.fmt(val);});}
       document.querySelectorAll('.currency-dropdown [data-currency]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const cur=a.dataset.currency;const labelMap={EUR:'€ EUR',USD:'$ USD',CAD:'$ CAD',MXN:'$ MXN'};const lbl=document.getElementById('currencyLabel');if(lbl)lbl.textContent=labelMap[cur];renderPrices(cur);document.querySelector('.currency-dropdown')?.classList.add('hidden');});});
       document.getElementById('currencyBtn')?.addEventListener('click',e=>{const p=document.querySelector('.currency-dropdown');if(!p)return;p.classList.contains('hidden')&&(e.stopPropagation(),p.classList.remove('hidden'));});
-      document.addEventListener('DOMContentLoaded',renderPrices);
+      document.addEventListener('DOMContentLoaded', () => renderPrices());
     })();
   </script>
 

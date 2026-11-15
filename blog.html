@@ -67,63 +67,7 @@
         "@type": "ImageObject",
         "url": "https://streetcarsolution.com/assets/logo.png"
       }
-    },
-    "blogPost": [
-      {
-        "@type": "BlogPosting",
-        "headline": "Conduire sur la Riviera Maya : ce qu’il faut savoir",
-        "url": "https://streetcarsolution.com/blog/conduire-sur-la-riviera-maya.html",
-        "image": "https://streetcarsolution.com/assets/blog/riviera-maya.jpg",
-        "datePublished": "2025-09-15",
-        "dateModified": "2025-09-15",
-        "author": { "@type": "Organization", "name": "Street Car Solution" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Les plus beaux cenotes accessibles en voiture",
-        "url": "https://streetcarsolution.com/blog/cenotes-en-voiture.html",
-        "image": "https://streetcarsolution.com/assets/blog/cenotes.jpg",
-        "datePublished": "2025-09-10",
-        "dateModified": "2025-09-10",
-        "author": { "@type": "Organization", "name": "Street Car Solution" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Week-end à Playa del Carmen : itinéraire parfait",
-        "url": "https://streetcarsolution.com/blog/weekend-playa-del-carmen.html",
-        "image": "https://streetcarsolution.com/assets/blog/playa.jpg",
-        "datePublished": "2025-09-05",
-        "dateModified": "2025-09-05",
-        "author": { "@type": "Organization", "name": "Street Car Solution" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Comprendre l’assurance auto au Mexique",
-        "url": "https://streetcarsolution.com/blog/assurance-auto-mexique.html",
-        "image": "https://streetcarsolution.com/assets/blog/assurance.jpg",
-        "datePublished": "2025-09-01",
-        "dateModified": "2025-09-01",
-        "author": { "@type": "Organization", "name": "Street Car Solution" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Où manger authentique autour de Cancún",
-        "url": "https://streetcarsolution.com/blog/restos-authentiques-cancun.html",
-        "image": "https://streetcarsolution.com/assets/blog/food.jpg",
-        "datePublished": "2025-08-28",
-        "dateModified": "2025-08-28",
-        "author": { "@type": "Organization", "name": "Street Car Solution" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Vacances en famille : locations adaptées aux enfants",
-        "url": "https://streetcarsolution.com/blog/famille-enfants-voiture.html",
-        "image": "https://streetcarsolution.com/assets/blog/family.png",
-        "datePublished": "2025-08-25",
-        "dateModified": "2025-08-25",
-        "author": { "@type": "Organization", "name": "Street Car Solution" }
-      }
-    ]
+    }
   }
   </script>
 
@@ -219,10 +163,10 @@
         <a href="blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
           <span class="fi fi-fr mr-2"></span> Français
         </a>
-        <a href="en/blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+        <a href="en/index.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
           <span class="fi fi-us mr-2"></span> English
         </a>
-        <a href="es/blog.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
+        <a href="es/index.html" class="block px-4 py-2 hover:bg-caribbean-blue hover:text-white flex items-center">
           <span class="fi fi-mx mr-2"></span> Español
         </a>
       </div>
@@ -928,7 +872,7 @@
           </a>
           
           <!-- TikTok -->
-          <a href="http://www.tiktok.com/@yoancremona" 
+          <a href="https://www.tiktok.com/@yoancremona" 
              class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-tiktok"></i>
           </a>
@@ -950,7 +894,7 @@
             <li><a href="vehicles.html" class="text-gray-400 hover:text-white">Nos Véhicules</a></li>
             <li><a href="services.html" class="text-gray-400 hover:text-white">Services</a></li>
             <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Témoignages clients</a></li>
-            <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+            <li><a href="index.html#contact" class="text-gray-400 hover:text-white">Contact</a></li>
           </ul>
         </div>
 
@@ -977,7 +921,7 @@
         </div>
 
         <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+          <p>&copy; 2026 Street Car Solution. Tous droits réservés.</p>
         </div>
       </div>
     </div>
@@ -1246,6 +1190,34 @@
       const curSel  = document.querySelector('.currency-selector');
       const curDrop = document.querySelector('.currency-dropdown');
       const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    function setupDropdown(trigger, panel) {
+      if (!trigger || !panel) return;
+      panel.classList.add('hidden');
+      let hideTimer = null;
+      const btn = trigger.querySelector('button');
+      const open  = () => { if (hideTimer) clearTimeout(hideTimer); panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); };
+      const close = () => { hideTimer = setTimeout(() => { panel.classList.add('hidden'); btn?.setAttribute('aria-expanded','false'); }, 120); };
+      const toggle = (e) => {
+        e.stopPropagation();
+        const show = panel.classList.contains('hidden');
+        if (panel !== langDrop) langDrop?.classList.add('hidden');
+        if (panel !== curDrop)  curDrop?.classList.add('hidden');
+        if (show) { panel.classList.remove('hidden'); btn?.setAttribute('aria-expanded','true'); }
+        else      { panel.classList.add('hidden');    btn?.setAttribute('aria-expanded','false'); }
+      };
+      if (isDesktop.matches) {
+        trigger.addEventListener('mouseenter', open);
+        trigger.addEventListener('mouseleave', close);
+        panel.addEventListener('mouseenter', open);
+        panel.addEventListener('mouseleave', close);
+        btn?.addEventListener('focus', open);
+        btn?.addEventListener('blur', close);
+      } else {
+        trigger.addEventListener('click', toggle);
+      }
+      panel.addEventListener('click', (e) => e.stopPropagation());
+    }
 
       // >>> Désactiver la dropdown langues UNIQUEMENT sur blog.html
       const isBlog = /\/blog\.html(?:$|\?)/i.test(location.pathname);

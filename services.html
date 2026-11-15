@@ -83,19 +83,6 @@
   </script>
 
   <!-- JSON-LD séparé -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Street Car Solution",
-      "url": "https://streetcarsolution.com/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://streetcarsolution.com/services.html?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-  </script>
 </head>
 <body class="overflow-x-hidden font-sans">
 
@@ -457,7 +444,7 @@
                class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="http://www.tiktok.com/@yoancremona"
+            <a href="https://www.tiktok.com/@yoancremona"
                class="text-gray-400 hover:text-white" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-tiktok"></i>
             </a>
@@ -517,7 +504,7 @@
 
                 <!-- Keep this OUTSIDE the grid to center across the full width -->
             <div class="col-span-full border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-              <p>&copy; 2023 Street Car Solution. Tous droits réservés.</p>
+              <p>&copy; 2026 Street Car Solution. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -642,7 +629,7 @@
         if (panel.classList.contains('hidden')) { e.stopPropagation(); panel.classList.remove('hidden'); }
       });
 
-      document.addEventListener('DOMContentLoaded', renderPrices);
+      document.addEventListener('DOMContentLoaded', () => renderPrices());
     })();
   </script>
 
