@@ -33,5 +33,12 @@ RewriteRule ^ https://streetcarsolution.com%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # 4) Compression (si dispo côté OVH)
+# Le fichier s'arrêtait ici en pleine ligne (« text/html tex », bloc jamais
+# fermé) : seul le HTML était compressé, et les scripts partaient en entier.
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html tex
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+    AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/manifest+json application/xml image/svg+xml
+  </IfModule>
+</IfModule>

@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- Mantener durante el desarrollo -->
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow">
 
   <title>Servicios y Opciones – Street Car Solution</title>
 
@@ -16,6 +15,10 @@
 
   <!-- Canonical + SEO + Social -->
   <link rel="canonical" href="https://streetcarsolution.com/es/services.html">
+  <link rel="alternate" hreflang="fr" href="https://streetcarsolution.com/services.html">
+  <link rel="alternate" hreflang="en" href="https://streetcarsolution.com/en/services.html">
+  <link rel="alternate" hreflang="es" href="https://streetcarsolution.com/es/services.html">
+  <link rel="alternate" hreflang="x-default" href="https://streetcarsolution.com/services.html">
   <meta name="description" content="Agrega servicios y opciones para un viaje 100% sin estrés. Entrega y devolución en aeropuerto/hotel, seguro y kilometraje ilimitado incluidos, asistencia 24/7, conductor adicional, asientos infantiles, GPS/CarPlay y contrato 100% transparente.">
   <meta property="og:site_name" content="Street Car Solution">
   <meta property="og:type" content="website">
@@ -151,7 +154,7 @@
   </nav>
 
   <!-- Menú móvil -->
-  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t mt-12">
+  <div id="mobileMenu" class="md:hidden hidden fixed top-32 inset-x-0 z-30 max-h-[calc(100vh-8rem)] overflow-y-auto bg-white shadow-md border-t">
     <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
       <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Inicio</a>
       <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Vehículos</a>
@@ -476,7 +479,7 @@
   <!-- Scripts (idénticos al FR) -->
   <script>
     const burgerBtn=document.getElementById('mobileMenuBtn');const mobileMenu=document.getElementById('mobileMenu');
-    if(burgerBtn&&mobileMenu){const i=burgerBtn.querySelector('i');const close=()=>{mobileMenu.classList.add('hidden');document.body.classList.remove('overflow-hidden');burgerBtn.setAttribute('aria-expanded','false');i&&(i.classList.remove('fa-xmark'),i.classList.add('fa-bars'));};const open=()=>{mobileMenu.classList.remove('hidden');document.body.classList.add('overflow-hidden');burgerBtn.setAttribute('aria-expanded','true');i&&(i.classList.remove('fa-bars'),i.classList.add('fa-xmark'));};burgerBtn.addEventListener('click',()=>{mobileMenu.classList.contains('hidden')?open():close();});document.addEventListener('keydown',e=>{'Escape'===e.key&&close()});window.addEventListener('resize',()=>{window.innerWidth>=768&&close()});}
+    if(burgerBtn&&mobileMenu){const i=burgerBtn.querySelector('i');const close=()=>{mobileMenu.classList.add('hidden');document.body.classList.remove('overflow-hidden');burgerBtn.setAttribute('aria-expanded','false');i&&(i.classList.remove('fa-times'),i.classList.add('fa-bars'));};const open=()=>{mobileMenu.classList.remove('hidden');document.body.classList.add('overflow-hidden');burgerBtn.setAttribute('aria-expanded','true');i&&(i.classList.remove('fa-bars'),i.classList.add('fa-times'));};burgerBtn.addEventListener('click',()=>{mobileMenu.classList.contains('hidden')?open():close();});document.addEventListener('keydown',e=>{'Escape'===e.key&&close()});window.addEventListener('resize',()=>{window.innerWidth>=768&&close()});}
   </script>
   <script>
     const langSel=document.querySelector('.language-selector');const langDrop=document.querySelector('.language-dropdown');const curSel=document.querySelector('.currency-selector');const curDrop=document.querySelector('.currency-dropdown');const isDesktop=window.matchMedia('(hover: hover) and (pointer: fine)');

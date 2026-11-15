@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- Mantener durante el desarrollo -->
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow">
 
   <title>Testimonios de Clientes – Street Car Solution</title>
 
@@ -22,8 +21,8 @@
   <!-- Canonical + SEO + Social -->
   <link rel="canonical" href="https://streetcarsolution.com/es/testimonials.html">
   <link rel="alternate" hreflang="fr" href="https://streetcarsolution.com/testimonials.html">
-  <link rel="alternate" hreflang="en-US" href="https://streetcarsolution.com/en/testimonials.html">
-  <link rel="alternate" hreflang="es-MX" href="https://streetcarsolution.com/es/testimonials.html">
+  <link rel="alternate" hreflang="en" href="https://streetcarsolution.com/en/testimonials.html">
+  <link rel="alternate" hreflang="es" href="https://streetcarsolution.com/es/testimonials.html">
   <link rel="alternate" hreflang="x-default" href="https://streetcarsolution.com/testimonials.html">
 
   <meta name="description" content="Opiniones reales en video y por escrito. ¡Gracias por su confianza! Vea videos y testimonios sobre Street Car Solution. Renta de autos en Cancún y la Riviera Maya con transparencia y asistencia 24/7.">
@@ -252,7 +251,7 @@
   </nav>
 
   <!-- Menú móvil -->
-  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t mt-12">
+  <div id="mobileMenu" class="md:hidden hidden fixed top-32 inset-x-0 z-30 max-h-[calc(100vh-8rem)] overflow-y-auto bg-white shadow-md border-t">
     <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
       <a href="/es/index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Inicio</a>
       <a href="/es/vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Vehículos</a>
@@ -501,13 +500,13 @@
         mobileMenu.classList.add('hidden');
         document.body.classList.remove('overflow-hidden');
         burgerBtn.setAttribute('aria-expanded', 'false');
-        if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+        if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
       };
       const openMenu = () => {
         mobileMenu.classList.remove('hidden');
         document.body.classList.add('overflow-hidden');
         burgerBtn.setAttribute('aria-expanded', 'true');
-        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
       };
       burgerBtn.addEventListener('click', () => {
         if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();

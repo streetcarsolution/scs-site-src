@@ -34,5 +34,11 @@ jobs:
             **/.DS_Store
             **/README.md
             **/prompts.txt
-          dangerous-clean-slate: true
+          # PAS DE « dangerous-clean-slate » : il effaçait tout le site sur le
+          # serveur avant de le renvoyer, à chaque envoi. Pendant ce temps les
+          # pages répondaient 404, et un envoi coupé en route laissait le site
+          # à moitié vide. Sans lui, l'action compare avec son fichier d'état
+          # (.ftp-deploy-sync-state.json, sur le serveur) : elle n'envoie que
+          # ce qui a changé et retire ce qui a été supprimé du dépôt.
+          # Pour forcer un envoi complet : supprimer ce fichier d'état en FTP.
           log-level: standard

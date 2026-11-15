@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- À garder pendant tout le développement -->
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
     <meta name="description" content="Location de voitures à Cancún et Riviera Maya, péninsule du Yucatan : prix transparents, assistance francophone 24/7, Économique, Standard, Berline, SUV 5/7 places, Van 14 places. Street Car Solution.">
     <link rel="preload" as="image" href="/logo.png?v=2">
 
@@ -17,6 +16,10 @@
     
     <!-- Canonical + description -->
     <link rel="canonical" href="https://streetcarsolution.com/">
+    <link rel="alternate" hreflang="fr" href="https://streetcarsolution.com/">
+    <link rel="alternate" hreflang="en" href="https://streetcarsolution.com/en/">
+    <link rel="alternate" hreflang="es" href="https://streetcarsolution.com/es/">
+    <link rel="alternate" hreflang="x-default" href="https://streetcarsolution.com/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -206,7 +209,7 @@
 </nav>
 
 <!-- Menu mobile (SÉPARÉ, caché en desktop) -->
-<div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t mt-12">
+<div id="mobileMenu" class="md:hidden hidden fixed top-32 inset-x-0 z-30 max-h-[calc(100vh-8rem)] overflow-y-auto bg-white shadow-md border-t">
   <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
     <a href="index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Accueil</a>
     <a href="vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Nos Véhicules</a>
@@ -1446,13 +1449,13 @@ if (burgerBtn && mobileMenu) {
     mobileMenu.classList.add('hidden');
     document.body.classList.remove('overflow-hidden');
     burgerBtn.setAttribute('aria-expanded', 'false');
-    if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+    if (icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
   };
   const openMenu = () => {
     mobileMenu.classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
     burgerBtn.setAttribute('aria-expanded', 'true');
-    if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+    if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
   };
   burgerBtn.addEventListener('click', () => {
     if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();

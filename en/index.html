@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Keep during development -->
-  <meta name="robots" content="noindex, nofollow" />
+  <meta name="robots" content="index, follow">
 
   <meta name="description" content="Car rental in Cancún & the Riviera Maya: transparent prices, 24/7 support, Economy, Standard, Sedan, 5/7-seat SUVs, 14-seat Van. Street Car Solution." />
   <link rel="preload" as="image" href="/logo.png?v=2" />
@@ -19,6 +18,10 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://streetcarsolution.com/en/" />
+  <link rel="alternate" hreflang="fr" href="https://streetcarsolution.com/">
+  <link rel="alternate" hreflang="en" href="https://streetcarsolution.com/en/">
+  <link rel="alternate" hreflang="es" href="https://streetcarsolution.com/es/">
+  <link rel="alternate" hreflang="x-default" href="https://streetcarsolution.com/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -174,7 +177,7 @@
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t mt-12">
+  <div id="mobileMenu" class="md:hidden hidden fixed top-32 inset-x-0 z-30 max-h-[calc(100vh-8rem)] overflow-y-auto bg-white shadow-md border-t">
     <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
       <a href="/en/index.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Home</a>
       <a href="/en/vehicles.html" class="text-gray-800 hover:text-caribbean-blue font-medium">Vehicles</a>
@@ -1110,8 +1113,8 @@ const burgerBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 if (burgerBtn && mobileMenu) {
   const icon = burgerBtn.querySelector('i');
-  const closeMenu = () => { mobileMenu.classList.add('hidden'); document.body.classList.remove('overflow-hidden'); burgerBtn.setAttribute('aria-expanded','false'); if(icon){icon.classList.remove('fa-xmark');icon.classList.add('fa-bars');} };
-  const openMenu  = () => { mobileMenu.classList.remove('hidden'); document.body.classList.add('overflow-hidden'); burgerBtn.setAttribute('aria-expanded','true'); if(icon){icon.classList.remove('fa-bars');icon.classList.add('fa-xmark');} };
+  const closeMenu = () => { mobileMenu.classList.add('hidden'); document.body.classList.remove('overflow-hidden'); burgerBtn.setAttribute('aria-expanded','false'); if(icon){icon.classList.remove('fa-times');icon.classList.add('fa-bars');} };
+  const openMenu  = () => { mobileMenu.classList.remove('hidden'); document.body.classList.add('overflow-hidden'); burgerBtn.setAttribute('aria-expanded','true'); if(icon){icon.classList.remove('fa-bars');icon.classList.add('fa-times');} };
   burgerBtn.addEventListener('click', () => { mobileMenu.classList.contains('hidden') ? openMenu() : closeMenu(); });
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   document.addEventListener('click', (e) => { if (!mobileMenu.contains(e.target) && !burgerBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) closeMenu(); });
