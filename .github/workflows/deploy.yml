@@ -22,7 +22,9 @@ jobs:
           server: ${{ secrets.OVH_FTP_SERVER }}
           username: ${{ secrets.OVH_FTP_USERNAME }}
           password: ${{ secrets.OVH_FTP_PASSWORD }}
-          protocol: ftp
+          # ftps : meme serveur, meme port, mais le mot de passe et les fichiers
+          # voyagent chiffres. (Avec « ftp », ils passaient en clair.)
+          protocol: ftps
           port: 21
           server-dir: /www/
           local-dir: ./
