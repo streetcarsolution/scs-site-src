@@ -1,0 +1,4 @@
+# Maquette de travail : les moteurs de recherche ne doivent pas la retenir.
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
