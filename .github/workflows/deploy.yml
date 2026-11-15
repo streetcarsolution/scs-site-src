@@ -22,9 +22,10 @@ jobs:
           server: ${{ secrets.OVH_FTP_SERVER }}
           username: ${{ secrets.OVH_FTP_USERNAME }}
           password: ${{ secrets.OVH_FTP_PASSWORD }}
-          # ftps : meme serveur, meme port, mais le mot de passe et les fichiers
-          # voyagent chiffres. (Avec « ftp », ils passaient en clair.)
-          protocol: ftps
+          # « ftps » (chiffré) a été essayé le 15/11/2026 : OVH a refusé la connexion
+          # en quelques secondes. Pour chiffrer l'envoi, il faudrait passer en SFTP
+          # (port 22), que cette action ne sait pas faire.
+          protocol: ftp
           port: 21
           server-dir: /www/
           local-dir: ./
