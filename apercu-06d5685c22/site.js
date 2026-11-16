@@ -99,7 +99,7 @@
   var TEL_INCOMPLET = "Ce numéro semble incomplet. Vérifiez l'indicatif du pays et tous les chiffres, par exemple +33 6 12 34 56 78.";
   var JOURS_MINIMUM = 3;
   var PRIX = { 'Économique': 35, 'Citadine': 40, 'Berline': 47, 'SUV 5 places': 62, 'Monospace 7 ou 8 places': 75, 'Van 14 places': 105 };
-  var PHOTO = { 'Économique': 'economique', 'Citadine': 'aveo', 'Berline': 'k3-noire', 'SUV 5 places': 'cx5-agence', 'Monospace 7 ou 8 places': 'sedona-agence', 'Van 14 places': 'van' };
+  var PHOTO = { 'Économique': 'economique', 'Citadine': 'aveo-agence', 'Berline': 'k3-noire', 'SUV 5 places': 'cx5-agence', 'Monospace 7 ou 8 places': 'sedona-agence', 'Van 14 places': 'van' };
   function id(i) { return document.getElementById(i); }
 
   var resa = id('resa');
