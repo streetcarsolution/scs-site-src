@@ -203,7 +203,7 @@ h3 { font-family: var(--display); font-weight: 600; }
 .car-pic { position: relative; flex: 1 1 auto; min-height: 0; margin: 2px -20px 0; }
 .car-pic i { position: absolute; right: -4%; bottom: 4%; width: 74%; aspect-ratio: 1; border-radius: 50%; background: rgba(255, 255, 255, .17); }
 .k-sun .car-pic i { background: rgba(255, 255, 255, .5); }
-.car-pic img { position: absolute; left: 4%; bottom: 0; width: 108%; height: 100%; max-width: none; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 16px 10px rgba(6, 30, 50, .32)); }
+.car-pic img { position: absolute; left: 6%; bottom: 0; width: 106%; height: 100%; max-width: none; object-fit: contain; object-position: 100% 100%; filter: drop-shadow(0 16px 10px rgba(6, 30, 50, .32)); }
 .car-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; margin-top: 12px; }
 .car-foot p { font-size: 14px; line-height: 1.4; opacity: .92; }
 .car-foot a { flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: #fff; color: var(--night); font-size: 20px; font-weight: 700; transition: transform .4s var(--e); }
