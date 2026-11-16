@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=2">
+  <link rel="stylesheet" href="site.css?v=3">
 </head>
 <body>
 
@@ -32,9 +32,10 @@
     </a>
     <nav class="nav-links" aria-label="Menu principal">
       <a href="#flotte">Véhicules</a>
-      <a href="#route">La route</a>
       <a href="#atouts">Pourquoi nous</a>
+      <a href="#route">La route</a>
       <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
     </nav>
     <div class="nav-right">
       <span class="langs" aria-label="Langues"><b>FR</b><span>EN</span><span>ES</span></span>
@@ -58,9 +59,11 @@
 
   <div class="menu" id="menu" hidden>
     <a href="#flotte"><small>01</small>Véhicules</a>
-    <a href="#route"><small>02</small>La route</a>
+    <a href="#prestige"><small>02</small>Prestige</a>
     <a href="#atouts"><small>03</small>Pourquoi nous</a>
-    <a href="#avis"><small>04</small>Avis</a>
+    <a href="#route"><small>04</small>La route</a>
+    <a href="#avis"><small>05</small>Avis</a>
+    <a href="#contact"><small>06</small>Contact</a>
     <a href="#reserver" class="menu-cta">Pré-réserver →</a>
   </div>
 
@@ -146,54 +149,183 @@
             <h3>Économique</h3>
             <p class="car-model">Renault Kwid ou similaire</p>
             <div class="car-pic"><i></i><img src="img/auto-economique.webp" width="1000" height="577" alt="Renault Kwid"></div>
-            <div class="car-foot"><p>Parfaite en ville, avec une excellente consommation.</p><a href="#reserver" aria-label="Pré-réserver une économique">→</a></div>
+            <div class="car-foot"><p>Parfaite en ville, avec une excellente consommation.</p><a href="#reserver" data-vehicule="Économique" aria-label="Pré-réserver une économique">→</a></div>
           </article>
           <article class="car k-green">
             <div class="car-top"><span class="car-n">02</span><span class="car-price">dès <b>40&nbsp;€</b> / jour</span></div>
             <h3>Standard</h3>
             <p class="car-model">Toyota Yaris HB ou similaire</p>
             <div class="car-pic"><i></i><img src="img/auto-standard.webp" width="1000" height="534" loading="lazy" alt="Toyota Yaris HB"></div>
-            <div class="car-foot"><p>Idéale pour un road-trip, avec un bon rapport qualité-prix.</p><a href="#reserver" aria-label="Pré-réserver une standard">→</a></div>
+            <div class="car-foot"><p>Idéale pour un road-trip, avec un bon rapport qualité-prix.</p><a href="#reserver" data-vehicule="Standard" aria-label="Pré-réserver une standard">→</a></div>
           </article>
           <article class="car k-sun">
             <div class="car-top"><span class="car-n">03</span><span class="car-price">dès <b>47&nbsp;€</b> / jour</span></div>
             <h3>Berline</h3>
             <p class="car-model">Toyota Yaris berline ou similaire</p>
             <div class="car-pic"><i></i><img src="img/auto-berline.webp" width="1000" height="495" loading="lazy" alt="Toyota Yaris berline"></div>
-            <div class="car-foot"><p>Spacieuse pour les longs trajets, avec un grand coffre pour vos valises.</p><a href="#reserver" aria-label="Pré-réserver une berline">→</a></div>
+            <div class="car-foot"><p>Spacieuse pour les longs trajets, avec un grand coffre pour vos valises.</p><a href="#reserver" data-vehicule="Berline" aria-label="Pré-réserver une berline">→</a></div>
           </article>
           <article class="car k-night">
             <div class="car-top"><span class="car-n">04</span><span class="car-price">dès <b>62&nbsp;€</b> / jour</span></div>
             <h3>SUV 5 places</h3>
             <p class="car-model">Kia Sonet ou similaire</p>
             <div class="car-pic"><i></i><img src="img/auto-suv5.webp" width="1000" height="608" loading="lazy" alt="Kia Sonet"></div>
-            <div class="car-foot"><p>Le confort et la garde au sol pour explorer toute la péninsule.</p><a href="#reserver" aria-label="Pré-réserver un SUV 5 places">→</a></div>
+            <div class="car-foot"><p>Le confort et la garde au sol pour explorer toute la péninsule.</p><a href="#reserver" data-vehicule="SUV 5 places" aria-label="Pré-réserver un SUV 5 places">→</a></div>
           </article>
           <article class="car k-mix">
             <div class="car-top"><span class="car-n">05</span><span class="car-price">dès <b>75&nbsp;€</b> / jour</span></div>
             <h3>SUV 7 places</h3>
             <p class="car-model">Hyundai Creta ou similaire</p>
             <div class="car-pic"><i></i><img src="img/auto-suv7.webp" width="1000" height="555" loading="lazy" alt="Hyundai Creta"></div>
-            <div class="car-foot"><p>De l'espace pour les familles nombreuses et les groupes d'amis.</p><a href="#reserver" aria-label="Pré-réserver un SUV 7 places">→</a></div>
+            <div class="car-foot"><p>De l'espace pour les familles nombreuses et les groupes d'amis.</p><a href="#reserver" data-vehicule="SUV 7 places" aria-label="Pré-réserver un SUV 7 places">→</a></div>
           </article>
           <article class="car k-blue2">
             <div class="car-top"><span class="car-n">06</span><span class="car-price">dès <b>105&nbsp;€</b> / jour</span></div>
             <h3>Van 14 places</h3>
             <p class="car-model">Toyota Hiace ou similaire</p>
             <div class="car-pic"><i></i><img src="img/auto-van.webp" width="1000" height="546" loading="lazy" alt="Toyota Hiace"></div>
-            <div class="car-foot"><p>La solution pour les grands groupes et les événements.</p><a href="#reserver" aria-label="Pré-réserver un van">→</a></div>
+            <div class="car-foot"><p>La solution pour les grands groupes et les événements.</p><a href="#reserver" data-vehicule="Van 14 places" aria-label="Pré-réserver un van">→</a></div>
           </article>
-          <a class="car car-more" href="/vehicles.html">
-            <span>Super cars &amp; prestige</span>
-            <strong>Voir tous les véhicules</strong>
-            <em aria-hidden="true">→</em>
+          <a class="car car-more" href="#prestige">
+            <span>Et pour le plaisir</span>
+            <strong>Super Car &amp; Prestige</strong>
+            <em aria-hidden="true">↓</em>
           </a>
         </div>
         <p class="fleet-note">Taxes et assurances incluses dans tous les prix.</p>
       </div>
     </section>
 
-    <!-- 4. La route : une voiture suit la route, phares allumés -->
+    <!-- 4. Super Car & Prestige : une vitrine, et un compteur qui monte -->
+    <section class="lux" id="prestige">
+      <div class="lux-head">
+        <p class="tag tag-glass">Super Car &amp; Prestige</p>
+        <h2>Et pour le plaisir, <span class="grad-light">cinq voitures d'exception.</span></h2>
+        <p class="lux-sub">Pour un shooting, un événement ou un transfert exclusif à Cancún et sur la Riviera Maya.</p>
+      </div>
+
+      <div class="lux-show" id="lux">
+        <div class="lux-screen">
+          <div class="lux-frame">
+            <img class="is-on" src="/assets/vehicules/mclaren2.webp" width="300" height="201" loading="lazy" alt="McLaren 750s grise, portes ouvertes">
+            <img src="/assets/vehicules/ferreri-2.webp" width="461" height="247" loading="lazy" alt="Ferrari Roma Spider rouge, décapotée">
+            <img src="/assets/vehicules/lamborghini-3.webp" width="400" height="186" loading="lazy" alt="Lamborghini Huracan noire, devant la mer">
+            <img src="/assets/vehicules/mustang-1.webp" width="377" height="223" loading="lazy" alt="Ford Mustang rouge à bandes noires">
+            <img src="/assets/vehicules/cadillac-cts-2.webp" width="400" height="296" loading="lazy" alt="Cadillac CTS blanche">
+          </div>
+          <div class="lux-dial" style="--p:.94" aria-hidden="true">
+            <svg viewBox="0 0 220 128">
+              <defs><linearGradient id="g-dial" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1DA1F2"/><stop offset=".55" stop-color="#00B894"/><stop offset="1" stop-color="#FDCB6E"/></linearGradient></defs>
+              <path class="dial-bg" d="M20 115 A90 90 0 0 1 200 115"/>
+              <path class="dial-ticks" d="M38 115 A72 72 0 0 1 182 115"/>
+              <path class="dial-val" pathLength="1" d="M20 115 A90 90 0 0 1 200 115" stroke="url(#g-dial)"/>
+              <g class="dial-needle"><path d="M110 115 L110 46"/><circle cx="110" cy="115" r="8"/></g>
+            </svg>
+            <p><b id="lux-ch">750</b>ch</p>
+          </div>
+          <div class="lux-arrows">
+            <button type="button" id="lux-prev" aria-label="Voiture précédente">←</button>
+            <button type="button" id="lux-next" aria-label="Voiture suivante">→</button>
+          </div>
+        </div>
+
+        <div class="lux-infos" aria-live="polite">
+          <article class="lux-info is-on" data-ch="750">
+            <p class="lux-k">01 <i>/ 05</i></p>
+            <h3>McLaren 750s</h3>
+            <p class="lux-desc">V8 biturbo de 750&nbsp;ch, de 0 à 100&nbsp;km/h en 2,8&nbsp;secondes. Idéale pour un shooting, un événement premium ou un transfert exclusif.</p>
+            <ul class="lux-specs"><li><small>0 à 100 km/h</small><b>2,8 s</b></li><li><small>Moteur</small><b>V8 biturbo</b></li></ul>
+            <div class="lux-go"><a class="btn btn-orange" href="#message" data-sujet="Super Car &amp; Prestige : McLaren 750s">Demander cette voiture <span aria-hidden="true">→</span></a><small>Tarif sur demande</small></div>
+          </article>
+          <article class="lux-info" data-ch="620">
+            <p class="lux-k">02 <i>/ 05</i></p>
+            <h3>Ferrari Roma Spider</h3>
+            <p class="lux-desc">L'élégance italienne et la sportivité réunies dans un cabriolet d'exception, pour parcourir la Riviera Maya cheveux au vent.</p>
+            <ul class="lux-specs"><li><small>0 à 100 km/h</small><b>3,4 s</b></li><li><small>Moteur</small><b>V8 biturbo</b></li></ul>
+            <div class="lux-go"><a class="btn btn-orange" href="#message" data-sujet="Super Car &amp; Prestige : Ferrari Roma Spider">Demander cette voiture <span aria-hidden="true">→</span></a><small>Tarif sur demande</small></div>
+          </article>
+          <article class="lux-info" data-ch="640">
+            <p class="lux-k">03 <i>/ 05</i></p>
+            <h3>Lamborghini Huracan</h3>
+            <p class="lux-desc">Un V10 atmosphérique, une sonorité envoûtante et un design iconique. Édition limitée 60e anniversaire.</p>
+            <ul class="lux-specs"><li><small>0 à 100 km/h</small><b>3,2 s</b></li><li><small>Moteur</small><b>V10 atmosphérique</b></li></ul>
+            <div class="lux-go"><a class="btn btn-orange" href="#message" data-sujet="Super Car &amp; Prestige : Lamborghini Huracan">Demander cette voiture <span aria-hidden="true">→</span></a><small>Tarif sur demande</small></div>
+          </article>
+          <article class="lux-info" data-ch="310" data-plus>
+            <p class="lux-k">04 <i>/ 05</i></p>
+            <h3>Ford Mustang Supercharger</h3>
+            <p class="lux-desc">Le symbole de la muscle car américaine : une accélération et une sonorité qui réveillent l'âme des passionnés.</p>
+            <ul class="lux-specs"><li><small>Moteur</small><b>Suralimenté</b></li><li><small>Style</small><b>Muscle car</b></li></ul>
+            <div class="lux-go"><a class="btn btn-orange" href="#message" data-sujet="Super Car &amp; Prestige : Ford Mustang Supercharger">Demander cette voiture <span aria-hidden="true">→</span></a><small>Tarif sur demande</small></div>
+          </article>
+          <article class="lux-info" data-ch="335">
+            <p class="lux-k">05 <i>/ 05</i></p>
+            <h3>Cadillac CTS Horsepower</h3>
+            <p class="lux-desc">Une tenue de route sportive, un design affirmé et des technologies modernes. L'équilibre entre performance et prestige.</p>
+            <ul class="lux-specs"><li><small>Moteur</small><b>V6</b></li><li><small>Boîte</small><b>8 vitesses</b></li></ul>
+            <div class="lux-go"><a class="btn btn-orange" href="#message" data-sujet="Super Car &amp; Prestige : Cadillac CTS Horsepower">Demander cette voiture <span aria-hidden="true">→</span></a><small>Tarif sur demande</small></div>
+          </article>
+        </div>
+
+        <div class="lux-tabs" aria-label="Choisir une voiture">
+          <button type="button" aria-selected="true" aria-label="McLaren 750s"><img src="/assets/vehicules/mclaren2.webp" width="300" height="201" loading="lazy" alt=""><span>McLaren 750s</span><i></i></button>
+          <button type="button" aria-selected="false" aria-label="Ferrari Roma Spider"><img src="/assets/vehicules/ferreri-2.webp" width="461" height="247" loading="lazy" alt=""><span>Ferrari Roma Spider</span><i></i></button>
+          <button type="button" aria-selected="false" aria-label="Lamborghini Huracan"><img src="/assets/vehicules/lamborghini-3.webp" width="400" height="186" loading="lazy" alt=""><span>Lamborghini Huracan</span><i></i></button>
+          <button type="button" aria-selected="false" aria-label="Ford Mustang Supercharger"><img src="/assets/vehicules/mustang-1.webp" width="377" height="223" loading="lazy" alt=""><span>Ford Mustang Supercharger</span><i></i></button>
+          <button type="button" aria-selected="false" aria-label="Cadillac CTS Horsepower"><img src="/assets/vehicules/cadillac-cts-2.webp" width="400" height="296" loading="lazy" alt=""><span>Cadillac CTS Horsepower</span><i></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Pourquoi nous -->
+    <section class="why" id="atouts">
+      <div class="why-head">
+        <p class="tag">Pourquoi nous</p>
+        <h2>Une location simple, <span class="grad">du premier message au retour des clés.</span></h2>
+      </div>
+
+      <div class="why-grid">
+        <!-- L'atout principal, montré tel qu'il se vit : une conversation WhatsApp en français -->
+        <div class="chat" id="chat">
+          <div class="chat-top">
+            <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="">
+            <div><b>Street Car Solution</b><span><i></i>en ligne · répond en français</span></div>
+          </div>
+          <div class="chat-body">
+            <p class="msg me">Bonjour&nbsp;! On vient d'atterrir à Cancún.</p>
+            <p class="msg them">Bienvenue au Mexique&nbsp;! Votre voiture vous attend à la sortie du terminal.</p>
+            <p class="msg me">Un policier nous arrête sur la route, que faire&nbsp;?</p>
+            <p class="msg them">Pas de panique. On vous appelle tout de suite et on vous guide, en français.</p>
+            <p class="msg-time">Assistance 24 h/24, 7 j/7</p>
+          </div>
+        </div>
+
+        <ul class="perks">
+          <li>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M7 4h18v24l-4.500-3-4.500 3-4.500-3L7 28z"/><path pathLength="1" d="M11.500 14.500l3.200 3.200 6-6.400"/></svg>
+            <div><h3>Sans frais cachés</h3><p>Taxes et assurances incluses. Pas de surprise à la remise du véhicule.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M4 9a3 3 0 0 1 3-3h18a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path pathLength="1" d="M4 12.500h24"/><path pathLength="1" d="M5 28L27 4"/></svg>
+            <div><h3>Sans carte de crédit obligatoire</h3><p>L'obstacle imposé par les agences internationales, ici, n'existe pas.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 29s9-8.300 9-15.500a9 9 0 1 0-18 0C7 20.700 16 29 16 29z"/><path pathLength="1" d="M19.500 13.500a3.500 3.500 0 1 1-7 0 3.500 3.500 0 0 1 7 0z"/></svg>
+            <div><h3>Livraison où vous voulez</h3><p>Aéroport, hôtel ou adresse de votre choix. Pas de navette, pas d'attente.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 16c-2.400-3.300-4.600-5-7-5a5 5 0 0 0 0 10c2.400 0 4.600-1.700 7-5zm0 0c2.400 3.300 4.600 5 7 5a5 5 0 0 0 0-10c-2.400 0-4.600 1.700-7 5z"/></svg>
+            <div><h3>Kilométrage illimité</h3><p>Des véhicules récents, climatisés, adaptés aux routes de la péninsule.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 3l10 4v8c0 6.500-4.300 11.300-10 14C10.300 26.300 6 21.500 6 15V7z"/><path pathLength="1" d="M11.500 15.500l3.200 3.200 6-6.400"/></svg>
+            <div><h3>Agence légale au Mexique</h3><p>Licences officielles, contrats d'agence et assurances professionnelles.</p></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6. La route : une voiture suit la route, phares allumés -->
     <section class="road" id="route">
       <div class="road-head">
         <p class="tag tag-glass">La route est à vous</p>
@@ -273,55 +405,7 @@
       <p class="road-foot">Distances et temps indicatifs, depuis l'aéroport de Cancún. Kilométrage illimité.</p>
     </section>
 
-    <!-- 5. Pourquoi nous -->
-    <section class="why" id="atouts">
-      <div class="why-head">
-        <p class="tag">Pourquoi nous</p>
-        <h2>Une location simple, <span class="grad">du premier message au retour des clés.</span></h2>
-      </div>
-
-      <div class="why-grid">
-        <!-- L'atout principal, montré tel qu'il se vit : une conversation WhatsApp en français -->
-        <div class="chat" id="chat">
-          <div class="chat-top">
-            <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="">
-            <div><b>Street Car Solution</b><span><i></i>en ligne · répond en français</span></div>
-          </div>
-          <div class="chat-body">
-            <p class="msg me">Bonjour&nbsp;! On vient d'atterrir à Cancún.</p>
-            <p class="msg them">Bienvenue au Mexique&nbsp;! Votre voiture vous attend à la sortie du terminal.</p>
-            <p class="msg me">Un policier nous arrête sur la route, que faire&nbsp;?</p>
-            <p class="msg them">Pas de panique. On vous appelle tout de suite et on vous guide, en français.</p>
-            <p class="msg-time">Assistance 24 h/24, 7 j/7</p>
-          </div>
-        </div>
-
-        <ul class="perks">
-          <li>
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M7 4h18v24l-4.500-3-4.500 3-4.500-3L7 28z"/><path pathLength="1" d="M11.500 14.500l3.200 3.200 6-6.400"/></svg>
-            <div><h3>Sans frais cachés</h3><p>Taxes et assurances incluses. Pas de surprise à la remise du véhicule.</p></div>
-          </li>
-          <li>
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M4 9a3 3 0 0 1 3-3h18a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path pathLength="1" d="M4 12.500h24"/><path pathLength="1" d="M5 28L27 4"/></svg>
-            <div><h3>Sans carte de crédit obligatoire</h3><p>L'obstacle imposé par les agences internationales, ici, n'existe pas.</p></div>
-          </li>
-          <li>
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 29s9-8.300 9-15.500a9 9 0 1 0-18 0C7 20.700 16 29 16 29z"/><path pathLength="1" d="M19.500 13.500a3.500 3.500 0 1 1-7 0 3.500 3.500 0 0 1 7 0z"/></svg>
-            <div><h3>Livraison où vous voulez</h3><p>Aéroport, hôtel ou adresse de votre choix. Pas de navette, pas d'attente.</p></div>
-          </li>
-          <li>
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 16c-2.400-3.300-4.600-5-7-5a5 5 0 0 0 0 10c2.400 0 4.600-1.700 7-5zm0 0c2.400 3.300 4.600 5 7 5a5 5 0 0 0 0-10c-2.400 0-4.600 1.700-7 5z"/></svg>
-            <div><h3>Kilométrage illimité</h3><p>Des véhicules récents, climatisés, adaptés aux routes de la péninsule.</p></div>
-          </li>
-          <li>
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 3l10 4v8c0 6.500-4.300 11.300-10 14C10.300 26.300 6 21.500 6 15V7z"/><path pathLength="1" d="M11.500 15.500l3.200 3.200 6-6.400"/></svg>
-            <div><h3>Agence légale au Mexique</h3><p>Licences officielles, contrats d'agence et assurances professionnelles.</p></div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 6. Avis -->
+    <!-- 7. Avis -->
     <section class="reviews" id="avis">
       <p class="tag">Avis en vidéo</p>
       <h2>Ils ont <span class="grad">pris la route.</span></h2>
@@ -332,36 +416,258 @@
       </div>
     </section>
 
-    <!-- 7. Appel à réserver : le dégradé de la marque, le soleil et la pyramide du logo -->
-    <section class="cta" id="reserver">
-      <div class="cta-sun" aria-hidden="true"></div>
-      <svg class="cta-pyramid" viewBox="0 0 600 200" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
-        <path d="M0 200 L60 200 60 176 110 176 110 152 160 152 160 128 210 128 210 104 250 104 250 76 350 76 350 104 390 104 390 128 440 128 440 152 490 152 490 176 540 176 540 200 600 200Z"/>
-      </svg>
-      <div class="cta-car" aria-hidden="true"><img src="img/auto-suv5.webp" width="1000" height="608" loading="lazy" alt=""></div>
+    <!-- 8. L'arrivée : le soleil, la pyramide et les palmiers du logo -->
+    <section class="cta" id="arrivee">
       <div class="cta-in">
-        <h2>Votre voiture vous attend à l'arrivée.</h2>
-        <p>Deux minutes pour pré-réserver. Nous confirmons par WhatsApp.</p>
-        <div class="hero-cta">
-          <a class="btn btn-white btn-lg" href="/index.html#reservation">Pré-réserver <span aria-hidden="true">→</span></a>
-          <a class="btn btn-night btn-lg" href="https://wa.me/32477813205" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <h2>Votre voiture vous attend <em>à l'arrivée.<svg viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true"><path d="M4 18 C 60 4, 110 24, 160 12 S 250 6, 296 16"/></svg></em></h2>
+        <p>Deux minutes pour pré-réserver. Votre conseiller vous répond par WhatsApp.</p>
+      </div>
+      <div class="cta-art" aria-hidden="true">
+        <svg width="0" height="0" style="position:absolute">
+          <defs>
+            <path id="frond" d="M0 0 C 26 -38 84 -46 124 -4 C 86 -24 40 -18 0 0Z"/>
+            <symbol id="palm" viewBox="0 0 240 340">
+              <path d="M112 340 C 108 262 124 190 120 112" fill="none" stroke="#0B3B3F" stroke-width="13" stroke-linecap="round"/>
+              <g fill="#0A8A70">
+                <use href="#frond" transform="translate(120 110) rotate(-58)"/><use href="#frond" transform="translate(120 110) rotate(14)"/>
+                <use href="#frond" transform="translate(120 110) scale(-1 1) rotate(-58)"/><use href="#frond" transform="translate(120 110) scale(-1 1) rotate(14)"/>
+              </g>
+              <g fill="#066350">
+                <use href="#frond" transform="translate(120 110) rotate(-24)"/><use href="#frond" transform="translate(120 110) rotate(46)"/>
+                <use href="#frond" transform="translate(120 110) scale(-1 1) rotate(-24)"/><use href="#frond" transform="translate(120 110) scale(-1 1) rotate(46)"/>
+                <use href="#frond" transform="translate(120 110) rotate(-96) scale(.8)"/>
+              </g>
+              <circle cx="114" cy="116" r="7" fill="#0B3B3F"/><circle cx="127" cy="118" r="6" fill="#0B3B3F"/>
+            </symbol>
+          </defs>
+        </svg>
+        <i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i>
+        <div class="cta-sun"></div>
+        <svg class="cta-hills" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0 120 V70 C 60 40 120 80 190 56 S 320 20 400 52 520 84 600 50 760 16 840 48 980 80 1060 44 1160 40 1200 60 V120Z"/></svg>
+        <svg class="cta-pyramid" viewBox="0 0 600 300">
+          <defs><clipPath id="marches"><path d="M262 300 L276 102 H324 L338 300Z"/></clipPath></defs>
+          <path d="M242 62 V52 H358 V62 H350 V102 H250 V62Z" fill="#0B2239"/>
+          <rect x="288" y="74" width="24" height="28" rx="3" fill="#FDCB6E"/>
+          <path d="M40 300 V278 H62 V256 H84 V234 H106 V212 H128 V190 H150 V168 H172 V146 H194 V124 H216 V102 H384 V124 H406 V146 H428 V168 H450 V190 H472 V212 H494 V234 H516 V256 H538 V278 H560 V300Z" fill="#0B2239"/>
+          <path d="M40 300 V278 H62 V256 H84 V234 H106 V212 H128 V190 H150 V168 H172 V146 H194 V124 H216 V102 H300 V300Z" fill="#3DB6FF" opacity=".13"/>
+          <path d="M262 300 L276 102 H324 L338 300Z" fill="#1B4F80"/>
+          <path d="M300 300 V102" stroke="#0B2239" stroke-width="80" stroke-dasharray="2 9" opacity=".5" clip-path="url(#marches)"/>
+        </svg>
+        <div class="palm p-left"><svg viewBox="0 0 240 340"><use href="#palm"/></svg></div>
+        <div class="palm p-right"><svg viewBox="0 0 240 340"><use href="#palm"/></svg></div>
+        <div class="cta-road"></div>
+        <div class="cta-car"><img src="img/auto-suv5.webp" width="1000" height="608" loading="lazy" alt=""></div>
+      </div>
+    </section>
+
+    <!-- 9. Pré-réservation : le formulaire, et le billet qui se remplit à côté -->
+    <section class="book" id="reserver">
+      <div class="book-head">
+        <p class="tag">Pré-réservation</p>
+        <h2>Dites-nous où et quand, <span class="grad">on s'occupe du reste.</span></h2>
+      </div>
+
+      <form class="book-grid" id="resa" novalidate>
+        <div class="fields">
+          <fieldset class="fs">
+            <legend><b>1</b>Votre voyage</legend>
+            <div class="rows two">
+              <div><label class="lab" for="pickupLocation">Lieu de prise en charge *</label><select class="in" id="pickupLocation" name="pickupLocation" required><option value="">Sélectionnez</option><option>Aéroport de Cancun</option><option>Zone Hôtelière de Cancun</option><option>Centre-ville de Cancun</option><option>Ferry Cancun</option><option>Puerto Morelos</option><option>Playa del Carmen</option><option>Ferry Playa del Carmen</option><option>Puerto Aventuras</option><option>Akumal</option><option>Tulum</option><option>Aéroport de Tulum</option><option>Bacalar</option><option>Chiquilá</option><option>Valladolid</option><option>Mérida</option><option>Aéroport de Guadalajara</option><option>Aéroport de Mexico DF</option><option>Centre-ville de Mexico DF</option><option>Los Cabos</option></select></div>
+              <div><label class="lab" for="returnLocation">Lieu de retour *</label><select class="in" id="returnLocation" name="returnLocation" required><option value="">Sélectionnez</option><option>Aéroport de Cancun</option><option>Zone Hôtelière de Cancun</option><option>Centre-ville de Cancun</option><option>Ferry Cancun</option><option>Puerto Morelos</option><option>Playa del Carmen</option><option>Ferry Playa del Carmen</option><option>Puerto Aventuras</option><option>Akumal</option><option>Tulum</option><option>Aéroport de Tulum</option><option>Bacalar</option><option>Chiquilá</option><option>Valladolid</option><option>Mérida</option><option>Aéroport de Guadalajara</option><option>Aéroport de Mexico DF</option><option>Centre-ville de Mexico DF</option><option>Los Cabos</option></select></div>
+              <div>
+                <label class="lab" for="pickupDate">Date et heure de départ *</label>
+                <div class="duo"><input class="in" type="date" id="pickupDate" name="pickupDate" required><select class="in" id="pickupTime" name="pickupTime" required aria-label="Heure de départ"><option value="">Heure</option><option>05:00</option><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option><option>23:00</option><option>00:00</option></select></div>
+              </div>
+              <div>
+                <label class="lab" for="returnDate">Date et heure de retour *</label>
+                <div class="duo"><input class="in" type="date" id="returnDate" name="returnDate" required><select class="in" id="returnTime" name="returnTime" required aria-label="Heure de retour"><option value="">Heure</option><option>05:00</option><option>06:00</option><option>07:00</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option><option>23:00</option><option>00:00</option></select></div>
+              </div>
+            </div>
+            <p class="duree" id="duree" role="status"></p>
+          </fieldset>
+
+          <fieldset class="fs">
+            <legend><b>2</b>Votre voiture</legend>
+            <p class="lab" id="lab-cat">Catégorie *</p>
+            <div class="pick" role="radiogroup" aria-labelledby="lab-cat">
+              <label class="tile"><input type="radio" name="vehicleType" value="Économique" required><span class="tile-in"><img src="img/auto-economique.webp" width="1000" height="577" loading="lazy" alt=""><b>Économique</b><small>dès 35&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="Standard" required><span class="tile-in"><img src="img/auto-standard.webp" width="1000" height="534" loading="lazy" alt=""><b>Standard</b><small>dès 40&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="Berline" required><span class="tile-in"><img src="img/auto-berline.webp" width="1000" height="495" loading="lazy" alt=""><b>Berline</b><small>dès 47&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="SUV 5 places" required><span class="tile-in"><img src="img/auto-suv5.webp" width="1000" height="608" loading="lazy" alt=""><b>SUV 5 places</b><small>dès 62&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="SUV 7 places" required><span class="tile-in"><img src="img/auto-suv7.webp" width="1000" height="555" loading="lazy" alt=""><b>SUV 7 places</b><small>dès 75&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="Van 14 places" required><span class="tile-in"><img src="img/auto-van.webp" width="1000" height="546" loading="lazy" alt=""><b>Van 14 places</b><small>dès 105&nbsp;€ / jour</small></span></label>
+            </div>
+            <div class="rows two gap-top">
+              <div>
+                <p class="lab" id="lab-boite">Boîte de vitesses *</p>
+                <div class="pills" role="radiogroup" aria-labelledby="lab-boite">
+                  <label><input type="radio" name="transmission" value="Automatique" required><span>Automatique</span></label>
+                  <label><input type="radio" name="transmission" value="Manuelle"><span>Manuelle</span></label>
+                </div>
+              </div>
+              <div>
+                <label class="lab" for="passengers">Nombre de passagers *</label>
+                <div class="step"><button type="button" data-step="-1" aria-label="Un passager de moins">−</button><input class="in" type="number" id="passengers" name="passengers" min="1" max="14" value="2" required inputmode="numeric"><button type="button" data-step="1" aria-label="Un passager de plus">+</button></div>
+              </div>
+              <div>
+                <label class="lab" for="luggage10">Valises de 10 kg *</label>
+                <div class="step"><button type="button" data-step="-1" aria-label="Une valise de 10 kg de moins">−</button><input class="in" type="number" id="luggage10" name="luggage10" min="0" max="10" value="0" required inputmode="numeric"><button type="button" data-step="1" aria-label="Une valise de 10 kg de plus">+</button></div>
+              </div>
+              <div>
+                <label class="lab" for="luggage20">Valises de 20 kg *</label>
+                <div class="step"><button type="button" data-step="-1" aria-label="Une valise de 20 kg de moins">−</button><input class="in" type="number" id="luggage20" name="luggage20" min="0" max="10" value="0" required inputmode="numeric"><button type="button" data-step="1" aria-label="Une valise de 20 kg de plus">+</button></div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="fs">
+            <legend><b>3</b>Vous</legend>
+            <div class="rows two">
+              <div><label class="lab" for="firstName">Prénom *</label><input class="in" type="text" id="firstName" name="firstName" required autocomplete="given-name"></div>
+              <div><label class="lab" for="lastName">Nom *</label><input class="in" type="text" id="lastName" name="lastName" required autocomplete="family-name"></div>
+              <div>
+                <p class="lab" id="lab-permis">Permis obtenu depuis plus de 2 ans *</p>
+                <div class="pills" role="radiogroup" aria-labelledby="lab-permis">
+                  <label><input type="radio" name="permis" value="OUI" required><span>Oui</span></label>
+                  <label><input type="radio" name="permis" value="NON"><span>Non</span></label>
+                </div>
+              </div>
+              <div><label class="lab" for="age">Date de naissance *</label><input class="in" type="text" id="age" name="age" required inputmode="numeric" autocomplete="off" maxlength="10" placeholder="JJ/MM/AAAA"></div>
+              <div>
+                <label class="lab" for="phone">Numéro de téléphone (WhatsApp) *</label>
+                <input class="in" type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+Indicatif pays (Numéro)">
+                <p class="help" id="aide-tel">Commencez par «&nbsp;+&nbsp;» et l'indicatif de votre pays&nbsp;: +33 France, +1 Canada, +52 Mexique.</p>
+              </div>
+              <div><label class="lab" for="email">Email *</label><input class="in" type="email" id="email" name="email" required autocomplete="email" placeholder="votre@email.com"></div>
+            </div>
+            <div class="gap-top"><label class="lab" for="reservationMessage">Votre message <em>(facultatif)</em></label><textarea class="in" id="reservationMessage" name="message" rows="4" maxlength="2000"></textarea></div>
+          </fieldset>
         </div>
+
+        <aside class="ticket-col">
+          <div class="ticket" id="ticket">
+            <div class="ticket-top"><span>Votre pré-réservation</span><img src="img/logo-360.webp" width="34" height="34" loading="lazy" alt=""></div>
+            <div class="ticket-route">
+              <div><small>Départ</small><b id="t-de" class="is-empty">—</b><span id="t-d1"></span></div>
+              <svg viewBox="0 0 44 20" aria-hidden="true"><path d="M2 10 H42 M34 3 l8 7 -8 7"/></svg>
+              <div><small>Retour</small><b id="t-a" class="is-empty">—</b><span id="t-d2"></span></div>
+            </div>
+            <div class="ticket-car">
+              <div><small>Voiture</small><b id="t-auto" class="is-empty">—</b><span id="t-prix"></span></div>
+              <img id="t-img" src="img/auto-suv5.webp" width="1000" height="608" loading="lazy" alt="" hidden>
+            </div>
+            <div class="ticket-cut"><i></i><i></i></div>
+            <div class="ticket-cells">
+              <div><small>Durée</small><b id="t-jours" class="is-empty">—</b></div>
+              <div><small>Boîte</small><b id="t-boite" class="is-empty">—</b></div>
+              <div><small>À bord</small><b id="t-bord">2 passagers</b></div>
+            </div>
+            <div class="ticket-foot"><i></i><p>Prix confirmé par votre conseiller. Taxes et assurances incluses.</p></div>
+            <span class="ticket-stamp">Maquette</span>
+          </div>
+          <label class="check"><input type="checkbox" id="terms" name="terms" required><span>J'accepte les <a href="/terms.html" target="_blank" rel="noopener">conditions générales</a> et la <a href="/privacy.html" target="_blank" rel="noopener">politique de confidentialité</a> *</span></label>
+          <button class="btn btn-orange btn-lg send" type="submit" disabled>Envoyer la pré-réservation <span aria-hidden="true">→</span></button>
+          <p class="form-status" id="reservationStatus" role="status" hidden></p>
+          <p class="demo-note">Maquette&nbsp;: ce formulaire n'envoie encore rien.</p>
+        </aside>
+      </form>
+    </section>
+
+    <!-- 10. Contact : les trois façons de nous joindre, toutes visibles, et le message -->
+    <section class="contact" id="contact">
+      <div class="contact-head">
+        <p class="tag">Contact</p>
+        <h2>Une question&nbsp;? <span class="grad">Parlons-en comme vous préférez.</span></h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="ways">
+          <article class="way w-blue">
+            <div class="way-top">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 17v-4a11 11 0 0 1 22 0v4"/><rect x="3" y="16" width="6" height="9" rx="2.500"/><rect x="23" y="16" width="6" height="9" rx="2.500"/><path d="M26 25v1a4 4 0 0 1-4 4h-4"/></svg>
+              <div><h3>Agent virtuel</h3><p class="live"><i></i>En ligne 24 h/24, 7 j/7</p></div>
+            </div>
+            <p class="way-big">Julie répond à toutes vos questions, à toute heure.</p>
+            <div class="way-row"><button class="btn btn-white btn-sm" type="button" data-julie>Poser une question <span aria-hidden="true">→</span></button></div>
+          </article>
+
+          <article class="way w-green">
+            <div class="way-top">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4a12 12 0 0 0-10.300 18.100L4 28l6.100-1.600A12 12 0 1 0 16 4z"/><path d="M12 11.500c0 4.500 4 8.500 8.500 8.500l1.500-2.300-2.800-1.500-1.200 1.200c-1.500-.6-2.800-1.900-3.400-3.400l1.200-1.200L14.300 10z"/></svg>
+              <div><h3>WhatsApp</h3><p>Vos conseillers, en direct</p></div>
+            </div>
+            <a class="advisor" href="https://wa.me/32477813205" target="_blank" rel="noopener noreferrer">
+              <i aria-hidden="true">L</i>
+              <span><b>Lisa</b><strong>+32 477 81 32 05</strong>Français · Español · English</span>
+              <em aria-hidden="true">→</em>
+            </a>
+          </article>
+
+          <article class="way w-night">
+            <div class="way-top">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="7" width="24" height="18" rx="4"/><path d="M5 9.500l11 8.500 11-8.500"/></svg>
+              <div><h3>Email</h3><p>Pour ceux qui préfèrent écrire</p></div>
+            </div>
+            <a class="way-big way-mail" href="mailto:reservation@streetcarsolution.com">reservation@streetcarsolution.com</a>
+            <div class="way-row">
+              <a class="btn btn-white btn-sm" href="mailto:reservation@streetcarsolution.com">Écrire un email</a>
+              <button class="btn btn-glass btn-sm" type="button" id="copier" data-texte="reservation@streetcarsolution.com">Copier l'adresse</button>
+            </div>
+          </article>
+        </div>
+
+        <form class="msg-form" id="message" novalidate>
+          <h3>Écrire un message</h3>
+          <p class="msg-sub">Une demande particulière, une question sur un véhicule&nbsp;? Écrivez-nous ici.</p>
+          <div class="rows two">
+            <div><label class="lab" for="cf-name">Nom *</label><input class="in" id="cf-name" name="name" type="text" required autocomplete="name"></div>
+            <div><label class="lab" for="cf-email">Email *</label><input class="in" id="cf-email" name="email" type="email" required autocomplete="email"></div>
+          </div>
+          <div class="gap-top"><label class="lab" for="cf-subject">Sujet *</label><input class="in" id="cf-subject" name="subject" type="text" required></div>
+          <div class="gap-top"><label class="lab" for="cf-message">Message *</label><textarea class="in" id="cf-message" name="message" rows="5" required></textarea></div>
+          <button class="btn btn-orange btn-lg send gap-top" type="submit" disabled>Envoyer le message <span aria-hidden="true">→</span></button>
+          <p class="form-status" id="contactStatus" role="status" hidden></p>
+          <p class="demo-note">Maquette&nbsp;: ce formulaire n'envoie encore rien.</p>
+        </form>
       </div>
     </section>
   </main>
 
   <footer class="foot">
     <p class="foot-wm" aria-hidden="true"><b class="c-o">Street</b> <b class="c-b">Car</b> <b class="c-g">Solution</b></p>
+    <div class="foot-contact">
+      <a href="https://wa.me/32477813205" target="_blank" rel="noopener noreferrer">WhatsApp · +32 477 81 32 05</a>
+      <a href="mailto:reservation@streetcarsolution.com">reservation@streetcarsolution.com</a>
+      <a href="/terms.html">Conditions générales</a>
+      <a href="/privacy.html">Confidentialité</a>
+    </div>
     <div class="foot-row">
       <p>Location de voiture à Cancún et dans toute la péninsule du Yucatán.</p>
-      <p class="foot-note">Maquette de la page d'accueil · novembre 2026 · le formulaire de pré-réservation, les autres pages et les versions anglaise et espagnole viendront ensuite.</p>
+      <p class="foot-note">Maquette de la page d'accueil · novembre 2026 · les deux formulaires n'envoient encore rien ; les autres pages et les versions anglaise et espagnole viendront ensuite.</p>
     </div>
     <p class="credits">Photos de la région (Wikimedia Commons) : Tulum, Martin Falbisoner, CC BY-SA 4.0 · Cenote Zací, Kirt Edblom, CC BY-SA 2.0 · Chichén Itzá, Daniel Schwen, CC BY-SA 4.0 · Bacalar, Yosef Ben Melamed, CC BY-SA 4.0.</p>
   </footer>
 
+  <!-- Julie, l'agent virtuel du site : toujours à portée de main -->
+  <button class="fab" id="fab" type="button" aria-label="Poser une question à Julie, l'agent virtuel" aria-controls="julie" aria-expanded="false">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 8a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v9a4 4 0 0 1-4 4h-7l-6 5v-5.300A4 4 0 0 1 6 17z"/><path d="M11.500 12.500h9"/></svg><i></i>
+  </button>
+  <div class="julie" id="julie" role="dialog" aria-label="Julie, agent virtuel" hidden data-lenis-prevent>
+    <div class="chat-top julie-top">
+      <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="">
+      <div><b>Julie</b><span><i></i>Agent virtuel · 24 h/24, 7 j/7</span></div>
+      <button type="button" id="julie-x" aria-label="Fermer la discussion">×</button>
+    </div>
+    <div class="julie-log" id="julie-log" aria-live="polite"></div>
+    <form class="julie-form" id="julie-form">
+      <input id="julie-in" placeholder="Votre question…" autocomplete="off" aria-label="Votre question">
+      <button type="submit" aria-label="Envoyer">→</button>
+    </form>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="site.js?v=2"></script>
+  <script src="site.js?v=3"></script>
 </body>
 </html>

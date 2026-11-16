@@ -1,4 +1,4 @@
-/* Maquette du nouveau site — animations, version 2.
+/* Maquette du nouveau site — animations, version 3.
    L'ouverture et l'en-tête s'animent en CSS seul. Tout ce qui suit le
    défilement passe par GSAP ; s'il ne se charge pas, la page reste lisible. */
 (function () {
@@ -39,6 +39,285 @@
   }
   window.addEventListener('scroll', suivre, { passive: true });
   suivre();
+
+  /* ---------- Super Car & Prestige : la vitrine et son compteur ---------- */
+  (function () {
+    var vitrine = document.getElementById('lux');
+    if (!vitrine) return;
+    var photos = tous('.lux-frame img', vitrine);
+    var fiches = tous('.lux-info', vitrine);
+    var onglets = tous('.lux-tabs button', vitrine);
+    var cadran = vitrine.querySelector('.lux-dial');
+    var chiffre = document.getElementById('lux-ch');
+    var actuel = 0, vu = false, affiche = 0, image = 0;
+
+    function compter(vers, plus) {
+      cancelAnimationFrame(image);
+      var de = affiche, t0 = performance.now();
+      function pas(t) {
+        var k = Math.min(1, (t - t0) / 1000), e = 1 - Math.pow(1 - k, 3);
+        affiche = Math.round(de + (vers - de) * e);
+        chiffre.textContent = affiche + (plus && k === 1 ? '+' : '');
+        if (k < 1) image = requestAnimationFrame(pas);
+      }
+      image = requestAnimationFrame(pas);
+    }
+    function regler() {
+      var f = fiches[actuel], n = Number(f.getAttribute('data-ch'));
+      cadran.style.setProperty('--p', Math.min(1, n / 800));
+      compter(n, f.hasAttribute('data-plus'));
+    }
+    function montrer(i, aLaMain) {
+      actuel = (i + fiches.length) % fiches.length;
+      photos.forEach(function (p, n) { p.classList.toggle('is-on', n === actuel); });
+      fiches.forEach(function (f, n) { f.classList.toggle('is-on', n === actuel); });
+      onglets.forEach(function (o, n) { o.setAttribute('aria-selected', n === actuel ? 'true' : 'false'); });
+      if (vu) regler();
+      if (aLaMain) vitrine.classList.add('is-manual');
+    }
+    onglets.forEach(function (o, n) { o.addEventListener('click', function () { montrer(n, true); }); });
+    document.getElementById('lux-prev').addEventListener('click', function () { montrer(actuel - 1, true); });
+    document.getElementById('lux-next').addEventListener('click', function () { montrer(actuel + 1, true); });
+    /* Sans geste du visiteur, la vitrine passe seule à la voiture suivante */
+    vitrine.addEventListener('animationend', function (e) { if (e.animationName === 'tab') montrer(actuel + 1); });
+    /* Au doigt : on glisse d'une voiture à l'autre */
+    var ecran = vitrine.querySelector('.lux-screen'), x0 = null;
+    ecran.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    ecran.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 45) montrer(actuel + (dx < 0 ? 1 : -1), true);
+    }, { passive: true });
+
+    cadran.style.setProperty('--p', 0);
+    chiffre.textContent = '0';
+    function arrive(la) {
+      vitrine.classList.toggle('is-live', la);
+      if (la && !vu) { vu = true; regler(); }
+    }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { arrive(es[0].isIntersecting); }, { threshold: .3 }).observe(vitrine);
+    else arrive(true);
+  })();
+
+  /* ---------- Pré-réservation : le billet se remplit, les règles sont celles du site actuel ---------- */
+  var NUMERO_COMPLET = /^\+[0-9]{11,15}$/;
+  var TEL_AIDE = "Commencez par « + » et l'indicatif de votre pays : +33 France, +1 Canada, +52 Mexique.";
+  var TEL_SANS_PLUS = "Il manque le « + » et l'indicatif de votre pays avant le numéro. Exemples : +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada), +52 998 123 4567 (Mexique).";
+  var TEL_INCOMPLET = "Ce numéro semble incomplet. Vérifiez l'indicatif du pays et tous les chiffres, par exemple +33 6 12 34 56 78.";
+  var JOURS_MINIMUM = 3;
+  var PRIX = { 'Économique': 35, 'Standard': 40, 'Berline': 47, 'SUV 5 places': 62, 'SUV 7 places': 75, 'Van 14 places': 105 };
+  var PHOTO = { 'Économique': 'economique', 'Standard': 'standard', 'Berline': 'berline', 'SUV 5 places': 'suv5', 'SUV 7 places': 'suv7', 'Van 14 places': 'van' };
+  function id(i) { return document.getElementById(i); }
+
+  var resa = id('resa');
+  if (resa) (function () {
+    var depart = id('pickupDate'), retour = id('returnDate'), tel = id('phone'), naissance = id('age');
+    var aideTel = id('aide-tel'), duree = id('duree'), etat = id('reservationStatus'), billet = id('ticket'), photo = id('t-img');
+
+    function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+    function choix(nom) { var r = resa.querySelector('input[name="' + nom + '"]:checked'); return r ? r.value : ''; }
+    function jour(v) { return v ? new Date(v + 'T00:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) : ''; }
+    function jours() {
+      if (!depart.value || !retour.value) return null;
+      var n = Math.round((Date.parse(retour.value + 'T00:00:00Z') - Date.parse(depart.value + 'T00:00:00Z')) / 86400000);
+      return isFinite(n) ? n : null;
+    }
+    /* Une case du billet : elle ne s'anime que si son texte change */
+    function ecrire(i, texte) {
+      var el = id(i), neuf = texte || (el.tagName === 'B' ? '—' : '');
+      if (el.textContent === neuf) return;
+      el.textContent = neuf;
+      el.classList.toggle('is-empty', !texte);
+      el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+    }
+    function dessiner() {
+      ecrire('t-de', id('pickupLocation').value);
+      ecrire('t-a', id('returnLocation').value);
+      ecrire('t-d1', [jour(depart.value), id('pickupTime').value].filter(Boolean).join(' · '));
+      ecrire('t-d2', [jour(retour.value), id('returnTime').value].filter(Boolean).join(' · '));
+      var n = jours();
+      ecrire('t-jours', n !== null && n >= 1 ? n + (n > 1 ? ' jours' : ' jour') : '');
+      var auto = choix('vehicleType');
+      ecrire('t-auto', auto);
+      ecrire('t-prix', auto ? 'dès ' + PRIX[auto] + ' € / jour' : '');
+      if (auto && photo.getAttribute('data-auto') !== auto) {
+        photo.setAttribute('data-auto', auto);
+        photo.src = 'img/auto-' + PHOTO[auto] + '.webp';
+        photo.hidden = false;
+        photo.classList.remove('go'); void photo.offsetWidth; photo.classList.add('go');
+      }
+      ecrire('t-boite', choix('transmission'));
+      var p = Number(id('passengers').value) || 0, v = (Number(id('luggage10').value) || 0) + (Number(id('luggage20').value) || 0);
+      ecrire('t-bord', p + (p > 1 ? ' passagers' : ' passager') + (v ? ', ' + v + (v > 1 ? ' valises' : ' valise') : ''));
+    }
+
+    /* Trois jours au moins, et pas de retour avant le départ */
+    function dureeAcceptee() {
+      var n = jours(), court = n !== null && n < JOURS_MINIMUM;
+      retour.setCustomValidity(court ? 'La location doit contenir un minimum de 3 jours.' : '');
+      duree.textContent = n === null ? '' : (court ? 'La location doit contenir un minimum de 3 jours.' : n + ' jours de location');
+      duree.classList.toggle('is-bad', court);
+      return !court;
+    }
+    depart.min = retour.min = iso(new Date());
+    depart.addEventListener('change', function () { retour.min = depart.value || iso(new Date()); });
+
+    /* Le numéro WhatsApp : « + », indicatif, 11 à 15 chiffres */
+    function refusDuNumero(brut) {
+      var t = String(brut || '').replace(/[\s().\-]/g, '');
+      if (t.indexOf('00') === 0) t = '+' + t.slice(2);
+      if (!t || t.charAt(0) !== '+') return TEL_SANS_PLUS;
+      return NUMERO_COMPLET.test(t) ? null : TEL_INCOMPLET;
+    }
+    function direTel(refus) {
+      tel.setCustomValidity(refus || '');
+      aideTel.textContent = refus || TEL_AIDE;
+      aideTel.classList.toggle('is-bad', !!refus);
+    }
+    tel.value = '+';
+    tel.addEventListener('focus', function () { if (!tel.value.trim()) tel.value = '+'; });
+    tel.addEventListener('blur', function () { direTel(tel.value.trim() === '+' || !tel.value.trim() ? null : refusDuNumero(tel.value)); });
+    tel.addEventListener('input', function () { if (aideTel.classList.contains('is-bad')) direTel(refusDuNumero(tel.value)); });
+
+    /* La date de naissance : JJ/MM/AAAA, 18 ans le jour du départ */
+    naissance.addEventListener('input', function () {
+      var c = naissance.value.replace(/\D/g, '').slice(0, 8);
+      naissance.value = c.length > 4 ? c.slice(0, 2) + '/' + c.slice(2, 4) + '/' + c.slice(4) : c.length > 2 ? c.slice(0, 2) + '/' + c.slice(2) : c;
+      naissance.setCustomValidity('');
+    });
+    function refusNaissance() {
+      var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(naissance.value.trim());
+      var format = 'Écrivez la date de naissance en chiffres : jour, mois, année. Par exemple 16/12/1980.';
+      if (!m) return format;
+      var j = +m[1], mo = +m[2], a = +m[3], d = new Date(a, mo - 1, j);
+      if (d.getFullYear() !== a || d.getMonth() !== mo - 1 || d.getDate() !== j) return format;
+      var ref = depart.value ? new Date(depart.value + 'T00:00:00') : new Date();
+      var age = ref.getFullYear() - a - (ref.getMonth() < mo - 1 || (ref.getMonth() === mo - 1 && ref.getDate() < j) ? 1 : 0);
+      if (age < 18) return 'Le conducteur doit avoir au moins 18 ans le jour du départ.';
+      if (age > 100) return "Vérifiez l'année de naissance.";
+      return null;
+    }
+
+    /* Les boutons − et + */
+    tous('.step', resa).forEach(function (bloc) {
+      var champ = bloc.querySelector('input');
+      bloc.addEventListener('click', function (e) {
+        var b = e.target.closest('button');
+        if (!b) return;
+        var n = (Number(champ.value) || 0) + Number(b.getAttribute('data-step'));
+        champ.value = Math.max(Number(champ.min), Math.min(Number(champ.max), n));
+        dessiner();
+      });
+    });
+
+    resa.addEventListener('input', dessiner);
+    resa.addEventListener('change', function () { dureeAcceptee(); dessiner(); });
+    resa.addEventListener('submit', function (e) {
+      e.preventDefault();
+      direTel(refusDuNumero(tel.value));
+      naissance.setCustomValidity(naissance.value.trim() ? (refusNaissance() || '') : '');
+      dureeAcceptee();
+      if (!resa.checkValidity()) { resa.reportValidity(); return; }
+      billet.classList.add('is-stamped');
+      etat.hidden = false;
+      etat.textContent = "Tout est complet. Ceci est une maquette : rien n'a été envoyé. Sur le site définitif, votre demande partira ici vers votre conseiller.";
+    });
+    /* Une flèche de la flotte choisit déjà la catégorie dans le formulaire */
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-vehicule]');
+      if (!a) return;
+      var r = resa.querySelector('input[name="vehicleType"][value="' + a.getAttribute('data-vehicule') + '"]');
+      if (r) { r.checked = true; dessiner(); }
+    });
+    resa.querySelector('button[type="submit"]').disabled = false;
+    dessiner();
+  })();
+
+  /* ---------- Message : même principe, la maquette n'envoie rien ---------- */
+  var message = id('message');
+  if (message) {
+    message.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!message.checkValidity()) { message.reportValidity(); return; }
+      var etat = id('contactStatus');
+      etat.hidden = false;
+      etat.textContent = "Votre message est complet. Ceci est une maquette : rien n'a été envoyé.";
+    });
+    message.querySelector('button[type="submit"]').disabled = false;
+    /* « Demander cette voiture » remplit déjà le sujet */
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-sujet]');
+      if (a) id('cf-subject').value = a.getAttribute('data-sujet');
+    });
+  }
+
+  /* ---------- Copier l'adresse email ---------- */
+  var copier = id('copier');
+  if (copier) copier.addEventListener('click', function () {
+    var texte = copier.getAttribute('data-texte'), libelle = "Copier l'adresse";
+    function fait() { copier.textContent = 'Adresse copiée ✓'; setTimeout(function () { copier.textContent = libelle; }, 2200); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(fait, function () { window.prompt('Copiez cette adresse :', texte); });
+    else window.prompt('Copiez cette adresse :', texte);
+  });
+
+  /* ---------- Julie, l'agent virtuel : la même que sur le site actuel ---------- */
+  (function () {
+    var API = 'https://scs-chat-api.vercel.app/api/scc-chat';
+    var ACCUEIL = "Bonjour, je suis Julie, votre conseillère virtuelle.\nComment puis-je vous aider aujourd'hui ?";
+    var fab = id('fab'), panneau = id('julie'), fil = id('julie-log'), form = id('julie-form'), champ = id('julie-in');
+    if (!fab || !panneau) return;
+    var historique = [], occupee = false;
+
+    function bulle(texte, classe) {
+      var p = document.createElement('p');
+      p.className = 'msg ' + classe;
+      p.textContent = texte;
+      fil.appendChild(p);
+      fil.scrollTop = fil.scrollHeight;
+      return p;
+    }
+    function ouvrir() {
+      panneau.hidden = false;
+      fab.setAttribute('aria-expanded', 'true');
+      if (!historique.length) { bulle(ACCUEIL, 'them'); historique.push({ role: 'assistant', content: ACCUEIL }); }
+      if (window.matchMedia('(pointer: fine)').matches) champ.focus();
+    }
+    function fermer() { panneau.hidden = true; fab.setAttribute('aria-expanded', 'false'); }
+    fab.addEventListener('click', function () { if (panneau.hidden) ouvrir(); else fermer(); });
+    id('julie-x').addEventListener('click', fermer);
+    document.addEventListener('click', function (e) { if (e.target.closest('[data-julie]')) ouvrir(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panneau.hidden) fermer(); });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var texte = champ.value.trim();
+      if (!texte || occupee) return;
+      champ.value = '';
+      bulle(texte, 'me');
+      historique.push({ role: 'user', content: texte });
+      occupee = true;
+      var attente = bulle('', 'them');
+      attente.innerHTML = '<span class="dots"><i></i><i></i><i></i></span>';
+      function repondre(reponse, garder) {
+        attente.textContent = reponse;
+        fil.scrollTop = fil.scrollHeight;
+        if (garder) historique.push({ role: 'assistant', content: reponse });
+        occupee = false;
+      }
+      /* Si Julie ne répond pas, on ne laisse pas le visiteur sans suite : un conseiller prend le relais */
+      function relais() {
+        repondre('Je ne peux pas vous répondre pour le moment. Un conseiller prend le relais sur WhatsApp : ', false);
+        var a = document.createElement('a');
+        a.href = 'https://wa.me/32477813205'; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.textContent = '+32 477 81 32 05'; a.style.cssText = 'font-weight:700;text-decoration:underline';
+        attente.appendChild(a);
+      }
+      fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: historique }) })
+        .then(function (r) { return r.json(); })
+        .then(function (d) { if (d && d.reply) repondre(d.reply, true); else relais(); })
+        .catch(relais);
+    });
+  })();
 
   var calme = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!window.gsap || !window.ScrollTrigger || calme) return;
@@ -208,7 +487,7 @@
   });
 
   /* ---------- Titres : ils montent en entrant ---------- */
-  tous('.road-head, .why-head, .reviews > h2, .reviews > .tag, .mani > .tag').forEach(function (el) {
+  tous('.road-head, .why-head, .reviews > h2, .reviews > .tag, .mani > .tag, .lux-head, .book-head, .contact-head').forEach(function (el) {
     gsap.from(el, { y: 50, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
   });
 
@@ -226,12 +505,25 @@
   /* ---------- 6. Avis ---------- */
   gsap.from('.quote', { y: 90, opacity: 0, duration: 1, stagger: .14, ease: 'back.out(1.3)', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.quotes', start: 'top 84%' } });
 
-  /* ---------- 7. Le soleil descend derrière la pyramide, la voiture arrive ---------- */
+  /* ---------- Super Car & Prestige : la vitrine entre en scène ---------- */
+  gsap.from('.lux-screen', { y: 90, opacity: 0, scale: .9, duration: 1.2, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.lux-show', start: 'top 84%' } });
+  gsap.from('.lux-infos', { y: 60, opacity: 0, duration: 1, delay: .15, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.lux-show', start: 'top 84%' } });
+  gsap.from('.lux-tabs button', { y: 46, opacity: 0, duration: .8, stagger: .08, ease: 'back.out(1.6)', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.lux-tabs', start: 'top 96%' } });
+
+  /* ---------- 8. L'arrivée : le soleil passe derrière la pyramide, les palmiers poussent, la voiture arrive ---------- */
   var soir = { trigger: '.cta', start: 'top bottom', end: 'bottom bottom', scrub: true };
-  gsap.fromTo('.cta-sun', { yPercent: -26 }, { yPercent: 10, ease: 'none', scrollTrigger: soir });
-  gsap.fromTo('.cta-pyramid', { yPercent: 45 }, { yPercent: 0, ease: 'none', scrollTrigger: soir });
-  gsap.from('.cta-car', { x: function () { return window.innerWidth; }, duration: 1.6, ease: 'power3.out', scrollTrigger: { trigger: '.cta', start: 'top 30%' } });
-  gsap.from('.cta-in > *', { y: 50, opacity: 0, duration: 1, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.cta', start: 'top 60%' } });
+  gsap.fromTo('.cta-sun', { yPercent: -16 }, { yPercent: 14, ease: 'none', scrollTrigger: soir });
+  gsap.fromTo('.cta-pyramid', { yPercent: 36 }, { yPercent: 0, ease: 'none', scrollTrigger: soir });
+  gsap.fromTo('.cta-hills', { yPercent: 70 }, { yPercent: 0, ease: 'none', scrollTrigger: soir });
+  gsap.from('.palm', { scale: .25, opacity: 0, duration: 1.3, stagger: .22, ease: 'back.out(1.5)', scrollTrigger: { trigger: '.cta-art', start: 'top 72%' } });
+  gsap.from('.cta-car', { x: function () { return window.innerWidth; }, duration: 1.6, ease: 'power3.out', scrollTrigger: { trigger: '.cta-art', start: 'top 60%' } });
+  gsap.from('.cta-in > *', { y: 50, opacity: 0, duration: 1, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.cta', start: 'top 70%' } });
+  gsap.to('.cta h2 em path', { strokeDashoffset: 0, duration: 1, delay: .7, ease: 'power2.out', scrollTrigger: { trigger: '.cta', start: 'top 70%' } });
+
+  /* ---------- 9 et 10. Formulaires et contacts : chaque bloc monte en entrant ---------- */
+  tous('.fs, .ticket-col, .way, .msg-form').forEach(function (el) {
+    gsap.from(el, { y: 60, opacity: 0, duration: .9, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: el, start: 'top 92%' } });
+  });
 
   gsap.from('.foot-wm b', { yPercent: 110, opacity: 0, duration: 1, stagger: .1, ease: 'power4.out', scrollTrigger: { trigger: '.foot', start: 'top 88%' } });
 
