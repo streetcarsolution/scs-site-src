@@ -320,27 +320,12 @@ html:not(.anim) .road-wrap::before { content: ''; position: absolute; left: 22px
 .lux-head { max-width: 1160px; margin: 0 auto 30px; }
 .lux-sub { max-width: 34em; margin-top: 14px; color: rgba(255, 255, 255, .76); }
 .lux-show { display: grid; gap: 22px; max-width: 1160px; margin: 0 auto; }
-.lux-screen { position: relative; margin-bottom: 52px; touch-action: pan-y; }
+.lux-screen { position: relative; margin-bottom: 6px; touch-action: pan-y; }
 .lux-screen::before { content: ''; position: absolute; inset: 8% 5% -5%; border-radius: 40px; background: var(--grad); filter: blur(36px); opacity: .45; }
 .lux-frame { position: relative; overflow: hidden; aspect-ratio: 16 / 10.4; border-radius: 30px; background: var(--night); box-shadow: 0 0 0 1px rgba(255, 255, 255, .16), 0 40px 70px -40px #000; }
 .lux-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.16); transition: opacity .7s ease, transform 1.6s var(--e); }
 .lux-frame img.is-on { opacity: 1; transform: none; }
 .lux-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 20, 35, 0) 55%, rgba(6, 20, 35, .5)); pointer-events: none; }
-.lux-dial { position: absolute; left: 14px; bottom: -48px; z-index: 2; width: 146px; padding: 12px 14px 7px; border-radius: 24px; background: rgba(6, 20, 35, .84); border: 1px solid rgba(255, 255, 255, .18); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 20px 40px -20px #000; text-align: center; }
-.lux-dial svg { width: 100%; overflow: visible; }
-.dial-bg, .dial-val, .dial-ticks { fill: none; }
-.dial-bg { stroke: rgba(255, 255, 255, .14); stroke-width: 12; stroke-linecap: round; }
-.dial-ticks { stroke: rgba(255, 255, 255, .4); stroke-width: 6; stroke-dasharray: 1.5 9.8; }
-.dial-val { stroke-width: 12; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--p, 0)); transition: stroke-dashoffset 1.2s var(--e); }
-.dial-needle { transform-origin: 110px 115px; transform: rotate(calc(-90deg + var(--p, 0) * 180deg)); transition: transform 1.2s cubic-bezier(.3, 1.5, .5, 1); }
-.dial-needle path { stroke: var(--sun); stroke-width: 4; stroke-linecap: round; }
-.dial-needle circle { fill: #fff; }
-.lux-dial p { margin-top: 1px; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255, 255, 255, .7); }
-.lux-dial b { margin-right: 4px; font-family: var(--display); font-size: 30px; letter-spacing: 0; color: #fff; font-variant-numeric: tabular-nums; }
-.lux-arrows { position: absolute; right: 14px; bottom: -27px; z-index: 2; display: flex; gap: 10px; }
-.lux-arrows button { width: 54px; height: 54px; border: 1px solid rgba(255, 255, 255, .24); border-radius: 50%; background: rgba(6, 20, 35, .84); color: #fff; font: inherit; font-size: 20px; font-weight: 700; cursor: pointer; transition: background-color .25s, transform .3s var(--e); }
-.lux-arrows button:hover { background: var(--blue); transform: scale(1.08); }
-.lux-arrows button:active { transform: scale(.92); }
 .lux-infos { display: grid; }
 .lux-info { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(18px); transition: opacity .3s, transform .3s, visibility 0s .3s; }
 .lux-info.is-on { opacity: 1; visibility: visible; transform: none; transition: opacity .6s .12s, transform .8s var(--e) .12s, visibility 0s; }
@@ -352,6 +337,10 @@ html:not(.anim) .road-wrap::before { content: ''; position: absolute; left: 22px
 .lux-specs li { padding: 12px 14px; border-radius: 18px; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .13); }
 .lux-specs small { display: block; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .55); }
 .lux-specs b { display: block; margin-top: 2px; font-family: var(--display); font-weight: 600; font-size: 21px; line-height: 1.15; }
+.lux-power { grid-column: 1 / -1; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: 18px; }
+.lux-power b { font-size: 27px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lux-power i { grid-column: 2; grid-row: 1 / span 2; height: 9px; border-radius: 9px; background: rgba(255, 255, 255, .14); overflow: hidden; }
+.lux-power u { display: block; height: 100%; border-radius: 9px; background: linear-gradient(90deg, var(--blue), var(--green), var(--sun)); transform: scaleX(var(--p, 0)); transform-origin: 0 50%; transition: transform 1.3s var(--e); }
 .lux-go { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 20px; }
 .lux-go small { font-size: 14px; font-weight: 700; color: rgba(255, 255, 255, .62); }
 .lux-tabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
@@ -617,10 +606,6 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
   .lux { padding: 130px var(--pad); }
   .lux-head { margin-bottom: 60px; }
   .lux-show { grid-template-columns: minmax(0, 540px) minmax(0, 1fr); gap: 30px 80px; align-items: center; justify-content: center; }
-  .lux-screen { margin-bottom: 56px; }
-  .lux-dial { left: 24px; width: 176px; bottom: -58px; }
-  .lux-dial b { font-size: 36px; }
-  .lux-arrows { right: 24px; }
   .lux-desc { font-size: 18px; }
   .lux-tabs { grid-column: 1 / -1; gap: 22px; margin-top: 26px; }
   .lux-tabs img { aspect-ratio: 16 / 9; border-radius: 18px; }

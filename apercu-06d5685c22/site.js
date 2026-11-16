@@ -40,32 +40,29 @@
   window.addEventListener('scroll', suivre, { passive: true });
   suivre();
 
-  /* ---------- Super Car & Prestige : la vitrine et son compteur ---------- */
+  /* ---------- Super Car & Prestige : la vitrine ---------- */
   (function () {
     var vitrine = document.getElementById('lux');
     if (!vitrine) return;
     var photos = tous('.lux-frame img', vitrine);
     var fiches = tous('.lux-info', vitrine);
     var onglets = tous('.lux-tabs button', vitrine);
-    var cadran = vitrine.querySelector('.lux-dial');
-    var chiffre = document.getElementById('lux-ch');
-    var actuel = 0, vu = false, affiche = 0, image = 0;
+    var actuel = 0, vu = false, image = 0;
 
-    function compter(vers, plus) {
+    /* La puissance : le chiffre monte et la barre se remplit, sous la photo */
+    function regler() {
+      var f = fiches[actuel], vers = Number(f.getAttribute('data-ch'));
+      var chiffre = f.querySelector('[data-n]'), barre = f.querySelector('.lux-power u');
+      barre.style.transition = 'none'; barre.style.setProperty('--p', 0); void barre.offsetWidth;
+      barre.style.transition = ''; barre.style.setProperty('--p', Math.min(1, vers / 800));
       cancelAnimationFrame(image);
-      var de = affiche, t0 = performance.now();
+      var t0 = performance.now();
       function pas(t) {
-        var k = Math.min(1, (t - t0) / 1000), e = 1 - Math.pow(1 - k, 3);
-        affiche = Math.round(de + (vers - de) * e);
-        chiffre.textContent = affiche + (plus && k === 1 ? '+' : '');
+        var k = Math.min(1, (t - t0) / 1000);
+        chiffre.textContent = Math.round(vers * (1 - Math.pow(1 - k, 3)));
         if (k < 1) image = requestAnimationFrame(pas);
       }
       image = requestAnimationFrame(pas);
-    }
-    function regler() {
-      var f = fiches[actuel], n = Number(f.getAttribute('data-ch'));
-      cadran.style.setProperty('--p', Math.min(1, n / 800));
-      compter(n, f.hasAttribute('data-plus'));
     }
     function montrer(i, aLaMain) {
       actuel = (i + fiches.length) % fiches.length;
@@ -76,8 +73,6 @@
       if (aLaMain) vitrine.classList.add('is-manual');
     }
     onglets.forEach(function (o, n) { o.addEventListener('click', function () { montrer(n, true); }); });
-    document.getElementById('lux-prev').addEventListener('click', function () { montrer(actuel - 1, true); });
-    document.getElementById('lux-next').addEventListener('click', function () { montrer(actuel + 1, true); });
     /* Sans geste du visiteur, la vitrine passe seule à la voiture suivante */
     vitrine.addEventListener('animationend', function (e) { if (e.animationName === 'tab') montrer(actuel + 1); });
     /* Au doigt : on glisse d'une voiture à l'autre */
@@ -89,8 +84,6 @@
       if (Math.abs(dx) > 45) montrer(actuel + (dx < 0 ? 1 : -1), true);
     }, { passive: true });
 
-    cadran.style.setProperty('--p', 0);
-    chiffre.textContent = '0';
     function arrive(la) {
       vitrine.classList.toggle('is-live', la);
       if (la && !vu) { vu = true; regler(); }

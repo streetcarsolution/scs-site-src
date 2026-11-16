@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=3">
+  <link rel="stylesheet" href="site.css?v=4">
 </head>
 <body>
 
@@ -207,25 +207,11 @@
       <div class="lux-show" id="lux">
         <div class="lux-screen">
           <div class="lux-frame">
-            <img class="is-on" src="/assets/vehicules/mclaren2.webp" width="300" height="201" loading="lazy" alt="McLaren 750s grise, portes ouvertes">
-            <img src="/assets/vehicules/ferreri-2.webp" width="461" height="247" loading="lazy" alt="Ferrari Roma Spider rouge, décapotée">
-            <img src="/assets/vehicules/lamborghini-3.webp" width="400" height="186" loading="lazy" alt="Lamborghini Huracan noire, devant la mer">
-            <img src="/assets/vehicules/mustang-1.webp" width="377" height="223" loading="lazy" alt="Ford Mustang rouge à bandes noires">
-            <img src="/assets/vehicules/cadillac-cts-2.webp" width="400" height="296" loading="lazy" alt="Cadillac CTS blanche">
-          </div>
-          <div class="lux-dial" style="--p:.94" aria-hidden="true">
-            <svg viewBox="0 0 220 128">
-              <defs><linearGradient id="g-dial" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1DA1F2"/><stop offset=".55" stop-color="#00B894"/><stop offset="1" stop-color="#FDCB6E"/></linearGradient></defs>
-              <path class="dial-bg" d="M20 115 A90 90 0 0 1 200 115"/>
-              <path class="dial-ticks" d="M38 115 A72 72 0 0 1 182 115"/>
-              <path class="dial-val" pathLength="1" d="M20 115 A90 90 0 0 1 200 115" stroke="url(#g-dial)"/>
-              <g class="dial-needle"><path d="M110 115 L110 46"/><circle cx="110" cy="115" r="8"/></g>
-            </svg>
-            <p><b id="lux-ch">750</b>ch</p>
-          </div>
-          <div class="lux-arrows">
-            <button type="button" id="lux-prev" aria-label="Voiture précédente">←</button>
-            <button type="button" id="lux-next" aria-label="Voiture suivante">→</button>
+            <img class="is-on" src="img/luxe-mclaren.webp" width="1100" height="737" loading="lazy" alt="McLaren 750s grise, portes ouvertes">
+            <img src="img/luxe-ferrari.webp" width="1100" height="589" loading="lazy" alt="Ferrari Roma Spider rouge, décapotée">
+            <img src="img/luxe-lamborghini.webp" width="1100" height="512" loading="lazy" alt="Lamborghini Huracan noire, devant la mer">
+            <img src="img/luxe-mustang.webp" width="1100" height="651" loading="lazy" alt="Ford Mustang rouge à bandes noires">
+            <img src="img/luxe-cadillac.webp" width="1100" height="814" loading="lazy" alt="Cadillac CTS blanche">
           </div>
         </div>
 
@@ -234,35 +220,35 @@
             <p class="lux-k">01 <i>/ 05</i></p>
             <h3>McLaren 750s</h3>
             <p class="lux-desc">V8 biturbo de 750&nbsp;ch, de 0 à 100&nbsp;km/h en 2,8&nbsp;secondes. Idéale pour un shooting, un événement premium ou un transfert exclusif.</p>
-            <ul class="lux-specs"><li><small>0 à 100 km/h</small><b>2,8 s</b></li><li><small>Moteur</small><b>V8 biturbo</b></li></ul>
+            <ul class="lux-specs"><li class="lux-power"><small>Puissance</small><b><span data-n>750</span> ch</b><i><u style="--p:0.938"></u></i></li><li><small>0 à 100 km/h</small><b>2,8 s</b></li><li><small>Moteur</small><b>V8 biturbo</b></li></ul>
             <div class="lux-go"><a class="btn btn-orange" href="#message" data-sujet="Super Car &amp; Prestige : McLaren 750s">Demander cette voiture <span aria-hidden="true">→</span></a><small>Tarif sur demande</small></div>
           </article>
           <article class="lux-info" data-ch="620">
             <p class="lux-k">02 <i>/ 05</i></p>
             <h3>Ferrari Roma Spider</h3>
             <p class="lux-desc">L'élégance italienne et la sportivité réunies dans un cabriolet d'exception, pour parcourir la Riviera Maya cheveux au vent.</p>
-            <ul class="lux-specs"><li><small>0 à 100 km/h</small><b>3,4 s</b></li><li><small>Moteur</small><b>V8 biturbo</b></li></ul>
+            <ul class="lux-specs"><li class="lux-power"><small>Puissance</small><b><span data-n>620</span> ch</b><i><u style="--p:0.775"></u></i></li><li><small>0 à 100 km/h</small><b>3,4 s</b></li><li><small>Moteur</small><b>V8 biturbo</b></li></ul>
             <div class="lux-go"><a class="btn btn-orange" href="#message" data-sujet="Super Car &amp; Prestige : Ferrari Roma Spider">Demander cette voiture <span aria-hidden="true">→</span></a><small>Tarif sur demande</small></div>
           </article>
           <article class="lux-info" data-ch="640">
             <p class="lux-k">03 <i>/ 05</i></p>
             <h3>Lamborghini Huracan</h3>
             <p class="lux-desc">Un V10 atmosphérique, une sonorité envoûtante et un design iconique. Édition limitée 60e anniversaire.</p>
-            <ul class="lux-specs"><li><small>0 à 100 km/h</small><b>3,2 s</b></li><li><small>Moteur</small><b>V10 atmosphérique</b></li></ul>
+            <ul class="lux-specs"><li class="lux-power"><small>Puissance</small><b><span data-n>640</span> ch</b><i><u style="--p:0.800"></u></i></li><li><small>0 à 100 km/h</small><b>3,2 s</b></li><li><small>Moteur</small><b>V10 atmosphérique</b></li></ul>
             <div class="lux-go"><a class="btn btn-orange" href="#message" data-sujet="Super Car &amp; Prestige : Lamborghini Huracan">Demander cette voiture <span aria-hidden="true">→</span></a><small>Tarif sur demande</small></div>
           </article>
           <article class="lux-info" data-ch="310" data-plus>
             <p class="lux-k">04 <i>/ 05</i></p>
             <h3>Ford Mustang Supercharger</h3>
             <p class="lux-desc">Le symbole de la muscle car américaine : une accélération et une sonorité qui réveillent l'âme des passionnés.</p>
-            <ul class="lux-specs"><li><small>Moteur</small><b>Suralimenté</b></li><li><small>Style</small><b>Muscle car</b></li></ul>
+            <ul class="lux-specs"><li class="lux-power"><small>Puissance</small><b><span data-n>310</span>+ ch</b><i><u style="--p:0.388"></u></i></li><li><small>Moteur</small><b>Suralimenté</b></li><li><small>Style</small><b>Muscle car</b></li></ul>
             <div class="lux-go"><a class="btn btn-orange" href="#message" data-sujet="Super Car &amp; Prestige : Ford Mustang Supercharger">Demander cette voiture <span aria-hidden="true">→</span></a><small>Tarif sur demande</small></div>
           </article>
           <article class="lux-info" data-ch="335">
             <p class="lux-k">05 <i>/ 05</i></p>
             <h3>Cadillac CTS Horsepower</h3>
             <p class="lux-desc">Une tenue de route sportive, un design affirmé et des technologies modernes. L'équilibre entre performance et prestige.</p>
-            <ul class="lux-specs"><li><small>Moteur</small><b>V6</b></li><li><small>Boîte</small><b>8 vitesses</b></li></ul>
+            <ul class="lux-specs"><li class="lux-power"><small>Puissance</small><b><span data-n>335</span> ch</b><i><u style="--p:0.419"></u></i></li><li><small>Moteur</small><b>V6</b></li><li><small>Boîte</small><b>8 vitesses</b></li></ul>
             <div class="lux-go"><a class="btn btn-orange" href="#message" data-sujet="Super Car &amp; Prestige : Cadillac CTS Horsepower">Demander cette voiture <span aria-hidden="true">→</span></a><small>Tarif sur demande</small></div>
           </article>
         </div>
@@ -668,6 +654,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="site.js?v=3"></script>
+  <script src="site.js?v=4"></script>
 </body>
 </html>
