@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Maquette de travail : jamais dans Google, jamais liée depuis le site. -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Services &amp; options — Street Car Solution, maquette du nouveau site</title>
+  <meta name="theme-color" content="#1DA1F2">
+  <link rel="icon" href="/favicon.ico?v=3" sizes="any">
+  <link rel="preload" as="image" href="img/auto-sedona-agence.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css?v=12">
+</head>
+<body class="page">
+
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="./" aria-label="Street Car Solution, retour à l'accueil">
+      <img id="nav-logo" src="img/logo-360.webp" width="46" height="46" alt="">
+      <span class="wm"><b class="c-o">Street</b> <b class="c-b">Car</b> <b class="c-g">Solution</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Menu principal">
+      <a href="./#flotte">Véhicules</a>
+      <a href="services.html" aria-current="page">Services</a>
+      <a href="./#atouts">Pourquoi nous</a>
+      <a href="./#route">La route</a>
+      <a href="./#avis">Avis</a>
+      <a href="./#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <span class="langs" aria-label="Langues"><b>FR</b><span>EN</span><span>ES</span></span>
+      <a class="btn btn-orange" href="./#reserver">Pré-réserver</a>
+      <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" hidden>
+    <a href="./"><small>01</small>Accueil</a>
+    <a href="./#flotte"><small>02</small>Véhicules</a>
+    <a href="#options"><small>03</small>Options</a>
+    <a href="#plus"><small>04</small>Services</a>
+    <a href="./#avis"><small>05</small>Avis</a>
+    <a href="./#contact"><small>06</small>Contact</a>
+    <a href="./#reserver" class="menu-cta">Pré-réserver →</a>
+  </div>
+
+  <main id="top">
+
+    <!-- En-tête : le monospace familial, et les options qui s'y accrochent -->
+    <section class="hero hero-page">
+      <div class="hero-bg" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i></div>
+      <div class="hero-in">
+        <p class="eyebrow"><i></i>Services &amp; options</p>
+        <h1>
+          <span class="line"><span>Un voyage</span></span>
+          <span class="line"><span>100&nbsp;% serein,</span></span>
+          <span class="line"><span><em>à la carte.<svg viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true"><path d="M4 18 C 60 4, 110 24, 160 12 S 250 6, 296 16"/></svg></em></span></span>
+        </h1>
+        <p class="hero-sub">Ajoutez des options à votre location, ou confiez-nous le reste du séjour&nbsp;: transferts, yacht, logement, excursions.</p>
+        <div class="hero-cta">
+          <a class="btn btn-orange btn-lg" href="#options">Les options <span aria-hidden="true">↓</span></a>
+          <a class="btn btn-glass btn-lg" href="#plus">Autres services</a>
+        </div>
+      </div>
+      <div class="hero-stage">
+        <i class="hero-sun" aria-hidden="true"></i>
+        <div class="chips" aria-hidden="true">
+          <span class="chip ch1">2e conducteur gratuit</span>
+          <span class="chip ch2">GPS</span>
+          <span class="chip ch3">Carte SIM</span>
+          <span class="chip ch4">Siège bébé</span>
+        </div>
+        <div class="hero-car">
+          <div class="hero-car-in">
+            <img src="img/auto-sedona-agence.webp" width="1000" height="492" alt="Kia Sedona blanc, le monospace de l'agence">
+            <i class="hero-shadow" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Les options de la location -->
+    <section class="opts" id="options">
+      <div class="sec-head">
+        <p class="tag">Options</p>
+        <h2>Ajoutez ce qu'il vous faut, <span class="grad">rien de plus.</span></h2>
+        <p class="lead">Touchez une option pour la choisir&nbsp;: vous la retrouverez dans votre pré-réservation.</p>
+      </div>
+      <form class="opt-grid" id="options-form">
+          <label class="opt" data-reveal>
+            <input type="checkbox" name="option" value="Conducteur additionnel">
+            <span class="opt-in">
+              <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 11a4.5 4.5 0 1 0-9 0 4.5 4.5 0 0 0 9 0z"/><path pathLength="1" d="M3.5 26c0-4.5 3.6-7.5 8-7.5s8 3 8 7.5"/><path pathLength="1" d="M24 9v8"/><path pathLength="1" d="M20 13h8"/></svg>
+              <strong>Conducteur additionnel</strong>
+              <span class="opt-desc">Ajoutez gratuitement un second conducteur au contrat pour partager la route en toute sécurité.</span>
+              <span class="opt-price"><b>Gratuit</b><i>le 2e conducteur</i><small>7,50 € (150 pesos) par conducteur supplémentaire</small></span>
+            </span>
+          </label>
+          <label class="opt" data-reveal>
+            <input type="checkbox" name="option" value="Carte SIM mexicaine">
+            <span class="opt-in">
+              <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M9 4h10l5 5v17a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path pathLength="1" d="M11.5 15h9v8h-9z"/><path pathLength="1" d="M16 15v8"/><path pathLength="1" d="M11.5 19h9"/></svg>
+              <strong>Carte SIM mexicaine</strong>
+              <span class="opt-desc">Restez connectés : Internet, appels locaux, GPS mobile. Activation et installation incluses.</span>
+              <span class="opt-price"><b>25 €</b><small>500 pesos</small></span>
+            </span>
+          </label>
+          <label class="opt" data-reveal>
+            <input type="checkbox" name="option" value="GPS">
+            <span class="opt-in">
+              <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M27 5L5 14.5l9.5 3 3 9.5z"/></svg>
+              <strong>GPS</strong>
+              <span class="opt-desc">Cartes de la Riviera Maya à jour et points d'intérêt essentiels.</span>
+              <span class="opt-price"><b>Gratuit</b><small>GPS avec CarPlay sur certains véhicules</small></span>
+            </span>
+          </label>
+          <label class="opt" data-reveal>
+            <input type="checkbox" name="option" value="Siège bébé">
+            <span class="opt-in">
+              <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M25 17a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/><path pathLength="1" d="M12.5 19.5c1 1.5 2.2 2 3.5 2s2.5-.5 3.5-2"/><path pathLength="1" d="M16 8c0-2 1.5-3 3-3"/><path pathLength="1" d="M12.4 15.4h.2"/><path pathLength="1" d="M19.4 15.4h.2"/></svg>
+              <strong>Siège bébé</strong>
+              <span class="opt-desc">Siège homologué, installé par nos soins à la remise du véhicule.</span>
+              <span class="opt-price"><b>2,50 €</b><i>/ jour</i><small>50 pesos par jour</small></span>
+            </span>
+          </label>
+          <label class="opt" data-reveal>
+            <input type="checkbox" name="option" value="Réhausseur enfant">
+            <span class="opt-in">
+              <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M9 5v13h13a3 3 0 0 1 3 3v2H9z"/><path pathLength="1" d="M6 27h22"/><path pathLength="1" d="M9 12h7"/></svg>
+              <strong>Réhausseur enfant</strong>
+              <span class="opt-desc">Un réhausseur adapté aux enfants plus grands, pour voyager confortablement.</span>
+              <span class="opt-price"><b>2,50 €</b><i>/ jour</i><small>50 pesos par jour</small></span>
+            </span>
+          </label>
+          <label class="opt" data-reveal>
+            <input type="checkbox" name="option" value="Lavage du véhicule">
+            <span class="opt-in">
+              <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 4c4 5.5 7 9 7 13a7 7 0 0 1-14 0c0-4 3-7.5 7-13z"/><path pathLength="1" d="M12.5 18a3.5 3.5 0 0 0 3.5 3.5"/><path pathLength="1" d="M26 5v4"/><path pathLength="1" d="M24 7h4"/></svg>
+              <strong>Lavage du véhicule</strong>
+              <span class="opt-desc">Option « retour propre » : nous nous occupons du lavage extérieur et intérieur.</span>
+              <span class="opt-price"><b>25 €</b><small>500 pesos</small></span>
+            </span>
+          </label>
+          <label class="opt opt-star" data-reveal>
+            <input type="checkbox" name="option" value="Assistance police 24/7">
+            <span class="opt-in">
+              <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 3l10 4v8c0 6.5-4.300 11.300-10 14C10.300 26.300 6 21.500 6 15V7z"/><path pathLength="1" d="M16 9.5l1.9 3.8 4.1.6-3 2.9.7 4.200L16 19l-3.700 2 .7-4.200-3-2.900 4.100-.6z"/></svg>
+              <strong>Assistance problème avec la police 24/7</strong>
+              <span class="opt-desc">Assistance immédiate en cas de contrôle de police compliqué&nbsp;! Nous mettons à profit nos relations privilégiées avec les autorités locales haut placées (Commandant, Juges) pour vous sortir rapidement de situations délicates sur toute la Riviera Maya.</span>
+              <span class="opt-price"><b>25 €</b><small>500 pesos</small></span>
+            </span>
+          </label>
+      </form>
+      <p class="opt-note">* Les tarifs sont indicatifs et peuvent varier à tout moment. Les options sont ajoutées au moment de la <a href="./#reserver">réservation</a>.</p>
+    </section>
+
+    <!-- 2. Les services complémentaires -->
+    <section class="extras" id="plus">
+      <div class="sec-head">
+        <p class="tag">Services complémentaires</p>
+        <h2>Et pour le reste du séjour, <span class="grad">on s'en occupe aussi.</span></h2>
+      </div>
+      <div class="extra-grid">
+        <a class="extra x-blue" href="./?sujet=Transport%20priv%C3%A9#message" data-reveal>
+          <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M4 19v-3.5l3-1 2.5-5h10l4 5 4.5 1.5v3z"/><path pathLength="1" d="M11.5 21a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path pathLength="1" d="M25.5 21a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path pathLength="1" d="M11.5 21h9"/></svg>
+          <h3>Transport privé</h3>
+          <p>Transferts aéroport ↔ hôtel ou Airbnb, excursions sur mesure.</p>
+          <span>Demander un devis <i aria-hidden="true">→</i></span>
+        </a>
+        <a class="extra x-green" href="./?sujet=Location%20de%20yacht#message" data-reveal>
+          <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M4 20h24l-3 6H7z"/><path pathLength="1" d="M16 4v16"/><path pathLength="1" d="M16 6l8 11h-8z"/><path pathLength="1" d="M3 30c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0 4 1.5 6 0"/></svg>
+          <h3>Location de yacht</h3>
+          <p>Sorties privées, journée en mer ou coucher de soleil. Skipper inclus, boissons en option.</p>
+          <span>Demander un devis <i aria-hidden="true">→</i></span>
+        </a>
+        <a class="extra x-sun" href="./?sujet=Location%20de%20vacances%2C%20immobilier#message" data-reveal>
+          <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M4 15L16 5l12 10"/><path pathLength="1" d="M7 13v13h18V13"/><path pathLength="1" d="M13.5 26v-7h5v7"/></svg>
+          <h3>Location de vacances · Immobilier</h3>
+          <p>Appartements, villas et résidences sécurisées à Cancún et sur toute la Riviera Maya.</p>
+          <span>Demander un devis <i aria-hidden="true">→</i></span>
+        </a>
+        <a class="extra x-night" href="./?sujet=Excursions#message" data-reveal>
+          <svg class="draw" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M3 26h26"/><path pathLength="1" d="M6 26v-4h4v-4h4v-4h4v4h4v4h4v4"/><path pathLength="1" d="M27 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg>
+          <h3>Excursions</h3>
+          <p>Chichén Itzá, cenotes, Isla Mujeres, Tulum, parcs naturels… des programmes 100 % personnalisés.</p>
+          <span>Demander un devis <i aria-hidden="true">→</i></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3. Appel à réserver -->
+    <section class="band">
+      <h2 data-reveal>Prêt à prendre la route&nbsp;?</h2>
+      <p data-reveal>Deux minutes pour pré-réserver. Votre conseiller vous répond par WhatsApp.</p>
+      <div class="hero-cta" data-reveal>
+        <a class="btn btn-white btn-lg" href="./#reserver">Pré-réserver <span aria-hidden="true">→</span></a>
+        <a class="btn btn-night btn-lg" href="https://wa.me/32477813205" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Les options choisies suivent le visiteur jusqu'au formulaire -->
+  <div class="opt-bar" id="opt-bar" hidden>
+    <span id="opt-n" role="status">1 option</span>
+    <a class="btn btn-orange" id="opt-go" href="./#reserver"><em>Ajouter<i> à ma demande</i></em> <span aria-hidden="true">→</span></a>
+  </div>
+
+  <footer class="foot">
+    <p class="foot-wm" aria-hidden="true"><b class="c-o">Street</b> <b class="c-b">Car</b> <b class="c-g">Solution</b></p>
+    <div class="foot-contact">
+      <a href="https://wa.me/32477813205" target="_blank" rel="noopener noreferrer">WhatsApp · +32 477 81 32 05</a>
+      <a href="mailto:reservation@streetcarsolution.com">reservation@streetcarsolution.com</a>
+      <a href="./">Accueil</a>
+      <a href="/terms.html">Conditions générales</a>
+      <a href="/privacy.html">Confidentialité</a>
+    </div>
+    <div class="foot-row">
+      <p>Location de voiture à Cancún et dans toute la péninsule du Yucatán.</p>
+      <p class="foot-note">Maquette · novembre 2026 · page d'accueil et page Services · les deux formulaires n'envoient encore rien ; les autres pages et les versions anglaise et espagnole viendront ensuite.</p>
+    </div>
+  </footer>
+
+  <!-- Julie, l'agent virtuel du site : toujours à portée de main -->
+  <button class="fab" id="fab" type="button" aria-label="Poser une question à Julie, l'agent virtuel" aria-controls="julie" aria-expanded="false">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 8a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v9a4 4 0 0 1-4 4h-7l-6 5v-5.300A4 4 0 0 1 6 17z"/><path d="M11.500 12.500h9"/></svg><i></i>
+  </button>
+  <div class="julie" id="julie" role="dialog" aria-label="Julie, agent virtuel" hidden data-lenis-prevent>
+    <div class="chat-top julie-top">
+      <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="">
+      <div><b>Julie</b><span><i></i>Agent virtuel · 24 h/24, 7 j/7</span></div>
+      <button type="button" id="julie-x" aria-label="Fermer la discussion">×</button>
+    </div>
+    <div class="julie-log" id="julie-log" aria-live="polite"></div>
+    <form class="julie-form" id="julie-form">
+      <input id="julie-in" placeholder="Votre question…" autocomplete="off" aria-label="Votre question">
+      <button type="submit" aria-label="Envoyer">→</button>
+    </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="site.js?v=12"></script>
+</body>
+</html>

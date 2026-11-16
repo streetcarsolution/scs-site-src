@@ -244,6 +244,29 @@
     });
   }
 
+  /* ---------- Page Services : les options choisies suivent le visiteur jusqu'au formulaire ---------- */
+  var choix = id('options-form');
+  if (choix) (function () {
+    var barre = id('opt-bar'), compte = id('opt-n'), lien = id('opt-go');
+    function maj() {
+      var c = tous('input:checked', choix).map(function (i) { return i.value; });
+      barre.hidden = !c.length;
+      compte.textContent = c.length + (c.length > 1 ? ' options' : ' option');
+      lien.href = './' + (c.length ? '?options=' + encodeURIComponent(c.join(', ')) : '') + '#reserver';
+    }
+    choix.addEventListener('change', maj);
+    choix.addEventListener('submit', function (e) { e.preventDefault(); });
+    maj();
+  })();
+  /* Accueil : on arrive de la page Services avec des options, ou une demande de devis */
+  (function () {
+    var q;
+    try { q = new URLSearchParams(window.location.search); } catch (e) { return; }
+    var o = q.get('options'), s = q.get('sujet');
+    if (o && id('reservationMessage')) id('reservationMessage').value = 'Options souhaitées : ' + o.slice(0, 300);
+    if (s && id('cf-subject')) id('cf-subject').value = s.slice(0, 120);
+  })();
+
   /* ---------- Copier l'adresse email ---------- */
   var copier = id('copier');
   if (copier) copier.addEventListener('click', function () {
@@ -338,18 +361,22 @@
   });
 
   /* ---------- 1. En-tête : en descendant, la voiture démarre et quitte l'écran ---------- */
+  if (document.querySelector('.hero')) {
   var depart = { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: .4 };
   gsap.to('.hero-car', { x: function () { return -window.innerWidth * 1.15; }, ease: 'power1.in', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 35%', scrub: .4, invalidateOnRefresh: true } });
   /* Ces trois éléments ont aussi une entrée en CSS : on donne ici leur état de départ complet,
      pour que GSAP ne fige pas une image prise au milieu de cette entrée. */
   gsap.fromTo('.hero-sun', { x: 0, y: 0, yPercent: 0, scale: 1, rotation: 0 }, { scale: 1.35, yPercent: -14, ease: 'none', scrollTrigger: depart });
   gsap.to('.hero-in', { yPercent: -14, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: '18% top', end: '75% top', scrub: true } });
-  gsap.fromTo('.hero-word', { x: 0, y: 0, xPercent: 0, scale: 1, rotation: 0 }, { xPercent: -12, ease: 'none', scrollTrigger: depart });
-  gsap.fromTo('.sticker', { x: 0, y: 0, yPercent: 0, scale: 1, rotation: 9 }, { yPercent: -90, rotation: 50, ease: 'none', scrollTrigger: depart });
+  if (document.querySelector('.hero-word')) gsap.fromTo('.hero-word', { x: 0, y: 0, xPercent: 0, scale: 1, rotation: 0 }, { xPercent: -12, ease: 'none', scrollTrigger: depart });
+  if (document.querySelector('.sticker')) gsap.fromTo('.sticker', { x: 0, y: 0, yPercent: 0, scale: 1, rotation: 9 }, { yPercent: -90, rotation: 50, ease: 'none', scrollTrigger: depart });
+  }
 
   /* Les deux bandeaux s'écartent comme des ciseaux */
+  if (document.querySelector('.tickers')) {
   gsap.fromTo('.t-blue', { rotation: -6 }, { rotation: -1.5, ease: 'none', scrollTrigger: { trigger: '.tickers', start: 'top bottom', end: 'bottom top', scrub: true } });
   gsap.fromTo('.t-green', { rotation: 5 }, { rotation: 1, ease: 'none', scrollTrigger: { trigger: '.tickers', start: 'top bottom', end: 'bottom top', scrub: true } });
+  }
 
   /* ---------- 2. Le texte s'allume mot à mot ---------- */
   tous('[data-words]').forEach(function (el) {
@@ -374,9 +401,10 @@
       }
     });
   });
-  gsap.from('.stats > div', { y: 50, opacity: 0, duration: .9, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.stats', start: 'top 88%' } });
+  if (document.querySelector('.stats')) gsap.from('.stats > div', { y: 50, opacity: 0, duration: .9, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.stats', start: 'top 88%' } });
 
   /* ---------- 3. La flotte : la page se fige, le défilement fait passer les voitures ---------- */
+  if (document.querySelector('.fleet')) {
   var fleet = document.querySelector('.fleet');
   var scene = fleet.querySelector('.fleet-stage');
   var piste = document.getElementById('fleet-track');
@@ -402,8 +430,10 @@
   });
   gsap.from('.fleet .car', { y: 110, opacity: 0, rotation: 5, duration: 1, stagger: .09, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: fleet, start: 'top 62%' } });
   gsap.from('.fleet-head', { y: 40, opacity: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: fleet, start: 'top 70%' } });
+  }
 
   /* ---------- 4. La route : elle se dessine entre les étapes, une voiture la suit ---------- */
+  if (document.getElementById('road-wrap')) {
   var bloc = document.getElementById('road-wrap');
   var dessin = document.getElementById('road-svg');
   var rBase = document.getElementById('r-base');
@@ -478,13 +508,15 @@
     }
     gsap.from(txt.children, { y: 36, opacity: 0, duration: .8, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: txt, start: 'top 86%' } });
   });
+  }
 
   /* ---------- Titres : ils montent en entrant ---------- */
-  tous('.road-head, .why-head, .reviews > h2, .reviews > .tag, .mani > .tag, .lux-head, .book-head, .contact-head').forEach(function (el) {
+  tous('.road-head, .why-head, .reviews > h2, .reviews > .tag, .mani > .tag, .lux-head, .book-head, .contact-head, .sec-head').forEach(function (el) {
     gsap.from(el, { y: 50, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
   });
 
   /* ---------- 5. La conversation s'écrit, les pictogrammes se dessinent ---------- */
+  if (document.getElementById('chat')) {
   var bulles = tous('#chat .msg, #chat .msg-time');
   gsap.set(bulles, { opacity: 0, scale: .5, y: 16 });
   gsap.from('#chat', { y: 70, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '#chat', start: 'top 88%' } });
@@ -494,16 +526,22 @@
     gsap.from(li, { y: 44, opacity: 0, duration: .9, ease: 'power3.out', scrollTrigger: st });
     gsap.to(li.querySelectorAll('path'), { strokeDashoffset: 0, duration: 1.3, ease: 'power2.inOut', stagger: .2, delay: .2, scrollTrigger: st });
   });
+  }
 
   /* ---------- 6. Avis ---------- */
+  if (document.querySelector('.quotes')) {
   gsap.from('.quote', { y: 90, opacity: 0, duration: 1, stagger: .14, ease: 'back.out(1.3)', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.quotes', start: 'top 84%' } });
+  }
 
   /* ---------- Super Car & Prestige : la vitrine entre en scène ---------- */
+  if (document.querySelector('.lux-show')) {
   gsap.from('.lux-screen', { y: 90, opacity: 0, scale: .9, duration: 1.2, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.lux-show', start: 'top 84%' } });
   gsap.from('.lux-infos', { y: 60, opacity: 0, duration: 1, delay: .15, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.lux-show', start: 'top 84%' } });
   gsap.from('.lux-tabs button', { y: 46, opacity: 0, duration: .8, stagger: .08, ease: 'back.out(1.6)', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.lux-tabs', start: 'top 96%' } });
+  }
 
   /* ---------- 8. L'arrivée : le soleil passe derrière la pyramide, les palmiers poussent, la voiture arrive ---------- */
+  if (document.querySelector('.cta')) {
   var soir = { trigger: '.cta', start: 'top bottom', end: 'bottom bottom', scrub: true };
   gsap.fromTo('.cta-sun', { yPercent: -16 }, { yPercent: 14, ease: 'none', scrollTrigger: soir });
   gsap.fromTo('.cta-pyramid', { yPercent: 36 }, { yPercent: 0, ease: 'none', scrollTrigger: soir });
@@ -512,13 +550,31 @@
   gsap.from('.cta-car', { x: function () { return window.innerWidth; }, duration: 1.6, ease: 'power3.out', scrollTrigger: { trigger: '.cta-art', start: 'top 60%' } });
   gsap.from('.cta-in > *', { y: 50, opacity: 0, duration: 1, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.cta', start: 'top 70%' } });
   gsap.to('.cta h2 em path', { strokeDashoffset: 0, duration: 1, delay: .7, ease: 'power2.out', scrollTrigger: { trigger: '.cta', start: 'top 70%' } });
+  }
 
   /* ---------- 9 et 10. Formulaires et contacts : chaque bloc monte en entrant ---------- */
   tous('.fs, .ticket-col, .way, .msg-form').forEach(function (el) {
     gsap.from(el, { y: 60, opacity: 0, duration: .9, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: el, start: 'top 92%' } });
   });
 
+  /* ---------- Page Services : les blocs montent, les pictogrammes se dessinent ---------- */
+  tous('[data-reveal]').forEach(function (el) {
+    gsap.from(el, { y: 60, opacity: 0, duration: .9, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: el, start: 'top 92%' } });
+  });
+  tous('.draw').forEach(function (svg) {
+    gsap.to(svg.querySelectorAll('path'), { strokeDashoffset: 0, duration: 1.2, ease: 'power2.inOut', stagger: .16, delay: .2, scrollTrigger: { trigger: svg, start: 'top 90%' } });
+  });
+
   gsap.from('.foot-wm b', { yPercent: 110, opacity: 0, duration: 1, stagger: .1, ease: 'power4.out', scrollTrigger: { trigger: '.foot', start: 'top 88%' } });
 
-  window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+  window.addEventListener('load', function () {
+    ScrollTrigger.refresh();
+    /* On arrive d'une autre page sur une ancre : la hauteur de la page vient de changer, on s'y replace */
+    var cible = window.location.hash.length > 1 && document.getElementById(window.location.hash.slice(1));
+    if (!cible) return;
+    /* Un bloc qui n'est pas une section entière se place sous le menu */
+    var y = Math.max(0, cible.getBoundingClientRect().top + window.scrollY - (cible.tagName === 'SECTION' ? 0 : 150));
+    if (lenis) { lenis.resize(); lenis.scrollTo(y, { immediate: true, force: true }); }
+    else window.scrollTo(0, y);
+  });
 })();
