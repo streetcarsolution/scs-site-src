@@ -142,6 +142,9 @@
       ecrire('t-boite', choix('transmission'));
       var p = Number(id('passengers').value) || 0, v = (Number(id('luggage10').value) || 0) + (Number(id('luggage20').value) || 0);
       ecrire('t-bord', p + (p > 1 ? ' passagers' : ' passager') + (v ? ', ' + v + (v > 1 ? ' valises' : ' valise') : ''));
+      var o = tous('input[name="option"]:checked', resa).map(function (i) { return i.value; });
+      ecrire('t-opts', o.join(' · '));
+      id('drop-txt').textContent = o.length ? o.length + (o.length > 1 ? ' options choisies' : ' option choisie') : 'Choisir des options';
     }
 
     /* Trois jours au moins, et pas de retour avant le départ */
@@ -222,6 +225,8 @@
       var r = resa.querySelector('input[name="vehicleType"][value="' + a.getAttribute('data-vehicule') + '"]');
       if (r) { r.checked = true; dessiner(); }
     });
+    /* Le menu des options se referme quand on touche ailleurs */
+    document.addEventListener('click', function (e) { if (id('drop').open && !e.target.closest('#drop')) id('drop').open = false; });
     resa.querySelector('button[type="submit"]').disabled = false;
     dessiner();
   })();
@@ -263,7 +268,15 @@
     var q;
     try { q = new URLSearchParams(window.location.search); } catch (e) { return; }
     var o = q.get('options'), s = q.get('sujet');
-    if (o && id('reservationMessage')) id('reservationMessage').value = 'Options souhaitées : ' + o.slice(0, 300);
+    if (o && id('drop')) {
+      var voulues = o.split(', ');
+      tous('input[name="option"]', id('drop')).forEach(function (c) {
+        if (voulues.indexOf(c.value) < 0) return;
+        c.checked = true;
+        c.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+      id('drop').open = true;
+    }
     if (s && id('cf-subject')) id('cf-subject').value = s.slice(0, 120);
   })();
 

@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=12">
+  <link rel="stylesheet" href="site.css?v=13">
 </head>
 <body>
 
@@ -506,6 +506,22 @@
                 <div class="step"><button type="button" data-step="-1" aria-label="Une valise de 20 kg de moins">−</button><input class="in" type="number" id="luggage20" name="luggage20" min="0" max="10" value="0" required inputmode="numeric"><button type="button" data-step="1" aria-label="Une valise de 20 kg de plus">+</button></div>
               </div>
             </div>
+            <div class="gap-top" id="opts-pick">
+              <p class="lab" id="lab-opts">Options <em>(facultatif)</em></p>
+              <details class="drop" id="drop">
+                <summary class="in" aria-labelledby="lab-opts"><span id="drop-txt">Choisir des options</span><i aria-hidden="true"></i></summary>
+                <div class="drop-list">
+                  <label class="drop-item"><input type="checkbox" name="option" value="Conducteur additionnel"><span class="box" aria-hidden="true"></span><span class="drop-name">Conducteur additionnel</span><span class="drop-price">Gratuit</span></label>
+                  <label class="drop-item"><input type="checkbox" name="option" value="Carte SIM mexicaine"><span class="box" aria-hidden="true"></span><span class="drop-name">Carte SIM mexicaine</span><span class="drop-price">25&nbsp;€</span></label>
+                  <label class="drop-item"><input type="checkbox" name="option" value="GPS"><span class="box" aria-hidden="true"></span><span class="drop-name">GPS</span><span class="drop-price">Gratuit</span></label>
+                  <label class="drop-item"><input type="checkbox" name="option" value="Siège bébé"><span class="box" aria-hidden="true"></span><span class="drop-name">Siège bébé</span><span class="drop-price">2,50&nbsp;€&nbsp;/&nbsp;jour</span></label>
+                  <label class="drop-item"><input type="checkbox" name="option" value="Réhausseur enfant"><span class="box" aria-hidden="true"></span><span class="drop-name">Réhausseur enfant</span><span class="drop-price">2,50&nbsp;€&nbsp;/&nbsp;jour</span></label>
+                  <label class="drop-item"><input type="checkbox" name="option" value="Lavage du véhicule"><span class="box" aria-hidden="true"></span><span class="drop-name">Lavage du véhicule</span><span class="drop-price">25&nbsp;€</span></label>
+                  <label class="drop-item"><input type="checkbox" name="option" value="Assistance police 24/7"><span class="box" aria-hidden="true"></span><span class="drop-name">Assistance police 24/7</span><span class="drop-price">25&nbsp;€</span></label>
+                  <a class="drop-more" href="services.html" target="_blank" rel="noopener">Voir le détail des options →</a>
+                </div>
+              </details>
+            </div>
           </fieldset>
 
           <fieldset class="fs">
@@ -550,6 +566,7 @@
               <div><small>Boîte</small><b id="t-boite" class="is-empty">—</b></div>
               <div><small>À bord</small><b id="t-bord">2 passagers</b></div>
             </div>
+            <div class="ticket-opts"><small>Options</small><b id="t-opts" class="is-empty">—</b></div>
             <div class="ticket-foot"><i></i><p>Prix confirmé par votre conseiller. Taxes et assurances incluses.</p></div>
             <span class="ticket-stamp">Maquette</span>
           </div>
@@ -657,6 +674,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="site.js?v=12"></script>
+  <script src="site.js?v=13"></script>
 </body>
 </html>

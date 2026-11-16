@@ -379,6 +379,25 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .form-status[hidden] { display: none; }
 .demo-note { font-size: 13px; text-align: center; color: var(--soft); }
 
+/* ---------- Menu déroulant des options ---------- */
+.drop > summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; list-style: none; cursor: pointer; user-select: none; }
+.drop > summary::-webkit-details-marker { display: none; }
+.drop > summary i { flex: none; width: 9px; height: 9px; margin: -3px 3px 0 0; border-right: 2.4px solid var(--night); border-bottom: 2.4px solid var(--night); transform: rotate(45deg); transition: transform .4s var(--e), margin .4s var(--e); }
+.drop[open] > summary { border-color: var(--blue); }
+.drop[open] > summary i { margin-top: 4px; transform: rotate(-135deg); }
+.drop-list { display: grid; gap: 2px; margin-top: 8px; padding: 6px; border: 1.5px solid rgba(11, 34, 57, .12); border-radius: 20px; background: var(--paper); animation: bump .45s var(--e); }
+.drop-item { position: relative; display: flex; align-items: center; gap: 12px; padding: 13px 10px; border-radius: 14px; cursor: pointer; transition: background-color .2s; }
+.drop-item:hover { background: rgba(29, 161, 242, .09); }
+.drop-item input { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.drop-item .box { position: relative; flex: none; width: 26px; height: 26px; border: 2px solid rgba(11, 34, 57, .25); border-radius: 8px; background: #fff; transition: background .25s, border-color .25s; }
+.drop-item .box::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: 15px; font-weight: 700; transform: scale(0); transition: transform .35s cubic-bezier(.34, 1.56, .64, 1); }
+.drop-item input:checked + .box { border-color: transparent; background: linear-gradient(140deg, #1DA1F2, #00B894); }
+.drop-item input:checked + .box::after { transform: scale(1); }
+.drop-item input:focus-visible + .box { outline: 3px solid var(--sun); outline-offset: 2px; }
+.drop-name { flex: 1 1 auto; min-width: 0; font-size: 16px; font-weight: 500; line-height: 1.3; }
+.drop-price { flex: none; font-size: 14px; font-weight: 700; color: #00806a; white-space: nowrap; }
+.drop-more { display: block; padding: 11px 10px 8px; font-size: 14.5px; font-weight: 700; color: #0d7fca; text-decoration: underline; }
+
 /* ---------- 9. Pré-réservation ---------- */
 .book { padding: 64px var(--pad) 84px; background: var(--paper); }
 .book-head { max-width: 1160px; margin: 0 auto 28px; }
@@ -439,6 +458,8 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .ticket-cut i:first-child { left: -13px; } .ticket-cut i:last-child { right: -13px; }
 .ticket-cells { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 8px 18px 14px; }
 .ticket-cells b { display: block; margin-top: 3px; font-family: var(--display); font-weight: 600; font-size: 16px; line-height: 1.2; }
+.ticket-opts { padding: 0 18px 14px; }
+.ticket-opts b { display: block; margin-top: 3px; font-family: var(--display); font-weight: 600; font-size: 15px; line-height: 1.3; }
 .ticket-foot { display: flex; align-items: center; gap: 14px; padding: 0 18px 16px; font-size: 12.5px; line-height: 1.35; color: var(--soft); }
 .ticket-foot i { flex: none; width: 70px; height: 30px; border-radius: 2px; opacity: .8; background: repeating-linear-gradient(90deg, var(--night) 0 2px, transparent 2px 5px, var(--night) 5px 6px, transparent 6px 10px); }
 .ticket .is-empty { color: rgba(11, 34, 57, .28); }
