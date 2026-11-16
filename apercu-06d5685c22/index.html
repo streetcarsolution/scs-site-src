@@ -6,22 +6,28 @@
   <!-- Maquette de travail : jamais dans Google, jamais liée depuis le site. -->
   <meta name="robots" content="noindex, nofollow">
   <title>Street Car Solution — maquette du nouveau site</title>
-  <meta name="theme-color" content="#0B2239">
+  <meta name="theme-color" content="#1DA1F2">
   <link rel="icon" href="/favicon.ico?v=3" sizes="any">
-  <link rel="preload" as="image" href="img/cancun.webp">
+  <link rel="preload" as="image" href="img/logo-360.webp">
+  <link rel="preload" as="image" href="img/auto-economique.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=DM+Sans:wght@400;500;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=1">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css?v=2">
 </head>
 <body>
 
-  <!-- Lever de soleil à l'ouverture -->
-  <div class="intro" aria-hidden="true"><div class="intro-sun"></div></div>
+  <!-- Ouverture : le soleil se lève, devient le logo, puis le logo rejoint le menu -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro-bg"></div>
+    <div class="intro-ball"><span class="intro-ring"></span><img src="img/logo-360.webp" width="360" height="360" alt=""></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
 
   <header class="nav" id="nav">
     <a class="brand" href="#top" aria-label="Street Car Solution, haut de page">
-      <img src="/assets/logo-192.webp" width="44" height="44" alt="">
+      <img id="nav-logo" src="img/logo-360.webp" width="46" height="46" alt="">
       <span class="wm"><b class="c-o">Street</b> <b class="c-b">Car</b> <b class="c-g">Solution</b></span>
     </a>
     <nav class="nav-links" aria-label="Menu principal">
@@ -32,58 +38,81 @@
     </nav>
     <div class="nav-right">
       <span class="langs" aria-label="Langues"><b>FR</b><span>EN</span><span>ES</span></span>
-      <a class="btn btn-sun" href="#reserver">Pré-réserver</a>
+      <a class="btn btn-orange" href="#reserver">Pré-réserver</a>
       <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
     </div>
   </header>
 
+  <script>
+    /* L'ouverture envoie le logo exactement sur celui du menu : on mesure sa place. */
+    (function () {
+      var i = document.getElementById('intro'), n = document.getElementById('nav'), l = document.getElementById('nav-logo');
+      if (!i || !n || !l) return;
+      var x = n.offsetLeft + l.offsetLeft + l.offsetWidth / 2, y = n.offsetTop + l.offsetTop + l.offsetHeight / 2;
+      var b = i.querySelector('.intro-ball').offsetWidth || 200, s = i.style;
+      s.setProperty('--ix', x + 'px'); s.setProperty('--iy', y + 'px');
+      s.setProperty('--dx', (x - window.innerWidth / 2) + 'px'); s.setProperty('--dy', (y - window.innerHeight / 2) + 'px');
+      s.setProperty('--ds', l.offsetWidth / b);
+    })();
+  </script>
+
   <div class="menu" id="menu" hidden>
-    <a href="#flotte">Véhicules</a>
-    <a href="#route">La route</a>
-    <a href="#atouts">Pourquoi nous</a>
-    <a href="#avis">Avis</a>
-    <a href="#reserver" class="c-o">Pré-réserver</a>
+    <a href="#flotte"><small>01</small>Véhicules</a>
+    <a href="#route"><small>02</small>La route</a>
+    <a href="#atouts"><small>03</small>Pourquoi nous</a>
+    <a href="#avis"><small>04</small>Avis</a>
+    <a href="#reserver" class="menu-cta">Pré-réserver →</a>
   </div>
 
   <main id="top">
 
-    <!-- 1. En-tête animé -->
+    <!-- 1. En-tête : le dégradé de la marque, et la voiture qui arrive -->
     <section class="hero">
-      <div class="hero-media"><img src="img/cancun.webp" width="1920" height="1078" alt="Vue aérienne de la plage de Cancún et de la mer des Caraïbes"></div>
-      <div class="hero-shade"></div>
+      <div class="hero-bg" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i></div>
+
+      <svg class="plane" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#fff"/>
+      </svg>
 
       <div class="hero-in">
-        <p class="eyebrow"><i></i>Cancún · Riviera Maya · Yucatán</p>
+        <p class="eyebrow"><i></i>Location de voitures · Cancún</p>
         <h1>
           <span class="line"><span>Explorez</span></span>
           <span class="line"><span>le Mexique</span></span>
-          <span class="line"><span>en toute <em>liberté
-            <svg viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true"><path d="M4 18 C 60 4, 110 24, 160 12 S 250 6, 296 16"/></svg></em></span></span>
+          <span class="line"><span>en toute <em>liberté<svg viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true"><path d="M4 18 C 60 4, 110 24, 160 12 S 250 6, 296 16"/></svg></em></span></span>
         </h1>
-        <p class="hero-sub">L'agence de location francophone de Cancún. Votre voiture vous attend à l'aéroport&nbsp;: sans navette, sans attente, sans frais cachés.</p>
+        <p class="hero-sub">L'agence francophone de Cancún. Votre voiture vous attend à l'aéroport&nbsp;: sans navette, sans attente, sans frais cachés.</p>
         <div class="hero-cta">
-          <a class="btn btn-sun btn-lg" href="#reserver">Pré-réserver <span aria-hidden="true">→</span></a>
-          <a class="btn btn-glass btn-lg" href="#flotte">Voir les véhicules</a>
+          <a class="btn btn-orange btn-lg" href="#reserver">Pré-réserver <span aria-hidden="true">→</span></a>
+          <a class="btn btn-glass btn-lg" href="#flotte">Les véhicules</a>
         </div>
       </div>
 
-      <div class="badge" aria-hidden="true">
-        <svg viewBox="0 0 200 200">
-          <defs><path id="rond" d="M100 100 m-78 0 a78 78 0 1 1 156 0 a78 78 0 1 1 -156 0"/></defs>
-          <text><textPath href="#rond">FRANCOPHONE ✺ ASSISTANCE 24/7 ✺ DEPUIS 2018 ✺ CANCÚN ✺ </textPath></text>
-        </svg>
-        <img src="/assets/logo-192.webp" width="96" height="96" alt="">
+      <div class="hero-stage">
+        <i class="hero-sun" aria-hidden="true"></i>
+        <div class="hero-word" aria-hidden="true"><div><span>Cancún</span><span>Tulum</span><span>Bacalar</span><span>Mérida</span><span>Cancún</span><span>Tulum</span><span>Bacalar</span><span>Mérida</span></div></div>
+        <div class="hero-car">
+          <div class="hero-car-in">
+            <img src="img/auto-economique.webp" width="1000" height="577" alt="Renault Kwid rouge, l'une des voitures de l'agence">
+            <i class="hero-shadow" aria-hidden="true"></i>
+          </div>
+        </div>
+        <a class="sticker" href="#flotte" aria-label="Location dès 35 euros par jour, voir les véhicules">
+          <small>dès</small><b>35&nbsp;€</b><small>par jour</small>
+        </a>
       </div>
-
-      <span class="scroll-hint" aria-hidden="true">Défiler</span>
     </section>
 
-    <!-- Bandeau défilant -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker-track">
-        <span>Livraison à l'aéroport</span><i>✺</i><span>Assistance francophone 24/7</span><i>✺</i><span>Kilométrage illimité</span><i>✺</i><span>Sans frais cachés</span><i>✺</i><span>Sans carte de crédit obligatoire</span><i>✺</i>
-        <span>Livraison à l'aéroport</span><i>✺</i><span>Assistance francophone 24/7</span><i>✺</i><span>Kilométrage illimité</span><i>✺</i><span>Sans frais cachés</span><i>✺</i><span>Sans carte de crédit obligatoire</span><i>✺</i>
-      </div>
+    <!-- Deux bandeaux qui se croisent -->
+    <div class="tickers" aria-hidden="true">
+      <div class="ticker t-blue"><div class="ticker-track">
+        <span>Livraison à l'aéroport</span><i></i><span>Assistance francophone 24/7</span><i></i><span>Kilométrage illimité</span><i></i><span>Sans frais cachés</span><i></i>
+        <span>Livraison à l'aéroport</span><i></i><span>Assistance francophone 24/7</span><i></i><span>Kilométrage illimité</span><i></i><span>Sans frais cachés</span><i></i>
+      </div></div>
+      <div class="ticker t-green"><div class="ticker-track">
+        <span>Sans carte de crédit obligatoire</span><i></i><span>Taxes et assurances incluses</span><i></i><span>Depuis 2018</span><i></i><span>Agence légale au Mexique</span><i></i>
+        <span>Sans carte de crédit obligatoire</span><i></i><span>Taxes et assurances incluses</span><i></i><span>Depuis 2018</span><i></i><span>Agence légale au Mexique</span><i></i>
+      </div></div>
     </div>
 
     <!-- 2. Qui nous sommes -->
@@ -97,80 +126,112 @@
       </div>
     </section>
 
-    <!-- 3. La flotte : défilement horizontal -->
+    <!-- 3. La flotte : la page se fige et les voitures défilent -->
     <section class="fleet" id="flotte">
-      <div class="fleet-head">
-        <div>
-          <p class="tag">La flotte</p>
-          <h2>Six catégories,<br>une pour chaque voyage.</h2>
-        </div>
-        <p class="fleet-note">Taxes et assurances incluses.<br><span class="swipe">Faites glisser →</span></p>
-      </div>
-      <div class="fleet-scroller">
-        <div class="fleet-track">
-          <article class="car" style="--c:#1DA1F2">
-            <div class="car-img"><img src="/assets/vehicules/renault-kwid-4.webp" width="450" height="300" loading="lazy" alt="Voiture économique"></div>
-            <span class="car-n">01</span><h3>Économique</h3>
-            <p>Parfaite en ville, avec une excellente consommation.</p>
-            <div class="car-foot"><span class="price">dès <b>35&nbsp;€</b> / jour</span><a href="#reserver" aria-label="Pré-réserver une économique">→</a></div>
-          </article>
-          <article class="car" style="--c:#00B894">
-            <div class="car-img"><img src="/assets/vehicules/toyota-yaris-hb-4.webp" width="450" height="300" loading="lazy" alt="Voiture standard"></div>
-            <span class="car-n">02</span><h3>Standard</h3>
-            <p>Idéale pour un road-trip, avec un bon rapport qualité-prix.</p>
-            <div class="car-foot"><span class="price">dès <b>40&nbsp;€</b> / jour</span><a href="#reserver" aria-label="Pré-réserver une standard">→</a></div>
-          </article>
-          <article class="car" style="--c:#FDCB6E">
-            <div class="car-img"><img src="/assets/vehicules/toyota-yaris-berline-4.webp" width="450" height="300" loading="lazy" alt="Berline"></div>
-            <span class="car-n">03</span><h3>Berline</h3>
-            <p>Spacieuse pour les longs trajets, avec un grand coffre pour vos valises.</p>
-            <div class="car-foot"><span class="price">dès <b>47&nbsp;€</b> / jour</span><a href="#reserver" aria-label="Pré-réserver une berline">→</a></div>
-          </article>
-          <article class="car" style="--c:#E67E22">
-            <div class="car-img"><img src="/assets/vehicules/kia-sonet-4.webp" width="450" height="300" loading="lazy" alt="SUV 5 places"></div>
-            <span class="car-n">04</span><h3>SUV 5 places</h3>
-            <p>Le confort et la garde au sol pour explorer toute la péninsule.</p>
-            <div class="car-foot"><span class="price">dès <b>62&nbsp;€</b> / jour</span><a href="#reserver" aria-label="Pré-réserver un SUV 5 places">→</a></div>
-          </article>
-          <article class="car" style="--c:#FD79A8">
-            <div class="car-img"><img src="/assets/vehicules/hyundai-creta-4.webp" width="450" height="300" loading="lazy" alt="SUV 7 places"></div>
-            <span class="car-n">05</span><h3>SUV 7 places</h3>
-            <p>De l'espace pour les familles nombreuses et les groupes d'amis.</p>
-            <div class="car-foot"><span class="price">dès <b>75&nbsp;€</b> / jour</span><a href="#reserver" aria-label="Pré-réserver un SUV 7 places">→</a></div>
-          </article>
-          <article class="car" style="--c:#6C5CE7">
-            <div class="car-img"><img src="/assets/vehicules/van-4.webp" width="450" height="300" loading="lazy" alt="Van 14 places"></div>
-            <span class="car-n">06</span><h3>Van 14 places</h3>
-            <p>La solution pour les grands groupes et les événements.</p>
-            <div class="car-foot"><span class="price">dès <b>105&nbsp;€</b> / jour</span><a href="#reserver" aria-label="Pré-réserver un van">→</a></div>
-          </article>
-          <a class="car car-more" href="/vehicles.html">
-            <span>Super cars &amp; prestige</span>
-            <strong>Voir tous<br>les véhicules →</strong>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. La route : la voiture avance avec le défilement -->
-    <section class="road" id="route">
-      <div class="road-head">
-        <p class="tag tag-sun">La route est à vous</p>
-        <h2>Depuis l'aéroport,<br>tout le Yucatán<br>se fait en voiture.</h2>
-      </div>
-
-      <div class="road-wrap">
-        <div class="road-line" aria-hidden="true">
-          <div class="road-fill"></div>
-          <div class="road-car">
-            <svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11m-14 0h14m-14 0a2 2 0 0 0-2 2v3h2m14-5a2 2 0 0 1 2 2v3h-2M5 16v2m14-2v2M5 16h14M7.5 13.5h.01M16.5 13.5h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="fleet-stage">
+        <div class="fleet-head">
+          <div>
+            <p class="tag">La flotte</p>
+            <h2>Six catégories, <span class="grad">une pour chaque voyage.</span></h2>
+          </div>
+          <div class="fleet-meter" aria-hidden="true">
+            <span><b id="fleet-n">01</b> / 06</span>
+            <i><u id="fleet-bar"></u></i>
           </div>
         </div>
 
+        <div class="fleet-track" id="fleet-track">
+          <article class="car k-blue">
+            <div class="car-top"><span class="car-n">01</span><span class="car-price">dès <b>35&nbsp;€</b> / jour</span></div>
+            <h3>Économique</h3>
+            <p class="car-model">Renault Kwid ou similaire</p>
+            <div class="car-pic"><i></i><img src="img/auto-economique.webp" width="1000" height="577" alt="Renault Kwid"></div>
+            <div class="car-foot"><p>Parfaite en ville, avec une excellente consommation.</p><a href="#reserver" aria-label="Pré-réserver une économique">→</a></div>
+          </article>
+          <article class="car k-green">
+            <div class="car-top"><span class="car-n">02</span><span class="car-price">dès <b>40&nbsp;€</b> / jour</span></div>
+            <h3>Standard</h3>
+            <p class="car-model">Toyota Yaris HB ou similaire</p>
+            <div class="car-pic"><i></i><img src="img/auto-standard.webp" width="1000" height="534" loading="lazy" alt="Toyota Yaris HB"></div>
+            <div class="car-foot"><p>Idéale pour un road-trip, avec un bon rapport qualité-prix.</p><a href="#reserver" aria-label="Pré-réserver une standard">→</a></div>
+          </article>
+          <article class="car k-sun">
+            <div class="car-top"><span class="car-n">03</span><span class="car-price">dès <b>47&nbsp;€</b> / jour</span></div>
+            <h3>Berline</h3>
+            <p class="car-model">Toyota Yaris berline ou similaire</p>
+            <div class="car-pic"><i></i><img src="img/auto-berline.webp" width="1000" height="495" loading="lazy" alt="Toyota Yaris berline"></div>
+            <div class="car-foot"><p>Spacieuse pour les longs trajets, avec un grand coffre pour vos valises.</p><a href="#reserver" aria-label="Pré-réserver une berline">→</a></div>
+          </article>
+          <article class="car k-night">
+            <div class="car-top"><span class="car-n">04</span><span class="car-price">dès <b>62&nbsp;€</b> / jour</span></div>
+            <h3>SUV 5 places</h3>
+            <p class="car-model">Kia Sonet ou similaire</p>
+            <div class="car-pic"><i></i><img src="img/auto-suv5.webp" width="1000" height="608" loading="lazy" alt="Kia Sonet"></div>
+            <div class="car-foot"><p>Le confort et la garde au sol pour explorer toute la péninsule.</p><a href="#reserver" aria-label="Pré-réserver un SUV 5 places">→</a></div>
+          </article>
+          <article class="car k-mix">
+            <div class="car-top"><span class="car-n">05</span><span class="car-price">dès <b>75&nbsp;€</b> / jour</span></div>
+            <h3>SUV 7 places</h3>
+            <p class="car-model">Hyundai Creta ou similaire</p>
+            <div class="car-pic"><i></i><img src="img/auto-suv7.webp" width="1000" height="555" loading="lazy" alt="Hyundai Creta"></div>
+            <div class="car-foot"><p>De l'espace pour les familles nombreuses et les groupes d'amis.</p><a href="#reserver" aria-label="Pré-réserver un SUV 7 places">→</a></div>
+          </article>
+          <article class="car k-blue2">
+            <div class="car-top"><span class="car-n">06</span><span class="car-price">dès <b>105&nbsp;€</b> / jour</span></div>
+            <h3>Van 14 places</h3>
+            <p class="car-model">Toyota Hiace ou similaire</p>
+            <div class="car-pic"><i></i><img src="img/auto-van.webp" width="1000" height="546" loading="lazy" alt="Toyota Hiace"></div>
+            <div class="car-foot"><p>La solution pour les grands groupes et les événements.</p><a href="#reserver" aria-label="Pré-réserver un van">→</a></div>
+          </article>
+          <a class="car car-more" href="/vehicles.html">
+            <span>Super cars &amp; prestige</span>
+            <strong>Voir tous les véhicules</strong>
+            <em aria-hidden="true">→</em>
+          </a>
+        </div>
+        <p class="fleet-note">Taxes et assurances incluses dans tous les prix.</p>
+      </div>
+    </section>
+
+    <!-- 4. La route : une voiture suit la route, phares allumés -->
+    <section class="road" id="route">
+      <div class="road-head">
+        <p class="tag tag-glass">La route est à vous</p>
+        <h2>Depuis l'aéroport, <span class="grad-light">tout le Yucatán se fait en voiture.</span></h2>
+      </div>
+
+      <div class="road-wrap" id="road-wrap">
+        <svg class="road-svg" id="road-svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="g-road" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
+              <stop offset="0" stop-color="#1DA1F2"/><stop offset=".55" stop-color="#00B894"/><stop offset="1" stop-color="#FDCB6E"/>
+            </linearGradient>
+            <linearGradient id="g-beam" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0" stop-color="#FDCB6E" stop-opacity=".75"/><stop offset="1" stop-color="#FDCB6E" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="r-base" id="r-base"/>
+          <path class="r-done" id="r-done" stroke="url(#g-road)"/>
+          <path class="r-dash" id="r-dash"/>
+          <g id="r-pins"></g>
+          <g class="r-car" id="r-car">
+            <path d="M-9 -30 L-34 -128 L34 -128 L9 -30Z" fill="url(#g-beam)"/>
+            <rect x="-15" y="-32" width="30" height="64" rx="11" fill="#fff"/>
+            <rect x="-19" y="-13" width="5" height="7" rx="2" fill="#fff"/><rect x="14" y="-13" width="5" height="7" rx="2" fill="#fff"/>
+            <path d="M-11 -13 Q0 -19 11 -13 L9 -3 H-9Z" fill="#0B2239"/>
+            <rect x="-10" y="-1" width="20" height="15" rx="3" fill="#DCEEF7"/>
+            <path d="M-9 16 H9 L10.500 23 Q0 26 -10.500 23Z" fill="#0B2239"/>
+            <rect x="-12" y="-32" width="7" height="4" rx="2" fill="#FDCB6E"/><rect x="5" y="-32" width="7" height="4" rx="2" fill="#FDCB6E"/>
+            <rect x="-12" y="28.500" width="7" height="3" rx="1.500" fill="#E63946"/><rect x="5" y="28.500" width="7" height="3" rx="1.500" fill="#E63946"/>
+          </g>
+        </svg>
+
         <div class="stop stop-start">
-          <span class="km">Km 0</span>
-          <h3>Aéroport de Cancún</h3>
-          <p>Nous vous attendons à la sortie avec votre voiture. Vous prenez les clés, et vous partez.</p>
+          <div class="stop-txt">
+            <span class="km">Km 0</span>
+            <h3>Aéroport de Cancún</h3>
+            <p>Nous vous attendons à la sortie avec votre voiture. Vous prenez les clés, et vous partez.</p>
+          </div>
         </div>
 
         <article class="stop">
@@ -214,40 +275,72 @@
 
     <!-- 5. Pourquoi nous -->
     <section class="why" id="atouts">
-      <p class="tag">Pourquoi nous</p>
-      <h2>Une location simple,<br>du premier message au retour des clés.</h2>
-      <div class="bento">
-        <article class="tile tile-photo">
-          <img src="img/playa.webp" width="1280" height="960" loading="lazy" alt="">
-          <div><h3>Assistance 100&nbsp;% francophone, 24/7</h3><p>Contrôle de police, panne ou accident&nbsp;: nous répondons en français, à toute heure.</p></div>
-        </article>
-        <article class="tile" style="--c:#E67E22"><span>01</span><h3>Sans frais cachés</h3><p>Taxes et assurances incluses. Pas de surprise à la remise du véhicule.</p></article>
-        <article class="tile" style="--c:#1DA1F2"><span>02</span><h3>Sans carte de crédit obligatoire</h3><p>L'obstacle imposé par les agences internationales, ici, n'existe pas.</p></article>
-        <article class="tile" style="--c:#00B894"><span>03</span><h3>Livraison où vous voulez</h3><p>Aéroport, hôtel ou adresse de votre choix. Pas de navette, pas d'attente.</p></article>
-        <article class="tile" style="--c:#6C5CE7"><span>04</span><h3>Kilométrage illimité</h3><p>Des véhicules récents, climatisés, adaptés aux routes de la péninsule.</p></article>
-        <article class="tile tile-wide" style="--c:#E63946"><span>05</span><h3>Agence légale au Mexique</h3><p>Licences officielles, contrats d'agence et assurances professionnelles.</p></article>
+      <div class="why-head">
+        <p class="tag">Pourquoi nous</p>
+        <h2>Une location simple, <span class="grad">du premier message au retour des clés.</span></h2>
+      </div>
+
+      <div class="why-grid">
+        <!-- L'atout principal, montré tel qu'il se vit : une conversation WhatsApp en français -->
+        <div class="chat" id="chat">
+          <div class="chat-top">
+            <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="">
+            <div><b>Street Car Solution</b><span><i></i>en ligne · répond en français</span></div>
+          </div>
+          <div class="chat-body">
+            <p class="msg me">Bonjour&nbsp;! On vient d'atterrir à Cancún.</p>
+            <p class="msg them">Bienvenue au Mexique&nbsp;! Votre voiture vous attend à la sortie du terminal.</p>
+            <p class="msg me">Un policier nous arrête sur la route, que faire&nbsp;?</p>
+            <p class="msg them">Pas de panique. On vous appelle tout de suite et on vous guide, en français.</p>
+            <p class="msg-time">Assistance 24 h/24, 7 j/7</p>
+          </div>
+        </div>
+
+        <ul class="perks">
+          <li>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M7 4h18v24l-4.500-3-4.500 3-4.500-3L7 28z"/><path pathLength="1" d="M11.500 14.500l3.200 3.200 6-6.400"/></svg>
+            <div><h3>Sans frais cachés</h3><p>Taxes et assurances incluses. Pas de surprise à la remise du véhicule.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M4 9a3 3 0 0 1 3-3h18a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path pathLength="1" d="M4 12.500h24"/><path pathLength="1" d="M5 28L27 4"/></svg>
+            <div><h3>Sans carte de crédit obligatoire</h3><p>L'obstacle imposé par les agences internationales, ici, n'existe pas.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 29s9-8.300 9-15.500a9 9 0 1 0-18 0C7 20.700 16 29 16 29z"/><path pathLength="1" d="M19.500 13.500a3.500 3.500 0 1 1-7 0 3.500 3.500 0 0 1 7 0z"/></svg>
+            <div><h3>Livraison où vous voulez</h3><p>Aéroport, hôtel ou adresse de votre choix. Pas de navette, pas d'attente.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 16c-2.400-3.300-4.600-5-7-5a5 5 0 0 0 0 10c2.400 0 4.600-1.700 7-5zm0 0c2.400 3.300 4.600 5 7 5a5 5 0 0 0 0-10c-2.400 0-4.600 1.700-7 5z"/></svg>
+            <div><h3>Kilométrage illimité</h3><p>Des véhicules récents, climatisés, adaptés aux routes de la péninsule.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M16 3l10 4v8c0 6.500-4.300 11.300-10 14C10.300 26.300 6 21.500 6 15V7z"/><path pathLength="1" d="M11.500 15.500l3.200 3.200 6-6.400"/></svg>
+            <div><h3>Agence légale au Mexique</h3><p>Licences officielles, contrats d'agence et assurances professionnelles.</p></div>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- 6. Avis -->
     <section class="reviews" id="avis">
       <p class="tag">Avis en vidéo</p>
-      <h2>Ils ont pris la route.</h2>
+      <h2>Ils ont <span class="grad">pris la route.</span></h2>
       <div class="quotes">
-        <a class="quote" href="/testimonials.html" style="--r:-2deg;--c:#FDCB6E"><p>«&nbsp;Merci à Street Car Solution, tout s'est bien passé.&nbsp;»</p><span>▶ Voir la vidéo</span></a>
-        <a class="quote" href="/testimonials.html" style="--r:1.5deg;--c:#9BE3D3"><p>«&nbsp;On a fait 4&nbsp;000&nbsp;km et c'était génial&nbsp;!&nbsp;»</p><span>▶ Voir la vidéo</span></a>
-        <a class="quote" href="/testimonials.html" style="--r:-1deg;--c:#FFC2D8"><p>«&nbsp;La police voulait nous retirer le permis et nous faire payer une énorme amende.&nbsp;»</p><span>▶ Voir la vidéo</span></a>
+        <a class="quote q-blue" href="/testimonials.html"><i aria-hidden="true">“</i><p>Merci à Street Car Solution, tout s'est bien passé.</p><span><u aria-hidden="true"></u>Voir la vidéo</span></a>
+        <a class="quote q-green" href="/testimonials.html"><i aria-hidden="true">“</i><p>On a fait 4&nbsp;000&nbsp;km et c'était génial&nbsp;!</p><span><u aria-hidden="true"></u>Voir la vidéo</span></a>
+        <a class="quote q-night" href="/testimonials.html"><i aria-hidden="true">“</i><p>La police voulait nous retirer le permis et nous faire payer une énorme amende.</p><span><u aria-hidden="true"></u>Voir la vidéo</span></a>
       </div>
     </section>
 
-    <!-- 7. Appel à réserver : le coucher de soleil du logo -->
+    <!-- 7. Appel à réserver : le dégradé de la marque, le soleil et la pyramide du logo -->
     <section class="cta" id="reserver">
       <div class="cta-sun" aria-hidden="true"></div>
       <svg class="cta-pyramid" viewBox="0 0 600 200" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
         <path d="M0 200 L60 200 60 176 110 176 110 152 160 152 160 128 210 128 210 104 250 104 250 76 350 76 350 104 390 104 390 128 440 128 440 152 490 152 490 176 540 176 540 200 600 200Z"/>
       </svg>
+      <div class="cta-car" aria-hidden="true"><img src="img/auto-suv5.webp" width="1000" height="608" loading="lazy" alt=""></div>
       <div class="cta-in">
-        <h2>Votre voiture vous attend<br>à l'arrivée.</h2>
+        <h2>Votre voiture vous attend à l'arrivée.</h2>
         <p>Deux minutes pour pré-réserver. Nous confirmons par WhatsApp.</p>
         <div class="hero-cta">
           <a class="btn btn-white btn-lg" href="/index.html#reservation">Pré-réserver <span aria-hidden="true">→</span></a>
@@ -263,12 +356,12 @@
       <p>Location de voiture à Cancún et dans toute la péninsule du Yucatán.</p>
       <p class="foot-note">Maquette de la page d'accueil · novembre 2026 · le formulaire de pré-réservation, les autres pages et les versions anglaise et espagnole viendront ensuite.</p>
     </div>
-    <p class="credits">Photos (Wikimedia Commons) : Cancún, dronepicr, CC BY 2.0 · Tulum, Martin Falbisoner, CC BY-SA 4.0 · Cenote Zací, Kirt Edblom, CC BY-SA 2.0 · Chichén Itzá, Daniel Schwen, CC BY-SA 4.0 · Bacalar, Yosef Ben Melamed, CC BY-SA 4.0 · Plage, Pablo Gratas, CC BY-SA 4.0.</p>
+    <p class="credits">Photos de la région (Wikimedia Commons) : Tulum, Martin Falbisoner, CC BY-SA 4.0 · Cenote Zací, Kirt Edblom, CC BY-SA 2.0 · Chichén Itzá, Daniel Schwen, CC BY-SA 4.0 · Bacalar, Yosef Ben Melamed, CC BY-SA 4.0.</p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="site.js?v=1"></script>
+  <script src="site.js?v=2"></script>
 </body>
 </html>
