@@ -98,8 +98,8 @@
   var TEL_SANS_PLUS = "Il manque le « + » et l'indicatif de votre pays avant le numéro. Exemples : +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada), +52 998 123 4567 (Mexique).";
   var TEL_INCOMPLET = "Ce numéro semble incomplet. Vérifiez l'indicatif du pays et tous les chiffres, par exemple +33 6 12 34 56 78.";
   var JOURS_MINIMUM = 3;
-  var PRIX = { 'Économique': 35, 'Standard': 40, 'Berline': 47, 'SUV 5 places': 62, 'SUV 7 places': 75, 'Van 14 places': 105 };
-  var PHOTO = { 'Économique': 'economique', 'Standard': 'standard', 'Berline': 'berline', 'SUV 5 places': 'suv5', 'SUV 7 places': 'suv7', 'Van 14 places': 'van' };
+  var PRIX = { 'Économique': 35, 'Standard': 40, 'Berline': 47, 'SUV 5 places': 62, 'SUV 7 ou 8 places': 75, 'Van 14 places': 105 };
+  var PHOTO = { 'Économique': 'economique', 'Standard': 'aveo', 'Berline': 'accord', 'SUV 5 places': 'cx5', 'SUV 7 ou 8 places': 'sedona', 'Van 14 places': 'van' };
   function id(i) { return document.getElementById(i); }
 
   var resa = id('resa');
