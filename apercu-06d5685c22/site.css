@@ -197,11 +197,13 @@ h3 { font-family: var(--display); font-weight: 600; }
 .car-price b { font-family: var(--display); font-size: 19px; }
 .k-sun .car-price { background: rgba(11, 34, 57, .1); }
 .car h3 { margin-top: 12px; font-size: clamp(31px, 8.4vw, 38px); line-height: 1; letter-spacing: -.01em; }
+.car h3 small { font-size: .44em; letter-spacing: 0; }
+.car h3.h-long { font-size: clamp(27px, 7.4vw, 34px); white-space: nowrap; }
 .car-model { margin-top: 5px; font-size: 14px; font-weight: 500; opacity: .86; }
 .car-pic { position: relative; flex: 1 1 auto; min-height: 0; margin: 2px -20px 0; }
 .car-pic i { position: absolute; right: -4%; bottom: 4%; width: 74%; aspect-ratio: 1; border-radius: 50%; background: rgba(255, 255, 255, .17); }
 .k-sun .car-pic i { background: rgba(255, 255, 255, .5); }
-.car-pic img { position: absolute; left: 3%; bottom: 0; width: 108%; height: 100%; max-width: none; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 16px 10px rgba(6, 30, 50, .32)); }
+.car-pic img { position: absolute; left: 2%; bottom: 0; width: 96%; height: 100%; max-width: none; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 16px 10px rgba(6, 30, 50, .32)); }
 .car-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; margin-top: 12px; }
 .car-foot p { font-size: 14px; line-height: 1.4; opacity: .92; }
 .car-foot a { flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: #fff; color: var(--night); font-size: 20px; font-weight: 700; transition: transform .4s var(--e); }
@@ -393,6 +395,7 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .tile-in { position: relative; display: block; height: 100%; padding: 8px 12px 12px; overflow: hidden; border: 1.5px solid rgba(11, 34, 57, .12); border-radius: 20px; background: var(--paper); transition: border-color .25s, background-color .25s, color .25s, transform .45s var(--e), box-shadow .45s var(--e); }
 .tile img { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; object-position: 50% 100%; transform: translateX(-5%) scale(.9); transition: transform .7s var(--e); filter: drop-shadow(0 8px 6px rgba(6, 30, 50, .22)); }
 .tile b { display: block; margin-top: 6px; font-family: var(--display); font-weight: 600; font-size: 17px; line-height: 1.1; }
+.tile b i { display: block; margin-top: 2px; font-family: var(--text); font-style: normal; font-size: 13px; font-weight: 700; }
 .tile small { font-size: 13px; font-weight: 700; color: var(--soft); transition: color .25s; }
 .tile-in::after { content: '✓'; position: absolute; top: 9px; right: 9px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #fff; color: #00957a; font-size: 14px; font-weight: 700; transform: scale(0); transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); }
 .tile input:checked + .tile-in { border-color: transparent; background: linear-gradient(140deg, #1DA1F2, #00B894); color: #fff; transform: translateY(-3px); box-shadow: 0 18px 28px -18px rgba(0, 110, 150, .9); }
@@ -565,6 +568,7 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
   .car { width: 420px; padding: 26px 26px 24px; }
   .car-pic { margin: 2px -26px 0; }
   .car h3 { font-size: 42px; }
+  .car h3.h-long { font-size: 38px; }
   .fleet-track { gap: 30px; }
 
   .road { padding: 130px var(--pad) 110px; }

@@ -98,8 +98,8 @@
   var TEL_SANS_PLUS = "Il manque le « + » et l'indicatif de votre pays avant le numéro. Exemples : +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada), +52 998 123 4567 (Mexique).";
   var TEL_INCOMPLET = "Ce numéro semble incomplet. Vérifiez l'indicatif du pays et tous les chiffres, par exemple +33 6 12 34 56 78.";
   var JOURS_MINIMUM = 3;
-  var PRIX = { 'Économique': 35, 'Standard': 40, 'Berline': 47, 'SUV 5 places': 62, 'SUV 7 ou 8 places': 75, 'Van 14 places': 105 };
-  var PHOTO = { 'Économique': 'economique', 'Standard': 'aveo', 'Berline': 'accord', 'SUV 5 places': 'cx5', 'SUV 7 ou 8 places': 'sedona', 'Van 14 places': 'van' };
+  var PRIX = { 'Économique': 35, 'Citadine': 40, 'Berline': 47, 'SUV 5 places': 62, 'Monospace 7 ou 8 places': 75, 'Van 14 places': 105 };
+  var PHOTO = { 'Économique': 'economique', 'Citadine': 'aveo', 'Berline': 'k3', 'SUV 5 places': 'cx5', 'Monospace 7 ou 8 places': 'sedona', 'Van 14 places': 'van' };
   function id(i) { return document.getElementById(i); }
 
   var resa = id('resa');
@@ -398,7 +398,7 @@
   });
   /* Chaque voiture avance dans sa carte pendant que la carte traverse l'écran */
   tous('.car-pic img').forEach(function (img) {
-    gsap.fromTo(img, { xPercent: 12 }, { xPercent: -7, ease: 'none', scrollTrigger: { trigger: img.closest('.car'), containerAnimation: defile, start: 'left right', end: 'right left', scrub: true } });
+    gsap.fromTo(img, { xPercent: 5 }, { xPercent: -5, ease: 'none', scrollTrigger: { trigger: img.closest('.car'), containerAnimation: defile, start: 'left right', end: 'right left', scrub: true } });
   });
   gsap.from('.fleet .car', { y: 110, opacity: 0, rotation: 5, duration: 1, stagger: .09, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: fleet, start: 'top 62%' } });
   gsap.from('.fleet-head', { y: 40, opacity: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: fleet, start: 'top 70%' } });
