@@ -402,7 +402,7 @@
       var c = tous('input:checked', choix).map(function (i) { return i.value; });
       barre.hidden = !c.length;
       compte.textContent = c.length + (c.length > 1 ? ' options' : ' option');
-      lien.href = './' + (c.length ? '?options=' + encodeURIComponent(c.join(', ')) : '') + '#reserver';
+      lien.href = './' + (c.length ? '?options=' + encodeURIComponent(c.join(', ')) : '') + '#reservation';
     }
     choix.addEventListener('change', maj);
     choix.addEventListener('submit', function (e) { e.preventDefault(); });
