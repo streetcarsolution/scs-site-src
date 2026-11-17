@@ -108,9 +108,6 @@
   var DELAI_MINIMUM = 3000;
   var ouverte = Date.now();
   var LANGUE = 'fr';
-  /* L'App range les voitures sous les noms de categories du site actuel : la
-     page montre « Citadine » et « Monospace », l'App recoit ce qu'elle connait. */
-  var CATEGORIE_POUR_LAPP = { 'Citadine': 'Standard', 'Monospace 7 ou 8 places': 'SUV 7 places' };
   /* Chaque option du site porte le code de sa ligne dans le catalogue de l'App
      (Reglages, tarifs additionnels) : c'est par lui que l'App la range. */
   var OPTION_POUR_LAPP = {
@@ -315,15 +312,16 @@
        ['pickupLocation', id('pickupLocation').value], ['returnLocation', id('returnLocation').value],
        ['pickupDate', depart.value], ['pickupTime', id('pickupTime').value],
        ['returnDate', retour.value], ['returnTime', id('returnTime').value],
-       ['vehicleType', CATEGORIE_POUR_LAPP[categorie] || categorie], ['transmission', choix('transmission')],
+       ['vehicleType', categorie], ['transmission', choix('transmission')],
        ['passengers', id('passengers').value], ['luggage10', id('luggage10').value], ['luggage20', id('luggage20').value],
        ['terms', 'on']].forEach(function (c) { corps.append(c[0], String(c[1]).trim()); });
-      /* Le message et les options ne vont qu'a l'App : la feuille range des colonnes fixes. */
+      /* Le message et les options ne vont qu'a l'App : la feuille range des colonnes fixes.
+         L'App range les options par leur code (`options`) et les pose dans le devis ;
+         le rappel ecrit en tete du message les montre a l'equipe sur la fiche. */
       var options = tous('input[name="option"]:checked', resa).map(function (i) { return i.value; });
       var texte = id('reservationMessage').value.trim();
       var precisions = [];
       if (options.length) precisions.push('Options souhaitées : ' + options.join(', '));
-      if (categorie !== (CATEGORIE_POUR_LAPP[categorie] || categorie)) precisions.push('Catégorie choisie sur le site : ' + categorie);
       var versLApp = new URLSearchParams(corps.toString());
       versLApp.append('message', precisions.concat(texte ? [texte] : []).join('\n'));
       versLApp.append('options', options.map(function (o) { return OPTION_POUR_LAPP[o]; }).filter(Boolean).join(','));
