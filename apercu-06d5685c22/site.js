@@ -315,21 +315,22 @@
        ['vehicleType', categorie], ['transmission', choix('transmission')],
        ['passengers', id('passengers').value], ['luggage10', id('luggage10').value], ['luggage20', id('luggage20').value],
        ['terms', 'on']].forEach(function (c) { corps.append(c[0], String(c[1]).trim()); });
-      /* Le message et les options ne vont qu'a l'App : la feuille range des colonnes fixes.
-         L'App range les options par leur code (`options`) et les pose dans le devis ;
-         le rappel ecrit en tete du message les montre a l'equipe sur la fiche. */
+      /* Les options : a la feuille en toutes lettres (sa colonne « Options »), a l'App par
+         leur code (`options`, toujours envoyee, vide si rien n'est coche : la fiche dit
+         alors « Aucune »). L'App les montre sur sa ligne « Options » et les pose dans le devis.
+         Le message ne va qu'a l'App. */
       var options = tous('input[name="option"]:checked', resa).map(function (i) { return i.value; });
       var texte = id('reservationMessage').value.trim();
-      var precisions = [];
-      if (options.length) precisions.push('Options souhaitées : ' + options.join(', '));
+      var versLaFeuille = new URLSearchParams(corps.toString());
+      versLaFeuille.append('options', options.join(', '));
       var versLApp = new URLSearchParams(corps.toString());
-      versLApp.append('message', precisions.concat(texte ? [texte] : []).join('\n'));
+      versLApp.append('message', texte);
       versLApp.append('options', options.map(function (o) { return OPTION_POUR_LAPP[o]; }).filter(Boolean).join(','));
       versLApp.append('langue', LANGUE);
       versLApp.append('website', piege);
       versLApp.append('duree', String(temps));
 
-      var laFeuille = envoyer(FEUILLE_RESERVATION, { method: 'POST', headers: URLENCODE, body: corps.toString() }, 30000)
+      var laFeuille = envoyer(FEUILLE_RESERVATION, { method: 'POST', headers: URLENCODE, body: versLaFeuille.toString() }, 30000)
         .then(function (r) { return r.text().then(function (t) { try { return r.ok && JSON.parse(t).ok === true; } catch (x) { return false; } }); })
         .catch(function () { return false; });
       var lApp = envoyer(APP + '/api/site/demande', { method: 'POST', headers: URLENCODE, body: versLApp.toString() }, 30000)
