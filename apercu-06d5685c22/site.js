@@ -111,6 +111,12 @@
   /* L'App range les voitures sous les noms de categories du site actuel : la
      page montre « Citadine » et « Monospace », l'App recoit ce qu'elle connait. */
   var CATEGORIE_POUR_LAPP = { 'Citadine': 'Standard', 'Monospace 7 ou 8 places': 'SUV 7 places' };
+  /* Chaque option du site porte le code de sa ligne dans le catalogue de l'App
+     (Reglages, tarifs additionnels) : c'est par lui que l'App la range. */
+  var OPTION_POUR_LAPP = {
+    'Conducteur additionnel': 'conducteur_sup', 'Carte SIM mexicaine': 'sim', 'GPS': 'gps', 'Siège bébé': 'siege_enfant',
+    'Réhausseur enfant': 'booster', 'Lavage du véhicule': 'lavage', 'Assistance police 24/7': 'seg'
+  };
   var URLENCODE = { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' };
 
   /* Un envoi qui abandonne au bout de `ms`, au lieu d'attendre pour toujours. */
@@ -320,6 +326,7 @@
       if (categorie !== (CATEGORIE_POUR_LAPP[categorie] || categorie)) precisions.push('Catégorie choisie sur le site : ' + categorie);
       var versLApp = new URLSearchParams(corps.toString());
       versLApp.append('message', precisions.concat(texte ? [texte] : []).join('\n'));
+      versLApp.append('options', options.map(function (o) { return OPTION_POUR_LAPP[o]; }).filter(Boolean).join(','));
       versLApp.append('langue', LANGUE);
       versLApp.append('website', piege);
       versLApp.append('duree', String(temps));
