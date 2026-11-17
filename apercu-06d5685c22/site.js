@@ -92,6 +92,67 @@
     else arrive(true);
   })();
 
+  /* ==========================================================================
+     L'ENVOI DES FORMULAIRES : LES MEMES DEUX CHEMINS QUE LE SITE ACTUEL
+     ==========================================================================
+     Chaque demande part dans l'App (la pastille du menu s'allume au clic du
+     client) ET dans la feuille Google, qui reste le filet si l'App se deploie
+     a cet instant. L'App reconnait la meme demande arrivee par les deux
+     chemins. Il suffit que l'un des deux reussisse pour dire merci.
+     ⚠️ Memes noms de champs et memes valeurs que `assets/js/formulaires.js` du
+     site actuel : ne pas en changer ici sans changer l'App. */
+  var APP = 'https://street-car-solution.vercel.app';
+  var FEUILLE_RESERVATION = 'https://script.google.com/macros/s/AKfycbyxSspD7_p0P1Xkj6lGL7BoW2Y_AA-fThbQON5F-6sqxttRr_GcDGVNVXCnRsfnUjF2ew/exec';
+  var FEUILLE_CONTACT = 'https://script.google.com/macros/s/AKfycbw0_Uk_gspyg997J6yA8AVvCJBgjOXt9jHHFXCjkq2tzrLaSJR4fgvO5dlS42kWSopZ/exec';
+  /* Personne ne remplit ces formulaires en trois secondes, un robot si. */
+  var DELAI_MINIMUM = 3000;
+  var ouverte = Date.now();
+  var LANGUE = 'fr';
+  /* L'App range les voitures sous les noms de categories du site actuel : la
+     page montre « Citadine » et « Monospace », l'App recoit ce qu'elle connait. */
+  var CATEGORIE_POUR_LAPP = { 'Citadine': 'Standard', 'Monospace 7 ou 8 places': 'SUV 7 places' };
+  var URLENCODE = { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' };
+
+  /* Un envoi qui abandonne au bout de `ms`, au lieu d'attendre pour toujours. */
+  function envoyer(adresse, options, ms) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var minuterie = setTimeout(function () { if (ctrl) ctrl.abort(); }, ms);
+    if (ctrl) options.signal = ctrl.signal;
+    return fetch(adresse, options).then(
+      function (r) { clearTimeout(minuterie); return r; },
+      function (e) { clearTimeout(minuterie); throw e; }
+    );
+  }
+  function annoncer(etat, texte, sorte) {
+    etat.textContent = texte;
+    etat.hidden = !texte;
+    etat.classList.toggle('is-wait', sorte === 'attente');
+    etat.classList.toggle('is-bad', sorte === 'mal');
+    if (texte && etat.scrollIntoView) etat.scrollIntoView({ block: 'nearest' });
+  }
+  /* Les lieux se lisent dans l'App ; si elle ne repond pas, la liste ecrite dans la page reste. */
+  (function () {
+    var menus = tous('select[data-lieux]');
+    if (!menus.length) return;
+    envoyer(APP + '/api/site/lieux', { method: 'GET' }, 5000)
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !j.lieux || !j.lieux.length) return;
+        menus.forEach(function (menu) {
+          var choisi = menu.value, enTete = menu.options[0] && menu.options[0].value === '' ? menu.options[0].cloneNode(true) : null;
+          while (menu.firstChild) menu.removeChild(menu.firstChild);
+          if (enTete) menu.appendChild(enTete);
+          j.lieux.forEach(function (l) {
+            var o = document.createElement('option');
+            o.value = l.valeur; o.textContent = l[LANGUE] || l.fr || l.valeur;
+            menu.appendChild(o);
+          });
+          if (choisi) menu.value = choisi;
+        });
+      })
+      .catch(function () { /* la liste de la page reste */ });
+  })();
+
   /* ---------- Pré-réservation : le billet se remplit, les règles sont celles du site actuel ---------- */
   var NUMERO_COMPLET = /^\+[0-9]{11,15}$/;
   var TEL_AIDE = "Commencez par « + » et l'indicatif de votre pays : +33 France, +1 Canada, +52 Mexique.";
@@ -208,15 +269,72 @@
 
     resa.addEventListener('input', dessiner);
     resa.addEventListener('change', function () { dureeAcceptee(); dessiner(); });
+    var bouton = resa.querySelector('button[type="submit"]'), libelle = bouton.innerHTML, enCours = false;
+    function rendreLaMain() { enCours = false; bouton.disabled = false; bouton.innerHTML = libelle; }
+    function reussi() {
+      resa.reset();
+      tel.value = '+'; direTel(null);
+      retour.min = depart.min = iso(new Date());
+      photo.hidden = true; photo.removeAttribute('data-auto');
+      dureeAcceptee(); dessiner();
+      billet.classList.add('is-stamped');
+      rendreLaMain();
+      annoncer(etat, 'Merci ! Votre pré-réservation est bien envoyée.\nVotre conseiller vous contactera rapidement par WhatsApp.', 'ok');
+    }
+    resa.addEventListener('input', function () { billet.classList.remove('is-stamped'); });
     resa.addEventListener('submit', function (e) {
       e.preventDefault();
-      direTel(refusDuNumero(tel.value));
+      /* Le deuxieme clic ne part jamais : c'etait la cause des doublons. */
+      if (enCours) return;
+      var refusTel = refusDuNumero(tel.value);
+      direTel(refusTel);
       naissance.setCustomValidity(naissance.value.trim() ? (refusNaissance() || '') : '');
       dureeAcceptee();
       if (!resa.checkValidity()) { resa.reportValidity(); return; }
-      billet.classList.add('is-stamped');
-      etat.hidden = false;
-      etat.textContent = "Tout est complet. Ceci est une maquette : rien n'a été envoyé. Sur le site définitif, votre demande partira ici vers votre conseiller.";
+
+      var piege = id('champ_piege').value.trim(), temps = Date.now() - ouverte;
+      enCours = true; bouton.disabled = true; bouton.textContent = 'Envoi en cours…';
+      annoncer(etat, 'Envoi en cours…', 'attente');
+      /* Un robot croit avoir reussi, pour ne pas chercher un autre chemin. */
+      if (piege || temps < DELAI_MINIMUM) { setTimeout(reussi, 800); return; }
+
+      var n = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(naissance.value.trim());
+      var numero = tel.value.replace(/[\s().\-]/g, '');
+      if (numero.indexOf('00') === 0) numero = '+' + numero.slice(2);
+      var categorie = choix('vehicleType');
+      /* Le meme corps pour la feuille et pour l'App, aux memes noms de champs. */
+      var corps = new URLSearchParams();
+      [['firstName', id('firstName').value], ['lastName', id('lastName').value], ['permis', choix('permis')],
+       ['age', n[3] + '-' + n[2] + '-' + n[1]], ['phone', numero], ['email', id('email').value],
+       ['pickupLocation', id('pickupLocation').value], ['returnLocation', id('returnLocation').value],
+       ['pickupDate', depart.value], ['pickupTime', id('pickupTime').value],
+       ['returnDate', retour.value], ['returnTime', id('returnTime').value],
+       ['vehicleType', CATEGORIE_POUR_LAPP[categorie] || categorie], ['transmission', choix('transmission')],
+       ['passengers', id('passengers').value], ['luggage10', id('luggage10').value], ['luggage20', id('luggage20').value],
+       ['terms', 'on']].forEach(function (c) { corps.append(c[0], String(c[1]).trim()); });
+      /* Le message et les options ne vont qu'a l'App : la feuille range des colonnes fixes. */
+      var options = tous('input[name="option"]:checked', resa).map(function (i) { return i.value; });
+      var texte = id('reservationMessage').value.trim();
+      var precisions = [];
+      if (options.length) precisions.push('Options souhaitées : ' + options.join(', '));
+      if (categorie !== (CATEGORIE_POUR_LAPP[categorie] || categorie)) precisions.push('Catégorie choisie sur le site : ' + categorie);
+      var versLApp = new URLSearchParams(corps.toString());
+      versLApp.append('message', precisions.concat(texte ? [texte] : []).join('\n'));
+      versLApp.append('langue', LANGUE);
+      versLApp.append('website', piege);
+      versLApp.append('duree', String(temps));
+
+      var laFeuille = envoyer(FEUILLE_RESERVATION, { method: 'POST', headers: URLENCODE, body: corps.toString() }, 30000)
+        .then(function (r) { return r.text().then(function (t) { try { return r.ok && JSON.parse(t).ok === true; } catch (x) { return false; } }); })
+        .catch(function () { return false; });
+      var lApp = envoyer(APP + '/api/site/demande', { method: 'POST', headers: URLENCODE, body: versLApp.toString() }, 30000)
+        .then(function (r) { return r.ok; })
+        .catch(function () { return false; });
+      Promise.all([laFeuille, lApp]).then(function (res) {
+        if (res[0] || res[1]) { reussi(); return; }
+        rendreLaMain();
+        annoncer(etat, "Votre demande n'a pas pu partir. Vérifiez votre connexion et réessayez, ou écrivez-nous sur WhatsApp.", 'mal');
+      });
     });
     /* Une flèche de la flotte choisit déjà la catégorie dans le formulaire */
     document.addEventListener('click', function (e) {
@@ -231,16 +349,43 @@
     dessiner();
   })();
 
-  /* ---------- Message : même principe, la maquette n'envoie rien ---------- */
+  /* ---------- Message : dans l'App et dans sa feuille ---------- */
   var message = id('message');
   if (message) {
-    message.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!message.checkValidity()) { message.reportValidity(); return; }
-      var etat = id('contactStatus');
-      etat.hidden = false;
-      etat.textContent = "Votre message est complet. Ceci est une maquette : rien n'a été envoyé.";
-    });
+    (function () {
+      var etat = id('contactStatus'), bouton = message.querySelector('button[type="submit"]'), libelle = bouton.innerHTML, enCours = false;
+      message.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (enCours) return;
+        if (!message.checkValidity()) { message.reportValidity(); return; }
+        enCours = true; bouton.disabled = true; bouton.textContent = 'Envoi…';
+        annoncer(etat, '', '');
+        var piege = id('cf-piege').value.trim(), temps = Date.now() - ouverte;
+        var envoi;
+        if (piege || temps < DELAI_MINIMUM) {
+          envoi = new Promise(function (ok) { setTimeout(function () { ok(true); }, 800); });
+        } else {
+          var champs = { name: id('cf-name').value, email: id('cf-email').value, subject: id('cf-subject').value, message: id('cf-message').value };
+          var versLApp = new URLSearchParams(), pourLaFeuille = new FormData();
+          Object.keys(champs).forEach(function (k) { versLApp.append(k, champs[k]); pourLaFeuille.append(k, champs[k]); });
+          pourLaFeuille.append('_gotcha', '');
+          versLApp.append('langue', LANGUE);
+          versLApp.append('website', piege);
+          versLApp.append('duree', String(temps));
+          var laFeuille = envoyer(FEUILLE_CONTACT, { method: 'POST', body: pourLaFeuille, mode: 'no-cors' }, 30000)
+            .then(function () { return true; }, function () { return false; });
+          var lApp = envoyer(APP + '/api/site/message', { method: 'POST', headers: URLENCODE, body: versLApp.toString() }, 30000)
+            .then(function (r) { return r.ok; })
+            .catch(function () { return false; });
+          envoi = Promise.all([laFeuille, lApp]).then(function (r) { return r[0] || r[1]; });
+        }
+        envoi.then(function (ok) {
+          if (ok) { message.reset(); annoncer(etat, 'Merci, votre message a bien été envoyé !', 'ok'); }
+          else annoncer(etat, 'Désolé, une erreur est survenue. Réessayez plus tard, ou écrivez-nous sur WhatsApp.', 'mal');
+          enCours = false; bouton.disabled = false; bouton.innerHTML = libelle;
+        });
+      });
+    })();
     message.querySelector('button[type="submit"]').disabled = false;
     /* « Demander cette voiture » remplit déjà le sujet */
     document.addEventListener('click', function (e) {
