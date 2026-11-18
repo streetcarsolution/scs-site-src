@@ -621,6 +621,9 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .foot-contact a:hover { border-color: var(--sun); }
 .foot-row { display: grid; gap: 14px; margin-top: 24px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .14); }
 .foot-note { font-size: 14px; color: rgba(255, 255, 255, .55); }
+.foot-addr { margin-top: 8px; font-style: normal; font-size: 14px; line-height: 1.6; }
+.foot-addr a { color: #fff; border-bottom: 1px solid rgba(255, 255, 255, .32); transition: border-color .25s; }
+.foot-addr a:hover { border-color: var(--sun); }
 .credits { margin-top: 20px; font-size: 12px; line-height: 1.5; color: rgba(255, 255, 255, .42); }
 
 /* ---------- Écrans moyens ---------- */
