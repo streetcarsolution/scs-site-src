@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=18">
+  <link rel="stylesheet" href="site.css?v=20">
 
   <!-- Pour Google et les assistants IA : l'agence, ses tarifs et le site, tels qu'ils sont écrits sur la page -->
   <script type="application/ld+json">
@@ -73,12 +73,6 @@
         },
         "geo": { "@type": "GeoCoordinates", "latitude": 21.0631213, "longitude": -86.8466304 },
         "hasMap": "https://www.google.com/maps?cid=10394166515979860319",
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "00:00",
-          "closes": "23:59"
-        },
         "areaServed": [
           { "@type": "City", "name": "Cancún" },
           { "@type": "Place", "name": "Riviera Maya" },
@@ -86,14 +80,29 @@
         ],
         "knowsLanguage": ["fr", "es", "en"],
         "priceRange": "35 € à 105 € par jour",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "name": "Lisa, conseillère",
-          "contactType": "reservations",
-          "telephone": "+32 477 81 32 05",
-          "email": "reservation@streetcarsolution.com",
-          "availableLanguage": ["fr", "es", "en"]
-        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "name": "Yoan Crémona",
+            "contactType": "customer service",
+            "telephone": "+52 984 182 6316",
+            "availableLanguage": ["fr"],
+            "hoursAvailable": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "00:00",
+              "closes": "23:59"
+            }
+          },
+          {
+            "@type": "ContactPoint",
+            "name": "Lisa, conseillère",
+            "contactType": "reservations",
+            "telephone": "+32 477 81 32 05",
+            "email": "reservation@streetcarsolution.com",
+            "availableLanguage": ["fr", "es", "en"]
+          }
+        ],
         "sameAs": [
           "https://www.google.com/maps?cid=10394166515979860319",
           "https://www.tripadvisor.fr/Attraction_Review-g14977043-d34001470-Reviews-Street_Car_Solution-Benito_Juarez_Municipality_Yucatan_Peninsula.html",
@@ -782,7 +791,7 @@
     <div class="foot-in">
       <div class="foot-grid">
         <div class="foot-brand" data-reveal>
-          <a class="foot-logo" href="#top" aria-label="Street Car Solution, haut de page"><img src="img/logo-360.webp" width="72" height="72" loading="lazy" alt=""></a>
+          <a class="foot-logo" href="#top" aria-label="Street Car Solution, haut de page"><img src="img/logo-360.webp" width="150" height="150" loading="lazy" alt=""></a>
           <p class="foot-pitch">Votre partenaire de confiance pour la location de voiture à Cancún et dans toute la péninsule du Yucatán.</p>
           <ul class="foot-social" aria-label="Street Car Solution sur les réseaux sociaux">
             <li><a href="https://www.facebook.com/streetcarsolution" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-7h2.4l.4-3H14V9.2c0-.9.3-1.4 1.5-1.4H17V5.1c-.3 0-1.2-.1-2.2-.1-2.2 0-3.8 1.3-3.8 3.8V11H8.6v3H11v7z"/></svg></a></li>
@@ -821,16 +830,13 @@
             <a class="foot-line" href="https://wa.me/529841826316" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/><path d="M9 8.6c0 3.4 3 6.4 6.4 6.4l1.1-1.7-2.1-1.1-.9.9a4.5 4.5 0 0 1-2.6-2.6l.9-.9-1.1-2.1z"/></svg><span><small>WhatsApp Yoan</small>+52 984 182 6316</span></a>
             <a class="foot-line" href="https://wa.me/32477813205" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/><path d="M9 8.6c0 3.4 3 6.4 6.4 6.4l1.1-1.7-2.1-1.1-.9.9a4.5 4.5 0 0 1-2.6-2.6l.9-.9-1.1-2.1z"/></svg><span><small>WhatsApp Lisa, conseillère</small>+32 477 81 32 05</span></a>
             <a class="foot-line" href="mailto:reservation@streetcarsolution.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg><span><small>Email</small>reservation@<wbr>streetcarsolution.com</span></a>
-            <a class="foot-line" href="https://www.google.com/maps?cid=10394166515979860319" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.6"/></svg><span><small>Agence · ouverte 24 h/24</small>Blvd. Luis Donaldo Colosio KM 13, Local 11, 77565 Cancún, Q.R., Mexique</span></a>
+            <a class="foot-line" href="https://www.google.com/maps?cid=10394166515979860319" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.6"/></svg><span><small>Agence · réponse et livraison 24 h/24</small>Blvd. Luis Donaldo Colosio KM 13, Local 11, 77565 Cancún, Q.R., Mexique</span></a>
           </address>
         </div>
       </div>
 
       <div class="foot-news" data-reveal>
-        <div>
-          <h2>Newsletter</h2>
-          <p>Abonnez-vous pour recevoir nos offres spéciales.</p>
-        </div>
+        <p class="nl-txt"><strong>Newsletter</strong> · Abonnez-vous pour recevoir nos offres spéciales.</p>
         <div class="foot-news-form">
           <form class="nl-form" data-newsletter data-lang="fr">
             <input class="in" type="email" name="email" placeholder="Votre email" required autocomplete="email" aria-label="Votre email">

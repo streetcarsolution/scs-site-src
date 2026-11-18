@@ -623,10 +623,10 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .foot-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px 22px; }
 .foot-brand, .foot-reach { grid-column: 1 / -1; }
 .foot-logo { display: inline-block; border-radius: 50%; }
-.foot-logo img { display: block; width: 72px; height: 72px; border-radius: 50%; box-shadow: 0 0 0 5px rgba(253, 203, 110, .16), 0 16px 34px -12px rgba(253, 203, 110, .6); transition: transform .5s var(--e); }
+.foot-logo img { display: block; width: 128px; height: 128px; border-radius: 50%; box-shadow: 0 0 0 5px rgba(253, 203, 110, .16), 0 16px 34px -12px rgba(253, 203, 110, .6); transition: transform .5s var(--e); }
 .foot-logo:hover img { transform: rotate(-10deg) scale(1.06); }
 .foot-pitch { margin-top: 16px; max-width: 24em; font-size: 16px; line-height: 1.6; }
-.foot-social { display: flex; gap: 10px; margin-top: 20px; }
+.foot-brand .foot-social { display: flex; gap: 10px; margin-top: 30px; }
 .foot-social a { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .07); color: #fff; transition: transform .4s var(--e), background-color .25s, border-color .25s; }
 .foot-social a:hover { transform: translateY(-4px) rotate(-8deg); border-color: transparent; background: linear-gradient(140deg, var(--blue), var(--green)); }
 .foot-social svg { width: 20px; height: 20px; fill: currentColor; }
@@ -645,19 +645,21 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .foot-line small { font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, .6); }
 .foot-line:hover svg { transform: rotate(-8deg); background: linear-gradient(140deg, var(--blue), var(--green)); stroke: #fff; }
 
-/* La newsletter : un encadré au dégradé de la marque */
-.foot-news { display: grid; gap: 18px; margin-top: 48px; padding: 26px 20px 20px; border-radius: 28px; background: linear-gradient(120deg, var(--blue) 0%, var(--green) 100%); color: #fff; box-shadow: 0 30px 60px -30px rgba(0, 184, 148, .75); }
-.foot-news h2 { font-size: clamp(27px, 6vw, 36px); line-height: 1.1; }
-.foot-news p { margin-top: 6px; font-size: 16px; }
-.nl-form { display: flex; gap: 6px; padding: 6px; border-radius: 999px; background: #fff; transition: box-shadow .2s; }
-.nl-form:focus-within { box-shadow: 0 0 0 4px rgba(253, 203, 110, .85); }
-.nl-form .in { height: 48px; padding: 0 16px; border: 0; border-radius: 999px; }
+/* La newsletter : une simple ligne, discrète */
+.foot-news { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 40px; padding: 16px 0 26px; border-top: 1px solid rgba(255, 255, 255, .12); }
+.nl-txt { font-size: 14px; }
+.nl-txt strong { color: #fff; }
+.foot-news-form { position: relative; width: 100%; max-width: 330px; }
+.nl-form { display: flex; gap: 4px; padding: 4px; border: 1px solid rgba(255, 255, 255, .2); border-radius: 999px; background: rgba(255, 255, 255, .06); transition: border-color .2s; }
+.nl-form:focus-within { border-color: var(--sun); }
+.nl-form .in { height: 36px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #fff; font-size: 14px; }
+.nl-form .in::placeholder { color: rgba(255, 255, 255, .5); }
 .nl-form .in:focus { box-shadow: none; }
-.nl-send { flex: none; display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%; background: var(--orange); cursor: pointer; box-shadow: 0 10px 22px -10px rgba(190, 90, 10, .8); transition: transform .4s var(--e); }
-.nl-send svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.nl-send { flex: none; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: var(--orange); cursor: pointer; transition: transform .4s var(--e); }
+.nl-send svg { width: 16px; height: 16px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .nl-send:hover { transform: rotate(-14deg) scale(1.07); }
 .nl-send[disabled] { opacity: .6; cursor: wait; }
-.foot-news .newsletter-msg { min-height: 1.5em; margin-top: 8px; padding-left: 14px; font-size: 14px; font-weight: 700; }
+.foot-news .newsletter-msg { position: absolute; left: 14px; top: 100%; margin-top: 4px; font-size: 13px; font-weight: 700; color: #fff; }
 
 /* La route, puis la signature */
 .foot-road { position: relative; height: 40px; margin: 54px 0 4px; }
@@ -676,9 +678,6 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
   .hero .hero-cta .btn { flex: 0 0 auto; padding-left: 26px; padding-right: 26px; }
   .stats { grid-template-columns: repeat(3, 1fr); }
   .quotes { grid-template-columns: repeat(3, 1fr); }
-  .foot-news { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); align-items: center; gap: 28px; padding: 30px 34px; }
-  .foot-news .newsletter-msg { position: absolute; margin-top: 6px; }
-  .foot-news-form { position: relative; }
   .foot-bottom { grid-template-columns: auto minmax(0, 1fr); gap: 8px 30px; padding-right: 84px; }
   .foot-bottom .credits { grid-column: 1 / -1; }
   .rows.two { grid-template-columns: 1fr 1fr; }
@@ -768,8 +767,9 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
   .foot { padding: 96px var(--pad) 40px; }
   .foot-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr) minmax(0, 1.05fr) minmax(0, 1.6fr); gap: 40px; }
   .foot-brand, .foot-reach { grid-column: auto; }
-  .foot-news { margin-top: 70px; padding: 36px 44px; }
-  .foot-road { margin-top: 70px; }
+  .foot-logo img { width: 150px; height: 150px; }
+  .foot-news { margin-top: 56px; }
+  .foot-road { margin-top: 46px; }
 
   .hero-page { min-height: 80vh; }
   .hero-page .hero-stage { min-height: 48vh; }
