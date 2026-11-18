@@ -519,7 +519,7 @@
     var cible = a && document.querySelector(a.getAttribute('href'));
     if (!cible) return;
     e.preventDefault();
-    var y = cible.getBoundingClientRect().top + window.scrollY;
+    var y = cible.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(cible).scrollMarginTop) || 0);
     if (lenis) lenis.scrollTo(y);
     else window.scrollTo({ top: y, behavior: 'smooth' });
   });
@@ -746,7 +746,7 @@
     var cible = window.location.hash.length > 1 && document.getElementById(window.location.hash.slice(1));
     if (!cible) return;
     /* Un bloc qui n'est pas une section entière se place sous le menu */
-    var y = Math.max(0, cible.getBoundingClientRect().top + window.scrollY - (cible.tagName === 'SECTION' ? 0 : 150));
+    var y = Math.max(0, cible.getBoundingClientRect().top + window.scrollY - (cible.tagName === 'SECTION' ? 0 : 150) - (parseFloat(getComputedStyle(cible).scrollMarginTop) || 0));
     if (lenis) { lenis.resize(); lenis.scrollTo(y, { immediate: true, force: true }); }
     else window.scrollTo(0, y);
   });
