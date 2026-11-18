@@ -37,11 +37,10 @@
   <link rel="icon" href="/favicon.ico?v=3" sizes="any">
   <link rel="preload" as="image" href="img/logo-360.webp">
   <link rel="preload" as="image" href="img/auto-economique.webp">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/vendor/flatpickr/flatpickr-4.6.13.min.css">
-  <link rel="stylesheet" href="site.css?v=28">
+  <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="site.css?v=29">
 
   <!-- Pour Google et les assistants IA : l'agence, ses tarifs et le site, tels qu'ils sont écrits sur la page -->
   <script type="application/ld+json">
@@ -166,14 +165,14 @@
   <!-- Ouverture : le soleil se lève, devient le logo, puis le logo rejoint le menu -->
   <div class="intro" id="intro" aria-hidden="true">
     <div class="intro-bg"></div>
-    <div class="intro-ball"><span class="intro-ring"></span><img src="img/logo-360.webp" width="360" height="360" alt=""></div>
+    <div class="intro-ball"><span class="intro-ring"></span><img src="img/logo-360.webp" width="360" height="360" alt="Logo Street Car Solution"></div>
   </div>
 
   <div class="progress" aria-hidden="true"><i id="progress"></i></div>
 
   <header class="nav" id="nav">
     <a class="brand" href="#top" aria-label="Street Car Solution, haut de page">
-      <img id="nav-logo" src="img/logo-360.webp" width="46" height="46" alt="">
+      <img id="nav-logo" src="img/logo-360.webp" width="46" height="46" alt="Logo Street Car Solution">
       <span class="wm"><b class="c-o">Street</b> <b class="c-b">Car</b> <b class="c-g">Solution</b></span>
     </a>
     <nav class="nav-links" aria-label="Menu principal">
@@ -402,11 +401,11 @@
         </div>
 
         <div class="lux-tabs" aria-label="Choisir une voiture">
-          <button type="button" aria-selected="true" aria-label="McLaren 750s"><img src="/assets/vehicules/mclaren2.webp" width="300" height="201" loading="lazy" alt=""><span>McLaren 750s</span><i></i></button>
-          <button type="button" aria-selected="false" aria-label="Ferrari Roma Spider"><img src="/assets/vehicules/ferreri-2.webp" width="461" height="247" loading="lazy" alt=""><span>Ferrari Roma Spider</span><i></i></button>
-          <button type="button" aria-selected="false" aria-label="Lamborghini Huracan"><img src="/assets/vehicules/lamborghini-3.webp" width="400" height="186" loading="lazy" alt=""><span>Lamborghini Huracan</span><i></i></button>
-          <button type="button" aria-selected="false" aria-label="Ford Mustang Supercharger"><img src="/assets/vehicules/mustang-1.webp" width="377" height="223" loading="lazy" alt=""><span>Ford Mustang Supercharger</span><i></i></button>
-          <button type="button" aria-selected="false" aria-label="Cadillac CTS Horsepower"><img src="/assets/vehicules/cadillac-cts-2.webp" width="400" height="296" loading="lazy" alt=""><span>Cadillac CTS Horsepower</span><i></i></button>
+          <button type="button" aria-selected="true" aria-label="McLaren 750s"><img src="/assets/vehicules/mclaren2.webp" width="300" height="201" loading="lazy" alt="McLaren 750S, voiture de prestige à louer à Cancún"><span>McLaren 750s</span><i></i></button>
+          <button type="button" aria-selected="false" aria-label="Ferrari Roma Spider"><img src="/assets/vehicules/ferreri-2.webp" width="461" height="247" loading="lazy" alt="Ferrari Roma Spider, voiture de prestige à louer à Cancún"><span>Ferrari Roma Spider</span><i></i></button>
+          <button type="button" aria-selected="false" aria-label="Lamborghini Huracan"><img src="/assets/vehicules/lamborghini-3.webp" width="400" height="186" loading="lazy" alt="Lamborghini Huracan, voiture de prestige à louer à Cancún"><span>Lamborghini Huracan</span><i></i></button>
+          <button type="button" aria-selected="false" aria-label="Ford Mustang Supercharger"><img src="/assets/vehicules/mustang-1.webp" width="377" height="223" loading="lazy" alt="Ford Mustang Supercharger, voiture de prestige à louer à Cancún"><span>Ford Mustang Supercharger</span><i></i></button>
+          <button type="button" aria-selected="false" aria-label="Cadillac CTS Horsepower"><img src="/assets/vehicules/cadillac-cts-2.webp" width="400" height="296" loading="lazy" alt="Cadillac CTS Horsepower, voiture de prestige à louer à Cancún"><span>Cadillac CTS Horsepower</span><i></i></button>
         </div>
       </div>
     </section>
@@ -422,7 +421,7 @@
         <!-- L'atout principal, montré tel qu'il se vit : une conversation WhatsApp en français -->
         <div class="chat" id="chat">
           <div class="chat-top">
-            <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="">
+            <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="Logo Street Car Solution">
             <div><b>Street Car Solution</b><span><i></i>en ligne · répond en français</span></div>
           </div>
           <div class="chat-body">
@@ -593,7 +592,7 @@
         <div class="palm p-left"><svg viewBox="0 0 240 340"><use href="#palm"/></svg></div>
         <div class="palm p-right"><svg viewBox="0 0 240 340"><use href="#palm"/></svg></div>
         <div class="cta-road"></div>
-        <div class="cta-car"><img src="img/auto-sedona-agence.webp" width="1000" height="492" loading="lazy" alt=""></div>
+        <div class="cta-car"><img src="img/auto-sedona-agence.webp" width="1000" height="492" loading="lazy" alt="Kia Sedona blanc, le monospace de l'agence"></div>
       </div>
     </section>
 
@@ -628,12 +627,12 @@
             <legend><b>2</b>Votre voiture</legend>
             <p class="lab" id="lab-cat">Catégorie *</p>
             <div class="pick" role="radiogroup" aria-labelledby="lab-cat">
-              <label class="tile"><input type="radio" name="vehicleType" value="Économique" required><span class="tile-in"><img src="img/auto-economique.webp" width="1000" height="577" loading="lazy" alt=""><b>Économique</b><small>dès 35&nbsp;€ / jour</small></span></label>
-              <label class="tile"><input type="radio" name="vehicleType" value="Citadine" required><span class="tile-in"><img src="img/auto-aveo-agence.webp" width="1000" height="452" loading="lazy" alt=""><b>Citadine</b><small>dès 40&nbsp;€ / jour</small></span></label>
-              <label class="tile"><input type="radio" name="vehicleType" value="Berline" required><span class="tile-in"><img src="img/auto-k3-noire.webp" width="1000" height="463" loading="lazy" alt=""><b>Berline</b><small>dès 47&nbsp;€ / jour</small></span></label>
-              <label class="tile"><input type="radio" name="vehicleType" value="SUV 5 places" required><span class="tile-in"><img src="img/auto-cx5-agence.webp" width="1000" height="490" loading="lazy" alt=""><b>SUV 5 places</b><small>dès 62&nbsp;€ / jour</small></span></label>
-              <label class="tile"><input type="radio" name="vehicleType" value="Monospace 7 ou 8 places" required><span class="tile-in"><img src="img/auto-sedona-agence.webp" width="1000" height="492" loading="lazy" alt=""><b>Monospace <i>7 ou 8 places</i></b><small>dès 75&nbsp;€ / jour</small></span></label>
-              <label class="tile"><input type="radio" name="vehicleType" value="Van 14 places" required><span class="tile-in"><img src="img/auto-van.webp" width="1000" height="546" loading="lazy" alt=""><b>Van 14 places</b><small>dès 105&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="Économique" required><span class="tile-in"><img src="img/auto-economique.webp" width="1000" height="577" loading="lazy" alt="Renault Kwid, voiture économique de location à Cancún"><b>Économique</b><small>dès 35&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="Citadine" required><span class="tile-in"><img src="img/auto-aveo-agence.webp" width="1000" height="452" loading="lazy" alt="Chevrolet Aveo bleu clair, catégorie Citadine, location à Cancún"><b>Citadine</b><small>dès 40&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="Berline" required><span class="tile-in"><img src="img/auto-k3-noire.webp" width="1000" height="463" loading="lazy" alt="Kia K3 noire, catégorie Berline, location à Cancún"><b>Berline</b><small>dès 47&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="SUV 5 places" required><span class="tile-in"><img src="img/auto-cx5-agence.webp" width="1000" height="490" loading="lazy" alt="Mazda CX-5 bleu foncé, SUV 5 places, location à Cancún"><b>SUV 5 places</b><small>dès 62&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="Monospace 7 ou 8 places" required><span class="tile-in"><img src="img/auto-sedona-agence.webp" width="1000" height="492" loading="lazy" alt="Kia Sedona blanc, monospace 7 ou 8 places, location à Cancún"><b>Monospace <i>7 ou 8 places</i></b><small>dès 75&nbsp;€ / jour</small></span></label>
+              <label class="tile"><input type="radio" name="vehicleType" value="Van 14 places" required><span class="tile-in"><img src="img/auto-van.webp" width="1000" height="546" loading="lazy" alt="Van Toyota Hiace de 14 places, location à Cancún"><b>Van 14 places</b><small>dès 105&nbsp;€ / jour</small></span></label>
             </div>
             <div class="rows two gap-top">
               <div>
@@ -699,7 +698,7 @@
 
         <aside class="ticket-col">
           <div class="ticket" id="ticket">
-            <div class="ticket-top"><span>Votre demande de devis</span><img src="img/logo-360.webp" width="34" height="34" loading="lazy" alt=""></div>
+            <div class="ticket-top"><span>Votre demande de devis</span><img src="img/logo-360.webp" width="34" height="34" loading="lazy" alt="Logo Street Car Solution"></div>
             <div class="ticket-route">
               <div><small>Départ</small><b id="t-de" class="is-empty">-</b><span id="t-d1"></span></div>
               <svg viewBox="0 0 44 20" aria-hidden="true"><path d="M2 10 H42 M34 3 l8 7 -8 7"/></svg>
@@ -707,7 +706,7 @@
             </div>
             <div class="ticket-car">
               <div><small>Voiture</small><b id="t-auto" class="is-empty">-</b><span id="t-prix"></span></div>
-              <img id="t-img" src="img/auto-cx5-agence.webp" width="1000" height="490" loading="lazy" alt="" hidden>
+              <img id="t-img" src="img/auto-cx5-agence.webp" width="1000" height="490" loading="lazy" alt="Aperçu de la voiture choisie" hidden>
             </div>
             <div class="ticket-cut"><i></i><i></i></div>
             <div class="ticket-cells">
@@ -791,7 +790,7 @@
     <div class="foot-in">
       <div class="foot-grid">
         <div class="foot-brand" data-reveal>
-          <a class="foot-logo" href="#top" aria-label="Street Car Solution, haut de page"><img src="img/logo-360.webp" width="150" height="150" loading="lazy" alt=""></a>
+          <a class="foot-logo" href="#top" aria-label="Street Car Solution, haut de page"><img src="img/logo-360.webp" width="150" height="150" loading="lazy" alt="Logo Street Car Solution"></a>
           <p class="foot-pitch">Votre partenaire de confiance pour la location de voiture à Cancún et dans toute la péninsule du Yucatán.</p>
           <ul class="foot-social" aria-label="Street Car Solution sur les réseaux sociaux">
             <li><a href="https://www.tiktok.com/@yoancremona" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.7-.3-3.9-1.1v5.9c0 3.4-2.5 5.8-5.7 5.8A5.6 5.6 0 0 1 5.3 15c0-3.4 2.8-5.9 6.3-5.6v3.2c-1.6-.4-3.1.7-3.1 2.4 0 1.4 1.1 2.5 2.4 2.5 1.6 0 2.5-1.1 2.5-2.9V3z"/></svg></a></li>
@@ -879,7 +878,7 @@
   </button>
   <div class="julie" id="julie" role="dialog" aria-label="Julie, agent virtuel" hidden data-lenis-prevent>
     <div class="chat-top julie-top">
-      <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="">
+      <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="Logo Street Car Solution">
       <div><b>Julie</b><span><i></i>Agent virtuel · 24 h/24, 7 j/7</span></div>
       <button type="button" id="julie-x" aria-label="Fermer la discussion">×</button>
     </div>
@@ -895,7 +894,7 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="/assets/vendor/flatpickr/flatpickr-4.6.13.min.js"></script>
   <script src="/assets/vendor/flatpickr/fr-4.6.13.js"></script>
-  <script src="site.js?v=26"></script>
+  <script src="site.js?v=27"></script>
   <script defer src="/assets/js/newsletter.js"></script>
   <script defer src="/assets/js/consentement.js?v=1"></script>
 </body>

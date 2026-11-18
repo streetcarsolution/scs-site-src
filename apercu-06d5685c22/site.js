@@ -164,6 +164,7 @@
   var JOURS_MINIMUM = 3;
   var DATE_MANQUANTE = 'Choisissez la date dans le calendrier.';
   var PRIX = { 'Économique': 35, 'Citadine': 40, 'Berline': 47, 'SUV 5 places': 62, 'Monospace 7 ou 8 places': 75, 'Van 14 places': 105 };
+  var ALT_VOITURE = { 'Économique': 'Renault Kwid, voiture économique', 'Citadine': 'Chevrolet Aveo bleu clair, catégorie Citadine', 'Berline': 'Kia K3 noire, catégorie Berline', 'SUV 5 places': 'Mazda CX-5 bleu foncé, SUV 5 places', 'Monospace 7 ou 8 places': 'Kia Sedona blanc, monospace 7 ou 8 places', 'Van 14 places': 'Van Toyota Hiace de 14 places' };
   var PHOTO = { 'Économique': 'economique', 'Citadine': 'aveo-agence', 'Berline': 'k3-noire', 'SUV 5 places': 'cx5-agence', 'Monospace 7 ou 8 places': 'sedona-agence', 'Van 14 places': 'van' };
   function id(i) { return document.getElementById(i); }
 
@@ -200,6 +201,7 @@
       ecrire('t-prix', auto ? 'dès ' + PRIX[auto] + ' € / jour' : '');
       if (auto && photo.getAttribute('data-auto') !== auto) {
         photo.setAttribute('data-auto', auto);
+        photo.alt = 'Aperçu : ' + (ALT_VOITURE[auto] || auto);
         photo.src = 'img/auto-' + PHOTO[auto] + '.webp';
         photo.hidden = false;
         photo.classList.remove('go'); void photo.offsetWidth; photo.classList.add('go');

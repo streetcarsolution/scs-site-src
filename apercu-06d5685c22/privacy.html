@@ -35,10 +35,9 @@
 
   <meta name="theme-color" content="#1DA1F2">
   <link rel="icon" href="/favicon.ico?v=3" sizes="any">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=28">
+  <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="site.css?v=29">
 
   <!-- Pour Google et les assistants IA : la page, reliée à l'agence -->
   <script type="application/ld+json">
@@ -90,7 +89,7 @@
 
   <header class="nav" id="nav">
     <a class="brand" href="./" aria-label="Street Car Solution, retour à l'accueil">
-      <img id="nav-logo" src="img/logo-360.webp" width="46" height="46" alt="">
+      <img id="nav-logo" src="img/logo-360.webp" width="46" height="46" alt="Logo Street Car Solution">
       <span class="wm"><b class="c-o">Street</b> <b class="c-b">Car</b> <b class="c-g">Solution</b></span>
     </a>
     <nav class="nav-links" aria-label="Menu principal">
@@ -275,7 +274,7 @@
     <div class="foot-in">
       <div class="foot-grid">
         <div class="foot-brand" data-reveal>
-          <a class="foot-logo" href="./" aria-label="Street Car Solution, retour à l'accueil"><img src="img/logo-360.webp" width="150" height="150" loading="lazy" alt=""></a>
+          <a class="foot-logo" href="./" aria-label="Street Car Solution, retour à l'accueil"><img src="img/logo-360.webp" width="150" height="150" loading="lazy" alt="Logo Street Car Solution"></a>
           <p class="foot-pitch">Votre partenaire de confiance pour la location de voiture à Cancún et dans toute la péninsule du Yucatán.</p>
           <ul class="foot-social" aria-label="Street Car Solution sur les réseaux sociaux">
             <li><a href="https://www.tiktok.com/@yoancremona" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.7-.3-3.9-1.1v5.9c0 3.4-2.5 5.8-5.7 5.8A5.6 5.6 0 0 1 5.3 15c0-3.4 2.8-5.9 6.3-5.6v3.2c-1.6-.4-3.1.7-3.1 2.4 0 1.4 1.1 2.5 2.4 2.5 1.6 0 2.5-1.1 2.5-2.9V3z"/></svg></a></li>
@@ -363,7 +362,7 @@
   </button>
   <div class="julie" id="julie" role="dialog" aria-label="Julie, agent virtuel" hidden data-lenis-prevent>
     <div class="chat-top julie-top">
-      <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="">
+      <img src="img/logo-360.webp" width="44" height="44" loading="lazy" alt="Logo Street Car Solution">
       <div><b>Julie</b><span><i></i>Agent virtuel · 24 h/24, 7 j/7</span></div>
       <button type="button" id="julie-x" aria-label="Fermer la discussion">×</button>
     </div>
@@ -377,7 +376,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="site.js?v=26"></script>
+  <script src="site.js?v=27"></script>
   <script defer src="/assets/js/newsletter.js"></script>
   <script defer src="/assets/js/consentement.js?v=1"></script>
 </body>
