@@ -379,6 +379,8 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .send { width: 100%; }
 .form-status { padding: 14px 16px; border-radius: 16px; background: rgba(0, 184, 148, .13); color: #00604c; font-size: 15px; font-weight: 700; line-height: 1.45; }
 .form-status { white-space: pre-line; }
+/* Calendrier des dates de location (flatpickr, copie du site actuel) : le jour choisi suit la couleur du site */
+.flatpickr-day.selected, .flatpickr-day.selected:hover, .flatpickr-day.selected:focus { background: var(--blue); border-color: var(--blue); }
 .form-status.is-wait { background: rgba(29, 161, 242, .12); color: #0b5e96; }
 .form-status.is-bad { background: rgba(198, 40, 40, .1); color: #a31515; }
 .form-status[hidden] { display: none; }

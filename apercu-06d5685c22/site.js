@@ -111,7 +111,7 @@
   /* Chaque option du site porte le code de sa ligne dans le catalogue de l'App
      (Reglages, tarifs additionnels) : c'est par lui que l'App la range. */
   var OPTION_POUR_LAPP = {
-    'Conducteur additionnel': 'conducteur_sup', 'Carte SIM mexicaine': 'sim', 'GPS': 'gps', 'Siège bébé': 'siege_enfant',
+    'Conducteur additionnel': 'conducteur_sup', 'GPS': 'gps', 'Siège bébé': 'siege_enfant',
     'Réhausseur enfant': 'booster', 'Lavage du véhicule': 'lavage', 'Assistance police 24/7': 'seg'
   };
   var URLENCODE = { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' };
@@ -162,6 +162,7 @@
   var TEL_SANS_PLUS = "Il manque le « + » et l'indicatif de votre pays avant le numéro. Exemples : +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada), +52 998 123 4567 (Mexique).";
   var TEL_INCOMPLET = "Ce numéro semble incomplet. Vérifiez l'indicatif du pays et tous les chiffres, par exemple +33 6 12 34 56 78.";
   var JOURS_MINIMUM = 3;
+  var DATE_MANQUANTE = 'Choisissez la date dans le calendrier.';
   var PRIX = { 'Économique': 35, 'Citadine': 40, 'Berline': 47, 'SUV 5 places': 62, 'Monospace 7 ou 8 places': 75, 'Van 14 places': 105 };
   var PHOTO = { 'Économique': 'economique', 'Citadine': 'aveo-agence', 'Berline': 'k3-noire', 'SUV 5 places': 'cx5-agence', 'Monospace 7 ou 8 places': 'sedona-agence', 'Van 14 places': 'van' };
   function id(i) { return document.getElementById(i); }
@@ -214,13 +215,76 @@
     /* Trois jours au moins, et pas de retour avant le départ */
     function dureeAcceptee() {
       var n = jours(), court = n !== null && n < JOURS_MINIMUM;
-      retour.setCustomValidity(court ? 'La location doit contenir un minimum de 3 jours.' : '');
+      visible(retour).setCustomValidity(court ? 'La location doit contenir un minimum de 3 jours.' : '');
       duree.textContent = n === null ? '' : (court ? 'La location doit contenir un minimum de 3 jours.' : n + ' jours de location');
       duree.classList.toggle('is-bad', court);
       return !court;
     }
-    depart.min = retour.min = iso(new Date());
-    depart.addEventListener('change', function () { retour.min = depart.value || iso(new Date()); });
+    /* LES CALENDRIERS DU SITE ACTUEL (flatpickr, copie du site dans assets/vendor).
+       La case de date du navigateur ecrit la date dans SA langue, jamais dans celle
+       de la page : jj/mm/aaaa sur un Chrome francais, mm/dd/yyyy chez un Americain.
+       Le calendrier ecrit JJ/MM/AAAA, comme les cases de naissance, et la valeur
+       envoyee reste AAAA-MM-JJ. Sur telephone, le calendrier seul, sans clavier.
+       Si le calendrier ne se charge pas, la case du navigateur reste : on perd le
+       format, jamais la demande. */
+    var TACTILE = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    function masqueDeDate(champ) {
+      champ.addEventListener('input', function () {
+        var c = champ.value.replace(/\D/g, '').slice(0, 8);
+        champ.value = c.length > 4 ? c.slice(0, 2) + '/' + c.slice(2, 4) + '/' + c.slice(4) : c.length > 2 ? c.slice(0, 2) + '/' + c.slice(2) : c;
+        champ.setCustomValidity('');
+      });
+    }
+    (function () {
+      if (!window.flatpickr) { depart.min = retour.min = iso(new Date()); return; }
+      var traduction = window.flatpickr.l10ns && window.flatpickr.l10ns.fr;
+      [depart, retour].forEach(function (champ) {
+        champ.setAttribute('placeholder', 'JJ/MM/AAAA');
+        var fp = window.flatpickr(champ, {
+          locale: traduction || 'default', dateFormat: 'Y-m-d', altInput: true, altFormat: 'd/m/Y',
+          altInputClass: champ.className, allowInput: !TACTILE, disableMobile: true, minDate: 'today'
+        });
+        if (!fp || !fp.altInput) return;
+        fp.altInput.setAttribute('autocomplete', 'off');
+        if (!TACTILE) masqueDeDate(fp.altInput);
+        /* Une date tapee se lit a la sortie de la case : on le dit pour que les trois jours se recomptent. */
+        fp.altInput.addEventListener('blur', function () {
+          setTimeout(function () { champ.dispatchEvent(new Event('change')); }, 0);
+        });
+      });
+    })();
+    /* La case que le client voit : celle du calendrier quand il est la. */
+    function visible(champ) { return champ && champ._flatpickr && champ._flatpickr.altInput ? champ._flatpickr.altInput : champ; }
+    /* Le retour ne se choisit pas avant le depart : son calendrier commence au jour du depart. */
+    depart.addEventListener('change', function () {
+      if (retour._flatpickr) retour._flatpickr.set('minDate', depart.value || 'today');
+      else retour.min = depart.value || iso(new Date());
+    });
+    /* Apres le merci, le formulaire se vide : les calendriers oublient leur choix. */
+    resa.addEventListener('reset', function () {
+      setTimeout(function () {
+        [depart, retour].forEach(function (champ) { if (champ._flatpickr) champ._flatpickr.clear(false); });
+        if (retour._flatpickr) retour._flatpickr.set('minDate', 'today'); else retour.min = iso(new Date());
+      }, 0);
+    });
+    /* Une date qui manque se dit sous sa case. La bulle du navigateur ne sait pas se poser sur une case
+       en lecture seule (le calendrier du telephone) : le message s'ecrit dessous, et le calendrier s'ouvre. */
+    function manque(champ, oui) {
+      var v = visible(champ);
+      var p = v.parentNode ? v.parentNode.querySelector('[data-date-manquante]') : null;
+      if (!oui) { if (p) p.hidden = true; return; }
+      if (!p && v.parentNode) {
+        p = document.createElement('p');
+        p.setAttribute('data-date-manquante', '');
+        p.setAttribute('role', 'alert');
+        p.className = 'help is-bad';
+        v.parentNode.insertBefore(p, v.nextSibling);
+      }
+      if (p) { p.textContent = DATE_MANQUANTE; p.hidden = false; }
+      if (v.scrollIntoView) v.scrollIntoView({ block: 'center' });
+      if (champ._flatpickr) champ._flatpickr.open();
+    }
+    [depart, retour].forEach(function (champ) { champ.addEventListener('change', function () { manque(champ, false); }); });
 
     /* Le numéro WhatsApp : « + », indicatif, 11 à 15 chiffres */
     function refusDuNumero(brut) {
@@ -254,7 +318,7 @@
       var ref = depart.value ? new Date(depart.value + 'T00:00:00') : new Date();
       var age = ref.getFullYear() - a - (ref.getMonth() < mo - 1 || (ref.getMonth() === mo - 1 && ref.getDate() < j) ? 1 : 0);
       if (age < 18) return 'Le conducteur doit avoir au moins 18 ans le jour du départ.';
-      if (age > 100) return "Vérifiez l'année de naissance.";
+      if (age > 99) return "Vérifiez l'année de naissance.";
       return null;
     }
 
@@ -277,7 +341,6 @@
     function reussi() {
       resa.reset();
       tel.value = '+'; direTel(null);
-      retour.min = depart.min = iso(new Date());
       photo.hidden = true; photo.removeAttribute('data-auto');
       dureeAcceptee(); dessiner();
       billet.classList.add('is-stamped');
@@ -294,6 +357,9 @@
       naissance.setCustomValidity(naissance.value.trim() ? (refusNaissance() || '') : '');
       dureeAcceptee();
       if (!resa.checkValidity()) { resa.reportValidity(); return; }
+      /* Le calendrier du telephone est en lecture seule : le navigateur ne le controle pas, on le fait ici. */
+      if (!depart.value) return manque(depart, true);
+      if (!retour.value) return manque(retour, true);
 
       var piege = id('champ_piege').value.trim(), temps = Date.now() - ouverte;
       enCours = true; bouton.disabled = true; bouton.textContent = 'Envoi en cours…';
@@ -387,7 +453,7 @@
         }
         envoi.then(function (ok) {
           if (ok) { message.reset(); annoncer(etat, 'Merci, votre message a bien été envoyé !', 'ok'); }
-          else annoncer(etat, 'Désolé, une erreur est survenue. Réessayez plus tard, ou écrivez-nous sur WhatsApp.', 'mal');
+          else annoncer(etat, 'Désolé, une erreur est survenue. Réessayez plus tard.', 'mal');
           enCours = false; bouton.disabled = false; bouton.innerHTML = libelle;
         });
       });
