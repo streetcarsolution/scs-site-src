@@ -277,6 +277,11 @@ html:not(.anim) .road-wrap::before { content: ''; position: absolute; left: 22px
 /* ---------- 6. Avis ---------- */
 .reviews { max-width: 1200px; margin: 0 auto; padding: 84px var(--pad); }
 .quotes { display: grid; gap: 16px; margin-top: 34px; }
+.rating { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; margin-top: 14px; color: var(--soft); font-size: 16px; }
+.rating .stars { color: var(--sun); font-size: 20px; letter-spacing: 2px; }
+.rating a { color: inherit; text-decoration: underline; text-underline-offset: 4px; font-weight: 600; }
+.rating a:hover { color: #0d7fca; }
+.rating b { font-family: var(--display); font-weight: 700; font-size: 22px; color: #0B2239; }
 .reviews-more { display: flex; justify-content: center; margin-top: 34px; }
 .reviews-more .btn { white-space: normal; text-align: center; }
 .quote { position: relative; display: flex; flex-direction: column; min-height: 230px; padding: 26px 26px 24px; border-radius: 32px; color: #fff; overflow: hidden; transition: transform .5s var(--e), box-shadow .5s var(--e); }
