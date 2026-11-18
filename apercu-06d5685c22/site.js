@@ -729,7 +729,15 @@
     gsap.to(svg.querySelectorAll('path'), { strokeDashoffset: 0, duration: 1.2, ease: 'power2.inOut', stagger: .16, delay: .2, scrollTrigger: { trigger: svg, start: 'top 90%' } });
   });
 
-  gsap.from('.foot-wm b', { yPercent: 110, opacity: 0, duration: 1, stagger: .1, ease: 'power4.out', scrollTrigger: { trigger: '.foot', start: 'top 88%' } });
+  /* ---------- Pied de page : la voiture roule jusqu'en bas de page, puis la signature monte ---------- */
+  var route = document.querySelector('.foot-road');
+  if (route) {
+    gsap.fromTo('.foot-car', { x: -110 }, {
+      x: function () { return Math.max(0, route.clientWidth - 120); }, ease: 'none',
+      scrollTrigger: { trigger: route, start: 'top bottom', end: function () { return ScrollTrigger.maxScroll(window); }, scrub: .6, invalidateOnRefresh: true }
+    });
+  }
+  gsap.from('.foot-wm b', { yPercent: 110, opacity: 0, duration: 1, stagger: .1, ease: 'power4.out', scrollTrigger: { trigger: '.foot-wm', start: 'top 98%' } });
 
   window.addEventListener('load', function () {
     ScrollTrigger.refresh();

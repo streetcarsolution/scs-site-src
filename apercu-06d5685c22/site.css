@@ -613,18 +613,61 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .band .hero-cta { justify-content: center; margin-top: 26px; }
 
 /* ---------- Pied de page ---------- */
-.foot { padding: 52px var(--pad) 96px; background: var(--night); color: rgba(255, 255, 255, .78); overflow: hidden; }
-.foot-wm { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 10.3vw, 150px); line-height: 1; white-space: nowrap; letter-spacing: -.02em; }
+.foot { position: relative; padding: 58px var(--pad) 100px; overflow: hidden; color: rgba(255, 255, 255, .74);
+  background: radial-gradient(80% 55% at 100% 0%, rgba(29, 161, 242, .22), transparent 62%), radial-gradient(70% 45% at 0% 100%, rgba(0, 184, 148, .18), transparent 60%), var(--night); }
+.foot::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--blue), var(--green), var(--sun)); }
+.foot-in { max-width: 1240px; margin: 0 auto; }
+.foot ul { margin: 0; padding: 0; list-style: none; }
+
+/* Les colonnes : l'agence, les liens, les informations, le contact */
+.foot-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px 22px; }
+.foot-brand, .foot-reach { grid-column: 1 / -1; }
+.foot-logo { display: inline-block; border-radius: 50%; }
+.foot-logo img { display: block; width: 72px; height: 72px; border-radius: 50%; box-shadow: 0 0 0 5px rgba(253, 203, 110, .16), 0 16px 34px -12px rgba(253, 203, 110, .6); transition: transform .5s var(--e); }
+.foot-logo:hover img { transform: rotate(-10deg) scale(1.06); }
+.foot-pitch { margin-top: 16px; max-width: 24em; font-size: 16px; line-height: 1.6; }
+.foot-social { display: flex; gap: 10px; margin-top: 20px; }
+.foot-social a { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .07); color: #fff; transition: transform .4s var(--e), background-color .25s, border-color .25s; }
+.foot-social a:hover { transform: translateY(-4px) rotate(-8deg); border-color: transparent; background: linear-gradient(140deg, var(--blue), var(--green)); }
+.foot-social svg { width: 20px; height: 20px; fill: currentColor; }
+.foot-social .ln { fill: none; stroke: currentColor; stroke-width: 1.9; }
+.foot-col h2 { position: relative; margin-bottom: 18px; padding-bottom: 12px; font-size: 21px; line-height: 1.2; letter-spacing: 0; color: #fff; }
+.foot-col h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 32px; height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--blue), var(--green)); }
+.foot-col ul { display: grid; gap: 11px; }
+.foot-col ul a { position: relative; font-size: 16px; transition: color .25s; }
+.foot-col ul a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -3px; height: 2px; border-radius: 2px; background: var(--sun); transform: scaleX(0); transform-origin: 0 50%; transition: transform .4s var(--e); }
+.foot-col ul a:hover, .foot-col ul a[aria-current] { color: #fff; }
+.foot-col ul a:hover::after { transform: scaleX(1); }
+.foot-contact { display: grid; gap: 14px; font-style: normal; }
+.foot-line { display: flex; align-items: flex-start; gap: 14px; }
+.foot-line svg { flex: none; width: 42px; height: 42px; padding: 10px; border-radius: 14px; background: rgba(255, 255, 255, .08); fill: none; stroke: var(--sun); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: background-color .25s, stroke .25s, transform .4s var(--e); }
+.foot-line span { display: grid; gap: 1px; min-width: 0; padding-top: 1px; color: #fff; font-size: 16px; font-weight: 700; line-height: 1.35; overflow-wrap: anywhere; }
+.foot-line small { font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, .6); }
+.foot-line:hover svg { transform: rotate(-8deg); background: linear-gradient(140deg, var(--blue), var(--green)); stroke: #fff; }
+
+/* La newsletter : un encadré au dégradé de la marque */
+.foot-news { display: grid; gap: 18px; margin-top: 48px; padding: 26px 20px 20px; border-radius: 28px; background: linear-gradient(120deg, var(--blue) 0%, var(--green) 100%); color: #fff; box-shadow: 0 30px 60px -30px rgba(0, 184, 148, .75); }
+.foot-news h2 { font-size: clamp(27px, 6vw, 36px); line-height: 1.1; }
+.foot-news p { margin-top: 6px; font-size: 16px; }
+.nl-form { display: flex; gap: 6px; padding: 6px; border-radius: 999px; background: #fff; transition: box-shadow .2s; }
+.nl-form:focus-within { box-shadow: 0 0 0 4px rgba(253, 203, 110, .85); }
+.nl-form .in { height: 48px; padding: 0 16px; border: 0; border-radius: 999px; }
+.nl-form .in:focus { box-shadow: none; }
+.nl-send { flex: none; display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%; background: var(--orange); cursor: pointer; box-shadow: 0 10px 22px -10px rgba(190, 90, 10, .8); transition: transform .4s var(--e); }
+.nl-send svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.nl-send:hover { transform: rotate(-14deg) scale(1.07); }
+.nl-send[disabled] { opacity: .6; cursor: wait; }
+.foot-news .newsletter-msg { min-height: 1.5em; margin-top: 8px; padding-left: 14px; font-size: 14px; font-weight: 700; }
+
+/* La route, puis la signature */
+.foot-road { position: relative; height: 40px; margin: 54px 0 4px; }
+.foot-road::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px; border-radius: 3px; background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .32) 0 28px, transparent 28px 52px); }
+.foot-car { position: absolute; left: 0; top: 0; width: 108px; height: 40px; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .45)); }
+.foot-wm { margin-top: 10px; font-family: var(--display); font-weight: 700; font-size: clamp(30px, 10.3vw, 150px); line-height: 1; white-space: nowrap; letter-spacing: -.02em; }
 .foot-wm b { display: inline-block; }
-.foot-contact { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 26px; font-size: 15px; font-weight: 700; }
-.foot-contact a { color: #fff; border-bottom: 1px solid rgba(255, 255, 255, .32); transition: border-color .25s; }
-.foot-contact a:hover { border-color: var(--sun); }
-.foot-row { display: grid; gap: 14px; margin-top: 24px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .14); }
-.foot-note { font-size: 14px; color: rgba(255, 255, 255, .55); }
-.foot-addr { margin-top: 8px; font-style: normal; font-size: 14px; line-height: 1.6; }
-.foot-addr a { color: #fff; border-bottom: 1px solid rgba(255, 255, 255, .32); transition: border-color .25s; }
-.foot-addr a:hover { border-color: var(--sun); }
-.credits { margin-top: 20px; font-size: 12px; line-height: 1.5; color: rgba(255, 255, 255, .42); }
+.foot-bottom { display: grid; gap: 8px; margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .14); font-size: 14px; }
+.foot-note { color: rgba(255, 255, 255, .55); }
+.credits { font-size: 12px; line-height: 1.5; color: rgba(255, 255, 255, .42); }
 
 /* ---------- Écrans moyens ---------- */
 @media (min-width: 620px) {
@@ -633,7 +676,11 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
   .hero .hero-cta .btn { flex: 0 0 auto; padding-left: 26px; padding-right: 26px; }
   .stats { grid-template-columns: repeat(3, 1fr); }
   .quotes { grid-template-columns: repeat(3, 1fr); }
-  .foot-row { grid-template-columns: 1fr 1fr; }
+  .foot-news { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); align-items: center; gap: 28px; padding: 30px 34px; }
+  .foot-news .newsletter-msg { position: absolute; margin-top: 6px; }
+  .foot-news-form { position: relative; }
+  .foot-bottom { grid-template-columns: auto minmax(0, 1fr); gap: 8px 30px; padding-right: 84px; }
+  .foot-bottom .credits { grid-column: 1 / -1; }
   .rows.two { grid-template-columns: 1fr 1fr; }
   .pick { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .fields { padding: 34px 30px 6px; }
@@ -718,7 +765,11 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
   .cta-road::after { height: 4px; background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .75) 0 40px, transparent 40px 76px); }
   .cta-car { right: 15%; bottom: 13px; width: 440px; }
   .c1 { top: 18%; left: 8%; } .c2 { top: 6%; }
-  .foot { padding: 80px var(--pad) 40px; }
+  .foot { padding: 96px var(--pad) 40px; }
+  .foot-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr) minmax(0, 1.05fr) minmax(0, 1.6fr); gap: 40px; }
+  .foot-brand, .foot-reach { grid-column: auto; }
+  .foot-news { margin-top: 70px; padding: 36px 44px; }
+  .foot-road { margin-top: 70px; }
 
   .hero-page { min-height: 80vh; }
   .hero-page .hero-stage { min-height: 48vh; }
