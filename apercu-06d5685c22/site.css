@@ -622,7 +622,7 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 /* Les colonnes : l'agence, les liens, les informations, le contact */
 .foot-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px 22px; }
 .foot-brand, .foot-reach { grid-column: 1 / -1; }
-.foot-logo { display: inline-block; border-radius: 50%; }
+.foot-logo { display: block; width: max-content; margin: 0 auto; border-radius: 50%; }
 .foot-logo img { display: block; width: 128px; height: 128px; border-radius: 50%; box-shadow: 0 0 0 5px rgba(253, 203, 110, .16), 0 16px 34px -12px rgba(253, 203, 110, .6); transition: transform .5s var(--e); }
 .foot-logo:hover img { transform: rotate(-10deg) scale(1.06); }
 .foot-pitch { margin-top: 16px; max-width: 24em; font-size: 16px; line-height: 1.6; }
@@ -669,7 +669,6 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .foot-wm b { display: inline-block; }
 .foot-bottom { display: grid; gap: 8px; margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .14); font-size: 14px; }
 .foot-note { color: rgba(255, 255, 255, .55); }
-.credits { font-size: 12px; line-height: 1.5; color: rgba(255, 255, 255, .42); }
 
 /* ---------- Écrans moyens ---------- */
 @media (min-width: 620px) {
@@ -678,8 +677,9 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
   .hero .hero-cta .btn { flex: 0 0 auto; padding-left: 26px; padding-right: 26px; }
   .stats { grid-template-columns: repeat(3, 1fr); }
   .quotes { grid-template-columns: repeat(3, 1fr); }
+  .foot-news { justify-content: flex-end; gap: 12px 18px; }
+  .nl-txt { text-align: right; }
   .foot-bottom { grid-template-columns: auto minmax(0, 1fr); gap: 8px 30px; padding-right: 84px; }
-  .foot-bottom .credits { grid-column: 1 / -1; }
   .rows.two { grid-template-columns: 1fr 1fr; }
   .pick { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .fields { padding: 34px 30px 6px; }
