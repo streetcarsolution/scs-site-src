@@ -565,6 +565,7 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .opt-price small { flex-basis: 100%; margin-top: 3px; font-size: 13.5px; color: var(--soft); transition: color .3s; }
 .opt:hover .opt-in { transform: translateY(-4px); }
 .opt input:checked + .opt-in { border-color: transparent; background: linear-gradient(140deg, #1DA1F2, #00B894); color: #fff; transform: translateY(-4px); box-shadow: 0 26px 36px -22px rgba(0, 110, 150, .9); }
+.opt:hover .opt-in::after { border-color: transparent; background: linear-gradient(140deg, #1DA1F2, #00B894); color: #fff; }
 .opt input:checked + .opt-in::after { content: '✓'; border-color: transparent; background: #fff; color: #00957a; font-size: 17px; transform: rotate(360deg); }
 .opt input:checked + .opt-in svg { background: rgba(255, 255, 255, .22); stroke: #fff; }
 .opt input:checked + .opt-in .opt-desc, .opt input:checked + .opt-in small { color: rgba(255, 255, 255, .92); }
@@ -734,6 +735,7 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
   .lux-tabs span { display: block; }
   .opt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .opt-star { grid-column: 1 / -1; }
+  .opt:nth-child(5) { grid-column: 1 / -1; }
   .extra-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .opt-bar { left: 0; right: 0; width: max-content; max-width: calc(100vw - 190px); margin: 0 auto; gap: 18px; padding-left: 24px; }
   .chip { font-size: 16px; padding: 11px 18px; }
@@ -822,7 +824,12 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
   .ch1 { left: 4%; top: 6%; } .ch2 { right: 16%; top: 2%; } .ch3 { right: 8%; top: 20%; } .ch4 { left: 18%; top: 22%; }
   .opts { padding: 110px var(--pad) 130px; }
   .sec-head { margin-bottom: 50px; }
-  .opt-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  /* Deux cartes sur la premiere ligne, la moitie du bloc chacune, puis trois : plus de ligne de trop */
+  .opt-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+  .opt { grid-column: span 2; }
+  .opt:nth-child(-n+2) { grid-column: span 3; }
+  .opt:nth-child(5) { grid-column: span 2; }
+  .opt-star { grid-column: 1 / -1; }
   .opt-in { padding: 28px 26px 26px; }
   .opt-star .opt-desc { max-width: 46em; }
   .extras { padding: 130px var(--pad); }
