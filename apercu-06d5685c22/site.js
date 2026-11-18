@@ -1,4 +1,4 @@
-/* Maquette du nouveau site — animations, version 3.
+/* Maquette du nouveau site, animations, version 3.
    L'ouverture et l'en-tête s'animent en CSS seul. Tout ce qui suit le
    défilement passe par GSAP ; s'il ne se charge pas, la page reste lisible. */
 (function () {
@@ -181,7 +181,7 @@
     }
     /* Une case du billet : elle ne s'anime que si son texte change */
     function ecrire(i, texte) {
-      var el = id(i), neuf = texte || (el.tagName === 'B' ? '—' : '');
+      var el = id(i), neuf = texte || (el.tagName === 'B' ? '-' : '');
       if (el.textContent === neuf) return;
       el.textContent = neuf;
       el.classList.toggle('is-empty', !texte);
