@@ -3,9 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Maquette de travail : jamais dans Google, jamais liée depuis le site. -->
+  <!-- Maquette de travail : jamais dans Google, jamais liée depuis le site. Ligne à retirer le jour de la bascule. -->
   <meta name="robots" content="noindex, nofollow">
-  <title>Services &amp; options — Street Car Solution, maquette du nouveau site</title>
+  <title>Options et services de location à Cancún | Street Car Solution</title>
+  <meta name="description" content="2e conducteur gratuit, carte SIM, GPS, siège bébé, assistance police 24/7 : les options de votre location à Cancún. Et aussi transferts, yacht, excursions.">
+
+  <!-- Adresses définitives du site, et la même page dans les trois langues -->
+  <link rel="canonical" href="https://streetcarsolution.com/services.html">
+  <link rel="alternate" hreflang="fr" href="https://streetcarsolution.com/services.html">
+  <link rel="alternate" hreflang="en" href="https://streetcarsolution.com/en/services.html">
+  <link rel="alternate" hreflang="es" href="https://streetcarsolution.com/es/services.html">
+  <link rel="alternate" hreflang="x-default" href="https://streetcarsolution.com/services.html">
+
+  <!-- Partage sur les réseaux (WhatsApp, Facebook, X…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Street Car Solution">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="es_MX">
+  <meta property="og:url" content="https://streetcarsolution.com/services.html">
+  <meta property="og:title" content="Options et services de location à Cancún · Street Car Solution">
+  <meta property="og:description" content="Conducteur additionnel gratuit, GPS, carte SIM, siège bébé. Pour le reste du séjour : transferts, yacht, logement, excursions.">
+  <meta property="og:image" content="https://streetcarsolution.com/assets/og-yoan-rectangle.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Location voiture par Yoan Crémona : une Renault Kwid et une berline blanche devant une pyramide maya, au coucher du soleil">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Options et services de location à Cancún · Street Car Solution">
+  <meta name="twitter:description" content="Conducteur additionnel gratuit, GPS, carte SIM, siège bébé. Pour le reste du séjour : transferts, yacht, logement, excursions.">
+  <meta name="twitter:image" content="https://streetcarsolution.com/assets/og-yoan-rectangle.jpg">
+
   <meta name="theme-color" content="#1DA1F2">
   <link rel="icon" href="/favicon.ico?v=3" sizes="any">
   <link rel="preload" as="image" href="img/auto-sedona-agence.webp">
@@ -13,6 +40,78 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site.css?v=16">
+
+  <!-- Pour Google et les assistants IA : les options et services, tels qu'ils sont écrits sur la page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://streetcarsolution.com/services.html#page",
+        "url": "https://streetcarsolution.com/services.html",
+        "name": "Options et services de location à Cancún | Street Car Solution",
+        "description": "2e conducteur gratuit, carte SIM, GPS, siège bébé, assistance police 24/7 : les options de votre location à Cancún. Et aussi transferts, yacht, excursions.",
+        "inLanguage": "fr",
+        "isPartOf": { "@id": "https://streetcarsolution.com/#site" },
+        "about": { "@id": "https://streetcarsolution.com/#agence" },
+        "mainEntity": { "@id": "https://streetcarsolution.com/services.html#options" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://streetcarsolution.com/#site",
+        "url": "https://streetcarsolution.com/",
+        "name": "Street Car Solution"
+      },
+      {
+        "@type": "AutoRental",
+        "@id": "https://streetcarsolution.com/#agence",
+        "name": "Street Car Solution",
+        "url": "https://streetcarsolution.com/",
+        "logo": "https://streetcarsolution.com/assets/logo.png",
+        "telephone": "+32 477 81 32 05",
+        "email": "reservation@streetcarsolution.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Cancún",
+          "addressRegion": "Quintana Roo",
+          "addressCountry": "MX"
+        },
+        "hasOfferCatalog": [
+          { "@id": "https://streetcarsolution.com/services.html#options" },
+          { "@id": "https://streetcarsolution.com/services.html#plus" }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "@id": "https://streetcarsolution.com/services.html#options",
+        "name": "Options de la location",
+        "description": "Les options s'ajoutent au moment de la réservation. Tarifs indicatifs, qui peuvent varier à tout moment.",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Conducteur additionnel", "description": "Un second conducteur au contrat, gratuit. 7,50 € (150 pesos) par conducteur supplémentaire." }, "price": 0, "priceCurrency": "EUR" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Carte SIM mexicaine", "description": "Internet, appels locaux, GPS mobile. Activation et installation incluses." }, "price": 25, "priceCurrency": "EUR" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "GPS", "description": "Cartes de la Riviera Maya à jour et points d'intérêt essentiels. CarPlay sur certains véhicules." }, "price": 0, "priceCurrency": "EUR" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Siège bébé", "description": "Siège homologué, installé à la remise du véhicule." }, "priceSpecification": { "@type": "UnitPriceSpecification", "price": 2.5, "priceCurrency": "EUR", "unitCode": "DAY" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Réhausseur enfant", "description": "Un réhausseur adapté aux enfants plus grands." }, "priceSpecification": { "@type": "UnitPriceSpecification", "price": 2.5, "priceCurrency": "EUR", "unitCode": "DAY" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lavage du véhicule", "description": "Option « retour propre » : lavage extérieur et intérieur." }, "price": 25, "priceCurrency": "EUR" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Assistance problème avec la police 24/7", "description": "Assistance immédiate en cas de contrôle de police compliqué, sur toute la Riviera Maya." }, "price": 25, "priceCurrency": "EUR" }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "@id": "https://streetcarsolution.com/services.html#plus",
+        "name": "Services complémentaires",
+        "description": "Sur devis.",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transport privé", "description": "Transferts aéroport, hôtel ou Airbnb, excursions sur mesure." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Location de yacht", "description": "Sorties privées, journée en mer ou coucher de soleil. Skipper inclus, boissons en option." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Location de vacances et immobilier", "description": "Appartements, villas et résidences sécurisées à Cancún et sur toute la Riviera Maya." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Excursions", "description": "Chichén Itzá, cenotes, Isla Mujeres, Tulum, parcs naturels : des programmes personnalisés." } }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="page">
 
