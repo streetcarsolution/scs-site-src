@@ -272,6 +272,8 @@ html:not(.anim) .road-wrap::before { content: ''; position: absolute; left: 22px
 /* ---------- 6. Avis ---------- */
 .reviews { max-width: 1200px; margin: 0 auto; padding: 84px var(--pad); }
 .quotes { display: grid; gap: 16px; margin-top: 34px; }
+.reviews-more { display: flex; justify-content: center; margin-top: 34px; }
+.reviews-more .btn { white-space: normal; text-align: center; }
 .quote { position: relative; display: flex; flex-direction: column; min-height: 230px; padding: 26px 26px 24px; border-radius: 32px; color: #fff; overflow: hidden; transition: transform .5s var(--e), box-shadow .5s var(--e); }
 .quote:hover { transform: translateY(-8px); box-shadow: 0 34px 50px -30px rgba(11, 34, 57, .7); }
 .q-blue { background: linear-gradient(160deg, #3DB6FF, #118ADE); }
