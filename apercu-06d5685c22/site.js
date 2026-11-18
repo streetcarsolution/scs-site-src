@@ -345,7 +345,7 @@
       dureeAcceptee(); dessiner();
       billet.classList.add('is-stamped');
       rendreLaMain();
-      annoncer(etat, 'Merci ! Votre pré-réservation est bien envoyée.\nVotre conseiller vous contactera rapidement par WhatsApp.', 'ok');
+      annoncer(etat, 'Merci ! Votre demande de devis est bien envoyée,\nun conseiller vous contactera rapidement.', 'ok');
     }
     resa.addEventListener('input', function () { billet.classList.remove('is-stamped'); });
     resa.addEventListener('submit', function (e) {
@@ -453,7 +453,7 @@
         }
         envoi.then(function (ok) {
           if (ok) { message.reset(); annoncer(etat, 'Merci, votre message a bien été envoyé !', 'ok'); }
-          else annoncer(etat, 'Désolé, une erreur est survenue. Réessayez plus tard.', 'mal');
+          else annoncer(etat, 'Désolé, une erreur est survenue. Réessayez plus tard, ou écrivez-nous sur WhatsApp.', 'mal');
           enCours = false; bouton.disabled = false; bouton.innerHTML = libelle;
         });
       });
