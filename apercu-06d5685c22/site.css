@@ -801,7 +801,11 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 
   .contact { padding: 130px var(--pad); }
   .contact-head { margin-bottom: 50px; }
-  .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; align-items: start; }
+  /* La carte du message descend jusqu'au bas de la carte Email : la zone de texte prend la place */
+  .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; align-items: stretch; }
+  .msg-form { display: flex; flex-direction: column; }
+  .msg-grow { flex: 1; display: flex; flex-direction: column; }
+  .msg-grow textarea.in { flex: 1; }
   .ways { gap: 18px; }
   .msg-form { padding: 42px; }
   .msg-form h3 { font-size: 36px; }

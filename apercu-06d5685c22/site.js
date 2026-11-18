@@ -734,7 +734,7 @@
   if (route) {
     gsap.fromTo('.foot-car', { x: -110 }, {
       x: function () { return Math.max(0, route.clientWidth - 120); },
-      duration: Math.min(9, Math.max(5, route.clientWidth / 140)), ease: 'power1.inOut',
+      duration: Math.min(4.5, Math.max(3, route.clientWidth / 270)), ease: 'power1.inOut',
       scrollTrigger: { trigger: route, start: 'top 92%', toggleActions: 'play none none none', invalidateOnRefresh: true }
     });
   }
