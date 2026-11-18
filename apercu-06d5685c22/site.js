@@ -751,3 +751,9 @@
     else window.scrollTo(0, y);
   });
 })();
+
+/* « Gérer les cookies » du pied de page : rouvre le bandeau de assets/js/consentement.js. */
+document.addEventListener('click', function (e) {
+  var b = e.target.closest ? e.target.closest('[data-gerer-cookies]') : null;
+  if (b && window.SCSConsent) window.SCSConsent.ouvrir();
+});

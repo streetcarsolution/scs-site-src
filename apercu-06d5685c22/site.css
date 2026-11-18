@@ -704,11 +704,13 @@ button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .foot-bottom { display: grid; gap: 8px; margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .14); font-size: 14px; }
 .foot-note { color: rgba(255, 255, 255, .55); }
 
-/* Outil de cookies (assets/js/consentement.js) : il pose lui-même le lien « Gérer les cookies »
-   en bas de page et le bandeau. Ici, le lien se range à gauche, sous le ©, et sur téléphone
-   le bandeau reste au-dessus du bouton de Julie. */
-.foot-bottom .scs-gerer { justify-self: start; margin: 0; font-size: 14px; color: rgba(255, 255, 255, .8); }
-.foot-bottom .scs-gerer:hover { color: #fff; }
+/* Outil de cookies (assets/js/consentement.js). Le lien « Gérer les cookies » est dans la colonne
+   Informations, comme un lien du pied de page (le script ne pose pas le sien quand il en trouve un).
+   Sur téléphone, le bandeau reste au-dessus du bouton de Julie. */
+.foot-col ul .scs-gerer { position: relative; margin: 0; padding: 0; font-size: 16px; text-align: left; text-decoration: none; transition: color .25s; }
+.foot-col ul .scs-gerer::after { content: ''; position: absolute; left: 0; right: 0; bottom: -3px; height: 2px; border-radius: 2px; background: var(--sun); transform: scaleX(0); transform-origin: 0 50%; transition: transform .4s var(--e); }
+.foot-col ul .scs-gerer:hover { color: #fff; }
+.foot-col ul .scs-gerer:hover::after { transform: scaleX(1); }
 @media (max-width: 640px) { body .scs-consent { bottom: 96px; } }
 
 /* ---------- Écrans moyens ---------- */
