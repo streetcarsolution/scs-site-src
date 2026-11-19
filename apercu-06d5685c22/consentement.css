@@ -1,0 +1,110 @@
+/* Bandeau de cookies, boites d'attente et fenetre des videos du nouveau site.
+   Chargé avec consentement.js. Les couleurs et les polices viennent de site.css
+   (variables --night, --orange, --display...), avec des valeurs de secours. */
+
+/* ---------- Le bandeau ---------- */
+.scs-consent {
+  position: fixed; left: 16px; bottom: 16px; z-index: 900;
+  width: calc(100% - 32px); max-width: 430px;
+  padding: 24px 22px 20px; overflow: hidden;
+  border-radius: 28px; background: #fff; color: var(--ink, #0B2239);
+  font-family: var(--text, 'DM Sans', system-ui, sans-serif); font-size: 15px; line-height: 1.5;
+  box-shadow: 0 40px 70px -30px rgba(11, 34, 57, .6), 0 0 0 1px rgba(11, 34, 57, .06);
+  /* Il attend la fin de l'ouverture animée de la page avant d'arriver. */
+  animation: scs-monte .6s var(--e, cubic-bezier(.16, 1, .3, 1)) calc(var(--t0, .25s) + .9s) both;
+}
+.scs-consent::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: var(--grad, linear-gradient(90deg, #1DA1F2, #00B894, #FDCB6E)); }
+.scs-consent h2 { margin: 0 0 8px; font-family: var(--display, 'Fredoka', 'Trebuchet MS', sans-serif); font-weight: 600; font-size: 22px; line-height: 1.15; letter-spacing: 0; color: var(--ink, #0B2239); }
+.scs-consent p { margin: 0 0 16px; color: var(--soft, #4C6278); }
+.scs-consent a { color: #0B6FB5; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.scs-consent-actions { display: flex; gap: 10px; }
+.scs-consent :focus-visible { outline: 3px solid var(--blue, #1DA1F2); outline-offset: 3px; }
+
+/* ---------- Les boutons (comme ceux du site) ---------- */
+.scs-btn {
+  flex: 1; min-height: 46px; padding: 11px 16px; border: 2px solid var(--night, #0B2239); border-radius: 999px;
+  font: inherit; font-size: 16px; font-weight: 700; line-height: 1.1; cursor: pointer;
+  transition: transform .35s var(--e, cubic-bezier(.16, 1, .3, 1)), box-shadow .35s var(--e, cubic-bezier(.16, 1, .3, 1));
+}
+.scs-btn:hover { transform: translateY(-3px); }
+.scs-btn:active { transform: scale(.97); }
+.scs-btn-plein { border-color: var(--orange, #E67E22); background: var(--orange, #E67E22); color: #fff; box-shadow: 0 12px 28px -10px rgba(190, 90, 10, .75); }
+.scs-btn-contour { background: #fff; color: var(--night, #0B2239); }
+
+/* ---------- Le contenu qui attend l'accord (vidéo, carte, traduction) ---------- */
+.scs-attente {
+  box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  min-height: 100%; padding: 18px 16px; text-align: center; color: #fff;
+  font-family: var(--text, 'DM Sans', system-ui, sans-serif); font-size: 15px; line-height: 1.45;
+  background:
+    radial-gradient(70% 90% at 12% 0%, rgba(29, 161, 242, .38), transparent 70%),
+    radial-gradient(70% 90% at 100% 100%, rgba(0, 184, 148, .3), transparent 70%),
+    linear-gradient(160deg, #17446E, #0B2239);
+}
+.scs-attente p { margin: 0; max-width: 26em; }
+.scs-attente .scs-btn { flex: none; padding-left: 26px; padding-right: 26px; }
+.scs-attente-lien { color: #fff; font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; opacity: .92; }
+.scs-attente-lien:hover { opacity: 1; }
+.scs-attente :focus-visible { outline: 3px solid var(--sun, #FDCB6E); outline-offset: 3px; }
+
+/* ---------- Le lien « Gérer les cookies » ---------- */
+.scs-gerer { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+
+/* ---------- La fenêtre des vidéos ---------- */
+html.scs-video-ouverte { overflow: hidden; scrollbar-gutter: stable; }
+.scs-video {
+  position: fixed; inset: 0; z-index: 950; display: grid; place-items: center; padding: 16px; overscroll-behavior: contain;
+  background: rgba(6, 20, 35, .8); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  animation: scs-fond .3s ease both;
+}
+.scs-video-panneau {
+  position: relative; width: min(940px, 100%, calc((100vh - 150px) * 16 / 9)); width: min(940px, 100%, calc((100svh - 150px) * 16 / 9));
+  overflow: hidden; border-radius: 32px; color: #fff;
+  background: linear-gradient(160deg, #17446E, #0B2239);
+  box-shadow: 0 50px 90px -30px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 255, 255, .1);
+  animation: scs-monte .5s var(--e, cubic-bezier(.16, 1, .3, 1)) both;
+}
+.scs-video-entete { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 16px 14px 24px; }
+.scs-video-citation { margin: 0; font-family: var(--display, 'Fredoka', 'Trebuchet MS', sans-serif); font-weight: 500; font-size: clamp(18px, 2.4vw, 24px); line-height: 1.22; }
+.scs-video-citation::before { content: '\201C'; margin-right: 6px; font-weight: 700; color: var(--sun, #FDCB6E); }
+.scs-video-fermer {
+  flex: none; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%;
+  background: #fff; color: var(--night, #0B2239); cursor: pointer;
+  transition: transform .35s var(--e, cubic-bezier(.16, 1, .3, 1));
+}
+.scs-video-fermer:hover { transform: rotate(90deg) scale(1.08); }
+.scs-video-fermer svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+.scs-video-fermer:focus-visible { outline: 3px solid var(--sun, #FDCB6E); outline-offset: 3px; }
+.scs-video-scene { position: relative; aspect-ratio: 16 / 9; background: #000; }
+.scs-video-scene iframe { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border: 0; }
+.scs-video-scene .scs-attente { position: absolute; inset: 0; }
+
+@keyframes scs-monte { from { opacity: 0; transform: translateY(24px) scale(.96); } }
+@keyframes scs-fond { from { opacity: 0; } }
+
+/* ---------- Téléphone ---------- */
+@media (max-width: 640px) {
+  /* Le bandeau reste au-dessus du bouton de Julie (60 px de haut, à 16 px du bas). */
+  .scs-consent { left: 12px; bottom: 96px; width: calc(100% - 24px); max-width: none; padding: 22px 18px 16px; border-radius: 24px; }
+  .scs-video { padding: 12px; }
+  .scs-video-panneau { border-radius: 26px; }
+  .scs-video-entete { gap: 10px; padding: 12px 12px 12px 18px; }
+  .scs-attente { gap: 9px; padding: 12px; font-size: 14px; }
+  .scs-attente .scs-btn { min-height: 44px; }
+}
+
+/* Ecran bas (téléphone couché) : bandeau plus compact ; dans la fenêtre vidéo,
+   on garde la vidéo et le bouton, on enlève la citation. */
+@media (max-height: 520px) {
+  .scs-consent { max-width: 520px; max-height: calc(100vh - 24px); max-height: calc(100svh - 24px); overflow-y: auto; padding: 16px 18px 12px; font-size: 14px; line-height: 1.4; }
+  .scs-consent h2 { margin-bottom: 4px; font-size: 18px; }
+  .scs-consent p { margin-bottom: 10px; }
+  .scs-video-panneau { width: min(940px, 100%, calc((100vh - 70px) * 16 / 9)); width: min(940px, 100%, calc((100svh - 70px) * 16 / 9)); }
+  .scs-video-citation { display: none; }
+  .scs-video-entete { justify-content: flex-end; padding: 8px 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scs-consent, .scs-video, .scs-video-panneau { animation: none; }
+  .scs-btn, .scs-video-fermer { transition: none; }
+}
