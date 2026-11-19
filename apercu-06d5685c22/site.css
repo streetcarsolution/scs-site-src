@@ -385,6 +385,9 @@ textarea.in { height: auto; min-height: 118px; padding: 13px 15px; line-height: 
 .help.is-bad { color: #C62828; font-weight: 700; }
 button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .btn-sm { padding: 12px 18px; font-size: 15px; }
+/* Bouton « Se rendre à l'agence » sous la carte Email : pleine largeur, le texte peut passer à la ligne (anglais, espagnol) */
+.ways > .btn-map { white-space: normal; text-align: center; }
+.btn-map svg { flex: none; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .btn[disabled] { opacity: .55; cursor: default; }
 .send { width: 100%; }
 .form-status { padding: 14px 16px; border-radius: 16px; background: rgba(0, 184, 148, .13); color: #00604c; font-size: 15px; font-weight: 700; line-height: 1.45; }
