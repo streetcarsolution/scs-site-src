@@ -10,18 +10,119 @@
   var menu = document.getElementById('menu');
   function tous(sel, racine) { return Array.prototype.slice.call((racine || document).querySelectorAll(sel)); }
 
+  /* ==========================================================================
+     LES TEXTES DE CHAQUE LANGUE, AU MEME ENDROIT
+     ==========================================================================
+     La langue est celle de la page (<html lang>) : une correction de texte se
+     fait ICI, une seule fois, pour les trois langues. Les phrases du HTML, elles,
+     sont dans les pages (index.html, en/index.html, es/index.html...).
+     ⚠️ Les messages et alertes des formulaires (naissance, 3 jours, date,
+     telephone, envoi, echec, contact) sont ceux de TEXTES.fr / en / es de
+     `assets/js/formulaires.js` du site actuel, que Sabrina a testes : ne pas les
+     reformuler. Seuls les messages du devis (`merci`, et le mot « devis ») sont
+     nouveaux. `{n}` est remplace par un nombre. */
+  var TEXTES = {
+    fr: {
+      menuOuvrir: 'Ouvrir le menu', menuFermer: 'Fermer le menu',
+      dateLocale: 'fr-FR', nombreLocale: 'fr-FR', altFormat: 'd/m/Y', gabarit: 'JJ/MM/AAAA', anneeDabord: false,
+      prixDes: 'dès {n} € / jour', jour: ' jour', jours: ' jours', dureeLocation: '{n} jours de location',
+      passager: ' passager', passagers: ' passagers', valise: ' valise', valises: ' valises',
+      optionChoisie: ' option choisie', optionsChoisies: ' options choisies', choisirOptions: 'Choisir des options',
+      option: ' option', options: ' options',
+      apercu: 'Aperçu : ',
+      altVoiture: { 'Économique': 'Renault Kwid, voiture économique', 'Citadine': 'Chevrolet Aveo bleu clair, catégorie Citadine', 'Berline': 'Kia K3 noire, catégorie Berline', 'SUV 5 places': 'Mazda CX-5 bleu foncé, SUV 5 places', 'Monospace 7 ou 8 places': 'Kia Sedona blanc, monospace 7 ou 8 places', 'Van 14 places': 'Van Toyota Hiace de 14 places' },
+      envoi: 'Envoi en cours…',
+      merci: 'Merci ! Votre demande de devis est bien envoyée,\nun conseiller vous contactera rapidement.',
+      echec: "Votre demande n'a pas pu partir. Vérifiez votre connexion et réessayez, ou écrivez-nous sur WhatsApp.",
+      naissanceFormat: 'Écrivez la date de naissance en chiffres : jour, mois, année. Par exemple 16/12/1980.',
+      naissanceJeune: 'Le conducteur doit avoir au moins 18 ans le jour du départ.',
+      naissanceVieux: "Vérifiez l'année de naissance.",
+      minimum: 'La location doit contenir un minimum de 3 jours.',
+      dateManquante: 'Choisissez la date dans le calendrier.',
+      telAide: "Commencez par « + » et l'indicatif de votre pays : +33 France, +1 Canada, +52 Mexique.",
+      telSansPlus: "Il manque le « + » et l'indicatif de votre pays avant le numéro. Exemples : +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada), +52 998 123 4567 (Mexique).",
+      telIncomplet: "Ce numéro semble incomplet. Vérifiez l'indicatif du pays et tous les chiffres, par exemple +33 6 12 34 56 78.",
+      contactEnvoi: 'Envoi…',
+      contactMerci: 'Merci, votre message a bien été envoyé !',
+      contactEchec: 'Désolé, une erreur est survenue. Réessayez plus tard, ou écrivez-nous sur WhatsApp.',
+      copier: "Copier l'adresse", copie: 'Adresse copiée ✓', copiez: 'Copiez cette adresse :',
+      julieAccueil: "Bonjour, je suis Julie, votre conseillère virtuelle.\nComment puis-je vous aider aujourd'hui ?",
+      julieRelais: 'Je ne peux pas vous répondre pour le moment. Un conseiller prend le relais sur WhatsApp : '
+    },
+    en: {
+      menuOuvrir: 'Open menu', menuFermer: 'Close menu',
+      dateLocale: 'en-US', nombreLocale: 'en-US', altFormat: 'Y/m/d', gabarit: 'YYYY/MM/DD', anneeDabord: true,
+      prixDes: 'from €{n} / day', jour: ' day', jours: ' days', dureeLocation: '{n} rental days',
+      passager: ' passenger', passagers: ' passengers', valise: ' suitcase', valises: ' suitcases',
+      optionChoisie: ' option selected', optionsChoisies: ' options selected', choisirOptions: 'Choose options',
+      option: ' option', options: ' options',
+      apercu: 'Preview: ',
+      altVoiture: { 'Économique': 'Renault Kwid, economy car', 'Citadine': 'Light blue Chevrolet Aveo, Compact category', 'Berline': 'Black Kia K3, Sedan category', 'SUV 5 places': 'Dark blue Mazda CX-5, 5-seat SUV', 'Monospace 7 ou 8 places': 'White Kia Sedona, 7 or 8-seat minivan', 'Van 14 places': 'Toyota Hiace 14-seat van' },
+      envoi: 'Sending…',
+      merci: 'Thank you! Your quote request has been sent,\nan advisor will contact you shortly.',
+      echec: 'Your request could not be sent. Check your connection and try again, or message us on WhatsApp.',
+      naissanceFormat: 'Type the date of birth in digits: year, month, day. For example 1980/12/16.',
+      naissanceJeune: 'The driver must be at least 18 years old on the pick-up day.',
+      naissanceVieux: 'Please check the year of birth.',
+      minimum: 'The rental must be for a minimum of 3 days.',
+      dateManquante: 'Please choose the date from the calendar.',
+      telAide: 'Start with “+” and your country code: +33 France, +1 Canada/USA, +52 Mexico.',
+      telSansPlus: 'Please add the “+” and your country code before the number. Examples: +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada/USA), +52 998 123 4567 (Mexico).',
+      telIncomplet: 'This number looks incomplete. Please check the country code and all the digits, for example +33 6 12 34 56 78.',
+      contactEnvoi: 'Sending…',
+      contactMerci: 'Thanks, your message has been sent!',
+      contactEchec: 'Sorry, an error occurred. Please try again later.',
+      copier: 'Copy address', copie: 'Address copied ✓', copiez: 'Copy this address:',
+      julieAccueil: 'Hello! I’m Julie, your virtual advisor.\nHow can I help you today?',
+      julieRelais: "I can't answer right now. An advisor is taking over on WhatsApp: "
+    },
+    es: {
+      menuOuvrir: 'Abrir menú', menuFermer: 'Cerrar menú',
+      dateLocale: 'es-MX', nombreLocale: 'es-MX', altFormat: 'd/m/Y', gabarit: 'DD/MM/AAAA', anneeDabord: false,
+      prixDes: 'desde {n} € / día', jour: ' día', jours: ' días', dureeLocation: '{n} días de renta',
+      passager: ' pasajero', passagers: ' pasajeros', valise: ' maleta', valises: ' maletas',
+      optionChoisie: ' opción elegida', optionsChoisies: ' opciones elegidas', choisirOptions: 'Elegir opciones',
+      option: ' opción', options: ' opciones',
+      apercu: 'Vista previa: ',
+      altVoiture: { 'Économique': 'Renault Kwid, auto económico', 'Citadine': 'Chevrolet Aveo azul claro, categoría Compacto', 'Berline': 'Kia K3 negro, categoría Sedán', 'SUV 5 places': 'Mazda CX-5 azul oscuro, SUV de 5 plazas', 'Monospace 7 ou 8 places': 'Kia Sedona blanco, minivan de 7 u 8 plazas', 'Van 14 places': 'Van Toyota Hiace de 14 plazas' },
+      envoi: 'Enviando…',
+      merci: '¡Gracias! Su solicitud de cotización ha sido enviada,\nun asesor se pondrá en contacto con usted rápidamente.',
+      echec: 'Su solicitud no pudo enviarse. Revise su conexión e inténtelo de nuevo, o escríbanos por WhatsApp.',
+      naissanceFormat: 'Escriba la fecha de nacimiento en números: día, mes, año. Por ejemplo 16/12/1980.',
+      naissanceJeune: 'El conductor debe tener al menos 18 años el día de la entrega.',
+      naissanceVieux: 'Revise el año de nacimiento.',
+      minimum: 'La renta debe ser de un mínimo de 3 días.',
+      dateManquante: 'Elija la fecha en el calendario.',
+      telAide: 'Empiece con «+» y el código de su país: +33 Francia, +1 Canadá/EE. UU., +52 México.',
+      telSansPlus: 'Falta el «+» y el código de su país antes del número. Ejemplos: +33 6 12 34 56 78 (Francia), +1 514 123 4567 (Canadá/EE. UU.), +52 998 123 4567 (México).',
+      telIncomplet: 'Este número parece incompleto. Revise el código del país y todos los dígitos, por ejemplo +33 6 12 34 56 78.',
+      contactEnvoi: 'Enviando…',
+      contactMerci: '¡Gracias, su mensaje ha sido enviado!',
+      contactEchec: 'Lo sentimos, ocurrió un error. Inténtelo más tarde.',
+      copier: 'Copiar la dirección', copie: 'Dirección copiada ✓', copiez: 'Copie esta dirección:',
+      julieAccueil: '¡Hola! Soy Julie, su asesora virtual.\n¿En qué puedo ayudarle hoy?',
+      julieRelais: 'No puedo responderle por el momento. Un asesor toma el relevo por WhatsApp: '
+    }
+  };
+  var LANGUE = String(doc.lang || 'fr').slice(0, 2).toLowerCase();
+  if (!TEXTES[LANGUE]) LANGUE = 'fr';
+  var T = TEXTES[LANGUE];
+  /* Les pages anglaise et espagnole vivent dans un sous-dossier : les images sont un cran plus haut. */
+  var BASE = LANGUE === 'fr' ? '' : '../';
+  function avec(modele, n) { return modele.replace('{n}', n); }
+
   /* ---------- Menu téléphone ---------- */
   function fermerMenu() {
     menu.hidden = true;
     burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', 'Ouvrir le menu');
+    burger.setAttribute('aria-label', T.menuOuvrir);
     document.body.style.overflow = '';
   }
   burger.addEventListener('click', function () {
     if (!menu.hidden) { fermerMenu(); return; }
     menu.hidden = false;
     burger.setAttribute('aria-expanded', 'true');
-    burger.setAttribute('aria-label', 'Fermer le menu');
+    burger.setAttribute('aria-label', T.menuFermer);
     document.body.style.overflow = 'hidden';
   });
   menu.addEventListener('click', function (e) { if (e.target.closest('a')) fermerMenu(); });
@@ -107,7 +208,6 @@
   /* Personne ne remplit ces formulaires en trois secondes, un robot si. */
   var DELAI_MINIMUM = 3000;
   var ouverte = Date.now();
-  var LANGUE = 'fr';
   /* Chaque option du site porte le code de sa ligne dans le catalogue de l'App
      (Reglages, tarifs additionnels) : c'est par lui que l'App la range. */
   var OPTION_POUR_LAPP = {
@@ -158,13 +258,12 @@
 
   /* ---------- Pré-réservation : le billet se remplit, les règles sont celles du site actuel ---------- */
   var NUMERO_COMPLET = /^\+[0-9]{11,15}$/;
-  var TEL_AIDE = "Commencez par « + » et l'indicatif de votre pays : +33 France, +1 Canada, +52 Mexique.";
-  var TEL_SANS_PLUS = "Il manque le « + » et l'indicatif de votre pays avant le numéro. Exemples : +33 6 12 34 56 78 (France), +1 514 123 4567 (Canada), +52 998 123 4567 (Mexique).";
-  var TEL_INCOMPLET = "Ce numéro semble incomplet. Vérifiez l'indicatif du pays et tous les chiffres, par exemple +33 6 12 34 56 78.";
+  var TEL_AIDE = T.telAide;
+  var TEL_SANS_PLUS = T.telSansPlus;
+  var TEL_INCOMPLET = T.telIncomplet;
   var JOURS_MINIMUM = 3;
-  var DATE_MANQUANTE = 'Choisissez la date dans le calendrier.';
+  var DATE_MANQUANTE = T.dateManquante;
   var PRIX = { 'Économique': 35, 'Citadine': 40, 'Berline': 47, 'SUV 5 places': 62, 'Monospace 7 ou 8 places': 75, 'Van 14 places': 105 };
-  var ALT_VOITURE = { 'Économique': 'Renault Kwid, voiture économique', 'Citadine': 'Chevrolet Aveo bleu clair, catégorie Citadine', 'Berline': 'Kia K3 noire, catégorie Berline', 'SUV 5 places': 'Mazda CX-5 bleu foncé, SUV 5 places', 'Monospace 7 ou 8 places': 'Kia Sedona blanc, monospace 7 ou 8 places', 'Van 14 places': 'Van Toyota Hiace de 14 places' };
   var PHOTO = { 'Économique': 'economique', 'Citadine': 'aveo-agence', 'Berline': 'k3-noire', 'SUV 5 places': 'cx5-agence', 'Monospace 7 ou 8 places': 'sedona-agence', 'Van 14 places': 'van' };
   function id(i) { return document.getElementById(i); }
 
@@ -175,7 +274,11 @@
 
     function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
     function choix(nom) { var r = resa.querySelector('input[name="' + nom + '"]:checked'); return r ? r.value : ''; }
-    function jour(v) { return v ? new Date(v + 'T00:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) : ''; }
+    function jour(v) { return v ? new Date(v + 'T00:00:00').toLocaleDateString(T.dateLocale, { day: 'numeric', month: 'short' }) : ''; }
+    /* Le nom affiche d'un choix : les pages anglaise et espagnole gardent le mot francais dans `value`
+       (c'est lui qui part a l'App) et mettent le nom de leur langue dans `data-nom`. */
+    function nom(nomDuChamp) { var r = resa.querySelector('input[name="' + nomDuChamp + '"]:checked'); return r ? (r.getAttribute('data-nom') || r.value) : ''; }
+    function lieu(menuLieu) { var o = menuLieu.options[menuLieu.selectedIndex]; return LANGUE === 'fr' || !o || !o.value ? menuLieu.value : o.textContent.trim(); }
     function jours() {
       if (!depart.value || !retour.value) return null;
       var n = Math.round((Date.parse(retour.value + 'T00:00:00Z') - Date.parse(depart.value + 'T00:00:00Z')) / 86400000);
@@ -190,35 +293,35 @@
       el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
     }
     function dessiner() {
-      ecrire('t-de', id('pickupLocation').value);
-      ecrire('t-a', id('returnLocation').value);
+      ecrire('t-de', lieu(id('pickupLocation')));
+      ecrire('t-a', lieu(id('returnLocation')));
       ecrire('t-d1', [jour(depart.value), id('pickupTime').value].filter(Boolean).join(' · '));
       ecrire('t-d2', [jour(retour.value), id('returnTime').value].filter(Boolean).join(' · '));
       var n = jours();
-      ecrire('t-jours', n !== null && n >= 1 ? n + (n > 1 ? ' jours' : ' jour') : '');
+      ecrire('t-jours', n !== null && n >= 1 ? n + (n > 1 ? T.jours : T.jour) : '');
       var auto = choix('vehicleType');
-      ecrire('t-auto', auto);
-      ecrire('t-prix', auto ? 'dès ' + PRIX[auto] + ' € / jour' : '');
+      ecrire('t-auto', nom('vehicleType'));
+      ecrire('t-prix', auto ? avec(T.prixDes, PRIX[auto]) : '');
       if (auto && photo.getAttribute('data-auto') !== auto) {
         photo.setAttribute('data-auto', auto);
-        photo.alt = 'Aperçu : ' + (ALT_VOITURE[auto] || auto);
-        photo.src = 'img/auto-' + PHOTO[auto] + '.webp';
+        photo.alt = T.apercu + (T.altVoiture[auto] || auto);
+        photo.src = BASE + 'img/auto-' + PHOTO[auto] + '.webp';
         photo.hidden = false;
         photo.classList.remove('go'); void photo.offsetWidth; photo.classList.add('go');
       }
-      ecrire('t-boite', choix('transmission'));
+      ecrire('t-boite', nom('transmission'));
       var p = Number(id('passengers').value) || 0, v = (Number(id('luggage10').value) || 0) + (Number(id('luggage20').value) || 0);
-      ecrire('t-bord', p + (p > 1 ? ' passagers' : ' passager') + (v ? ', ' + v + (v > 1 ? ' valises' : ' valise') : ''));
-      var o = tous('input[name="option"]:checked', resa).map(function (i) { return i.value; });
+      ecrire('t-bord', p + (p > 1 ? T.passagers : T.passager) + (v ? ', ' + v + (v > 1 ? T.valises : T.valise) : ''));
+      var o = tous('input[name="option"]:checked', resa).map(function (i) { return i.getAttribute('data-nom') || i.value; });
       ecrire('t-opts', o.join(' · '));
-      id('drop-txt').textContent = o.length ? o.length + (o.length > 1 ? ' options choisies' : ' option choisie') : 'Choisir des options';
+      id('drop-txt').textContent = o.length ? o.length + (o.length > 1 ? T.optionsChoisies : T.optionChoisie) : T.choisirOptions;
     }
 
     /* Trois jours au moins, et pas de retour avant le départ */
     function dureeAcceptee() {
       var n = jours(), court = n !== null && n < JOURS_MINIMUM;
-      visible(retour).setCustomValidity(court ? 'La location doit contenir un minimum de 3 jours.' : '');
-      duree.textContent = n === null ? '' : (court ? 'La location doit contenir un minimum de 3 jours.' : n + ' jours de location');
+      visible(retour).setCustomValidity(court ? T.minimum : '');
+      duree.textContent = n === null ? '' : (court ? T.minimum : avec(T.dureeLocation, n));
       duree.classList.toggle('is-bad', court);
       return !court;
     }
@@ -230,20 +333,31 @@
        Si le calendrier ne se charge pas, la case du navigateur reste : on perd le
        format, jamais la demande. */
     var TACTILE = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    /* Huit chiffres, les barres se posent seules : jour/mois/annee, ou annee/mois/jour sur la page anglaise. */
+    var GROUPES = T.anneeDabord ? [4, 2, 2] : [2, 2, 4];
+    function masquer(valeur) {
+      var c = valeur.replace(/\D/g, '').slice(0, 8), morceaux = [], debut = 0;
+      GROUPES.forEach(function (n) { if (c.length > debut) morceaux.push(c.slice(debut, debut + n)); debut += n; });
+      return morceaux.join('/');
+    }
+    /* `16/12/1980` (ou `1980/12/16`) : [jour, mois, annee] en nombres, ou null. */
+    function lireDate(texte) {
+      var m = (T.anneeDabord ? /^(\d{4})\/(\d{2})\/(\d{2})$/ : /^(\d{2})\/(\d{2})\/(\d{4})$/).exec(String(texte || '').trim());
+      return m ? (T.anneeDabord ? [+m[3], +m[2], +m[1]] : [+m[1], +m[2], +m[3]]) : null;
+    }
     function masqueDeDate(champ) {
       champ.addEventListener('input', function () {
-        var c = champ.value.replace(/\D/g, '').slice(0, 8);
-        champ.value = c.length > 4 ? c.slice(0, 2) + '/' + c.slice(2, 4) + '/' + c.slice(4) : c.length > 2 ? c.slice(0, 2) + '/' + c.slice(2) : c;
+        champ.value = masquer(champ.value);
         champ.setCustomValidity('');
       });
     }
     (function () {
       if (!window.flatpickr) { depart.min = retour.min = iso(new Date()); return; }
-      var traduction = window.flatpickr.l10ns && window.flatpickr.l10ns.fr;
+      var traduction = window.flatpickr.l10ns && window.flatpickr.l10ns[LANGUE];
       [depart, retour].forEach(function (champ) {
-        champ.setAttribute('placeholder', 'JJ/MM/AAAA');
+        champ.setAttribute('placeholder', T.gabarit);
         var fp = window.flatpickr(champ, {
-          locale: traduction || 'default', dateFormat: 'Y-m-d', altInput: true, altFormat: 'd/m/Y',
+          locale: LANGUE !== 'en' && traduction ? traduction : 'default', dateFormat: 'Y-m-d', altInput: true, altFormat: T.altFormat,
           altInputClass: champ.className, allowInput: !TACTILE, disableMobile: true, minDate: 'today'
         });
         if (!fp || !fp.altInput) return;
@@ -307,20 +421,19 @@
 
     /* La date de naissance : JJ/MM/AAAA, 18 ans le jour du départ */
     naissance.addEventListener('input', function () {
-      var c = naissance.value.replace(/\D/g, '').slice(0, 8);
-      naissance.value = c.length > 4 ? c.slice(0, 2) + '/' + c.slice(2, 4) + '/' + c.slice(4) : c.length > 2 ? c.slice(0, 2) + '/' + c.slice(2) : c;
+      naissance.value = masquer(naissance.value);
       naissance.setCustomValidity('');
     });
     function refusNaissance() {
-      var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(naissance.value.trim());
-      var format = 'Écrivez la date de naissance en chiffres : jour, mois, année. Par exemple 16/12/1980.';
+      var m = lireDate(naissance.value);
+      var format = T.naissanceFormat;
       if (!m) return format;
-      var j = +m[1], mo = +m[2], a = +m[3], d = new Date(a, mo - 1, j);
+      var j = m[0], mo = m[1], a = m[2], d = new Date(a, mo - 1, j);
       if (d.getFullYear() !== a || d.getMonth() !== mo - 1 || d.getDate() !== j) return format;
       var ref = depart.value ? new Date(depart.value + 'T00:00:00') : new Date();
       var age = ref.getFullYear() - a - (ref.getMonth() < mo - 1 || (ref.getMonth() === mo - 1 && ref.getDate() < j) ? 1 : 0);
-      if (age < 18) return 'Le conducteur doit avoir au moins 18 ans le jour du départ.';
-      if (age > 99) return "Vérifiez l'année de naissance.";
+      if (age < 18) return T.naissanceJeune;
+      if (age > 99) return T.naissanceVieux;
       return null;
     }
 
@@ -347,7 +460,7 @@
       dureeAcceptee(); dessiner();
       billet.classList.add('is-stamped');
       rendreLaMain();
-      annoncer(etat, 'Merci ! Votre demande de devis est bien envoyée,\nun conseiller vous contactera rapidement.', 'ok');
+      annoncer(etat, T.merci, 'ok');
     }
     resa.addEventListener('input', function () { billet.classList.remove('is-stamped'); });
     resa.addEventListener('submit', function (e) {
@@ -364,19 +477,19 @@
       if (!retour.value) return manque(retour, true);
 
       var piege = id('champ_piege').value.trim(), temps = Date.now() - ouverte;
-      enCours = true; bouton.disabled = true; bouton.textContent = 'Envoi en cours…';
-      annoncer(etat, 'Envoi en cours…', 'attente');
+      enCours = true; bouton.disabled = true; bouton.textContent = T.envoi;
+      annoncer(etat, T.envoi, 'attente');
       /* Un robot croit avoir reussi, pour ne pas chercher un autre chemin. */
       if (piege || temps < DELAI_MINIMUM) { setTimeout(reussi, 800); return; }
 
-      var n = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(naissance.value.trim());
+      var n = lireDate(naissance.value);
       var numero = tel.value.replace(/[\s().\-]/g, '');
       if (numero.indexOf('00') === 0) numero = '+' + numero.slice(2);
       var categorie = choix('vehicleType');
       /* Le meme corps pour la feuille et pour l'App, aux memes noms de champs. */
       var corps = new URLSearchParams();
       [['firstName', id('firstName').value], ['lastName', id('lastName').value], ['permis', choix('permis')],
-       ['age', n[3] + '-' + n[2] + '-' + n[1]], ['phone', numero], ['email', id('email').value],
+       ['age', n[2] + '-' + ('0' + n[1]).slice(-2) + '-' + ('0' + n[0]).slice(-2)], ['phone', numero], ['email', id('email').value],
        ['pickupLocation', id('pickupLocation').value], ['returnLocation', id('returnLocation').value],
        ['pickupDate', depart.value], ['pickupTime', id('pickupTime').value],
        ['returnDate', retour.value], ['returnTime', id('returnTime').value],
@@ -407,7 +520,7 @@
       Promise.all([laFeuille, lApp]).then(function (res) {
         if (res[0] || res[1]) { reussi(); return; }
         rendreLaMain();
-        annoncer(etat, "Votre demande n'a pas pu partir. Vérifiez votre connexion et réessayez, ou écrivez-nous sur WhatsApp.", 'mal');
+        annoncer(etat, T.echec, 'mal');
       });
     });
     /* Une flèche de la flotte choisit déjà la catégorie dans le formulaire */
@@ -432,7 +545,7 @@
         e.preventDefault();
         if (enCours) return;
         if (!message.checkValidity()) { message.reportValidity(); return; }
-        enCours = true; bouton.disabled = true; bouton.textContent = 'Envoi…';
+        enCours = true; bouton.disabled = true; bouton.textContent = T.contactEnvoi;
         annoncer(etat, '', '');
         var piege = id('cf-piege').value.trim(), temps = Date.now() - ouverte;
         var envoi;
@@ -454,8 +567,8 @@
           envoi = Promise.all([laFeuille, lApp]).then(function (r) { return r[0] || r[1]; });
         }
         envoi.then(function (ok) {
-          if (ok) { message.reset(); annoncer(etat, 'Merci, votre message a bien été envoyé !', 'ok'); }
-          else annoncer(etat, 'Désolé, une erreur est survenue. Réessayez plus tard, ou écrivez-nous sur WhatsApp.', 'mal');
+          if (ok) { message.reset(); annoncer(etat, T.contactMerci, 'ok'); }
+          else annoncer(etat, T.contactEchec, 'mal');
           enCours = false; bouton.disabled = false; bouton.innerHTML = libelle;
         });
       });
@@ -475,7 +588,7 @@
     function maj() {
       var c = tous('input:checked', choix).map(function (i) { return i.value; });
       barre.hidden = !c.length;
-      compte.textContent = c.length + (c.length > 1 ? ' options' : ' option');
+      compte.textContent = c.length + (c.length > 1 ? T.options : T.option);
       lien.href = './' + (c.length ? '?options=' + encodeURIComponent(c.join(', ')) : '') + '#reservation';
     }
     choix.addEventListener('change', maj);
@@ -502,16 +615,16 @@
   /* ---------- Copier l'adresse email ---------- */
   var copier = id('copier');
   if (copier) copier.addEventListener('click', function () {
-    var texte = copier.getAttribute('data-texte'), libelle = "Copier l'adresse";
-    function fait() { copier.textContent = 'Adresse copiée ✓'; setTimeout(function () { copier.textContent = libelle; }, 2200); }
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(fait, function () { window.prompt('Copiez cette adresse :', texte); });
-    else window.prompt('Copiez cette adresse :', texte);
+    var texte = copier.getAttribute('data-texte'), libelle = T.copier;
+    function fait() { copier.textContent = T.copie; setTimeout(function () { copier.textContent = libelle; }, 2200); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(fait, function () { window.prompt(T.copiez, texte); });
+    else window.prompt(T.copiez, texte);
   });
 
   /* ---------- Julie, l'agent virtuel : la même que sur le site actuel ---------- */
   (function () {
     var API = 'https://scs-chat-api.vercel.app/api/scc-chat';
-    var ACCUEIL = "Bonjour, je suis Julie, votre conseillère virtuelle.\nComment puis-je vous aider aujourd'hui ?";
+    var ACCUEIL = T.julieAccueil;
     var fab = id('fab'), panneau = id('julie'), fil = id('julie-log'), form = id('julie-form'), champ = id('julie-in');
     if (!fab || !panneau) return;
     var historique = [], occupee = false;
@@ -554,7 +667,7 @@
       }
       /* Si Julie ne répond pas, on ne laisse pas le visiteur sans suite : un conseiller prend le relais */
       function relais() {
-        repondre('Je ne peux pas vous répondre pour le moment. Un conseiller prend le relais sur WhatsApp : ', false);
+        repondre(T.julieRelais, false);
         var a = document.createElement('a');
         a.href = 'https://wa.me/32477813205'; a.target = '_blank'; a.rel = 'noopener noreferrer';
         a.textContent = '+32 477 81 32 05'; a.style.cssText = 'font-weight:700;text-decoration:underline';
@@ -629,7 +742,7 @@
       scrollTrigger: { trigger: el, start: 'top 90%', once: true },
       onUpdate: function () {
         var n = Math.round(o.v);
-        el.textContent = brut ? String(n) : n.toLocaleString('fr-FR').replace(/[  ]/g, ' ');
+        el.textContent = brut ? String(n) : n.toLocaleString(T.nombreLocale).replace(/[  ]/g, ' ');
       }
     });
   });
