@@ -386,7 +386,7 @@ textarea.in { height: auto; min-height: 118px; padding: 13px 15px; line-height: 
 button.btn { border: 0; cursor: pointer; font-family: inherit; }
 .btn-sm { padding: 12px 18px; font-size: 15px; }
 /* Bouton « Se rendre à l'agence » sous la carte Email : pleine largeur, le texte peut passer à la ligne (anglais, espagnol) */
-.ways > .btn-map { white-space: normal; text-align: center; }
+.ways > .btn-map { white-space: normal; text-align: center; background: linear-gradient(140deg, #1DA1F2, #00B894); box-shadow: 0 16px 30px -16px rgba(0, 110, 150, .9); }
 .btn-map svg { flex: none; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .btn[disabled] { opacity: .55; cursor: default; }
 .send { width: 100%; }
